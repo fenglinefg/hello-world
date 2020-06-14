@@ -39,11 +39,11 @@ var api3 = {
     };
     if(obj.result.result.hasOwnProperty("festival")){
       var festival = obj.result.result.festival.solar[0];
-      var mation = "贴心提醒您今天是:"+festival+"\n一言:${objk.hitokoto}";
+      var mation = "贴心提醒您今天是:"+festival+"\n"+objk.hitokoto;
       };
 		
-$notify( "贴心提醒您今天是:"+festival,""
-            `一言:`+objk.hitokoto
+$notify( "❤️一言❤️","",
+            mation
           );
    
 
