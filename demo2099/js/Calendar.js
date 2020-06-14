@@ -7,8 +7,7 @@ author:demo
 群组https://t.me/demo2099
 一言修改
  */
- const api1 = "https://www.sortime.com/api/v2/perpetualcalendar/";
-const api3 = "https://v1.hitokoto.cn/?encode=json";
+ 
 var api1 = {
         url: `https://www.sortime.com/api/v2/perpetualcalendar/`,
     };
@@ -40,22 +39,20 @@ var api3 = {
     };
     if(obj.result.result.hasOwnProperty("festival")){
       var festival = obj.result.result.festival.solar[0];
-      var mation = "贴心提醒您今天是:"+festival+"\n一言:${hit}";
+      var mation = "贴心提醒您今天是:"+festival+"\n一言:${objk.hitokoto}";
       };
 		
 $notify(
-            `一言`,
+            `一言:`+objk.hitokoto,
             "",
-            "贴心提醒您今天是:"+festival+"\n一言:${hit}"
+            "贴心提醒您今天是:"+festival
           );
-console.log(`更新数据成功${response.body}`)
    
 
     }, reason => {
        console.log(`提交记录获取报错`)
     });
 		
-console.log(`更新数据成功${response.body}`)
         } catch (e) {
             console.log(`提交记录获取报错${JSON.stringify(e)}`)
         }
