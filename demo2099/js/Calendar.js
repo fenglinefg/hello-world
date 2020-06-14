@@ -42,10 +42,8 @@ var api3 = {
       var mation = "贴心提醒您今天是:"+festival+"\n一言:${objk.hitokoto}";
       };
 		
-$notify(
-            `一言:`+objk.hitokoto,
-            "",
-            "贴心提醒您今天是:"+festival
+$notify( "贴心提醒您今天是:"+festival,""
+            `一言:`+objk.hitokoto
           );
    
 
