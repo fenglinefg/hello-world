@@ -61,5 +61,5 @@
 
 * [@sazs34](https://github.com/sazs34)
 
-* [@nzw9314](https://github.com/nzw9314)
+* [@nzw9314](https://github.com/nzw9314/QuantumultX/tree/master)
 
