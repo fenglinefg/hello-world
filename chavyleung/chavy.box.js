@@ -1,7 +1,7 @@
 const $ = new Env('BoxJs')
 $.domain = '8.8.8.8'
 
-$.version = '0.2.2'
+$.version = '0.2.4'
 $.versionType = 'beta'
 $.KEY_sessions = 'chavy_boxjs_sessions'
 $.KEY_versions = 'chavy_boxjs_versions'
@@ -323,7 +323,7 @@ async function getAppSubs() {
     const sub = usercfgs.appsubs[subIdx]
     subActs.push(
       new Promise((resolve) => {
-        $.get({ url: sub.url }, (err, resp, data) => {
+        $.get({ url: sub.url.replace(/[ ]|[\r\n]/g, '') }, (err, resp, data) => {
           try {
             const respsub = JSON.parse(data)
             if (Array.isArray(respsub.apps)) {
@@ -396,8 +396,7 @@ function getSessions() {
 async function getVersions() {
   let vers = []
   await new Promise((resolve) => {
-    // const verurl = 'https://github.com/chavyleung/scripts/raw/master/box/release/box.release.json'
-    const verurl = 'https://gist.github.com/chavyleung/e1f1021391143c961d925bcdc21dca24/raw/4185a281c1861ceadd870ca55a497077ae6fefc2/box.release.json'
+    const verurl = 'https://github.com/chavyleung/scripts/raw/master/box/release/box.release.json'
     $.get({ url: verurl }, (err, resp, data) => {
       try {
         const _data = JSON.parse(data)
@@ -1121,8 +1120,10 @@ function printHtml(data, curapp = null, curview = 'app') {
           </v-expand-transition>
           <v-bottom-sheet v-model="ui.versheet.show" hide-overlay scrollable>
             <v-card flat scrollable>
-              <v-subheader>
+              <v-subheader class="my-4">
                 <v-btn text @click="ui.versheet.show = false, ui.updatesheet.show = true">升级教程</v-btn>
+                <v-spacer></v-spacer>
+                <v-btn text>新版本</v-btn>
                 <v-spacer></v-spacer>
                 <v-btn text @click="ui.versheet.show = false">朕, 知道了!</v-btn>
               </v-subheader>
