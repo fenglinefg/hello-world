@@ -55,7 +55,9 @@ let repositories = [
 const $ = API("github", false);
 
 token = $.read('token') || token;
-repositories = JSON.parse($.read("repositories")) || repositories;
+if ($.read("repo") !== undefined) {
+    repositories = JSON.parse($.read("repo"));
+}
 
 const parser = {
     commits: new RegExp(
