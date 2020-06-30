@@ -1,11 +1,9 @@
 /*
 种豆得豆 搬的https://github.com/uniqueque/QuantumultX/blob/4c1572d93d4d4f883f483f907120a75d925a693e/Script/jd_joy.js
 会自动关注任务中的店铺跟商品
-
 // quantumultx
 [task_local]
 1 7-21/2 * * * jd_plantBean.js
-
 // Loon
 cron "1 7-21/2 * * *" script-path=https://github.com/nzw9314/QuantumultX/raw/master/Task/jd_plantBean.js,tag=京东种豆得豆
 */
@@ -110,7 +108,28 @@ var plantUuids = [ // 这个列表填入你要助力的好友的plantUuid
     'zanmzshzq4ykx5xirwj7y7lmki',
     'd6wg7f6syive54q4yfrdmaddo4'
 ]
-
+let currentRoundId = null;//本期活动id
+let lastRoundId = null;//上期id
+let roundList = [];
+let awardState = '';//上期活动的京豆是否收取
+// 添加box功能
+// 【用box订阅的好处】
+// 1️⃣脚本也可以远程挂载了。助力功能只需在box里面设置助力码。
+// 2️⃣所有脚本的cookie都可以备份，方便你迁移到其他支持box的软件。
+let isBox = false //默认没有使用box
+const boxShareCodeArr = ['jd_plantBean1', 'jd_plantBean2', 'jd_plantBean3'];
+isBox = boxShareCodeArr.some((item) => {
+  const boxShareCode = $hammer.read(item);
+  return (boxShareCode !== undefined && boxShareCode !== null && boxShareCode !== '');
+});
+if (isBox) {
+  plantUuids = [];
+  for (const item of boxShareCodeArr) {
+    if ($hammer.read(item)) {
+      plantUuids.push($hammer.read(item));
+    }
+  }
+}
 
 var Task = step();
 Task.next();
@@ -126,6 +145,10 @@ function* step() {
             //todo
             return
         }
+        roundList = plantBeanIndexResult.data.roundList;
+        currentRoundId = roundList[1].roundId;
+        lastRoundId = roundList[0].roundId;
+        awardState = roundList[0].awardState;
         let shareUrl = plantBeanIndexResult.data.jwordShareInfo.shareUrl
         let myPlantUuid = getParam(shareUrl, 'plantUuid')
         console.log(`你的plantUuid为${myPlantUuid}`)
@@ -267,6 +290,10 @@ function* step() {
                 console.log(`助力好友失败: ${JSON.stringify(helpResult)}`);
             }
         }
+
+        //todo 扭蛋
+
+
         plantBeanIndexResult = yield plantBeanIndex()
         if (plantBeanIndexResult.code == '0') {
             let plantBeanRound = plantBeanIndexResult.data.roundList[1]
@@ -288,6 +315,30 @@ function* step() {
         } else {
             console.log(`plantBeanIndexResult:${JSON.stringify(plantBeanIndexResult)}`)
         }
+        // 偷大于等于3瓶好友的营养液
+        let stealRes = yield steal();
+        if (stealRes.code == 0) {
+          if (stealRes.data.tips) {
+            console.log('今日已达上限');
+            return
+          }
+          if (stealRes.data && stealRes.data.friendInfoList && stealRes.data.friendInfoList.length > 0) {
+            for (let item of stealRes.data.friendInfoList) {
+              if (item.nutrCount >= 3) {
+                console.log(`可以偷的好友的信息::${JSON.stringify(item)}`);
+                console.log(`可以偷的好友的信息paradiseUuid::${JSON.stringify(item.paradiseUuid)}`);
+                let stealFriendRes = yield collectUserNutr(item.paradiseUuid);
+                console.log(`偷取好友营养液情况:${JSON.stringify(stealFriendRes)}`)
+                if (stealFriendRes.code == '0') {
+                  console.log(`偷取好友营养液成功`)
+                }
+              }
+            }
+          }
+        }
+        //收获
+        let res = yield getReward();
+        console.log(`种豆得豆收获的京豆情况---res,${JSON.stringify(res)}`);
         console.log('结束')
     } else {
         message = '请先获取cookie\n直接使用NobyDa的京东签到获取'
@@ -408,6 +459,36 @@ function plantBeanIndex() {
     request(functionId, body);//plantBeanIndexBody
 }
 
+//偷营养液大于等于3瓶的好友
+//①查询好友列表
+function steal() {
+  const body = {
+    pageNum: '1'
+  }
+  request('plantFriendList', body);
+}
+//②执行偷好友营养液的动作
+function collectUserNutr(paradiseUuid) {
+  console.log('开始偷好友');
+  console.log(paradiseUuid);
+  let functionId = arguments.callee.name.toString();
+  const body = {
+    "paradiseUuid": paradiseUuid,
+    "roundId": currentRoundId
+  }
+  request(functionId, body);
+}
+//每轮种豆活动获取结束后,自动收取京豆
+function getReward() {
+  if (awardState === '5') {
+    const body = {
+      "roundId": lastRoundId
+    }
+    request('receivedBean', body);
+  } else if (awardState === '6') {
+    console.log("上轮活动您已领奖，去京豆明细页看看");
+  }
+}
 function requestGet(url){
     const option =  {
         url: url,
@@ -462,4 +543,4 @@ function getParam(url, name) {
     var r = url.match(reg);
     if (r != null) return unescape(r[2]);
     return null;
-} 
+}

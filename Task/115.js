@@ -1,7 +1,7 @@
 /*
 "115" app 自动摇一摇获取空间，支持 Quantumult X（理论上也支持 Surge、Loon，未尝试）。
 请先按下述方法进行配置，进入"115"并摇一摇，若弹出"首次写入115 Cookie 成功"即可正常食用，其他提示或无提示请发送日志信息至 issue。
-到 cron 设定时间自动签到时，若弹出"115 - 签到成功"即完成签到，其他提示或无提示请发送日志信息至 issue。
+到 cron 设定时间自动摇一摇时，若弹出"115 - 摇一摇成功"即完成摇一摇，其他提示或无提示请发送日志信息至 issue。
 
 ⚠️免责声明：
 1. 此脚本仅用于学习研究，不保证其合法性、准确性、有效性，请根据情况自行判断，本人对此不承担任何保证责任。
@@ -38,12 +38,14 @@ hostname = proapi.115.com
 获取完 Cookie 后可不注释 rewrite / hostname，Token 更新时会弹窗。若因 MitM 导致该软件网络不稳定，可注释掉 hostname。
 */
 
-const mainURL = 'https://proapi.115.com/ios/user/takespc?'
+const mainURL = 'http://proapi.115.com/ios/user/takespc?'
+const app_ver = '23.5.1'
 const CookieName = '115'
 const CookieKey = 'wp115'
 const UIDKey = 'uid115'
-const reg = /^https?:\/\/proapi\.115\.com\/ios\/user\/takespc\?(.*)&user_id=(\d+)$/
-const today = new Date().getFullYear() + "-" + ("00" + Number(new Date().getMonth() + 1)).substr(-2) + "-" + ("00" + new Date().getDate()).substr(-2)
+const reg = /^https?:\/\/proapi\.115\.com\/ios\/user\/takespc\?(.*)user_id=(\d+)/
+const UTC8 = new Date(new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000)
+const today = UTC8.getFullYear() + "-" + ("00" + Number(UTC8.getMonth() + 1)).substr(-2) + "-" + ("00" + UTC8.getDate()).substr(-2)
 const $cmp = compatibility()
 
 if ($cmp.isRequest) {
@@ -101,7 +103,7 @@ function isJSON(str) {
 function Checkin() {
     let subTitle = ''
     let detail = ''
-    let CheckinURL = mainURL + 'format=json&token=' + hex_md5(today+$cmp.read("uid115")+"space_token") + '&user_id=' + $cmp.read("uid115")
+    let CheckinURL = mainURL + 'app_ver=' + app_ver + '&format=json&token=' + hex_md5(today+$cmp.read("uid115")+"space_token") + '&user_id=' + $cmp.read("uid115")
     const oof = {
         url: CheckinURL,
         headers: {
@@ -111,23 +113,32 @@ function Checkin() {
     $cmp.get(oof, function(error, response, data) {
         if (!error) {
             const result = isJSON(data)
-            if (result.error_code == 10021) {
+            if (result && result.error_code == 10021) {
                 subTitle += 'Token 算法失效❗'
                 detail += '请带日志反馈，并请求群内大佬 @wangfei021325 。\n' + result.request
-                $cmp.log('wp115 failed response : \n' + result.request)
-            } else if (result.error_code == 10022) {
-                subTitle += '重复签到！🤏'
+                $cmp.log('wp115 failed response : \n' + result.request + '\n' + today)
+            } else if (result && result.errno == 99) {
+                subTitle += 'Cookie 失效❗'
+                detail += '请按照脚本开头注释配置后重新获取。'
+            } else if (result && result.error_code == 10022) {
+                subTitle += '重复摇一摇！🤏'
                 detail += result.error
-            } else if (result.state == true) {
-                subTitle += '签到成功！🎉'
-                detail += '获得空间 ' + result.data.take_size_last + ' MB！🤏'
+            } else if (result && result.state == true) {
+                let getspace = result.data.take_state ? result.data.take_size_last : result.data.space
+                let get_time = result.data.take_state ? new Date(result.data.take_time_last * 1000) : false
+                let shaketime = get_time ? ('00' + get_time.getHours()).substr(-2) + ':' + ('00' + get_time.getMinutes()).substr(-2) : false
+                detail += shaketime ? '今天您在 ' + shaketime + ' 摇奖' : ''
+                subTitle += result.data.take_state ? '重复摇一摇！🕸' : '摇一摇成功！🎉'
+                detail += '获得空间 ' + getspace + ' MB！🤏'
+                $cmp.log("wp115 succeed data : \n" + JSON.stringify(result.data))
+                $cmp.log(JSON.stringify(data))
             } else {
                 subTitle += '未知错误，详情请见日志。'
                 detail += result.error
-                $cmp.log("wp115 failed response : \n" + JSON.stringify(result))
+                $cmp.log("wp115 failed response : \n" + JSON.stringify(result) + "\n" + data)
             }
         } else {
-            subTitle += '签到接口请求失败，详情请见日志。'
+            subTitle += '摇一摇接口请求失败，详情请见日志。'
             detail += error
             $cmp.log("wp115 failed response : \n" + error)
         }

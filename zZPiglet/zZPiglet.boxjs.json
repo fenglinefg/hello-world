@@ -14,7 +14,7 @@
           "id": "DiDi",
           "name": "Token",
           "val": "",
-          "type": "text",
+          "type": "textarea",
           "desc": "Token 可同时存在多个，可使用不同日期获取的 Token 进行测试。"
         },
         {
@@ -41,7 +41,7 @@
           "id": "wp115",
           "name": "Cookie",
           "val": "",
-          "type": "text",
+          "type": "textarea",
           "desc": "Cookie，其中有效数据为 CID、SEID、UID。"
         },
         {
@@ -52,7 +52,7 @@
           "desc": "115 -> 相伴 -> 账号名下方即可查看。"
         }
       ],
-      "author": "@zZPiglet",
+      "author": "@wangfei021325, @zZPiglet",
       "repo": "https://github.com/zZPiglet/Task/blob/master/115/115.js",
       "icons": [
         "https://raw.githubusercontent.com/Orz-3/mini/master/115.png",
@@ -68,7 +68,7 @@
           "id": "blibee",
           "name": "Cookie",
           "val": "",
-          "type": "text",
+          "type": "textarea",
           "desc": "Cookie，包含设备编号、登陆渠道、Token、用户编号，请谨慎测试，大量非正常请求易封号。"
         },
         {
@@ -82,7 +82,7 @@
           "id": "blibee_token",
           "name": "Token",
           "val": "",
-          "type": "text",
+          "type": "textarea",
           "desc": "登陆验证信息 __TOKEN__，请谨慎测试，大量非正常请求易封号。"
         },
         {
@@ -96,8 +96,8 @@
       "author": "@zZPiglet",
       "repo": "https://github.com/zZPiglet/Task/blob/master/Blibee/README.md",
       "icons": [
-        "https://upload.cc/i1/2020/06/22/fXTHjV.png",
-        "https://is2-ssl.mzstatic.com/image/thumb/Purple113/v4/b0/28/f8/b028f8fc-4e79-5b7f-80f4-86e0d5414df0/AppIcon-1x_U007emarketing-0-5-0-0-85-220.png/230x0w.png"
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Blibee.png",
+        "https://raw.githubusercontent.com/Orz-3/task/master/Blibee.png"
       ]
     },
     {
@@ -109,21 +109,35 @@
           "id": "hilh",
           "name": "Token",
           "val": "",
-          "type": "text",
+          "type": "textarea",
           "desc": "用户等级接口登陆验证信息 _HAIDILAO_APP_TOKEN。"
         },
         {
-          "id": "hilb",
-          "name": "Body",
+          "id": "@hilb._HAIDILAO_APP_TOKEN",
+          "name": "Body._HAIDILAO_APP_TOKEN",
+          "val": "",
+          "type": "textarea",
+          "desc": "用户等级接口请求消息体，登陆验证信息，此部分应与 Token 中 _HAIDILAO_APP_TOKEN= 之后值一致。"
+        },
+        {
+          "id": "@hilb.customerId",
+          "name": "Body.customerId",
           "val": "",
           "type": "text",
-          "desc": "用户等级接口请求消息体，包含登陆验证信息（_HAIDILAO_APP_TOKEN）、用户编号（customerID）、国家（country）。"
+          "desc": "用户等级接口请求消息体，用户编号。"
+        },
+        {
+          "id": "@hilb.country",
+          "name": "Body.country",
+          "val": "",
+          "type": "text",
+          "desc": "用户等级接口请求消息体，国家。"
         },
         {
           "id": "hich",
           "name": "Cookie",
           "val": "",
-          "type": "text",
+          "type": "textarea",
           "desc": "签到接口登陆验证信息，包含更多信息，可自行修改调试。"
         }
       ],
@@ -143,15 +157,15 @@
           "id": "HEYTEA",
           "name": "Authorization",
           "val": "",
-          "type": "text",
+          "type": "textarea",
           "desc": "用户验证信息。"
         }
       ],
       "author": "@zZPiglet",
       "repo": "https://github.com/zZPiglet/Task/blob/master/HEYTEA/HEYTEA.js",
       "icons": [
-        "https://static.heytea.com/taro_trial/v1/img/home/logo2.png",
-        "http://mmbiz.qpic.cn/mmbiz_png/xMiafHYLl3IZeUpOeGcib8Vc8xeWB2DBFHHl4MXP8NjP7mlnibDzSxwKsdjUeiaLmGxGyo5wCdHDc9nia8ZyT1IC3dg/640?wx_fmt=png&wxfrom=200"
+        "https://raw.githubusercontent.com/Orz-3/mini/master/HEYTEA.png",
+        "https://raw.githubusercontent.com/Orz-3/task/master/HEYTEA.png"
       ]
     },
     {
@@ -163,15 +177,15 @@
           "id": "Naixue",
           "name": "Qm-User-Token",
           "val": "",
-          "type": "text",
+          "type": "textarea",
           "desc": "用户验证信息。"
         }
       ],
       "author": "@zZPiglet",
       "repo": "https://github.com/zZPiglet/Task/blob/master/Naixue/Naixue.js",
       "icons": [
-        "https://media-exp1.licdn.com/dms/image/C510BAQHu_7r70HPyNw/company-logo_200_200/0?e=2159024400&v=beta&t=uSPKxg2q12x1hyVo71oXGnq4kajpqgRxyh7Dnbdhdjw",
-        "https://scontent-hkt1-1.xx.fbcdn.net/v/t1.0-9/41309086_238026620229313_5772500122441089024_o.jpg?_nc_cat=102&_nc_sid=85a577&_nc_ohc=bNGVEGz1OmwAX9lV98f&_nc_ht=scontent-hkt1-1.xx&oh=fb458fcc0b72acc3874d8cc702271c6d&oe=5F13AE38"
+        "https://raw.githubusercontent.com/Orz-3/mini/master/Naixue.png",
+        "https://raw.githubusercontent.com/Orz-3/task/master/Naixue.png"
       ]
     }
   ]
