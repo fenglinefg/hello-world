@@ -13,13 +13,13 @@
  * 2. Loon
  * [MITM]
  * hostname=weather-data.apple.com
- * [Rewrite]
+ * [Script]
  * http-request https://weather-data.apple.com, script-path=https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tools/Location/locate.js, require-body=false
  * 
  * 3. Surge
  * [MITM]
  * hostname=weather-data.apple.com
- * [Rewrite]
+ * [Script]
  * type=http-request, pattern=https://weather-data.apple.com, script-path=https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tools/Location/locate.js, require-body=false
  * 
  * 即可定时获取当前位置，注意需要安装自带的天气应用。此重写不要禁用。
@@ -27,7 +27,7 @@
  */
 
 const url = $request.url;
-const res = url.match(/\/CN\/(.*)\/(.*)\?/);
+const res = url.match(/CN\/(.*)\/(.*)\?/);
 const latitude = res[1];
 const longitude = res[2];
 console.log(`当前位置：经度${latitude}，纬度${longitude}`);
@@ -35,10 +35,10 @@ console.log(`当前位置：经度${latitude}，纬度${longitude}`);
 // write data
 if (typeof $prefs !== 'undefined'){
     // QX
-    $prefs.setValueForKey("latitude", latitude);
-    $prefs.setValueForKey("longitude", longitude);
+    $prefs.setValueForKey(latitude, "latitude");
+    $prefs.setValueForKey(longitude, "longitude");
 }else{
     // Loon & Surge
-    $persistentStore.write("latitude", latitude);
-    $persistentStore.write("longitude", longitude);
+    $persistentStore.write(latitude, "latitude");
+    $persistentStore.write(longitude, "longitude");
 }
