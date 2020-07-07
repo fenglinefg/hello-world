@@ -4,10 +4,14 @@ author:demo
 一言修改
  */
 const $ = API("APP"); // Env("APP", false) --> 无log输出
+let scheme = 'https://news.qq.com/FERD/cjRedDown.htm';
+let sign = 'https://gh.prize.qq.com/show/_4cykzqnif2y/owhat-owhat/index.html';
+    
+ $.notify( "腾讯新闻红包每日签到","",
+ "签到红包👉"+scheme);
 
- $.notify( "腾讯新闻红包每日签到","","https://news.qq.com/FERD/cjRedDown.htm");
-
-
+ $.notify( "腾讯新闻全勤签到","",
+ "全勤签到👉"+sign);
 $.done();
 
 // prettier-ignore
