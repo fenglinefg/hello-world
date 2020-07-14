@@ -11,7 +11,7 @@
 // 9、把金果卖出，换成金币
 // cron 1 */3 * * * *
 // 圈X,Loon,surge均可使用
-const Notice = 2;//设置运行多少次才通知。
+const Notice = 200;//设置运行多少次才通知。
 const $hammer = (() => {
   const isRequest = "undefined" != typeof $request,
       isSurge = "undefined" != typeof $httpClient,
