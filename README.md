@@ -1,7 +1,7 @@
 
 ### 全局配置：
 
-* [QuantumultX.conf](https://raw.githubusercontent.com/demo2099/jscool/master/QuantumultX_remote.conf)
+* [QuantumultX_remote.conf](https://raw.githubusercontent.com/demo2099/jscool/master/QuantumultX_remote.conf)
 * 本项目参考nzw9314修改的,加了个自动同步源作者修改脚本功能,自用,只维护远程脚本配置文件
 
 ### 本地配置：
