@@ -83,13 +83,6 @@
           "desc": "运行时多通知之间时间间隔，单位为毫秒，不填默认为 1000 毫秒。"
         },
         {
-          "id": "@Weibo.update",
-          "name": "时间戳",
-          "val": "",
-          "type": "number", 
-          "desc": "上次运行时保存的时间戳，十三位。"
-        }, 
-        {
           "id": "@Weibo.WeiboNotice",
           "name": "Cookie",
           "val": "",
