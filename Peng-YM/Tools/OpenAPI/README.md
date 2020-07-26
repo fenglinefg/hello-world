@@ -5,20 +5,33 @@
 ## 示例
 
 ### 开始使用
+
 将`api-minified.js`内容复制到js脚本下方。
+
 ```javascript
-const $ = API("weather"); // 创建一个名字为weather的脚本。默认为product环境。
-const $ = API("weather", true); // 打开debug环境，抑制所有log输出，保持error信息。
+const $ = API("weather"); // 创建一个名字为weather的脚本。默认为product环境，抑制所有log输出，保持error信息。。
+const $ = API("weather", true); // 打开debug环境，打开所有log输出
 ```
 
 ### Log
+
 ```javascript
 $.log("Something"); // 如果debug设置为false, log不会有任何输出。
 $.info("Some important thing"); // 需要展示给用户的info信息，不受debug影响。
 $.error("Some error message"); // 错误信息，不受debug影响。
 ```
 
-## 通知
+### 环境判断
+
+```javascript
+$.env.isQX;
+$.env.isSurge;
+$.env.isLoon;
+$.env.isNode;
+$.env.isJSBox;
+```
+
+### 通知
 
 ```javascript
 $.notify("title", "subtitle", "content"); // 简单标题
@@ -111,6 +124,13 @@ $2.write("data", "key");
 
 Node环境中，`cache`会被保存到和脚本同级目录下的`name.json`中。
 
+**如果希望在脚本里直接存取`$prefs`或者`$persistentStore`里面的缓存，可以通过在`KEY`前面加`#`号实现：**
+
+```javascript
+$.read("#KEY");
+$.write(value, "#KEY");
+```
+
 ### 其他
 
 #### 延时
@@ -128,5 +148,4 @@ $.get("http://www.baidu.com")
 })
 ```
 
-
-
+更全面的用法请查看`example.js`。
