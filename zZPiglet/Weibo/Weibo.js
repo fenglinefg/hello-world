@@ -133,8 +133,8 @@ function ParseWeibo(obj) {
             let releaseTime = new Date(wbs[i].created_at).getTime()
             let subTitile = '⌚️ ' + new Date(wbs[i].created_at).Format("MM/dd hh:mm:ss")
             let open = $.openlink + wbs[i].bid
+            let showimg = wbs[i].user.profile_image_url
             let detail = ''
-            let showimg = ''
             let newlineReg = /<br \/>/g
             let ignoreReg = /<[^>]+>/g
             detail += wbs[i].text.replace(newlineReg, '\n').replace(ignoreReg, '').trim()
@@ -151,10 +151,8 @@ function ParseWeibo(obj) {
                     } else {
                         showimg = wbs[i].retweeted_status.page_info.page_pic.url
                         $.log(JSON.stringify(wbs[i].retweeted_status.page_info))
-                    } 
-                } else {
-                    showimg = wbs[i].retweeted_status.user.profile_image_url
-                }
+                    }
+                } 
             } else {
                 if (wbs[i].live_photo) {
                     showimg = wbs[i].live_photo[0]
@@ -168,8 +166,6 @@ function ParseWeibo(obj) {
                         showimg = wbs[i].page_info.page_pic.url
                         $.log(JSON.stringify(wbs[i].page_info))
                     }
-                } else {
-                    showimg = wbs[i].user.profile_image_url
                 }
             }
             detail += '\n\n👉🏼 点击跳转至全文及原微博。'
