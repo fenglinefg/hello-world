@@ -29,7 +29,16 @@
       ],
       "author": "@zZPiglet",
       "repo": "https://github.com/zZPiglet/Task/blob/master/DiDi/README.md",
-      "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi.js",
+      "scripts": [
+        {
+          "name": "滴滴出行",
+          "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi.js"
+        },
+        {
+          "name": "遗忘的福利金",
+          "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi_reward.js"
+        }
+      ],
       "icons": [
         "https://raw.githubusercontent.com/Orz-3/mini/master/didi.png",
         "https://raw.githubusercontent.com/Orz-3/task/master/didi.png"
@@ -275,6 +284,32 @@
       ],
       "author": "@zZPiglet",
       "repo": "https://github.com/zZPiglet/Task/tree/master/Oclean",
+      "scripts": [
+        {
+          "name": "欧可林 app",
+          "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/Oclean/Oclean.js"
+        },
+        {
+          "name": "欧可林 app 早红包",
+          "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/Oclean/Oclean_red_envelope_am.js"
+        },
+        {
+          "name": "欧可林 app 晚红包",
+          "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/Oclean/Oclean_red_envelope_pm.js"
+        },
+        {
+          "name": "欧可林 小程序",
+          "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/Oclean/Oclean_mini.js"
+        },
+        {
+          "name": "欧可林 小程序 早红包",
+          "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/Oclean/Oclean_mini_red_envelope_am.js"
+        },
+        {
+          "name": "欧可林 小程序 晚红包",
+          "script": "https://raw.githubusercontent.com/zZPiglet/Task/master/Oclean/Oclean_mini_red_envelope_pm.js"
+        }
+      ],
       "icons": [
         "https://raw.githubusercontent.com/Orz-3/mini/master/Oclean.png",
         "https://raw.githubusercontent.com/Orz-3/task/master/Oclean.png"
