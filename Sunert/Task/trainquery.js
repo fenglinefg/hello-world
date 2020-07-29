@@ -174,16 +174,18 @@ function prize() {
  return new Promise((resolve, reject) =>{
    const prizeurl = {
     url: `https://kyfw.12306.cn/otn/leftTicket/queryTicketPrice?train_no=${trainno}&from_station_no=${fromstationno}&to_station_no=${tostationno}&seat_types=${seattypes}&train_date=${leftdate}`,
-    headers: {
-'User-Agent' : `Mozilla/5.0 (iPhone; CPU iPhone OS 13_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.0.1 Mobile/15E148 Safari/604.1`,
+    method: 'GET',
+    headers : {'Accept-Encoding' : `gzip, deflate, br`,
+'Connection' : `keep-alive`,
+'Accept' : `text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8`,
 'Host' : `kyfw.12306.cn`,
-'Accept' : `*/*`,
-'Accept-Language' : `zh-cn`}
-    //method: 'GET'
+'Cookie' : `_uab_collina=159587465195914267490366; JSESSIONID=2D2C3ED0892CE56ADB0576B030CC1344; _jc_save_fromDate=2020-07-29; _jc_save_fromStation=%u5317%u4EAC%2CBJP; _jc_save_toDate=2020-07-29; _jc_save_toStation=%u676D%u5DDE%2CHZH; _jc_save_wfdc_flag=dc; BIGipServerotn=250610186.64545.0000; route=9036359bb8a8a461c164a04f8f50b252; RAIL_DEVICEID=TEmVLkda1h6kE7OHY5nw7IrLigw87rzYoHKGpgfvYVXcCaZr20FLBAGhBmcZRB2cHcnV-S1fKJnky4Jy2clDf032gzeCbPVcDayzEC1_zayWQw2BZQB-nZ-lMDeN827ZdxTXErkhVsHxmYk2pBciYlcDZohCcIGO; RAIL_EXPIRATION=1596186387169`,
+'User-Agent' : `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_6) AppleWebKit/604.3.5 (KHTML, like Gecko) Version/13.0 Safari/604.1`,
+'Accept-Language' : `zh-cn` }
 }
 //console.log(prizeurl)
  $.get(prizeurl, (err, resp, data) => {
-    //console.log('票价信息: 响应码: ' +resp.statusCode+" \n"+ data+'\n');
+    console.log('票价信息: 响应码: ' +resp.statusCode+" \n"+ data+'\n');
     if ( data == -1||resp.statusCode == 404){
 $.msg('列车查询失败‼️', '该'+traincode+'次列车车票暂停发售或者查询失败,请重试', err)
      return
