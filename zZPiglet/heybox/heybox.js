@@ -86,6 +86,7 @@ function Sign() {
     let time = Math.round(new Date().getTime()/1000).toString()
     let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
     let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+    $.log('Cookie: pkey=' + $.pkey)
     $.log('sign: ' + mainURL + path + param)
     return $.get({
         url: mainURL + path + param,
@@ -157,8 +158,16 @@ function Sharecomment() {
 
 function Getnews() {
     let path = '/bbs/app/feeds/news'
+    let time = Math.round(new Date().getTime()/1000).toString()
+    let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
+    let param = '?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+    $.log('getnews: ' + mainURL + path + param)
     return $.get({
-        url: mainURL + path
+        url: mainURL + path + param,
+        headers: {
+            'Cookie': 'pkey=' + $.pkey,
+            'Referer': 'http://api.maxjia.com/'
+        }
     })
         .then((resp) => {
             $.log('Getnews: ' + JSON.stringify(resp.body))
@@ -166,7 +175,7 @@ function Getnews() {
             if (obj.status == 'ok') {
                 let links = obj.result.links
                 $.linkids = []
-                for (let l = 0; l < 5; l++) {
+                for (let l = 1; l < 6; l++) {
                     $.linkids.push(links[l].linkid)
                 }
                 
@@ -185,7 +194,7 @@ async function Award() {
         let path = '/bbs/app/profile/award/link'
         let time = Math.round(new Date().getTime()/1000).toString()
         let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
-        let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+        let param = '?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
         $.log('award: ' + mainURL + path + param)
         $.awardMsg = ''
         for (let l = 0; l < 5; l++) {
