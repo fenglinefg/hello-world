@@ -20,7 +20,7 @@
       "keys": ["youthheader_zq", "read_zq", "red_zq", "readtime_zq"],
       "author": "@sunert",
       "settings": [
-       {
+        {
          "id": "notifytimes",
          "name": "通知频率",
          "val": "4",
@@ -33,17 +33,26 @@
               "desc": "无任何通知"
             },
             {
+              "val": "1",
+              "label": "通知常开",
+              "desc": "常开通知"
+            },
+            {
               "val": "4",
               "type": "number",
+              "label": "默认通知频率",
+              "placeholder": "4",
               "desc": "设定通知频率"
-            }]
+            }
+            ]
          },
          {
-          "id": "logsturn",
+          "id": "zqlogs",
           "name": "调试日志",
           "val": false,
           "type": "boolean"
-         },
+         }
+       ],
       "repo": "https://github.com/Sunert/Scripts/blob/master/Task/youth.js",
       "icons": ["https://raw.githubusercontent.com/Orz-3/mini/master/youth.png", "https://raw.githubusercontent.com/Orz-3/task/master/youth.png"],
       "script": "https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js"
@@ -244,6 +253,5 @@
       "icons": ["https://raw.githubusercontent.com/Sunert/Quantumult-X/master/Rule/Images/ICON/trainquery.png", "https://raw.githubusercontent.com/Sunert/Quantumult-X/master/Rule/Images/ICON/trainquery.png"],
       "script": "https://raw.githubusercontent.com/Sunert/Scripts/master/Task/trainquery.js"
     }
-    
   ]
 }
