@@ -194,6 +194,14 @@
           "type": "boolean"
         },
         {
+          "id": "@heybox.interval",
+          "name": "点赞间隔",
+          "val": "",
+          "type": "number",
+          "placeholder": "600", 
+          "desc": "点赞之间的时间间隔，单位为毫秒，不填默认为 600 毫秒。"
+        },
+        {
           "id": "@heybox.pkey",
           "name": "pkey",
           "val": "",
