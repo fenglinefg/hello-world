@@ -21,7 +21,7 @@ Acknowledgements: chr233, JiY
 
 Quantumult X:
 [task_local]
-0 * * * * https://raw.githubusercontent.com/zZPiglet/Task/master/heybox/heybox.js, tag=小黑盒
+0 0 * * * https://raw.githubusercontent.com/zZPiglet/Task/master/heybox/heybox.js, tag=小黑盒
 
 [rewrite_local]
 ^https:\/\/api\.xiaoheihe\.cn\/account\/home_v\d\/\? url script-request-header https://raw.githubusercontent.com/zZPiglet/Task/master/heybox/heybox.js
@@ -29,7 +29,7 @@ Quantumult X:
 
 Surge & Loon:
 [Script]
-cron "0 * * * *" script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/heybox/heybox.js
+cron "0 0 * * *" script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/heybox/heybox.js
 http-request ^https:\/\/api\.xiaoheihe\.cn\/account\/home_v\d\/\? script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/heybox/heybox.js
 
 All app:
@@ -178,7 +178,6 @@ function Getnews() {
                 for (let l = 1; l < 6; l++) {
                     $.linkids.push(links[l].linkid)
                 }
-                
             } else {
                 $.errmsg += '\n文章拉取失败：' + obj.msg
             }
