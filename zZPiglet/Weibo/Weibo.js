@@ -53,6 +53,7 @@ const groupURL = mainURL + 'group?gid='
 
 const $ = new API('Weibo')
 $.debug = [true, 'true'].includes($.read('debug')) || false
+const ERR = MYERR()
 const CookieKey = 'WeiboNotice'
 const reg = /SUB=(\S*);/
 
@@ -287,6 +288,19 @@ function GetCookie() {
     } else {
         $.notify("写入" + $.name + "Cookie 失败‼️", "", "配置错误, 无法读取请求头, ")
     }
+}
+
+function MYERR() {
+    class CookieError extends Error {
+        constructor(message) {
+            super(message);
+            this.name = "CookieError";
+        }
+    }
+  
+    return {
+        CookieError,
+    };
 }
 
 // isJSON

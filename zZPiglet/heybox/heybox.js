@@ -41,6 +41,7 @@ hostname = api.xiaoheihe.cn
 
 const $ = new API('heybox')
 $.debug = [true, 'true'].includes($.read('debug')) || false
+const ERR = MYERR()
 const mainURL = 'https://api.xiaoheihe.cn'
 const urlreg = /https:\/\/api\.xiaoheihe\.cn\/account\/home_v\d\/\?lang=(.*)&os_type=(.*)&os_version=(.*)&_time=\d{10}&version=(.*)&device_id=(.*)&heybox_id=(\d+)&hkey=/
 const cookiereg = /pkey=(.*);/
@@ -74,7 +75,7 @@ if ($.isRequest) {
         }
     })().catch((err) => {
         if (err instanceof ERR.CookieError) {
-            $.notify("小黑盒 - Cookie 错误", "", err.message, 'heybox://')
+            $.notify("小黑盒 - Cookie 错误", "", err.message, 'heybox://%7B%22protocol_type%22%3A%22openWindow%22%2C%22full_screen%22%3Afalse%2C%0A%20%20%20%20%22webview%22%3A%7B%22url%22%3A%22https%3A%2F%2Fapi.xiaoheihe.cn%2Faccount%2Fhome_v2%22%2C%22bg%22%3A%22FFFFFF%22%2C%0A%20%20%20%20%22loading%22%3Atrue%2C%22pull%22%3Afalse%2C%22refresh%22%3Afalse%7D%7D')
         } else {
             $.notify("小黑盒 - 出现错误", "", err.message)
             $.error(err)
@@ -356,6 +357,20 @@ function GetCookie() {
     } else {
         $.notify("写入" + $.name + "Cookie 失败‼️", "", "配置错误, 无法读取请求头, ")
     }
+}
+
+
+function MYERR() {
+    class CookieError extends Error {
+        constructor(message) {
+            super(message);
+            this.name = "CookieError";
+        }
+    }
+  
+    return {
+        CookieError,
+    };
 }
 
 // md5
