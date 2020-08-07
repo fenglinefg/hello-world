@@ -234,7 +234,7 @@ async function getUid() {
                     if (obj.ok) {
                         $.uids.push(obj.data.cards[1].card_group[0].user.id.toString())
                     } else {
-                        $.notify('微博通知 - 微博昵称填写有误', '', '请在 BoxJs 检查填写的微博昵称是否正确', 'https://8.8.8.8/home')
+                        $.notify('微博通知 - 微博昵称填写有误', '', '请在 BoxJs 检查填写的微博昵称是否正确', 'http://boxjs.com/app/zZ.Weibo')
                     }
                 })
                 .catch((err) => {
@@ -259,7 +259,7 @@ async function getSpiderMessage() {
                     if (obj) {
                         ParseWeibo(obj)
                     } else {
-                        $.notify('微博通知 - uid 填写有误', '', '请在 BoxJs 检查填写的 uid 是否正确', 'https://8.8.8.8/home')
+                        $.notify('微博通知 - uid 填写有误', '', '请在 BoxJs 检查填写的 uid 是否正确', 'http://boxjs.com/app/zZ.Weibo')
                     }
                 })
                 .catch((err) => {
@@ -268,7 +268,7 @@ async function getSpiderMessage() {
                 })
         }
     } else {
-        $.notify('微博通知 - 填写信息不全', '', '请在 BoxJs 填写需要关注人微博 uid，或取消针对个人的勾选！', 'https://8.8.8.8/home')
+        $.notify('微博通知 - 填写信息不全', '', '请在 BoxJs 填写需要关注人微博 uid，或取消针对个人的勾选！', 'http://boxjs.com/app/zZ.Weibo')
     }
 }
 
