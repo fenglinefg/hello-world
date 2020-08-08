@@ -146,30 +146,25 @@ function filter_timeline_cards(cards) {
             let item = cards[j];
             let card_group = item.card_group;
             if (card_group && card_group.length > 0) {
-                let i = card_group.length;
-                while (i--) {
-                    let card_group_item = card_group[i];
-                    let card_type = card_group_item.card_type;
-                    if (card_type) {
-                        if (card_type == 9) {
-                            if (is_timeline_ad(card_group_item.mblog)) card_group.splice(i, 1);
-                        } else if (card_type == 118 || card_type == 89) {
-                            card_group.splice(i, 1);
-                        } else if (card_type == 42) {
-                            if (card_group_item.desc == '\u53ef\u80fd\u611f\u5174\u8da3\u7684\u4eba') {
-                                cards.splice(j, 1);
-                                break;
-                            }
-                        } else if (card_type == 17) {
-                            let group = card_group_item.group;
-                            if (group && group.length > 0) {
-                                let k = group.length;
-                                while (k--) {
-                                    let group_item = group[k];
-                                    if (group_item.hasOwnProperty("promotion")) {
-                                        group.splice(k, 1);
-                                    }
+                if (item.itemid && item.itemid == "hotword") {
+                    filter_top_search(card_group);
+                } else {
+                    let i = card_group.length;
+                    while (i--) {
+                        let card_group_item = card_group[i];
+                        let card_type = card_group_item.card_type;
+                        if (card_type) {
+                            if (card_type == 9) {
+                                if (is_timeline_ad(card_group_item.mblog)) card_group.splice(i, 1);
+                            } else if (card_type == 118 || card_type == 89) {
+                                card_group.splice(i, 1);
+                            } else if (card_type == 42) {
+                                if (card_group_item.desc == '\u53ef\u80fd\u611f\u5174\u8da3\u7684\u4eba') {
+                                    cards.splice(j, 1);
+                                    break;
                                 }
+                            } else if (card_type == 17) {
+                                filter_top_search(card_group_item.group);
                             }
                         }
                     }
@@ -183,6 +178,18 @@ function filter_timeline_cards(cards) {
         }
     }
     return cards;
+}
+
+function filter_top_search(group) {
+    if (group && group.length > 0) {
+        let k = group.length;
+        while (k--) {
+            let group_item = group[k];
+            if (group_item.hasOwnProperty("promotion")) {
+                group.splice(k, 1);
+            }
+        }
+    }
 }
 
 function is_timeline_ad(mblog) {
