@@ -67,7 +67,7 @@ if ($.client == "Safari") {
 } else if ($.client == "douban") {
     $.openlink = "douban://douban.com/movie/";
 }
-$.diylink = $.read("diylink"); 
+$.diylink = $.read("diylink") || "http://boxjs.com/app/zZ.Douban"; 
 
 if ($.isRequest) {
     getAPIKey();
@@ -171,7 +171,7 @@ async function notify() {
         } else if ($.pic == "trailer") {
             imgurl = $.trailer;
         }
-        if ($.client = "diy" && $.diylink) openurl = $.diylink; 
+        if ($.client = "diy") openurl = $.diylink; 
         $.notify(Title, subTitle, detail, openurl, imgurl)
     } else {
         $.notify("电影日历 - 出现错误", "", "接口返回错误，超出重试次数。")
