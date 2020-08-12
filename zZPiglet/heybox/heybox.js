@@ -66,7 +66,7 @@ if ($.isRequest) {
             await Getnews()
             await Award()
             await Tasklist()
-            await $.notify('小黑盒 🎮', $.subTitle, $.detail + $.errmsg)
+            await $.notify('小黑盒｜存活测试｜封号警告⚠️', $.subTitle, '⚠️⚠️⚠️使用脚本有封号风险，请自行斟酌判断。\n' + $.detail + $.errmsg)
         }
     })().catch((err) => {
         if (err instanceof ERR.CookieError) {
