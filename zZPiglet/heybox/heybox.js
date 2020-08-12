@@ -59,10 +59,9 @@ if ($.isRequest) {
         $.lang = $.read('lang')
         $.os_t = $.read('os_t')
         $.os_v = $.read('os_v')
-        $.v = $.read('v')
         $.d_id = $.read('d_id')
         $.h_id = $.read('h_id')
-        if (!$.pkey || !$.lang || !$.os_t || !$.os_v || !$.v || !$.d_id || !$.h_id) {
+        if (!$.pkey || !$.lang || !$.os_t || !$.os_v || !$.d_id || !$.h_id) {
             throw new ERR.CookieError("❌ 未获取或填写Cookie")
         } else {
             await Sign()
@@ -87,7 +86,7 @@ function Sign() {
     let path = '/task/sign'
     let time = Math.round(new Date().getTime()/1000).toString()
     let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
-    let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+    let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + '1.3.119' + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
     $.log('Cookie: pkey=' + $.pkey)
     $.log('sign: ' + mainURL + path + param)
     return $.get({
@@ -95,7 +94,8 @@ function Sign() {
         headers: {
             'Cookie': 'pkey=' + $.pkey,
             'Referer': 'http://api.maxjia.com/',
-            'User-Agent': 'xiaoheihe/' + $.v + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
+            'Accept-Language': $.lang,
+            'User-Agent': 'xiaoheihe/' + '1.3.119' + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
         }
     })
         .then((resp) => {
@@ -114,14 +114,15 @@ function Sharenormal() {
     let normal = '&share_plat=WechatSession&shared_type=normal'
     let time = Math.round(new Date().getTime()/1000).toString()
     let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
-    let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+    let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + '1.3.119' + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
     $.log('sharenormal: ' + mainURL + path + param + normal)
     return $.get({
         url: mainURL + path + param + normal,
         headers: {
             'Cookie': 'pkey=' + $.pkey,
             'Referer': 'http://api.maxjia.com/',
-            'User-Agent': 'xiaoheihe/' + $.v + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
+            'Accept-Language': $.lang,
+            'User-Agent': 'xiaoheihe/' + '1.3.119' + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
         }
     })
         .then((resp) => {
@@ -140,14 +141,15 @@ function Sharecomment() {
     let comment = '&share_plat=WechatSession&shared_type=BBSComment'
     let time = Math.round(new Date().getTime()/1000).toString()
     let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
-    let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+    let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + '1.3.119' + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
     $.log('sharecomment: ' + mainURL + path + param + comment)
     return $.get({
         url: mainURL + path + param + comment,
         headers: {
             'Cookie': 'pkey=' + $.pkey,
             'Referer': 'http://api.maxjia.com/',
-            'User-Agent': 'xiaoheihe/' + $.v + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
+            'Accept-Language': $.lang,
+            'User-Agent': 'xiaoheihe/' + '1.3.119' + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
         }
     })
         .then((resp) => {
@@ -165,14 +167,15 @@ function Getnews() {
     let path = '/bbs/app/feeds/news'
     let time = Math.round(new Date().getTime()/1000).toString()
     let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
-    let param = '?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+    let param = '?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + '1.3.119' + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
     $.log('getnews: ' + mainURL + path + param)
     return $.get({
         url: mainURL + path + param,
         headers: {
             'Cookie': 'pkey=' + $.pkey,
             'Referer': 'http://api.maxjia.com/',
-            'User-Agent': 'xiaoheihe/' + $.v + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
+            'Accept-Language': $.lang,
+            'User-Agent': 'xiaoheihe/' + '1.3.119' + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
         }
     })
         .then((resp) => {
@@ -203,14 +206,15 @@ async function Award() {
             let path = '/bbs/app/profile/award/link'
             let time = Math.round(new Date().getTime()/1000).toString()
             let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
-            let param = '?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+            let param = '?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + '1.3.119' + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
             $.log('award: ' + mainURL + path + param + '\nlinkid[' + l + ']: ' + $.linkids[l])
             await $.post({
                 url: mainURL + path + param,
                 headers: {
                     'Cookie': 'pkey=' + $.pkey,
                     'Referer': 'http://api.maxjia.com/',
-                    'User-Agent': 'xiaoheihe/' + $.v + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
+            'Accept-Language': $.lang,
+                    'User-Agent': 'xiaoheihe/' + '1.3.119' + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
                 },
                 body: 'award_type=1&link_id=' + $.linkids[l]
             })
@@ -235,14 +239,15 @@ async function Award() {
                 let path = '/bbs/app/profile/award/link'
                 let time = Math.round(new Date().getTime()/1000).toString()
                 let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
-                let param = '?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+                let param = '?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + '1.3.119' + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
                 $.log('award: ' + mainURL + path + param + '\nlinkid[' + l + ']: ' + $.linkids[l])
                 await $.post({
                     url: mainURL + path + param,
                     headers: {
                         'Cookie': 'pkey=' + $.pkey,
                         'Referer': 'http://api.maxjia.com/',
-                        'User-Agent': 'xiaoheihe/' + $.v + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
+            'Accept-Language': $.lang,
+                        'User-Agent': 'xiaoheihe/' + '1.3.119' + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
                     },
                     body: 'award_type=1&link_id=' + $.linkids[l]
                 })
@@ -264,14 +269,15 @@ function Tasklist() {
     let path = '/task/list'
     let time = Math.round(new Date().getTime()/1000).toString()
     let hkey = hex_md5(hex_md5(path + '/bfhdkud_time=' + time).replace(/a|0/g, 'app')).substr(0,10)
-    let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + $.v + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
+    let param = '/?lang=' + $.lang + '&os_type=' + $.os_t + '&os_version=' + $.os_v + '&_time=' + time + '&version=' + '1.3.119' + '&device_id=' + $.d_id + '&heybox_id=' + $.h_id + '&hkey=' + hkey
     $.log('tasklist: ' + mainURL + path + param)
     return $.get({
         url: mainURL + path + param,
         headers: {
             'Cookie': 'pkey=' + $.pkey,
             'Referer': 'http://api.maxjia.com/',
-            'User-Agent': 'xiaoheihe/' + $.v + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
+            'Accept-Language': $.lang,
+            'User-Agent': 'xiaoheihe/' + '1.3.119' + ' (iPhone; ' + $.os_t + ' ' + $.os_v + '; Scale/3.00)'
         }
     })
         .then((resp) => {
@@ -337,16 +343,14 @@ function GetCookie() {
         let lang = urlreg.exec($request.url)[1]
         let os_t = urlreg.exec($request.url)[2]
         let os_v = urlreg.exec($request.url)[3]
-        let v = urlreg.exec($request.url)[4]
         let d_id = urlreg.exec($request.url)[5]
         let h_id = urlreg.exec($request.url)[6]
         if ($.read('pkey') != (undefined || null)) {
-            if ($.read('pkey') != pkey || $.read('lang') != lang || $.read('os_t') != os_t || $.read('os_v') != os_v || $.read('v') != v || $.read('d_id') != d_id || $.read('h_id') != h_id) {
+            if ($.read('pkey') != pkey || $.read('lang') != lang || $.read('os_t') != os_t || $.read('os_v') != os_v || $.read('d_id') != d_id || $.read('h_id') != h_id) {
                 $.write(pkey, 'pkey')
                 $.write(lang, 'lang')
                 $.write(os_t, 'os_t')
                 $.write(os_v, 'os_v')
-                $.write(v, 'v')
                 $.write(d_id, 'd_id')
                 $.write(h_id, 'h_id')
                 $.notify("更新 " + $.name + " Cookie 成功 🎉", "", "")
@@ -356,7 +360,6 @@ function GetCookie() {
             $.write(lang, 'lang')
             $.write(os_t, 'os_t')
             $.write(os_v, 'os_v')
-            $.write(v, 'v')
             $.write(d_id, 'd_id')
             $.write(h_id, 'h_id')
             $.notify("首次写入 " + $.name + " Cookie 成功 🎉", "", "")
