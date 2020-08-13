@@ -24,8 +24,8 @@ let jdNotify = $.getdata('jdPlantBeanNotify');
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 
 var plantUuids = [ // 这个列表填入你要助力的好友的plantUuid
-    'fnfkmp5hx2byrqss7h5jr5j2wtnlfimruj4z7ii',
-    '4oupleiwuds2ar2uqnvnqehopyndwvjwa2qweri',
+    'avlxbxdxf3altnm77gkqweriwik3gtnp3vhxdwy',
+    'olmijoxgmjutztzexoyxf22tw2cb5uw4ovuv4dq',
     'qawf5ls3ucw25yhfulu32xekqy3h7wlwy7o5jii',
     'zanmzshzq4ykx5xirwj7y7lmki',
     'd6wg7f6syive54q4yfrdmaddo4'
