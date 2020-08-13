@@ -1,6 +1,6 @@
 /*
 京东萌宠助手 搬得https://github.com/liuxiaoyucc/jd-helper/blob/master/pet/pet.js
-更新时间:2020-07-28
+更新时间:2020-08-13
 // quantumultx
 [task_local]
 #东东萌宠
@@ -25,8 +25,8 @@ const cookie =  Key ? Key : $.getdata('CookieJD');
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 let jdNotify = $.getdata('jdPetNotify');
 let shareCodes = [ // 这个列表填入你要助力的好友的shareCode, 最多可能是5个
-  'MTAxODc2NTEzMDAwMDAwMDAyNzIzNDI4OQ==',
-  'MTAxODc2NTEzNDAwMDAwMDAyODczNTY0Nw==',
+  'MTAxODcxOTI2NTAwMDAwMDAwMDc4MDExNw==',
+  'MTAxODcxOTI2NTAwMDAwMDAyNjA4ODQyMQ==',
   'MTAxODc2NTEzMDAwMDAwMDAwNTUwNDUxMw==',
   'MTAxODc2NTEzOTAwMDAwMDAxODQ5MDg5NQ==',
   'MTAxODcxOTI2NTAwMDAwMDAxOTQ3MjkzMw=='
@@ -127,7 +127,7 @@ function energyCollect() {
         if (response.code === '0') {
             // message += `【第${petInfo.medalNum + 2}块勋章完成进度】：${response.result.medalPercent}%，还需投食${response.result.needCollectEnergy}g狗粮\n`;
             // message += `【已获得勋章】${petInfo.medalNum + 1}块，还需收集${petInfo.goodsInfo.exchangeMedalNum - petInfo.medalNum - 1}块即可兑换奖品“${petInfo.goodsInfo.goodsName}”\n`;
-          message += `【第${response.result.medalNum + 1}块勋章完成进度】${response.result.medalPercent}%，还需投食${response.result.needCollectEnergy}g\n`;
+          message += `【第${response.result.medalNum + 1}块勋章完成进度】${response.result.medalPercent}%，还需收集${response.result.needCollectEnergy}好感\n`;
           message += `【已获得勋章】${response.result.medalNum}块，还需收集${response.result.needCollectMedalNum}块即可兑换奖品“${petInfo.goodsInfo.goodsName}”\n`;
         }
         gen.next();
