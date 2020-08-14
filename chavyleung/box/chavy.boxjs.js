@@ -1,6 +1,6 @@
 const $ = new Env('BoxJs')
 
-$.version = '0.7.14'
+$.version = '0.7.16'
 $.versionType = 'beta'
 
 /**
