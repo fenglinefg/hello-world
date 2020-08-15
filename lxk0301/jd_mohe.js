@@ -3,7 +3,8 @@
 活动地址: https://blindbox.jd.com
 活动时间到18号
 支持京东双账号
-脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
+更新时间：2020-08-15
+脚本兼容: QuantumultX, Surge, JSBox, Node.js(Loon运行此脚本会有问题，提示未登陆)
 // quantumultx
 [task_local]
 #热8超级魔盒
@@ -15,13 +16,12 @@ cron "1 0,1-23/3 * * *" script-path=https://raw.githubusercontent.com/lxk0301/sc
 热8超级魔盒 = type=cron,cronexp=1 0,1-23/3 * * *,wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_mohe.js
  */
 const $ = new Env('热8超级魔盒');
-const Key = '';
-//如需双账号签到,此处单引号内填写抓取的"账号2"Cookie, 否则请勿填写
-const DualKey = '';
-//直接用NobyDa的jd cookie
+//Node.js用户请在jdCookie.js处填写京东ck;
+const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
-let cookie = Key ? Key : $.getdata('CookieJD');
-const cookie2 = DualKey ? DualKey : $.getdata('CookieJD2');
+//直接用NobyDa的jd cookie
+let cookie = jdCookieNode.CookieJD ? jdCookieNode.CookieJD : $.getdata('CookieJD');
+const cookie2 = jdCookieNode.CookieJD2 ? jdCookieNode.CookieJD2 : $.getdata('CookieJD2');
 let UserName = '';
 const JD_API_HOST = 'https://blindbox.jd.com';
 let shareId = '';
@@ -30,7 +30,7 @@ let shareId = '';
     $.msg('【京东账号一】热8超级魔盒', '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
   } else {
     UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1]);
-    // await shareUrl();
+    await shareUrl();
     await addShare();
     await getCoin();//领取每三小时自动生产的热力值
     await Promise.all([
@@ -110,28 +110,12 @@ async function task1() {
     }
   }
 }
-function shareUrl() {
-  return new Promise((resolve) => {
-    const url = `shareUrl?t=${Date.now()}`;
-    $.get(taskurl(url), (err, resp, data) => {
-      try {
-        console.log('ddd----ddd', data)
-        data = JSON.parse(data);
-        shareId = data.data;
-        // console.log('ddd----ddd', data)
-      } catch (e) {
-        $.logErr(e, resp);
-      } finally {
-        resolve(shareId);
-      }
-    })
-  })
-}
+function shareUrl(){return new Promise((resolve)=>{const url=`shareUrl?t=${Date.now()}`;const options={'url':`${JD_API_HOST}/active/${url}`,'headers':{"accept":"*/*","accept-encoding":"gzip, deflate, br","accept-language":"zh-CN,zh;q=0.9,en;q=0.8,en-GB;q=0.7,en-US;q=0.6","content-type":"application/x-www-form-urlencoded","cookie":'pt_key=AAJfKpaxAEBdRN4DgKrh9lhxAp2lqzyZY2hipLPYCe-mISz4Nyq14IoNCVBXhUEhEuPVJ9D0KkfDjqln4heol2dt6cdt7efp;pt_pin=%E8%A2%AB%E6%8A%98%E5%8F%A0%E7%9A%84%E8%AE%B0%E5%BF%8633;',"referer":"https://blindbox.jd.com/","user-agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1 Edg/84.0.4147.125"}};$.get(options,(err,resp,data)=>{try{console.log('ddd----ddd',data);data=JSON.parse(data);shareId=data.data}catch(e){$.logErr(e,resp)}finally{resolve(shareId)}})})}
+
 function addShare(id) {
-  console.log('id', shareId);
-  console.log('id-----', `${JD_API_HOST}/active/addShare?t=${Date.now()}&shareId=62360703-8d1a-4ca4-b065-94d39274d525`);
+  console.log(`shareId${shareId}`);
   return new Promise((resolve) => {
-    const url = `addShare?shareId=62360703-8d1a-4ca4-b065-94d39274d525&t=${Date.now()}`;
+    const url = `addShare?shareId=${shareId}&t=${Date.now()}`;
     $.get(taskurl(url), (err, resp, data) => {
       try {
         // console.log('ddd----ddd', data)
@@ -202,11 +186,16 @@ function getCoin() {
         // console.log('homeGoBrowse', data)
         data = JSON.parse(data);
         // console.log('homeGoBrowse', data)
-        console.log(`成功领取${data.data}热力值`)
+        if (data.code === 1001) {
+          console.log(data.msg);
+          $.msg($.name, '领取失败', `${data.msg}`);
+          $.done();
+        } else {
+          console.log(`成功领取${data.data}热力值`)
+          resolve(data);
+        }
       } catch (e) {
         $.logErr(e, resp);
-      } finally {
-        resolve(data);
       }
     })
   })
