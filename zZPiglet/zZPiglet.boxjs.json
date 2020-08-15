@@ -59,7 +59,7 @@
         "到达 cron 设置时间之后，请点击通知跳转至此界面填写验证码并<font class=\"red--text\">保存设置</font>，确保设置保存之后点击「获取奖励」进行奖励的领取。",
         "由于每日可进行 <font class=\"red--text\">3</font> 次游戏，可设置 3 次 cron，或 1 次 cron 至进入此界面后手动重复两次流程。(请勿操作过快，操作过快验证码会报错。)"
       ],
-      "keys": ["@Domino.boxlink", "@Domino.openid", "@Domino.phonenum", "@Domino.sec", "@Domino.score"],
+      "keys": ["@Domino.openid", "@Domino.phonenum", "@Domino.sec", "@Domino.score"],
       "settings": [
         {
           "id": "@Domino.debug",
