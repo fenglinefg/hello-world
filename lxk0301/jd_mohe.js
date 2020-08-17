@@ -3,8 +3,8 @@
 活动地址: https://blindbox.jd.com
 活动时间到18号
 支持京东双账号
-更新时间：2020-08-15
-脚本兼容: QuantumultX, Surge, JSBox, Node.js(Loon运行此脚本会有问题，提示未登陆)
+更新时间：2020-08-17
+脚本兼容: QuantumultX, Surge,Loon, JSBox, Node.js
 // quantumultx
 [task_local]
 #热8超级魔盒
@@ -385,7 +385,7 @@ function lottery() {
         "content-type": "application/x-www-form-urlencoded",
         "cookie": cookie,
         "referer": "https://blindbox.jd.com/",
-        "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1 Edg/84.0.4147.125"
+        "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1 Edg/84.0.4147.125"
       }
     }
     $.get(options, (err, resp, data) => {
@@ -412,7 +412,7 @@ function taskurl(url) {
       "content-type": "application/x-www-form-urlencoded",
       "cookie": cookie,
       "referer": "https://blindbox.jd.com/",
-      "user-agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1 Edg/84.0.4147.125"
+      "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 10_3_1 like Mac OS X) AppleWebKit/603.1.30 (KHTML, like Gecko) Version/10.0 Mobile/14E304 Safari/602.1 Edg/84.0.4147.125"
     }
   }
 }
