@@ -156,6 +156,11 @@ async function handlePage() {
    * 所以先渲染到 `boxServerData: null` 再由前端 `this.box = this.boxServerData` 实现双向绑定
    */
   $.html = $.html.replace('boxServerData: null', 'boxServerData:' + JSON.stringify(getBoxData()))
+  
+  // 调试模式支持 vue Devtools
+  if(isDebugWeb) {
+    $.html = $.html.replace('vue.min.js', 'vue.js');
+  }
 }
 
 /**
