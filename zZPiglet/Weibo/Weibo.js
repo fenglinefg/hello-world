@@ -76,9 +76,10 @@ if ($.client == 'Safari') {
 
 $.interval = Number($.read('interval') || 1000)
 
-$.update = $.debug ? 0 : Number($.read('update') || 0)
+$.realupdate = Number($.read('update') || 0)
+$.update = $.debug ? 0 : $.realupdate
 $.log('debug update time: ' + $.update)
-$.info('update time: ' + $.read('update'))
+$.info('update time: ' + $.realupdate)
 
 if ($.isRequest) {
     GetCookie()
@@ -99,6 +100,7 @@ if ($.isRequest) {
             }
         }
     })().catch((err) => {
+        $.write($.realupdate, 'update')
         if (err instanceof ERR.CookieError) {
             $.notify("微博通知 - Cookie 错误", "", err.message, 'https://m.weibo.cn')
         } else {
