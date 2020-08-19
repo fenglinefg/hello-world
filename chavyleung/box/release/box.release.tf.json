@@ -1,6 +1,46 @@
 {
   "releases": [
     {
+      "version": "0.7.39",
+      "tags": ["beta"],
+      "author": "@chavyleung",
+      "icon": "https://avatars3.githubusercontent.com/u/29748519",
+      "repo": "https://github.com/chavyleung",
+      "msg": "更新[BoxJs TF]: 修复部分情况下拉出顶栏事件失效问题",
+      "notes": [
+        {
+          "name": "修复",
+          "descs": ["部分情况下拉出顶栏事件失效问题"]
+        },
+        {
+          "name": "优化",
+          "descs": ["原来顶部的加载条移到底栏上方"]
+        }
+      ]
+    },
+    {
+      "version": "0.7.38",
+      "tags": ["beta"],
+      "author": "@chavyleung",
+      "icon": "https://avatars3.githubusercontent.com/u/29748519",
+      "repo": "https://github.com/chavyleung",
+      "msg": "更新[BoxJs TF]: 新增 Surge HTTP-API 环境下运行脚本会显示运行结果",
+      "notes": [
+        {
+          "name": "新增",
+          "descs": ["Surge HTTP-API 环境下运行脚本会显示运行结果"]
+        },
+        {
+          "name": "优化",
+          "descs": ["页面样式"]
+        },
+        {
+          "name": "移除",
+          "descs": ["顶栏跟随滚动"]
+        }
+      ]
+    },
+    {
       "version": "0.7.37",
       "tags": ["beta"],
       "author": "@chavyleung",
