@@ -1,7 +1,7 @@
 /*
 京小超领蓝币(小费)
 感谢@yangtingxiao提供
-更新时间：2020-08-17
+更新时间：2020-08-22
 运行脚本一次收取今天所有的蓝币(耗时会比较久)
 支持京东多个账号
 每天收小费(蓝币)上限是1千个
@@ -124,11 +124,11 @@ function smtg_receiveCoin(timeout = 0) {
 }
 //换京豆
 function smtg_obtainPrize(timeout = 0) {
-  //1000京豆，prizeId为8501374698
+  //1000京豆，prizeId为4401379726
   return new Promise((resolve) => {
     setTimeout( ()=>{
       let url = {
-        url : `${JD_API_HOST}&functionId=smtg_obtainPrize&clientVersion=8.0.0&client=m&body=%7B%22prizeId%22:%228501374697%22%7D&t=${Date.now()}`,
+        url : `${JD_API_HOST}&functionId=smtg_obtainPrize&clientVersion=8.0.0&client=m&body=%7B%22prizeId%22:%224401379725%22%7D&t=${Date.now()}`,
         headers : {
           'Origin' : `https://jdsupermarket.jd.com`,
           'Cookie' : cookie,
