@@ -2,7 +2,7 @@
 jd宠汪汪偷好友积分与狗粮,及给好友喂食
 IOS用户支持京东双账号,NodeJs用户支持N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
-更新时间:2020-08-24
+更新时间:2020-08-25
 建议凌晨0-1点左右运行，可偷好友狗粮与积分
 注：如果使用Node.js, 需自行安装'crypto-js,got,http-server,tough-cookie'模块. 例: npm install crypto-js http-server tough-cookie got --save
 */
@@ -114,10 +114,10 @@ async function jdJoySteal() {
                 $.helpFood += 10;
               } else if (helpFeedRes.errorCode === 'chance_full') {
                 console.log('喂食已达上限,不再喂食')
-                break
+                //break
               } else if (helpFeedRes.errorCode === 'food_insufficient') {
                 console.log('帮好友喂食失败，您的狗粮不足10g')
-                break
+                //break
               }
             } else if (status === 'time_error') {
               console.log(`好友 ${friendPin} 的汪汪正在食用`)
@@ -188,7 +188,7 @@ async function stealFriendCoin(friendPin) {
     console.log(`好友 ${friendPin}的房间可领取积分${friendHomeCoin}个\n`)
     const getFriendCoinRes = await getFriendCoin(friendPin);
     //TODO
-    console.log(`偷好友积分结果：${getFriendCoinRes}\n`)
+    console.log(`偷好友积分结果：${JSON.stringify(getFriendCoinRes)}\n`)
     if (getFriendCoinRes.errorCode === 'coin_took_ok') {
       $.stealFriendCoin += getFriendCoinRes.data;
     }
