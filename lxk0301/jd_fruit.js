@@ -1,6 +1,6 @@
 /*
 jd免费水果 搬的https://github.com/liuxiaoyucc/jd-helper/blob/a6f275d9785748014fc6cca821e58427162e9336/fruit/fruit.js
-更新时间:2020-08-24
+更新时间:2020-08-25
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 // quantumultx
 [task_local]
@@ -353,7 +353,7 @@ function* step() {
           salveHelpAddWater += helpResult.helpResult.salveHelpAddWater;
           console.log(`【助力好友结果】: 已成功给【${helpResult.helpResult.masterUserInfo.nickName}】助力`);
           console.log(`给好友【${helpResult.helpResult.masterUserInfo.nickName}】助力获得${helpResult.helpResult.salveHelpAddWater}g水滴`)
-          helpSuccessPeoples += helpResult.helpResult.masterUserInfo.nickName || '匿名用户' + ',';
+          helpSuccessPeoples += (helpResult.helpResult.masterUserInfo.nickName || '匿名用户') + ',';
         } else if (helpResult.helpResult.code === '8') {
           console.log(`【助力好友结果】: 助力【${helpResult.helpResult.masterUserInfo.nickName}】失败，您今天助力次数已耗尽`);
         } else if (helpResult.helpResult.code === '9') {
@@ -382,9 +382,7 @@ function* step() {
         $.setdata(helpSuccessPeoples, helpSuccessPeoplesKey);
       }
     }
-    console.log(`helpSuccessPeoples-非缓存数据--debug:::${helpSuccessPeoples}\n`)
     helpSuccessPeoples = $.getdata(helpSuccessPeoplesKey);
-    console.log(`helpSuccessPeoples-拿到缓存后的数据--debug:::${helpSuccessPeoples}\n`)
     if (helpSuccessPeoples && helpSuccessPeoples.length > 0) {
       message += `【您助力的好友👬】${helpSuccessPeoples.substr(0, helpSuccessPeoples.length - 1)}\n`;
     }
