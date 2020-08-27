@@ -34,6 +34,12 @@ if ($.isNode()) {
       $.index = i + 1;
       await changeFile();
       console.log('替换变量完毕')
+
+await fs.accessSync('./result.txt', async (err)=>{
+    console.log(err ?  '目录/文件不存在': '文件存在,可以进行读写');
+
+});
+
       // 执行
       await exec("node JD_DailyBonus.js >> result.txt");
       console.log('执行完毕')
