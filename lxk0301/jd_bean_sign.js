@@ -20,7 +20,7 @@ if ($.isNode()) {
     cookiesArr.push(jdCookieNode[item])
   })
 }
-!(async path => {
+!(async() => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
     return;
@@ -69,8 +69,8 @@ if ($.isNode()) {
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
 async function downFile () {
-  // const url = 'https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js'
-  const url = 'https://cdn.jsdelivr.net/gh/NobyDa/Script@master/JD-DailyBonus/JD_DailyBonus.js';//pc端测试用
+  const url = 'https://raw.githubusercontent.com/NobyDa/Script/master/JD-DailyBonus/JD_DailyBonus.js'
+  // const url = 'https://cdn.jsdelivr.net/gh/NobyDa/Script@master/JD-DailyBonus/JD_DailyBonus.js';//pc端测试用
   await download(url, './')
 }
 
