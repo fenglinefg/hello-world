@@ -312,7 +312,7 @@
     {
       "id": "lkGithubMonitorPushTg",
       "name": "GitHub 监控（tg通知版）",
-      "keys": ["lkGithubMonitorRepo, lkGithubMonitorToken"],
+      "keys": ["lkGithubMonitorRepo", "lkGithubMonitorToken"],
       "settings": [
         {
           "id": "lkGithubMonitorRepo",
@@ -329,6 +329,13 @@
           "val": "784a03feb07989d3339dfa41c7eb41777436cbfa",
           "type": "text",
           "desc": "Github Token"
+        },
+        {
+          "id": "lkGithubMonitorTgNotifyUrl",
+          "name": "Tg的通知地址",
+          "val": "",
+          "type": "text",
+          "desc": "Tg的通知地址，如：https://api.telegram.org/bot-token/sendMessage?chat_id=-100140&parse_mode=Markdown&text="
         }
       ],
       "author": "@Peng-YM, @lowking",
@@ -337,7 +344,7 @@
         "https://raw.githubusercontent.com/Orz-3/mini/master/github.png",
         "https://raw.githubusercontent.com/Orz-3/task/master/github.png"
       ],
-      "script": "https://github.com/lowking/Scripts/blob/master/github/githubMonotor.js?raw=true"
+      "script": "https://github.com/lowking/Scripts/blob/master/github/githubMonitor.js?raw=true"
     }
   ]
 }
