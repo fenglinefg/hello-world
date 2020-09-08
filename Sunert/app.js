@@ -18,9 +18,9 @@ async function downFile () {
 }
 
 async function changeFiele () {
-   let content = await fs.readFileSync('./JD_DailyBonus.js', 'utf8')
+   let content = await fs.readFileSync('./weibo.js', 'utf8')
    content = content.replace(/var Key = ''/, `var Key = '${KEY}'`)
-   await fs.writeFileSync( './JD_DailyBonus.js', content, 'utf8')
+   await fs.writeFileSync( './weibo.js', content, 'utf8')
 }
 
 async function sendNotify (text,desp) {
@@ -49,7 +49,7 @@ async function start() {
   await changeFiele();
   console.log('替换变量完毕')
   // 执行
-  await exec("node JD_DailyBonus.js >> result.txt");
+  await exec("node weibo.js >> result.txt");
   console.log('执行完毕')
 
   if (serverJ) {
