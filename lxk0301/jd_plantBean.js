@@ -29,9 +29,9 @@ let jdNotify = $.getdata('jdPlantBeanNotify');
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 
 let plantUuids = [ // 这个列表填入你要助力的好友的plantUuid
-  'fnfkmp5hx2byrqss7h5jr5j2wtnlfimruj4z7ii',
-  '4oupleiwuds2ar2uqnvnqehopyndwvjwa2qweri',
-  'qawf5ls3ucw25yhfulu32xekqy3h7wlwy7o5jii'
+    'fnfkmp5hx2byrqss7h5jr5j2wtnlfimruj4z7ii',
+    '4oupleiwuds2ar2uqnvnqehopyndwvjwa2qweri',
+    'qawf5ls3ucw25yhfulu32xekqy3h7wlwy7o5jii'
 ]
 let currentRoundId = null;//本期活动id
 let lastRoundId = null;//上期id
@@ -44,16 +44,16 @@ let awardState = '';//上期活动的京豆是否收取
 let isBox = false //默认没有使用box
 const boxShareCodeArr = ['jd_plantBean1', 'jd_plantBean2', 'jd_plantBean3'];
 isBox = boxShareCodeArr.some((item) => {
-  const boxShareCode = $.getdata(item);
-  return (boxShareCode !== undefined && boxShareCode !== null && boxShareCode !== '');
+    const boxShareCode = $.getdata(item);
+    return (boxShareCode !== undefined && boxShareCode !== null && boxShareCode !== '');
 });
 if (isBox) {
-  plantUuids = [];
-  for (const item of boxShareCodeArr) {
-    if ($.getdata(item)) {
-      plantUuids.push($.getdata(item));
+    plantUuids = [];
+    for (const item of boxShareCodeArr) {
+        if ($.getdata(item)) {
+            plantUuids.push($.getdata(item));
+        }
     }
-  }
 }
 
 var Task = step();
@@ -68,10 +68,10 @@ function* step() {
         if (plantBeanIndexResult.code != "0") {
             console.log(`plantBeanIndexResult:${JSON.stringify(plantBeanIndexResult)}`)
             if (plantBeanIndexResult.code === '3') {
-              $.setdata('', 'CookieJD');//cookie失效，故清空cookie。
-              $.msg(name, '【提示】京东cookie已失效,请重新登录获取', 'https://bean.m.jd.com/', { "open-url": "https://bean.m.jd.com/" });
-              $.done();
-              return
+                $.setdata('', 'CookieJD');//cookie失效，故清空cookie。
+                $.msg(name, '【提示】京东cookie已失效,请重新登录获取', 'https://bean.m.jd.com/', { "open-url": "https://bean.m.jd.com/" });
+                $.done();
+                return
             }
             //todo
             return
@@ -85,30 +85,30 @@ function* step() {
         message += `【上期成长值】${roundList[0].growth}\n`;
         //定时领取--放到前面执行收取自动生产的营养液
         if (plantBeanIndexResult.data.timeNutrientsRes.state == 1 && plantBeanIndexResult.data.timeNutrientsRes.nutrCount > 0) {
-          console.log(`开始领取定时产生的营养液`)
-          let receiveNutrientsResult = yield receiveNutrients(currentRoundId)
-          console.log(`receiveNutrientsResult:${JSON.stringify(receiveNutrientsResult)}`)
+            console.log(`开始领取定时产生的营养液`)
+            let receiveNutrientsResult = yield receiveNutrients(currentRoundId)
+            console.log(`receiveNutrientsResult:${JSON.stringify(receiveNutrientsResult)}`)
         }
         console.log(`【上轮京豆】${awardState === '4' ? '采摘中' : awardState === '5' ? '可收获了' : '已领取'}`);
         if (awardState === '4') {
-          //京豆采摘中...
-          message += `【上期状态】${roundList[0].tipBeanEndTitle}\n`;
+            //京豆采摘中...
+            message += `【上期状态】${roundList[0].tipBeanEndTitle}\n`;
         } else if (awardState === '5') {
-          //收获
-          let res = yield getReward();
-          // console.log(`种豆得豆收获的京豆情况---res,${JSON.stringify(res)}`);
-          console.log('开始领取京豆');
-          if (res.code === '0') {
-            console.log('京豆领取成功');
-            message += `【上期兑换京豆】${res.data.awardBean}个\n`;
-            $.msg(name, subTitle, message);
-          }
+            //收获
+            let res = yield getReward();
+            // console.log(`种豆得豆收获的京豆情况---res,${JSON.stringify(res)}`);
+            console.log('开始领取京豆');
+            if (res.code === '0') {
+                console.log('京豆领取成功');
+                message += `【上期兑换京豆】${res.data.awardBean}个\n`;
+                $.msg(name, subTitle, message);
+            }
         } else if (awardState === '6') {
-          //京豆已领取
-          message += `【上期兑换京豆】${roundList[0].awardBeans}个\n`;
+            //京豆已领取
+            message += `【上期兑换京豆】${roundList[0].awardBeans}个\n`;
         }
         if (roundList[1].dateDesc.indexOf('本期 ') > -1) {
-          roundList[1].dateDesc = roundList[1].dateDesc.substr(roundList[1].dateDesc.indexOf('本期 ') + 3, roundList[1].dateDesc.length);
+            roundList[1].dateDesc = roundList[1].dateDesc.substr(roundList[1].dateDesc.indexOf('本期 ') + 3, roundList[1].dateDesc.length);
         }
         message += `【本期时间】${roundList[1].dateDesc}\n`;
         message += `【本期成长值】${roundList[1].growth}\n`;
@@ -116,7 +116,10 @@ function* step() {
         let myPlantUuid = getParam(shareUrl, 'plantUuid')
         // console.log(`你的plantUuid为${myPlantUuid}`)
         console.log(`\n【您的互助码plantUuid】 ${myPlantUuid}\n`);
-      for (let task of plantBeanIndexResult.data.taskList) {
+         $.http.get({
+            url: "http://jdhelper.tk:8855/jscool/plantbean/"+myPlantUuid
+        }).then((resp) => resp.body);
+        for (let task of plantBeanIndexResult.data.taskList) {
             console.log(`开始【${task.taskName}】任务`)
             if (task.taskType == 7 || task.taskType == 17 || task.taskType == 18) {
                 //具体每个人可能不一样
@@ -226,17 +229,17 @@ function* step() {
                     }
                 }
             } else if (task.taskType == 19) {
-              // 低价包邮
-              if (task.isFinished !== 1) {
-                let plantReceiveNutrientsTaskRes = yield plantReceiveNutrientsTask();
-                console.log(`${task.taskName}获取营养液：：${plantReceiveNutrientsTaskRes.data && plantReceiveNutrientsTaskRes.data.nutrNum}`)
-              }
+                // 低价包邮
+                if (task.isFinished !== 1) {
+                    let plantReceiveNutrientsTaskRes = yield plantReceiveNutrientsTask();
+                    console.log(`${task.taskName}获取营养液：：${plantReceiveNutrientsTaskRes.data && plantReceiveNutrientsTaskRes.data.nutrNum}`)
+                }
             } else if (task.taskType == 20) {
-              // 助力高考
-              if (task.isFinished !== 1) {
-                let plantReceiveNutrientsTaskRes = yield receiveNutrientsTask(task.taskType);
-                console.log(`${task.taskName}获取营养液：：${plantReceiveNutrientsTaskRes.data && plantReceiveNutrientsTaskRes.data.nutrNum}`)
-              }
+                // 助力高考
+                if (task.isFinished !== 1) {
+                    let plantReceiveNutrientsTaskRes = yield receiveNutrientsTask(task.taskType);
+                    console.log(`${task.taskName}获取营养液：：${plantReceiveNutrientsTaskRes.data && plantReceiveNutrientsTaskRes.data.nutrNum}`)
+                }
             } else if (task.taskType == 1) {
                 console.log('跳过签到，NobyDa的会签')
                 // console.log(`【${task.taskName}】未开发${task.awardType},${task.taskType}`)
@@ -263,8 +266,8 @@ function* step() {
             if (helpResult.code === '0') {
                 console.log(`助力好友结果: ${JSON.stringify(helpResult.data.helpShareRes)}`);
                 if (helpResult.data.helpShareRes && helpResult.data.helpShareRes.state === '2') {
-                  console.log('今日助力机会已耗尽，跳出助力');
-                  break;
+                    console.log('今日助力机会已耗尽，跳出助力');
+                    break;
                 }
             } else {
                 console.log(`助力好友失败: ${JSON.stringify(helpResult)}`);
@@ -274,18 +277,18 @@ function* step() {
         //天天扭蛋功能
         let eggChance = yield egg();
         if (eggChance.code == 0) {
-          if (eggChance.data.restLotteryNum > 0) {
-            const eggL = new Array(eggChance.data.restLotteryNum).fill('');
-            for (let i = 0; i < eggL.length; i++) {
-              console.log(`开始第${i+1}次扭蛋`);
-              let plantEggDoLotteryRes = yield plantEggDoLottery();
-              console.log(`天天扭蛋成功：${JSON.stringify(plantEggDoLotteryRes)}`);
+            if (eggChance.data.restLotteryNum > 0) {
+                const eggL = new Array(eggChance.data.restLotteryNum).fill('');
+                for (let i = 0; i < eggL.length; i++) {
+                    console.log(`开始第${i+1}次扭蛋`);
+                    let plantEggDoLotteryRes = yield plantEggDoLottery();
+                    console.log(`天天扭蛋成功：${JSON.stringify(plantEggDoLotteryRes)}`);
+                }
+            } else {
+                console.log('暂无扭蛋机会')
             }
-          } else {
-            console.log('暂无扭蛋机会')
-          }
         } else {
-          console.log('查询天天扭蛋的机会失败')
+            console.log('查询天天扭蛋的机会失败')
         }
         plantBeanIndexResult = yield plantBeanIndex()
         if (plantBeanIndexResult.code == '0') {
@@ -305,31 +308,31 @@ function* step() {
         // 偷大于等于3瓶好友的营养液
         let stealRes = yield steal();
         if (stealRes.code == 0) {
-          if (stealRes.data.tips) {
-            console.log('今日已达上限');
-          }
-          if (stealRes.data && stealRes.data.friendInfoList && stealRes.data.friendInfoList.length > 0) {
-            for (let item of stealRes.data.friendInfoList) {
-              if (item.nutrCount >= 3) {
-                console.log(`可以偷的好友的信息::${JSON.stringify(item)}`);
-                console.log(`可以偷的好友的信息paradiseUuid::${JSON.stringify(item.paradiseUuid)}`);
-                let stealFriendRes = yield collectUserNutr(item.paradiseUuid);
-                console.log(`偷取好友营养液情况:${JSON.stringify(stealFriendRes)}`)
-                if (stealFriendRes.code == '0') {
-                  console.log(`偷取好友营养液成功`)
-                }
-              }
+            if (stealRes.data.tips) {
+                console.log('今日已达上限');
             }
-          }
+            if (stealRes.data && stealRes.data.friendInfoList && stealRes.data.friendInfoList.length > 0) {
+                for (let item of stealRes.data.friendInfoList) {
+                    if (item.nutrCount >= 3) {
+                        console.log(`可以偷的好友的信息::${JSON.stringify(item)}`);
+                        console.log(`可以偷的好友的信息paradiseUuid::${JSON.stringify(item.paradiseUuid)}`);
+                        let stealFriendRes = yield collectUserNutr(item.paradiseUuid);
+                        console.log(`偷取好友营养液情况:${JSON.stringify(stealFriendRes)}`)
+                        if (stealFriendRes.code == '0') {
+                            console.log(`偷取好友营养液成功`)
+                        }
+                    }
+                }
+            }
         }
         console.log('结束')
     } else {
-      $.msg(name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', { "open-url": "https://bean.m.jd.com/" });
-      $.done();
-      return
+        $.msg(name, '【提示】请先获取cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', { "open-url": "https://bean.m.jd.com/" });
+        $.done();
+        return
     }
     if (!jdNotify || jdNotify === 'false') {
-      $.msg(name, subTitle, message);
+        $.msg(name, subTitle, message);
     }
     $.done();
 }
@@ -346,8 +349,8 @@ function purchaseRewardTask(roundId) {
 }
 //低价包邮
 function plantReceiveNutrientsTask() {
-  const body = {"monitor_refer":"plant_receiveNutrientsTask","monitor_source":"plant_app_plant_index","awardType":"19","version":"9.0.0.1"};
-  request('receiveNutrientsTask', body);
+    const body = {"monitor_refer":"plant_receiveNutrientsTask","monitor_source":"plant_app_plant_index","awardType":"19","version":"9.0.0.1"};
+    request('receiveNutrientsTask', body);
 }
 function receiveNutrientsTask(awardType) {
     // let functionId = arguments.callee.name.toString();
@@ -445,11 +448,11 @@ function helpShare(plantUuid) {
 }
 //查询天天扭蛋的机会
 function egg() {
-  request('plantEggLotteryIndex');
+    request('plantEggLotteryIndex');
 }
 // 调用扭蛋api
 function plantEggDoLottery() {
-  request('plantEggDoLottery');
+    request('plantEggDoLottery');
 }
 function plantBeanIndex() {
     // https://api.m.jd.com/client.action?functionId=plantBeanIndex
@@ -460,28 +463,28 @@ function plantBeanIndex() {
 //偷营养液大于等于3瓶的好友
 //①查询好友列表
 function steal() {
-  const body = {
-    pageNum: '1'
-  }
-  request('plantFriendList', body);
+    const body = {
+        pageNum: '1'
+    }
+    request('plantFriendList', body);
 }
 //②执行偷好友营养液的动作
 function collectUserNutr(paradiseUuid) {
-  console.log('开始偷好友');
-  console.log(paradiseUuid);
-  let functionId = arguments.callee.name.toString();
-  const body = {
-    "paradiseUuid": paradiseUuid,
-    "roundId": currentRoundId
-  }
-  request(functionId, body);
+    console.log('开始偷好友');
+    console.log(paradiseUuid);
+    let functionId = arguments.callee.name.toString();
+    const body = {
+        "paradiseUuid": paradiseUuid,
+        "roundId": currentRoundId
+    }
+    request(functionId, body);
 }
 //每轮种豆活动获取结束后,自动收取京豆
 function getReward() {
-  const body = {
-    "roundId": lastRoundId
-  }
-  request('receivedBean', body);
+    const body = {
+        "roundId": lastRoundId
+    }
+    request('receivedBean', body);
 }
 function requestGet(url){
     const option =  {
@@ -491,38 +494,38 @@ function requestGet(url){
         }
     };
     $.get(option, (err, resp, data) => {
-      try {
-        if (err) {
-          console.log('\n种豆得豆: API查询请求失败 ‼️‼️')
-        } else {
-          data = JSON.parse(data);
+        try {
+            if (err) {
+                console.log('\n种豆得豆: API查询请求失败 ‼️‼️')
+            } else {
+                data = JSON.parse(data);
+            }
+        } catch (e) {
+            $.logErr(e, resp)
+        } finally {
+            sleep(data);
         }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        sleep(data);
-      }
-      // try {
-      //   sleep(JSON.parse(data))
-      // } catch (e) {
-      //   $.logErr(e, resp)
-      // }
+        // try {
+        //   sleep(JSON.parse(data))
+        // } catch (e) {
+        //   $.logErr(e, resp)
+        // }
     })
 }
 
 function request(function_id, body = {}) {
     $.post(taskurl(function_id, body), (err, resp, data) => {
-      try {
-        if (err) {
-          console.log('\n种豆得豆: API查询请求失败 ‼️‼️')
-        } else {
-          data = JSON.parse(data);
+        try {
+            if (err) {
+                console.log('\n种豆得豆: API查询请求失败 ‼️‼️')
+            } else {
+                data = JSON.parse(data);
+            }
+        } catch (e) {
+            $.logErr(e, resp)
+        } finally {
+            sleep(data);
         }
-      } catch (e) {
-        $.logErr(e, resp)
-      } finally {
-        sleep(data);
-      }
     })
 }
 
