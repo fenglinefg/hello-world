@@ -47,7 +47,7 @@ Cookie获取后，请注释掉Cookie地址。
 const cookieName = '腾讯新闻';
 const $ = new Env(cookieName);
 let notifyInterval = $.getdata('notifynum')||1; //视频红包间隔通知开为1，常关为0;
-let logs = $.getdata('logsturn')||false; // 日志开关，0为关，1为开;
+let logs = $.getdata('logsturn')||true; // 日志开关，0为关，1为开;
 
 const signurlVal = $.getdata('sy_signurl_txnews')
 const cookieVal = $.getdata( 'sy_cookie_txnews')
@@ -63,7 +63,7 @@ if (isGetCookie) {
   await activity()
   await toRead()
   await lookVideo()
-  await openApp()
+  await openApp(500)
   await shareApp()
   await Redpack()
   await videoPack()
@@ -133,8 +133,9 @@ return new Promise((resolve, reject) => {
     })
    })
   }
-function lookVideo() {
+function lookVideo(s) {
  return new Promise((resolve, reject) => {
+ setTimeout(()=>{
    const lookVideoUrl = {
     url: videoVal, 
     headers: {Cookie:cookieVal},
@@ -154,6 +155,7 @@ function lookVideo() {
     }
    resolve()
     })
+    },s)
    })
  }
 
@@ -320,16 +322,17 @@ function showmsg() {
   if(readnum&&videonum){
    detail = signinfo+redpackres + `【文章阅读】已读/再读: `+ readnum +`/`+readtitle+` 篇\n`+`【阅读红包】已开/总计: `+openreadred+`/`+readredtotal+` 个🧧\n`+ `【观看视频】已看/再看: `+ videonum +`/`+videotitle+` 分钟\n`+`【视频红包】已开/总计: `+openvideored+`/`+videoredtotal+` 个🧧\n【每日一句】`+Dictum
   }
-console.log(subTile+`\n`+detail)
  if(notifyInterval==1){
    $.msg(cookieName,subTile,detail,{ "open-url": "https://news.qq.com/FERD/cjRedDown.htm" })
+if(notifyInterval==1){
+   $.msg(cookieName,subTile,detail,{ 'open-url': "https://news.qq.com/FERD/cjRedDown.htm", 'media-url': imgurl } )
   }
    else if
 (openvideored%notifyInterval==0&&videocoins=="红包+1"){
-   $.msg(cookieName,subTile,detail,{ "open-url": "https://news.qq.com/FERD/cjRedDown.htm" } )
+   $.msg(cookieName,subTile,detail,{ 'open-url': "https://news.qq.com/FERD/cjRedDown.htm", 'media-url': imgurl } )
   }
    else if (openreadred==readredtotal&&openvideored==videoredtotal){
-   $.msg(cookieName+` 今日任务已完成✅`,subTile,detail)
+   $.msg(cookieName+` 今日任务已完成✅`,subTile,detail,{ 'open-url': "https://news.qq.com/FERD/cjRedDown.htm", 'media-url': imgurl } )
   }
  })
 resolve()
