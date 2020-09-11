@@ -15,7 +15,7 @@ const $ = new Env('京喜')
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 const notify = $.isNode() ? require('./sendNotify') : '';
 
-let cookiesArr = [], KEY = '';
+let cookiesArr = [], cookie = '';
 if ($.isNode()) {
   Object.keys(jdCookieNode).forEach((item) => {
     cookiesArr.push(jdCookieNode[item])
@@ -24,16 +24,21 @@ if ($.isNode()) {
   cookiesArr.push($.getdata('CookieJD'));
   cookiesArr.push($.getdata('CookieJD2'))
 }
-
+ 
 !(async() => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
     return;
   }
+  if ($.index === 1) {
+        $.setdata('', 'CookieJD');//cookie失效，故清空cookie。
+      } else if ($.index === 2){
+        $.setdata('', 'CookieJD2');//cookie失效，故清空cookie。
+  }
   for (let i = 0; i < cookiesArr.length; i++) {
     if (cookiesArr[i]) {
-      KEY = cookiesArr[i];
-      UserName = decodeURIComponent(KEY.match(/pt_pin=(.+?);/) && KEY.match(/pt_pin=(.+?);/)[1])
+      cookie = cookiesArr[i];
+      UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       $.index = i + 1;
       console.log(`\n开始【京东账号${$.index}】${UserName}\n`);
     await getsign();
@@ -52,7 +57,7 @@ function getsign() {
 	  url: 'https://wq.jd.com/pgcenter/sign/UserSignOpr?g_login_type=1',
           headers: {
          "Content-Type": "application/x-www-form-urlencoded",
-          Cookie: KEY,
+          Cookie: cookie,
           Referer: "https://wqsh.jd.com/pingou/taskcenter/index.html"
         },
   }
@@ -81,7 +86,7 @@ return new Promise((resolve) =>{
 	  url: "https://wq.jd.com/pgcenter/sign/QueryPGDetail?sceneval=",
           headers: {
          "Content-Type": "application/x-www-form-urlencoded",
-          Cookie: KEY,
+          Cookie: cookie,
           Referer: "https://jddx.jd.com/m/jddnew/money/index.html"
         },
   }
@@ -110,7 +115,7 @@ return new Promise((resolve) =>{
 	  url: 'https://m.jingxi.com/double_sign/IssueReward?sceneval=2&g_login_type=1&g_ty=ajax',
           headers: {
          "Content-Type": "application/x-www-form-urlencoded",
-          Cookie: KEY,
+          Cookie: cookie,
           Referer: "https://st.jingxi.com/pingou/jxapp_double_signin/index.html?ptag=139037.2.1"
         }
   }
