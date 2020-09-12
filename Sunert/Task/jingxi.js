@@ -103,7 +103,6 @@ return new Promise((resolve) =>{
         totalday += coindata.data.list[i].accountValue;
         i++;
        }
-     coin = "今日签到得"+ toaccount+ "个金币 共计"+totalday+ "个金币"
     resolve()
    })
  })
@@ -134,7 +133,7 @@ return new Promise((resolve) =>{
 function showmsg() {
 return new Promise((resolve) =>{
    $.sub = signresult+" 昵称:"+nickname
-   $.desc = "积分总计:"+totalpoints+ signdays + '\n'+coin
+   $.desc = "积分总计:"+totalpoints+ signdays + '\n'+ "今日签到得"+ toaccount+ "个金币 共计"+totalday+ "个金币"
   $.msg($.name, $.sub, $.desc)
     resolve()
   })

@@ -7,13 +7,12 @@ on:
   push:
     branches: 
      - master 
-
   schedule:
      - cron: '20 18 * * *'
   watch:
     types: started
 
-#jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
@@ -33,4 +32,6 @@ on:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
+
+          
 
