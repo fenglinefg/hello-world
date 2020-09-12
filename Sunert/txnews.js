@@ -66,13 +66,15 @@ let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
   GetCookie()
 } else {
-
-  !(async () => {
+ !(async () => {
     {
-      if(signurlVal){
-      ID = signurlVal.match(/devid=[a-zA-Z0-9_-]+/g)
-      }
-      $.log("\n开始获取您的活动ID")
+  if(!signurlVal && !cookieVal){
+    $.msg($.name, '【提示】🉐登录腾讯新闻app获取cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"})
+    await notify.sendNotify($.name, '【提示】请先获取腾讯新闻一Cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"});
+     return;
+    }
+     token = signurlVal.match(/devid=[a-zA-Z0-9_-]+/g)
+     console.log("\n开始获取您的活动ID");
       await getsign();
       await activity();
       await toRead();
@@ -90,11 +92,11 @@ if (isGetCookie) {
       await showmsg();
   if ($.isNode()){
    if (readnum%notifyInterval!==0){
-        await notify.sendNotify($.name+`\n`+subTile+`\n`+detail);
+        await notify.sendNotify($.name,subTile,detail);
       }
     }
     else if (openreadred==readredtotal&&openvideored==videoredtotal){
-        await notify.sendNotify($.name+` 今日任务已完成✅`+`\n`+subTile+`\n`+detail);
+        await notify.sendNotify($.name+` 今日任务已完成✅`,subTile,detail);
       }
       console.log('-----------'+'\n'+$.name,subTile,detail)
     }
@@ -129,7 +131,7 @@ function getsign() {
       url: `https://api.inews.qq.com/task/v1/user/signin/add?`,headers:{Cookie: cookieVal}
     };
     $.post(signUrl, (error, response, data) => {
-      const obj = JSON.parse(data)
+      let obj = JSON.parse(data)
       if (obj.info=="success"){
         next = obj.data.next_points
         tip =  obj.data.tip_soup||obj.data.share_tip
@@ -149,11 +151,11 @@ function getsign() {
 function activity() {
   return new Promise((resolve, reject) => {
     setTimeout(()=>{
-      $.get({url:`${TX_HOST}user/activity/get?isJailbreak=0&${ID}`}, function(error,response, data) {
+      $.get({url:`${TX_HOST}user/activity/get?isJailbreak=0&${token}`, headers: {Cookie:cookieVal}}, (error,response, data) =>{
         if (error) {
           $.msg("获取活动Id失败‼️", "", error)
         } else {
-          const obj = JSON.parse(data)
+          let obj = JSON.parse(data)
           actid = obj.data.activity.id
           console.log(` 您的活动ID为: `+actid+"\n")
         }
@@ -195,7 +197,7 @@ function StepsTotal() {
   return new Promise((resolve, reject) => {
     setTimeout(()=>{
       const StepsUrl = {
-        url: `${TX_HOST}activity/info/get?activity_id=${actid}&${ID}`,
+        url: `${TX_HOST}activity/info/get?activity_id=${actid}&${token}`,
         headers: {Cookie: cookieVal}
       }
       $.get(StepsUrl, (error, response, data) => {
@@ -234,7 +236,7 @@ function Redpack() {
   return new Promise((resolve, reject) => {
     setTimeout(()=>{
       const cashUrl = {
-        url: `${TX_HOST}activity/redpack/get?isJailbreak=0&${ID}`,
+        url: `${TX_HOST}activity/redpack/get?isJailbreak=0&${token}`,
         headers: {Cookie: cookieVal},
         body: redbody
       }
@@ -264,7 +266,7 @@ function Redpack() {
 function getTotal() {
   return new Promise((resolve, reject) => {
     const totalUrl = {
-      url: `${TX_HOST}usercenter/activity/list?isJailbreak`,
+      url: `${TX_HOST}usercenter/activity/list?isJailbreak=0`,
       headers: {Cookie: cookieVal}};
     $.post(totalUrl, function(error,response, data) {
       if (error) {
