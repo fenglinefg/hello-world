@@ -89,25 +89,23 @@ return new Promise((resolve) =>{
          "Content-Type": "application/x-www-form-urlencoded",
           Cookie: cookie,
           Referer: "https://jddx.jd.com/m/jddnew/money/index.html"
-        },
+        }
   }
     $.get(coinurl, (err, resp, data) => {
-   let time =data.match(/[\d{11}$][^\"|\{|\}]+/g)
+     let coindata = JSON.parse(data)
        totime = new Date(new Date().toLocaleDateString()).getTime()/1000
-       today = ""
-   for (i=0; i<time.length;i++){
-    if (time[i] >= totime){
-       account = Number(time[i-5].replace(",",""))
-       today += account
+       totalday = '';
+     var i=0;
+    while(coindata.data.list[i].time >=totime){
+     if (coindata.data.list[i].activeId==10000){
+        toaccount = coindata.data.list[i].accountValue
+          };
+        totalday += coindata.data.list[i].accountValue;
+        i++;
        }
-    if (time[i-4]==10000&&time[i] >= totime){
-        toaccount = Number(time[i-5].replace(",",""))
-        coin = "今日签到得"+ toaccount+ "个金币 共计"+today+ "个金币";
-        
-       }
-     }
+     coin = "今日签到得"+ toaccount+ "个金币 共计"+totalday+ "个金币"
     resolve()
-  })
+   })
  })
 }
 
@@ -134,9 +132,12 @@ return new Promise((resolve) =>{
 }
 
 function showmsg() {
+return new Promise((resolve) =>{
    $.sub = signresult+" 昵称:"+nickname
    $.desc = "积分总计:"+totalpoints+ signdays + '\n'+coin
-$.msg($.name, $.sub, $.desc)
+  $.msg($.name, $.sub, $.desc)
+    resolve()
+  })
 }
 
 // prettier-ignore
