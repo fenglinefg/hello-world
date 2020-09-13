@@ -120,8 +120,9 @@ if(runtimes<4){
   await showmsg();
 
 if ($.isNode()){
+   await notify.sendNotify($.name + " " + nick,`${subTile}\n\n${detail}`)
   if (cash >= 10&&rotaryres.code==10010)    {
-       await notify.sendNotify($.name + " " + nick+"您的余额约为"+cash+"元，已可以提现"+'\n'+subTile+'\n'+ detail)
+       await notify.sendNotify($.name + " " + nick, "您的余额约为"+cash+"元，已可以提现"+'\n'+subTile+'\n'+ detail)
           }
        console.log('-----------'+'\n'+$.name+'\n'+subTile+'\n'+ detail)
      }
