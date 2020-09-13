@@ -1,5 +1,5 @@
 /*
-更新时间: 2020-09-13 13:15
+更新时间: 2020-09-13 21:15
 
 赞赏:中青邀请码`46308484`,农妇山泉 -> 有点咸，万分感谢
 
@@ -70,6 +70,7 @@ let s = 0 //各数据接口延迟
 const $ = new Env("中青看点")
 let notifyInterval = $.getdata("notifytimes")||50 //通知间隔，默认抽奖每50次通知一次，如需关闭全部通知请设为0
 const YOUTH_HOST = "https://kd.youth.cn/WebApi/";
+const notify = $.isNode() ? require('./sendNotify') : '';
 let logs = $.getdata('zqlogs')||true //调试日志开关为false或true
 let signheaderVal = $.getdata('youthheader_zq')
 let timebodyVal = $.getdata('readtime_zq')
@@ -117,14 +118,12 @@ if(runtimes<4){
   await rotaryCheck();
   await earningsInfo();
   await showmsg();
+
 if ($.isNode()){
-  if (rotaryres.status == 1 && rotaryres.data.remainTurn % notifyInterval == 0)    {
-       await notify.sendNotify($.name + " " + nick+'\n'+subTile+'\n'+ detail)
+  if (cash >= 10&&rotaryres.code==10010)    {
+       await notify.sendNotify($.name + " " + nick+"您的余额约为"+cash+"元，已可以提现"+'\n'+subTile+'\n'+ detail)
           }
-  else if (rotaryres.code == 10010 && notifyInterval != 0) {
-       await notify.sendNotify($.name + " " + nick+'\n'+subTile+'\n'+ detail)
-          }
-    console.log('-----------'+'\n'+$.name+'\n'+subTile+'\n'+ detail)
+       console.log('-----------'+'\n'+$.name+'\n'+subTile+'\n'+ detail)
      }
 })()
   .catch((e) => $.logErr(e))
@@ -200,7 +199,8 @@ function signInfo() {
           if(logs)$.log(`开始签到`);
             signinfo = JSON.parse(data);
             if (signinfo.status == 1) {
-                subTitle = `【收益总计】${signinfo.data.user.score}青豆  现金约${signinfo.data.user.money}元`;
+              cash = signinfo.data.user.money
+                subTitle = `【收益总计】${signinfo.data.user.score}青豆  现金约${cash}元`;
                 nick = `账号: ${signinfo.data.user.nickname}`;
                 detail = `${signresult}(+${signinfo.data.sign_score}青豆) 已连签: ${signinfo.data.sign_day}天`;
               $.log(subTitle+'\n'+detail)
@@ -479,11 +479,13 @@ function rotary() {
                 body: rotarbody
             }
             $.post(url, (error, response, data) => {
-               $.log(`开始转盘任务`)
+          
                 rotaryres = JSON.parse(data)
+                
                 if (rotaryres.status == 1) {
+                    rotarytimes = rotaryres.data.remainTurn
                     detail += `【转盘抽奖】+${rotaryres.data.score}个青豆 剩余${rotaryres.data.remainTurn}次\n`
-                    $.log("转盘抽奖获得"+rotaryres.data.score+"个青豆，转盘次数还有"+rotaryres.data.remainTurn+"次")
+                    $.log("转盘抽奖获得"+rotaryres.data.score+"个青豆，转盘次数还有"+rotarytimes+"次")
                 }
                 if (rotaryres.code == 10010) {
                     rotarynum = ` 转盘${rotaryres.msg}🎉`
@@ -624,9 +626,9 @@ function earningsInfo() {
 }
 function showmsg() {
     return new Promise(resolve => {
-        if (rotaryres.status == 1 && rotaryres.data.remainTurn >= 97) {
+        if (rotaryres.status == 1 && rotarytimes >= 97) {
             $.msg($.name + " " + nick, subTitle, detail)  //默认前三次为通知
-        }else if (rotaryres.status == 1 && rotaryres.data.remainTurn % notifyInterval == 0) {
+        }else if (rotaryres.status == 1 && rotarytimes % notifyInterval == 0) {
             $.msg($.name + " " + nick, subTitle, detail) //转盘次数/间隔整除时通知;
         }else if (rotaryres.code == 10010 && notifyInterval != 0) {
          rotarynum = ` 转盘${rotaryres.msg}🎉`

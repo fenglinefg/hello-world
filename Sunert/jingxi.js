@@ -80,7 +80,7 @@ function getsign() {
 }
 
 function coininfo() {
-return new Promise((resolve) =>{
+ return new Promise((resolve,reject) =>{
 	const coinurl = {
 	  url: "https://wq.jd.com/pgcenter/sign/QueryPGDetail?sceneval=",
           headers: {
@@ -92,17 +92,23 @@ return new Promise((resolve) =>{
     $.get(coinurl, (err, resp, data) => {
      let coindata = JSON.parse(data)
        totime = new Date(new Date().toLocaleDateString()).getTime()/1000
-       daytotal = Number();
+   if(coindata.retCode == 0){
      var i=0;
-    while(coindata.data.list[i].time >=totime){
-     
-     if (coindata.data.list[i].activeId=='10000'){
+     let daytotal = Number();
+    if(coindata.data.list[0].activeId == "10000"){
+     daytotal = coindata.data.list[0].accountValue;
+     todaypoint = coindata.data.list[0].accountValue
+   } else {
+    while(coindata.data.list[i].time>totime){
+         daytotal += coindata.data.list[i].accountValue;
+     if (coindata.data.list[i].activeId=="10000"){
         todaypoint = coindata.data.list[i].accountValue
           };
-        daytotal += coindata.data.list[i].accountValue;
         i++;
        }
+    }
     resolve()
+     }
    })
  })
 }
