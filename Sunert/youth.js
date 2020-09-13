@@ -71,19 +71,19 @@ const $ = new Env("中青看点")
 let notifyInterval = $.getdata("notifytimes")||50 //通知间隔，默认抽奖每50次通知一次，如需关闭全部通知请设为0
 const YOUTH_HOST = "https://kd.youth.cn/WebApi/";
 let logs = $.getdata('zqlogs')||true //调试日志开关为false或true
-const signheaderVal = $.getdata('youthheader_zq')
-const timebodyVal = $.getdata('readtime_zq')
-const articlebodyVal = $.getdata('read_zq')
-const redpbodyVal = $.getdata('red_zq')
+let signheaderVal = $.getdata('youthheader_zq')
+let timebodyVal = $.getdata('readtime_zq')
+let articlebodyVal = $.getdata('read_zq')
+let redpbodyVal = $.getdata('red_zq')
 
 const firstcheck = $.getdata('signt')
 const runtimes = $.getdata('times')
 
 if ($.isNode()) {
   signheaderVal = process.env.YOUTH_HEADER;
-  timebodyVal = process.env.YOUTH_TIME;
   articlebodyVal = process.env.YOUTH_ACTBODY;
-  redpbodyVal = process.env.YOUTH_REDBODY
+  redpbodyVal = process.env.YOUTH_REDBODY;
+  timebodyVal = process.env.YOUTH_TIME
 }
 
 if (isGetCookie = typeof $request !== 'undefined') {
@@ -108,8 +108,10 @@ if($.time('HH')<9&&$.time('HH')>4){
   await boxshare();
   await getAdVideo();
   await gameVideo();
+if(runtimes<4){
   await readArticle();
   await Articlered();
+}
   await readTime();
   await rotary();
   await rotaryCheck();
@@ -430,13 +432,14 @@ function readArticle() {
         $.post(url, (error, response, data) => {
             $.log(`开始阅读文章`)
             readres = JSON.parse(data);
-            if (readres.items.max_notice == '\u770b\u592a\u4e45\u4e86\uff0c\u63621\u7bc7\u8bd5\u8bd5') {
-              //detail += `【阅读奖励】看太久了，换1篇试试\n`;
-           $.log(readres.items.max_notice)
-            }else if (readres.items.read_score !== undefined) {
+console.log(readres)
+            if (readres.items.read_score !== undefined) {
               detail += `【阅读奖励】+${readres.items.read_score}个青豆\n`;
               $.log("本次阅读获得"+readres.items.read_score+"个青豆")
-            }
+            } 
+    //else if (readres.items.max_notice == '\u770b\u592a\u4e45\u4e86\uff0c\u63621\u7bc7\u8bd5\u8bd5') {
+              //detail += `【阅读奖励】看太久了，换1篇试试\n`;
+        //   $.log(readres.items.max_notice)}
             resolve()
         })
     })
