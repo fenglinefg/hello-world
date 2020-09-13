@@ -4,16 +4,15 @@
 name: youth
 
 on:
-  #push:
+  push:
     branches: 
      - master 
-
-  #schedule:
+  schedule:
      - cron: '20 18 * * *'
   watch:
     types: started
 
-#jobs:
+jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
@@ -30,10 +29,10 @@ on:
         run: |
           node youth.js
         env:
-          signheaderVal: ${{ secrets.YOUTH_HEADER }}
-          redpbodyVal: ${{ secrets.YOUTH_REDBODY }}
-          articlebodyVal: ${{ secrets.YOUTH_ARTBODY }}
-          timebodyVal: ${{ secrets.YOUTH_TIME }}
+          YOUTH_HEADER: ${{ secrets.YOUTH_HEADER }}
+          YOUTH_ARTBODY: ${{ secrets.YOUTH_ARTBODY }}
+          YOUTH_REDBODY: ${{ secrets.YOUTH_REDBODY }}
+          YOUTH_TIME: ${{ secrets.YOUTH_TIME }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
 
