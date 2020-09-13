@@ -573,7 +573,12 @@ function TurnDouble() {
 function readTime() {
     return new Promise((resolve, reject) => {
         const url = {
-            url: `https://ios.baertt.com/v5/user/stay.json`,body: timebodyVal }
+            url: `https://ios.baertt.com/v5/user/stay.json`,
+            headers: {
+            'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 13_7 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148'
+            },
+            body: timebodyVal,
+         }
         $.post(url, (error, response, data) => {
             $.log(`开始统计阅读时长`)
             let timeres = JSON.parse(data)
@@ -595,16 +600,15 @@ function readTime() {
 }
 
 function earningsInfo() {
-    return new Promise((resolve, reject) => {
-        const token = JSON.parse(signheaderVal)['Referer'].split("?")[1]
+  return new Promise((resolve, reject) => {
         setTimeout(() => {
             const url = {
-                url: `https://kd.youth.cn/wap/user/balance?${token}`,
-                headers: signheaderVal,
+                url: `https://kd.youth.cn/wap/user/balance?${JSON.parse(signheaderVal)['Referer'].split("?")[1]}`,
+                headers: JSON.parse(signheaderVal),
             }
-            $.get(url, (error, response, data) => {
+        $.get(url, (error, response, data) => {
               $.log(`开始统计收益信息`)
-                infores = JSON.parse(data)
+              infores = JSON.parse(data)
                 if (infores.status == 0) {
                     detail += `<收益统计>：\n`
                     for (i = 0; i < infores.history[0].group.length; i++) {
@@ -618,7 +622,7 @@ function earningsInfo() {
         },s)
     })
 }
-async function showmsg() {
+function showmsg() {
     return new Promise(resolve => {
         if (rotaryres.status == 1 && rotaryres.data.remainTurn >= 97) {
             $.msg($.name + " " + nick, subTitle, detail)  //默认前三次为通知
