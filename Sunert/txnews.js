@@ -90,7 +90,7 @@ if (isGetCookie) {
       await getTotal();
       await showmsg();
   if ($.isNode()){
-   if (readnum%notifyInterval!==0){
+   if (readnum%notifyInterval==0){
         await notify.sendNotify($.name,subTile+'\n\n'+detail);
     }
     else if (openreadred==readredtotal&&openvideored==videoredtotal){

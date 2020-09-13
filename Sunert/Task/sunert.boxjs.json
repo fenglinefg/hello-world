@@ -147,7 +147,7 @@
     {
       "id": "jingxi",
       "name": "京喜",
-      "keys": ["signheaders_jx","coinurl_jx"],
+      "keys": ["CookieJD", "CookieJD2"],
       "author": "@sunert",
       "repo": "https://gitee.com/Sunert/Scripts/blob/master/Task/jingxi.js",
       "icons": ["https://raw.githubusercontent.com/Orz-3/mini/master/jingxi.png", "https://raw.githubusercontent.com/Orz-3/task/master/jingxi.png"],
