@@ -97,12 +97,12 @@ return new Promise((resolve) =>{
      var i=0;
     while(coindata.data.list[i].time >=totime){
         totalday += coindata.data.list[i].accountValue;
-     if (coindata.data.list[i].activeId==10000){
+     if (coindata.data.list[i].activeId==10000&&coindata.data.list[i].time >=totime){
         toaccount = coindata.data.list[i].accountValue
-         break;
           };
         i++;
        }
+      console.log(totalday)
     resolve()
    })
  })
@@ -179,6 +179,7 @@ async function doTask() {
 
 
 function showmsg() {
+ console.log(totalpoints)
  return new Promise((resolve) =>{
    $.sub = signresult+" 昵称:"+nickname
    $.desc = "积分总计:"+totalpoints+ signdays + '\n'+ "今日签到得"+ toaccount+ "个金币 共计"+totalday+ "个金币"

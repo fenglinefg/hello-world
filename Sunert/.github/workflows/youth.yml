@@ -4,7 +4,7 @@
 name: youth
 
 on:
-  push:
+  #push:
     branches: 
      - master 
   schedule:
