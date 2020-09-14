@@ -16,6 +16,7 @@ Scripts for QuantumultX, Loon, Surge, JSBox and Node.
 | [PSN](https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/psn.js) | PSN会免 | 0 9 1 * * | [DEMO](https://raw.githubusercontent.com/Peng-YM/QuanX/master/demos/psn.JPG) |
 | [疫情日报](https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/nCov.js) | 推送当前地区疫情信息 | 0 9 * * * | [DEMO](https://raw.githubusercontent.com/Peng-YM/QuanX/master/demos/nCov.JPG) |
 | [✈️ 流量](https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/flow.js) | 查询✈️ 流量 | 0 9 * * * | [DEMO](https://raw.githubusercontent.com/Peng-YM/QuanX/master/demos/flow.JPG) |
+| [TG多媒体推送](https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tasks/telegram.js) | 推送TG频道图文视频 | 0 9 * * * | [DEMO]() |
 
 ## Developer
 
@@ -33,6 +34,12 @@ Scripts for QuantumultX, Loon, Surge, JSBox and Node.
 
 在脚本中获取系统准确定位的可靠方法。[了解更多](https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tools/Location/locate.js)
 
+### Github私有仓库
+允许引用Github私有仓库/gist中的订阅分流，重写，脚本等配置文件。[了解更多](https://raw.githubusercontent.com/Peng-YM/QuanX/master/Rewrites/GithubPrivate/github-private-repo.js)
+
 ### Surge运行模式
 
 网络变化时自动根据设定调整当前Surge的代理模式。[了解更多](https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tools/RunningMode/running-mode.js)
+
+### Surge自动策略切换
+可能是最强的SSID脚本，根据当前网络自动切换策略组。由于运行模式的全局直连下，去广告，网易云等分流也会失效，使用此脚本完全解决了此类问题。[了解更多](https://raw.githubusercontent.com/Peng-YM/QuanX/master/Tools/AutoPolicy/auto-policy.js)
