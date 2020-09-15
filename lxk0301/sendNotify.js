@@ -15,6 +15,7 @@ if (process.env.PUSH_KEY) {
 }
 if (process.env.BARK_PUSH) {
   if(process.env.BARK_PUSH.indexOf('https') > -1 || process.env.BARK_PUSH.indexOf('http') > -1) {
+    //兼容BARK自建用户
     BARK_PUSH = process.env.BARK_PUSH
   } else {
     BARK_PUSH = `https://api.day.app/${process.env.BARK_PUSH}`
@@ -26,9 +27,18 @@ if (process.env.TG_BOT_TOKEN) {
 if (process.env.TG_USER_ID) {
   TG_USER_ID = process.env.TG_USER_ID;
 }
-function sendNotify(text, desp) {
+async function sendNotify(text, desp) {
+  //提供三种通知
+  await serverNotify(text, desp);
+  await BarkNotify(text, desp);
+  await tgBotNotify(text, desp);
+}
+
+function serverNotify(text, desp) {
   return  new Promise(resolve => {
     if (SCKEY) {
+      //微信server酱推送通知一个\n不会换行，需要两个\n才能换行，故做此替换
+      desp = desp.replace(/[\n\r]/g, '\n\n');
       const options = {
         url: `https://sc.ftqq.com/${SCKEY}.send`,
         body: `text=${text}&desp=${desp}`,
@@ -55,11 +65,12 @@ function sendNotify(text, desp) {
         }
       })
     } else {
-      console.log('您未提供server酱的SCKEY，取消微信推送消息通知');
+      console.log('\n您未提供server酱的SCKEY，取消微信推送消息通知\n');
       resolve()
     }
   })
 }
+
 function BarkNotify(text, desp) {
   return  new Promise(resolve => {
     if (BARK_PUSH) {
@@ -84,7 +95,16 @@ function BarkNotify(text, desp) {
           resolve();
         }
       })
-    } else if (TG_BOT_TOKEN && TG_USER_ID) {
+    } else {
+      console.log('您未提供Bark的APP推送BARK_PUSH，取消Bark推送消息通知');
+      resolve()
+    }
+  })
+}
+
+function tgBotNotify(text, desp) {
+  return  new Promise(resolve => {
+    if (TG_BOT_TOKEN && TG_USER_ID) {
       const options = {
         url: `https://api.telegram.org/bot${TG_BOT_TOKEN}/sendMessage`,
         body: `chat_id=${TG_USER_ID}&text=${text}\n\n${desp}`,
@@ -95,15 +115,15 @@ function BarkNotify(text, desp) {
       $.post(options, (err, resp, data) => {
         try {
           if (err) {
-            console.log('telegram发送通知消息失败！！')
+            console.log('\ntelegram发送通知消息失败！！\n')
           } else {
             data = JSON.parse(data);
             if (data.ok) {
-              console.log('Telegram发送通知消息完成。')
+              console.log('\nTelegram发送通知消息完成。\n')
             } else if (data.error_code === 400) {
-              console.log('请主动给bot发送一条消息并检查接收用户ID是否正确。')
+              console.log('\n请主动给bot发送一条消息并检查接收用户ID是否正确。\n')
             } else if (data.error_code === 401){
-              console.log('Telegram bot token 填写错误。')
+              console.log('\nTelegram bot token 填写错误。\n')
             }
           }
         } catch (e) {
@@ -113,7 +133,7 @@ function BarkNotify(text, desp) {
         }
       })
     } else {
-      console.log('您未提供Bark的APP推送BARK_PUSH，取消Bark推送消息通知');
+      console.log('\n您未提供telegram机器人推送所需的TG_BOT_TOKEN和TG_USER_ID，取消telegram推送消息通知\n');
       resolve()
     }
   })

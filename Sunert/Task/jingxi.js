@@ -1,5 +1,5 @@
 /*
-更新时间:09-11 14:05
+更新时间:09-15 18:05
 本脚本为京东旗下京喜app签到脚本
 本脚本使用京东公共Cooike，支持双账号，获取方法请查看NobyDa大佬脚本说明
 
@@ -38,6 +38,8 @@ if ($.isNode()) {
       $.index = i + 1;
       console.log(`\n开始【京东账号${$.index}】${UserName}\n`);
     await getsign();
+    await Tasklist();
+    await dotask();
     await coininfo();
     await doublesign();
     await showmsg()
@@ -99,18 +101,57 @@ function coininfo() {
      daytotal = coindata.data.list[0].accountValue;
      todaypoint = coindata.data.list[0].accountValue
    } else {
-    while(coindata.data.list[i].time>totime){
-         daytotal += coindata.data.list[i].accountValue;
-     if (coindata.data.list[i].activeId=="10000"){
-        todaypoint = coindata.data.list[i].accountValue
-          };
+while(coindata.data.list[i].time>totime&&coindata.data.list[i].activeId=="10000"){
+        todaypoint = coindata.data.list[i].accountValue;
         i++;
        }
-    }
+      }
     resolve()
      }
    })
  })
+}
+
+function Tasklist() {
+ return new Promise((resolve) =>{
+	const url = {
+	  url: 'https://m.jingxi.com/pgcenter/task/QueryPgTaskCfgByType?&taskType=3',
+          headers: {
+         "Content-Type": "application/x-www-form-urlencoded",
+          Cookie: cookie,
+          Referer: "https://st.jingxi.com/pingou/task_center/task/index.html?jxsid="
+        },
+  }
+    $.get(url, (err, resp, data) => {
+        totaskres = JSON.parse(data)
+       var item = totaskres.data.tasks
+       let taskArr= []
+        for (task of item ){  
+         taskArr.push(task.taskId)
+     }
+     //console.log(taskArr)
+      resolve()
+    })
+  })
+}
+
+function dotask(id) {
+ return new Promise((resolve) =>{
+	const url = {
+	  url: `https://m.jingxi.com/pgcenter/task/UserTaskFinish?sceneval=2&taskid=${id}`,
+          headers: {
+         "Content-Type": "application/x-www-form-urlencoded",
+          Cookie: cookie,
+          Referer: "https://st.jingxi.com/pingou/task_center/task/index.html?jxsid="
+        }
+  }
+   //console.log(url)
+    $.get(url, (err, resp, data) => {
+      task = JSON.parse(data)
+       //console.log(task)
+      resolve()
+    })
+  })
 }
 
 function doublesign() {
@@ -125,10 +166,10 @@ function doublesign() {
   }
     $.get(doubleurl, (err, resp, data) => {
       doubleresult = JSON.parse(data)
-   if (doubleresult.data.double_sign_status ==0){
+      if(doubleresult.data.double_sign_status ==0){
     doubleres = "双签成功 🧧+ "+doubleresult.data.jd_amount/100+"元"
     $.log($.name+ ""+ doubleres)
-   }
+    }
    resolve()
   })
  })
@@ -137,7 +178,7 @@ function doublesign() {
 function showmsg() {
  return new Promise((resolve) =>{
    $.sub = signresult+" 昵称:"+nickname
-   $.desc = "积分总计:"+totalpoints+ signdays + '\n'+ "今日签到得"+ todaypoint+ "个金币,共计"+daytotal+ "个金币"
+   $.desc = "积分总计:"+totalpoints+ signdays + '\n'+ "今日签到得"+ todaypoint+ "个金币"
   $.msg($.name, $.sub, $.desc)
     resolve()
   })
