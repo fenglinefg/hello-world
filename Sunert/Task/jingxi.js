@@ -1,5 +1,5 @@
 /*
-更新时间:09-15 18:05
+更新时间:09-15 22:05
 本脚本为京东旗下京喜app签到脚本
 本脚本使用京东公共Cooike，支持双账号，获取方法请查看NobyDa大佬脚本说明
 
@@ -13,7 +13,7 @@ hostname = wq.jd.com
 */
 
 const $ = new Env('京喜');
-let cookiesArr = [], cookie = '';
+let cookiesArr = [], cookie = '', signresult, todaypoint = 0; daytotal= 0;
 const notify = $.isNode() ? require('./sendNotify') : '';
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 
@@ -26,7 +26,7 @@ if ($.isNode()) {
   cookiesArr.push($.getdata('CookieJD2'))
 }
 
-!(async() => {
+!(async () => {
   if (!cookiesArr[0]) {
     $.msg($.name, '【提示】请先获取京东账号一cookie\n直接使用NobyDa的京东签到获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
     return;
@@ -37,12 +37,11 @@ if ($.isNode()) {
       UserName = decodeURIComponent(cookie.match(/pt_pin=(.+?);/) && cookie.match(/pt_pin=(.+?);/)[1])
       $.index = i + 1;
       console.log(`\n开始【京东账号${$.index}】${UserName}\n`);
-    await getsign();
-    await Tasklist();
-    await dotask();
-    await coininfo();
-    await doublesign();
-    await showmsg()
+      await getsign();
+      await Tasklist();
+      await coininfo();
+      await doublesign();
+      await showmsg()
     }
   }
 })()
@@ -50,137 +49,152 @@ if ($.isNode()) {
     .finally(() => $.done())
 
 function getsign() {
-  return new Promise((resolve) =>{
-	const signurl = {
-	  url: 'https://wq.jd.com/pgcenter/sign/UserSignOpr?g_login_type=1',
-          headers: {
-         "Content-Type": "application/x-www-form-urlencoded",
-          Cookie: cookie,
-          Referer: "https://wqsh.jd.com/pingou/taskcenter/index.html"
-        },
-  }
-    $.get(signurl, (err, resp, data) => {
-   if (data.match(/"retCode":\d+/) == '"retCode":0') {
-      nickname = data.split(':')[6].split(',')[0].replace(/[\"]+/g,"")
-      totalpoints = data.match(/[0-9]+/g)[3]
-      signdays = "  已签"+data.match(/[0-9]+/g)[6]+"天"
-    if (data.match(/[0-9]+/g)[9] == 0){
-      signresult = "签到成功"
-      signdays += " 今日获得"+data.match(/[0-9]+/g)[4]+"积分"
- 
+  return new Promise((resolve) => {
+    const signurl = {
+      url: 'https://wq.jd.com/pgcenter/sign/UserSignOpr?g_login_type=1',
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Cookie: cookie,
+        Referer: "https://wqsh.jd.com/pingou/taskcenter/index.html"
+      },
     }
-    else if (data.match(/[0-9]+/g)[9] == 1){
-      signresult = "签到重复"
-         }
-       }
-    else if (data.match(/"retCode":\d+/) == '"retCode":30003') {
+    $.get(signurl, (err, resp, data) => {
+      if (data.match(/"retCode":\d+/) == '"retCode":0') {
+        nickname = data.split(':')[6].split(',')[0].replace(/[\"]+/g, "")
+        totalpoints = data.match(/[0-9]+/g)[3]
+        signdays = "  已签" + data.match(/[0-9]+/g)[6] + "天"
+        if (data.match(/[0-9]+/g)[9] == 0) {
+          signresult = "签到成功"
+          signdays += " 今日获得" + data.match(/[0-9]+/g)[4] + "积分"
+
+        } else if (data.match(/[0-9]+/g)[9] == 1) {
+          signresult = "签到重复"
+        }
+      } else if (data.match(/"retCode":\d+/) == '"retCode":30003') {
         $.msg($.name, '【提示】京东cookie已失效,请重新登录获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
-       } 
+      }
       resolve()
-     })
+    })
   })
 }
 
 function coininfo() {
- return new Promise((resolve,reject) =>{
-	const coinurl = {
-	  url: "https://wq.jd.com/pgcenter/sign/QueryPGDetail?sceneval=",
-          headers: {
-         "Content-Type": "application/x-www-form-urlencoded",
-          Cookie: cookie,
-          Referer: "https://jddx.jd.com/m/jddnew/money/index.html"
-        }
-  }
-    $.get(coinurl, (err, resp, data) => {
-     let coindata = JSON.parse(data)
-       totime = new Date(new Date().toLocaleDateString()).getTime()/1000
-   if(coindata.retCode == 0){
-     var i=0;
-     let daytotal = Number();
-    if(coindata.data.list[0].activeId == "10000"){
-     daytotal = coindata.data.list[0].accountValue;
-     todaypoint = coindata.data.list[0].accountValue
-   } else {
-while(coindata.data.list[i].time>totime&&coindata.data.list[i].activeId=="10000"){
-        todaypoint = coindata.data.list[i].accountValue;
-        i++;
-       }
+  return new Promise((resolve, reject) => {
+    const coinurl = {
+      url: "https://wq.jd.com/pgcenter/sign/QueryPGDetail?sceneval=",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Cookie: cookie,
+        Referer: "https://jddx.jd.com/m/jddnew/money/index.html"
       }
-    resolve()
-     }
-   })
- })
-}
-
-function Tasklist(taskid) {
- return new Promise((resolve) =>{
-	const url = {
-	  url: 'https://m.jingxi.com/pgcenter/task/QueryPgTaskCfgByType?&taskType=3',
-          headers: {
-         "Content-Type": "application/x-www-form-urlencoded",
-          Cookie: cookie,
-          Referer: "https://st.jingxi.com/pingou/task_center/task/index.html?jxsid="
-        },
-  }
-    $.get(url, (err, resp, data) => {
-      totaskres = JSON.parse(data)
-       var item = totaskres.data.tasks;
-       let taskArr = [];
-        for (task of item ){  
-         taskArr.push(task.taskId)
+    }
+    $.get(coinurl, (err, resp, data) => {
+      let coindata = JSON.parse(data),
+          localetime = new Date(new Date().toLocaleDateString()).getTime()/1000;
+       item = coindata.data.list
+      if (coindata.retCode == 0) {
+        var i = 0;
+        let daytotal = Number();
+      for(i=0;i<item.length && item[i].time> localetime;i++){
+            //daytotal += item[i].accountValue
+          if (item[i].activeId === "10000")  {
+            todaypoint = item[i].accountValue;
+              break;
+            };
+          }
+         resolve()
         }
-     //console.log(taskArr)
-      resolve()
-    })
-  })
-}
-
-async function dotask(id) {
- return new Promise((resolve) =>{
-	const url = {
-	  url: `https://m.jingxi.com/pgcenter/task/drawUserTask?sceneval=2&taskid=${id}`,
-          headers: {
-         "Content-Type": "application/x-www-form-urlencoded",
-          Cookie: cookie,
-          Referer: "https://st.jingxi.com/pingou/task_center/task/index.html?jxsid="
-        }
-  }
-    $.get(url, (err, resp, data) => {
-      task = JSON.parse(data)
-
-       //console.log(task)
-      resolve()
-    })
-  })
-}
-
-function doublesign() {
- return new Promise((resolve) =>{
-	const doubleurl = {
-	  url: 'https://m.jingxi.com/double_sign/IssueReward?sceneval=2&g_login_type=1&g_ty=ajax',
-          headers: {
-         "Content-Type": "application/x-www-form-urlencoded",
-          Cookie: cookie,
-          Referer: "https://st.jingxi.com/pingou/jxapp_double_signin/index.html?ptag=139037.2.1"
-        }
-  }
-    $.get(doubleurl, (err, resp, data) => {
-      doub = JSON.parse(data)
-      if(doub.retCode ==0){
-         doubleres = "双签成功 🧧+ "+doub.data.jd_amount/100+"元";
-        $.log($.name+ ""+ doubleres)
-       }
-      resolve()
      })
   })
 }
 
+function Tasklist(taskid) {
+  return new Promise( (resolve) => {
+    const url = {
+      url: 'https://m.jingxi.com/pgcenter/task/QueryPgTaskCfgByType?&taskType=3',
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Cookie: cookie,
+        Referer: "https://st.jingxi.com/pingou/task_center/task/index.html?jxsid="
+      },
+    }
+    $.get(url, async (err, resp, data) => {
+      totaskres = JSON.parse(data)
+      var item = totaskres.data.tasks;
+      let taskArr = [];
+      for (task of item) {
+        taskArr.push(task.taskId);
+        await dotask(task.taskId);
+        await taskFinish(task.taskId);
+       }
+      resolve()
+    })
+  })
+}
+
+function dotask(id) {
+  return new Promise((resolve) => {
+    const url = {
+      url: `https://m.jingxi.com/pgcenter/task/drawUserTask?sceneval=2&taskid=${id}`,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Cookie: cookie,
+        Referer: "https://st.jingxi.com/pingou/task_center/task/index.html?jxsid="
+      }
+    }
+    $.get(url, (err, resp, data) => {
+      const task = JSON.parse(data)
+     //console.log(task)
+      resolve()
+    })
+  })
+}
+function taskFinish(taskId) {
+  return new Promise((resolve) => {
+    const url = {
+      url: `https://m.jingxi.com/pgcenter/task/UserTaskFinish?sceneval=2&taskid=${taskId}&sceneval=2&g_login_type=1&g_ty=ls`,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Cookie: cookie,
+        Referer: "https://st.jingxi.com/pingou/task_center/task/index.html?jxsid="
+      }
+    }
+    $.get(url, (err, resp, data) => {
+      const task = JSON.parse(data)
+      //console.log(task)
+      resolve()
+    })
+  })
+}
+function doublesign() {
+  return new Promise((resolve) => {
+    const doubleurl = {
+      url: 'https://m.jingxi.com/double_sign/IssueReward?sceneval=2&g_login_type=1&g_ty=ajax',
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Cookie: cookie,
+        Referer: "https://st.jingxi.com/pingou/jxapp_double_signin/index.html?ptag=139037.2.1"
+      }
+    }
+    $.get(doubleurl, (err, resp, data) => {
+      doub = JSON.parse(data)
+      if (doub.retCode == 0) {
+        doubleres = "双签成功 🧧+ " + doub.data.jd_amount / 100 + "元";
+        $.log($.name + "" + doubleres)
+      }
+      resolve()
+    })
+  })
+}
+
 function showmsg() {
- return new Promise((resolve) =>{
-   $.sub = "昵称:"+nickname+ " "+signresult
-   $.desc = "积分总计:"+totalpoints + signdays + '\n'+ "今日签到得"+ todaypoint+ "个金币 "+doubleres
-  $.msg($.name+` 账号${$.index}`, $.sub, $.desc)
-    resolve()
+  return new Promise((resolve) => {
+ if(signresult){
+    $.sub = "昵称:" + nickname + " " + signresult
+    $.desc = "积分总计:" + totalpoints + signdays + '\n' + "今日签到得" + todaypoint + "个金币 " + doubleres
+    $.msg($.name + ` 账号${$.index}`, $.sub, $.desc)
+     }
+   resolve()
   })
 }
 
