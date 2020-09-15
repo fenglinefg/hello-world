@@ -63,7 +63,7 @@ function getsign() {
    if (data.match(/"retCode":\d+/) == '"retCode":0') {
       nickname = data.split(':')[6].split(',')[0].replace(/[\"]+/g,"")
       totalpoints = data.match(/[0-9]+/g)[3]
-      signdays = " 已签"+data.match(/[0-9]+/g)[6]+"天"
+      signdays = "  已签"+data.match(/[0-9]+/g)[6]+"天"
     if (data.match(/[0-9]+/g)[9] == 0){
       signresult = "签到成功"
       signdays += " 今日获得"+data.match(/[0-9]+/g)[4]+"积分"
@@ -112,7 +112,7 @@ while(coindata.data.list[i].time>totime&&coindata.data.list[i].activeId=="10000"
  })
 }
 
-function Tasklist() {
+function Tasklist(taskid) {
  return new Promise((resolve) =>{
 	const url = {
 	  url: 'https://m.jingxi.com/pgcenter/task/QueryPgTaskCfgByType?&taskType=3',
@@ -123,31 +123,31 @@ function Tasklist() {
         },
   }
     $.get(url, (err, resp, data) => {
-        totaskres = JSON.parse(data)
-       var item = totaskres.data.tasks
-       let taskArr= []
+      totaskres = JSON.parse(data)
+       var item = totaskres.data.tasks;
+       let taskArr = [];
         for (task of item ){  
          taskArr.push(task.taskId)
-     }
+        }
      //console.log(taskArr)
       resolve()
     })
   })
 }
 
-function dotask(id) {
+async function dotask(id) {
  return new Promise((resolve) =>{
 	const url = {
-	  url: `https://m.jingxi.com/pgcenter/task/UserTaskFinish?sceneval=2&taskid=${id}`,
+	  url: `https://m.jingxi.com/pgcenter/task/drawUserTask?sceneval=2&taskid=${id}`,
           headers: {
          "Content-Type": "application/x-www-form-urlencoded",
           Cookie: cookie,
           Referer: "https://st.jingxi.com/pingou/task_center/task/index.html?jxsid="
         }
   }
-   //console.log(url)
     $.get(url, (err, resp, data) => {
       task = JSON.parse(data)
+
        //console.log(task)
       resolve()
     })
@@ -165,21 +165,21 @@ function doublesign() {
         }
   }
     $.get(doubleurl, (err, resp, data) => {
-      doubleresult = JSON.parse(data)
-      if(doubleresult.data.double_sign_status ==0){
-    doubleres = "双签成功 🧧+ "+doubleresult.data.jd_amount/100+"元"
-    $.log($.name+ ""+ doubleres)
-    }
-   resolve()
+      doub = JSON.parse(data)
+      if(doub.retCode ==0){
+         doubleres = "双签成功 🧧+ "+doub.data.jd_amount/100+"元";
+        $.log($.name+ ""+ doubleres)
+       }
+      resolve()
+     })
   })
- })
 }
 
 function showmsg() {
  return new Promise((resolve) =>{
-   $.sub = signresult+" 昵称:"+nickname
-   $.desc = "积分总计:"+totalpoints+ signdays + '\n'+ "今日签到得"+ todaypoint+ "个金币"
-  $.msg($.name, $.sub, $.desc)
+   $.sub = "昵称:"+nickname+ " "+signresult
+   $.desc = "积分总计:"+totalpoints + signdays + '\n'+ "今日签到得"+ todaypoint+ "个金币 "+doubleres
+  $.msg($.name+` 账号${$.index}`, $.sub, $.desc)
     resolve()
   })
 }
