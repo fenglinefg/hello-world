@@ -8,8 +8,8 @@ name: txnews
 
 on:
  push:
-   branches: 
-   - master 
+  branches: 
+     - master 
   schedule:
      - cron: '*/5 * * * *'
   watch:
