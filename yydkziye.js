@@ -25,7 +25,7 @@
 
 www.baimaa.com
 音乐打卡
-cs = 5
+cs = 10
 xj = 1
 yydkurl
 i=11
