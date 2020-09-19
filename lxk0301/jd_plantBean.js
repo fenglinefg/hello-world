@@ -120,7 +120,8 @@ function* step() {
             url: "http://jdhelper.tk:8855/jscool/plantbean/"+myPlantUuid
         }).then((resp) => {
                 plantUuids=resp.body.split('@');
-                }
+                 console.log(`\n【查询jdFruitShareArr】\n`+resp.body);
+             }
             );
         for (let task of plantBeanIndexResult.data.taskList) {
             console.log(`开始【${task.taskName}】任务`)

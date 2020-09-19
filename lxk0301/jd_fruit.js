@@ -70,9 +70,11 @@ async function jdFruit() {
         }).then((resp) => {
                     jdFruitShareArr=[];
                     jdFruitShareArr.push(resp.body);
-                }
-            );
+                console.log(`\n【查询jdFruitShareArr】\n`+resp.body);
 
+            }
+            );
+        await shareCodesFormat();
         console.log(`\n【已成功兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`);
         if ($.farmInfo.treeState === 2 || $.farmInfo.treeState === 3) {
             option['open-url'] = "openApp.jdMobile://";
