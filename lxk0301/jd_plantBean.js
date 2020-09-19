@@ -118,7 +118,10 @@ function* step() {
         console.log(`\n【您的互助码plantUuid】 ${myPlantUuid}\n`);
          $.http.get({
             url: "http://jdhelper.tk:8855/jscool/plantbean/"+myPlantUuid
-        }).then((resp) => resp.body);
+        }).then((resp) => {
+                plantUuids=resp.body.split('@');
+                }
+            );
         for (let task of plantBeanIndexResult.data.taskList) {
             console.log(`开始【${task.taskName}】任务`)
             if (task.taskType == 7 || task.taskType == 17 || task.taskType == 18) {

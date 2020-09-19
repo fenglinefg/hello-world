@@ -65,10 +65,13 @@ async function jdFruit() {
         subTitle = `【水果名称】${$.farmInfo.farmUserPro.name}`;
         message = `【京东账号${$.index}】${UserName}\n`;
         console.log(`\n【您的互助码shareCode】 ${$.farmInfo.farmUserPro.shareCode}\n`);
-        $.http.get({
+        await $.http.get({
             url: "http://jdhelper.tk:8855/jscool/fruit/"+$.farmInfo.farmUserPro.shareCode
-        })
-            .then((resp) => resp.body);
+        }).then((resp) => {
+                    jdFruitShareArr=[];
+                    jdFruitShareArr.push(resp.body);
+                }
+            );
 
         console.log(`\n【已成功兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`);
         if ($.farmInfo.treeState === 2 || $.farmInfo.treeState === 3) {
