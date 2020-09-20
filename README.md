@@ -45,7 +45,7 @@
 
 * [@chavyleung](https://github.com/chavyleung)
 
-* [@yichahucha](https://github.com/yichahucha)
+* [@yichahucha](https://github.com/yichahucha/surge)
 
 * [@langkhach270389](https://github.com/langkhach270389)
 
