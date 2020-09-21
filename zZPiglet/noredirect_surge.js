@@ -1,12 +1,11 @@
 /*
 Skip the redirect page.
-
-Quantumult X:
-[rewrite_local]
+Surge:
+[Script]
 # 简书
-^https:\/\/links\.jianshu\.com\/go\?to= url script-echo-response https://raw.githubusercontent.com/zZPiglet/Task/master/noredirect.js
+Jianshu = type=http-request,pattern=^https:\/\/links\.jianshu\.com\/go\?to=,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/noredirect_surge.js
 # 知乎
-^https:\/\/link\.zhihu\.com\/\?target= url script-echo-response https://raw.githubusercontent.com/zZPiglet/Task/master/noredirect.js
+Zhihu = type=http-request,pattern=^https:\/\/link\.zhihu\.com\/\?target=,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/noredirect_surge.js
 
 [mitm]
 hostname = links.jianshu.com, link.zhihu.com
@@ -24,10 +23,10 @@ if (oldurl.indexOf('jianshu') != -1) {
 }
 
 const noredirect = {
-    status: "HTTP/1.1 302 Temporary Redirect",
+    status: 302,
     headers: {
         "Location": newurl
     }
 }
 
-$done(noredirect)
+$done({ response: noredirect })
