@@ -117,13 +117,15 @@ if ($.isNode()) {
           timeArr.push(READTIME[item])
         }
       })
+      console.log(`\n============ 脚本执行来自 Github Action  ==============\n`)
+      console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
+      console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
     } else {
     cookiesArr.push($.getdata('youthheader_zq'));
     redpArr.push($.getdata('red_zq'));
     readArr.push($.getdata('read_zq'));
     timeArr.push($.getdata('readtime_zq'));
 }
-
 
 const firstcheck = $.getdata('signt');
 const runtimes = $.getdata('times');
@@ -145,7 +147,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
       timebodyVal = timeArr[i];
       redpbodyVal = redpArr[i];
       $.index = i + 1;
-      console.log(`\n开始【中青看点${$.index}】\n`)
+      console.log(`-------------------------\n\n开始【中青看点${$.index}】`)
     }
   await sign();
   await signInfo();
@@ -648,7 +650,7 @@ function earningsInfo() {
     })
 }
  async function showmsg() {
-        console.log('-----------'+'\n'+$.name+`\n【收益总计】${signinfo.data.user.score}青豆  现金约${cash}元\n`+ detail)
+        console.log(`\n【收益总计】${signinfo.data.user.score}青豆  现金约${cash}元\n`+ detail)
        if (rotaryres.status == 1 && rotarytimes >= 97) {
             $.msg($.name + " " + nick, subTitle, detail)  //默认前三次为通知
         }else if (rotaryres.status == 1 && rotarytimes % notifyInterval == 0) {
