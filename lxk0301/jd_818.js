@@ -3,7 +3,7 @@
 活动时间09.22日-10.09日结束
 活动地址: https://rdcseason.m.jd.com/#/index
 
-更新日期：2020-09-22
+更新日期：2020-09-24
 
 其中有20京豆是往期奖励，需第一天参加活动后，第二天才能拿到！
 其中有20京豆是往期奖励，需第一天参加活动后，第二天才能拿到！
@@ -68,7 +68,7 @@ const helpCode = [
       message = '';
       subTitle = '';
       await JD818();
-      // await getListRank();
+      // await getListIntegral();
     }
   }
 })()
@@ -92,6 +92,7 @@ async function JD818() {
   await myRank();//领取往期排名奖励
   await getListJbean();
   await getListRank();
+  await getListIntegral();
   await showMsg()
 }
 function listMeeting() {
@@ -454,7 +455,7 @@ function myRank() {
         "Accept-Encoding": "gzip, deflate, br"
       }
     }
-    $.jbeanNum = 0;
+    $.jbeanNum = '';
     $.get(options, async (err, resp, data) => {
       try {
         // console.log('查询获奖列表data', data);
@@ -464,17 +465,33 @@ function myRank() {
         } else {
           data = JSON.parse(data);
           if (data.code === 200 && data.data.myHis) {
-            for (let item of data.data.myHis){
-              if (item.status === '21') {
+            for (let i = 0; i < data.data.myHis.length; i++) {
+              $.date = data.data.myHis[0].date;
+              if (data.data.myHis[i].status === '21') {
                 await $.wait(1000);
                 console.log('开始领奖')
-                let res = await saveJbean(item.id);
+                let res = await saveJbean(data.data.myHis[i].id);
                 // console.log('领奖结果', res)
                 if (res.code === 200 && res.data.rsCode === 200) {
-                  $.jbeanNum += Number(res.data.jbeanNum);
+                  // $.jbeanNum += Number(res.data.jbeanNum);
+                  console.log(`${data.data.myHis[i].date}日奖励领取成功${JSON.stringify(res.data.jbeanNum)}`)
                 }
               }
+              if (i === 0 && data.data.myHis[i].status === '22') {
+                $.jbeanNum = data.data.myHis[i].prize;
+              }
             }
+            // for (let item of data.data.myHis){
+            //   if (item.status === '21') {
+            //     await $.wait(1000);
+            //     console.log('开始领奖')
+            //     let res = await saveJbean(item.id);
+            //     // console.log('领奖结果', res)
+            //     if (res.code === 200 && res.data.rsCode === 200) {
+            //       $.jbeanNum += Number(res.data.jbeanNum);
+            //     }
+            //   }
+            // }
           }
         }
       } catch (e) {
@@ -593,7 +610,7 @@ function getHelp() {
     })
   })
 }
-
+//获取当前活动总京豆数量
 function getListJbean() {
   return new Promise(resolve => {
     const options = {
@@ -629,6 +646,42 @@ function getListJbean() {
   })
 }
 
+function getListIntegral() {
+  return new Promise(resolve => {
+    const options = {
+      "url": `${JD_API_HOST}task/listIntegral?pageNum=1`,
+      "headers": {
+        "Host": "rdcseason.m.jd.com",
+        "Accept": "application/json, text/plain, */*",
+        "Connection": "keep-alive",
+        "Cookie": cookie,
+        "User-Agent": "jdapp;iPhone;9.1.0;14.0;e35caf0a69be42084e3c97eef56c3af7b0262d01;network/4g;supportApplePay/3;hasUPPay/0;pushNoticeIsOpen/1;model/iPhone11,8;addressid/2005183373;hasOCPay/0;appBuild/167348;supportBestPay/0;jdSupportDarkMode/0;pv/255.2;apprpd/Home_Main;ref/JDMainPageViewController;psq/1;ads/;psn/e35caf0a69be42084e3c97eef56c3af7b0262d01|701;jdv/0|kong|t_2010957099_|jingfen|3b5422e836e74037862fea3dcf1a6802|1600647811440|1600647814;adk/;app_device/IOS;pap/JA2015_311210|9.1.0|IOS 14.0;Mozilla/5.0 (iPhone; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148;supportJDSHWK/1",
+        "Accept-Language": "zh-cn",
+        "Referer": "https://rdcseason.m.jd.com",
+        "Accept-Encoding": "gzip, deflate, br"
+      }
+    }
+    $.get(options, async (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          data = JSON.parse(data);
+          if (data.code === 200) {
+            $.integralCount = data.data.integralCount;
+          }
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
+
+//查询今日累计积分与排名
 function getListRank() {
   return new Promise(resolve => {
     const options = {
@@ -656,6 +709,9 @@ function getListRank() {
               $.integer = data.data.my.integer;
               $.num = data.data.my.num;
             }
+            if (data.data.last) {
+              $.lasNum = data.data.last.num;
+            }
           }
         }
       } catch (e) {
@@ -670,7 +726,7 @@ function showMsg() {
   if (Date.now() > new Date(activeEndTime).getTime()) {
     $.msg($.name, '活动已结束', `请禁用或者删除此脚本\n如果帮助到您可以点下🌟STAR鼓励我一下,谢谢\n咱江湖再见\n https://github.com/lxk0301/scripts\n`, {"open-url": "https://github.com/lxk0301/scripts"});
   } else {
-    $.msg($.name, `京东账号${$.index} ${$.UserName}`, `${$.jbeanCount ? `获得京豆：${$.jbeanCount}个🐶\n` : ''}${$.integer ? `当前积分：${$.integer}个\n` : ''}${$.num ? `当前排名：${$.num}\n` : ''}具体详情点击弹窗跳转后即可查看`, {"open-url": "https://rdcseason.m.jd.com/#/hame"});
+    $.msg($.name, `京东账号${$.index} ${$.UserName}`, `${$.jbeanCount ? `${$.integer ? `今日获得积分：${$.integer}个\n` : ''}${$.num ? `今日排名：${$.num}\n` : ''}今日参数人数：${$.lasNum}人\n累计获得京豆：${$.jbeanCount}个🐶\n` : ''}${$.jbeanCount ? `累计获得积分：${$.integralCount}个\n` : ''}${$.jbeanNum ? `${$.date}日奖品：${$.jbeanNum}\n` : ''}具体详情点击弹窗跳转后即可查看`, {"open-url": "https://rdcseason.m.jd.com/#/hame"});
   }
 }
 // prettier-ignore
