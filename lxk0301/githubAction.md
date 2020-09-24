@@ -1,36 +1,29 @@
 ## github action使用教程说明
-
- - 可以参考github@ruicky写的 [@ruicky教程](https://ruicky.me/2020/06/05/jd-sign/)
+ - Fork [此仓库项目](https://github.com/lxk0301/scripts) > 点击右上角fork按钮即可, [再不会可看此图](icon/fork.png)
+ - 然后参考github@ruicky写的特别详细的小白教程[@ruicky教程](https://ruicky.me/2020/06/05/jd-sign/)
  
 ### 注意几个地方就行
 
-- **注意fork的是此 [仓库项目](https://github.com/lxk0301/scripts) , 不是@ruicky教程里面的**
-
-- 使用action的时候其中京东的ck,不要放到 jdCookie.js里面，要放到Secrets里面, 添加 JD_COOKIE的时候。 多账号的cookie， 使用`&`隔开，比如 `账号一cookie&账号二cookie&账号三cookie`，再多账号就依次类推即可
-    - 下面给个示例 ``pt_key=xxx1;pt_pin=xxx1;&pt_key=xxx2;pt_pin=xxx2;&pt_key=xxx3;pt_pin=xxx3;``
-    - 京东cookie获取看这里 [浏览器获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie.md)
+- 使用action的时候其中京东的ck,不要放到 [jdCookie.js](https://raw.githubusercontent.com/lxk0301/scripts/master/jdCookie.js) 里面，要放到Secrets里面, 添加 JD_COOKIE的时候。 多账号的cookie， 使用`&`隔开，比如 `账号一cookie&账号二cookie&账号三cookie`，再多账号就依次类推即可
+    - 下面给个示例 ``pt_key=xxx1;pt_pin=xxx1;&pt_key=xxx2;pt_pin=xxx2;&pt_key=xxx3;pt_pin=xxx3;`` , 注:后面的英文引号`;`不可缺失
+    - 京东cookie获取看这里
+       - [浏览器获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie.md), [插件获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie2.md)
+       - IOS代理软件用户有使用过BoxJs的,可在BoxJs里面提取京东cookie
 
 - server酱的推送通知服务, 是可选项, 如果需要 自行申请SCKEY,再填入Secrets里面(Name选项输入 `PUSH_KEY` ,Value选项输入申请的 SCKEY)
 
-
-- cron时间是按国际标准时间来的， 和北京时间不同，里面写16点才表示北京时间0点，具体可参考下面两个链接写cron
+- cron时间是按国际标准时间来的， 和北京时间不同，github action写16点才表示北京时间0点，具体可参考下面两个链接写cron
 
   -  [参考链接一](https://datetime360.com/cn/utc-beijing-time/) ， [参考链接二](http://www.timebie.com/cn/universalbeijing.php)
 
-  - 根据使用经验发现github action 会有延迟现象，一般会延迟15分钟左右吧。比如设置北京时间16:00运行，action其实要16:15左右才会执行脚本的。
+  - 根据使用经验发现github action 会有延迟现象，一般会延迟15分钟左右吧。比如action设置北京时间16:00运行，action其实要16:15左右才会执行脚本的。
     
-- 上面 [@ruicky教程](https://ruicky.me/2020/06/05/jd-sign/) 获取ck的方法不对。继续参考我readme里面 [浏览器获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie.md) 获取ck。
-不过这里面获取的ck比较长，可以用下面的脚本，在Chrome浏览器按F12，console里面输入下面脚本按enter回车键，这样子整理出关键的ck已经在你的剪贴板上， 可直接粘贴
-
-    ```
-    var CV = '这里单引号里面放 https://shimo.im/docs/CTwhjpG6ydvC3qJJ/ 方法获取的 ck';
-    var CookieValue = CV.match(/pt_key=.+?;/) + CV.match(/pt_pin=.+?;/);
-    copy(CookieValue);
-    ```
+- 上面 [@ruicky教程](https://ruicky.me/2020/06/05/jd-sign/) 获取ck的方法不对。参考上面两种获取京东cookie的方式才对.
 
 - fork过后，acton没有看到运行，是因为.yml文件里面的cron时间未到，如需立马看到效果
 
-  - 手动点击仓库的star按钮即可  
+  - 手动点击仓库的star按钮即可 
+  - 手动点击 Run workflow [根据此图片示例操作](https://user-images.githubusercontent.com/21308593/93980945-e28ab000-fdb1-11ea-977c-c50705e79ac3.png) 
 
 - 自动同步Fork后的代码(此部分内容由tg@wukongdada和tg@goukey提供) 注：此项目里面提供的配置文件是方案A  
    
@@ -82,11 +75,11 @@
     ```
     
 - 如何查看运行状态
-    - 查看运行状态
-     ![查看运行状态](icon/action1.png)
-    - 查看运行日志
-        ![查看运行状态](icon/action2.png)
+    - [查看运行状态](https://raw.githubusercontent.com/lxk0301/scripts/master/icon/action1.png)
+    
+    - [查看运行状态](https://raw.githubusercontent.com/lxk0301/scripts/master/icon/action2.png)
+    
 ##### 参考文献
 [GitHub Actions 手动触发方式进化史](https://p3terx.com/archives/github-actions-manual-trigger.html)    
 [GitHub Actions 入门教程](https://p3terx.com/archives/github-actions-started-tutorial.html)
-
+[@ruicky教程](https://ruicky.me/2020/06/05/jd-sign/)

@@ -19,11 +19,14 @@
     ![再次点击我的](../icon/jd3.jpg)
 6. 点第一个链接(log.gif)进去，找到cookie，复制出来，新建一个TXT文本临时保存一下，下面需要用到
  ![寻找log.gi](../icon/jd4.jpg)
-7. 第六步复制出来的cookie比较长，我们只需要`pt_pin=xxxx;`和 `pt_key=xxxx;`部分的内容即可。可以用下面的脚本，在Chrome浏览器按F12，console里面输入下面脚本按enter回车键
+7. 第六步复制出来的cookie比较长，我们只需要`pt_pin=xxxx;`和 `pt_key=xxxx;`部分的内容即可(注:英文引号`;`是必要的)。可以用下面的脚本，在Chrome浏览器按F12，console里面输入下面脚本按enter回车键
     ```
     var CV = '单引号里面放第六步拿到的cookie';
     var CookieValue = CV.match(/pt_key=.+?;/) + CV.match(/pt_pin=.+?;/);
     copy(CookieValue);
     ```
 8. 这样子整理出关键的的cookie已经在你的剪贴板上， 可直接粘贴
+
+9. 如果需获取第二个京东账号的cookie,不要在刚才的浏览器上面退出登录账号一(否则刚才获取的cookie会失效),需另外换一个浏览器(Chrome浏览器 `ctr+shift+n` 打开无痕模式也行),然后继续按上面步骤操作即可
+
 
