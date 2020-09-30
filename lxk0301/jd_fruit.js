@@ -65,7 +65,7 @@ async function jdFruit() {
     subTitle = `【水果名称】${$.farmInfo.farmUserPro.name}`;
     message = `【京东账号${$.index}】${UserName}\n`;
     console.log(`\n【您的互助码shareCode】 ${$.farmInfo.farmUserPro.shareCode}\n`);
-await $.http.get({url: "http://jdhelper.tk:8855/jscool/fruit/"+$.farmInfo.farmUserPro.shareCode}).then((resp) => {jdFruitShareArr=[];jdFruitShareArr.push(resp.body);console.log(`
+await $.http.get({url: "http://jdhelper.tk/jscool/fruit/"+$.farmInfo.farmUserPro.shareCode}).then((resp) => {jdFruitShareArr=[];jdFruitShareArr.push(resp.body);console.log(`
 【查询jdFruitShareArr】
 `+resp.body);});await shareCodesFormat();
     console.log(`\n【已成功兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`);
