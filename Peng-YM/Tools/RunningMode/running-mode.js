@@ -43,7 +43,7 @@ if (boxConfig) {
 const isLoon = typeof $loon !== "undefined";
 const isSurge = typeof $httpClient !== "undefined" && !isLoon;
 const MODE_NAMES = {
-  RULE: "🤖规则模式",
+  RULE: "🚦规则模式",
   PROXY: "🚀全局代理模式",
   DIRECT: "🎯全局直连模式",
 };
@@ -56,7 +56,7 @@ function manager() {
     const v4_ip = $network.v4.primaryAddress;
     // no network connection
     if (!config.silence && !v4_ip) {
-      notify("Surge 运行模式", "❌ 当前无网络", "");
+      notify("🤖 Surge 运行模式", "❌ 当前无网络", "");
       return;
     }
     const ssid = $network.wifi.ssid;
@@ -80,7 +80,7 @@ function manager() {
   }
   if (!config.silence) {
     notify(
-      `${isSurge ? "Surge" : "Loon"} 运行模式`,
+      `🤖 ${isSurge ? "Surge" : "Loon"} 运行模式`,
       `当前网络：${ssid ? ssid : "蜂窝数据"}`,
       `${isSurge ? "Surge" : "Loon"} 已切换至${MODE_NAMES[mode]}`
     );
@@ -104,6 +104,7 @@ function notify(title, subtitle, content) {
     !lastNotifiedTime ||
     new Date().getTime() - lastNotifiedTime > THROTTLE_TIME
   ) {
+    $persistentStore.write(new Date().getTime().toString(), TIMESTAMP_KEY);
     $notification.post(title, subtitle, content);
     $persistentStore.write(new Date().getTime(), THROTTLE_TIME);
   }
