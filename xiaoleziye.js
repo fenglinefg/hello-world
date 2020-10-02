@@ -11,19 +11,20 @@ hostname=minapp.xqrobot.net,
 #小乐
 ############## 圈x
 
-https:\/\/minapp\.xqrobot\.net\/* url script-request-header xiaoleziye.js
+https:\/\/minapp\.xqrobot\.net\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaoleziye.js
+
 
 #小乐
 ############## loon
 
 //
-http-request https:\/\/minapp\.xqrobot\.net\/* script-path=xiaoleziye.js, requires-body=true
+http-request https:\/\/minapp\.xqrobot\.net\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaoleziye.js, requires-body=true
 
 
 #小乐
 ############## surge
 
-小乐签到 = type=http-request,pattern=https:\/\/minapp\.xqrobot\.net\/*,script-path=xiaoleziye.js, requires-body=true
+小乐签到 = type=http-request,pattern=https:\/\/minapp\.xqrobot\.net\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaoleziye.js, requires-body=true
 
 
 
