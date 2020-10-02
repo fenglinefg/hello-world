@@ -23,7 +23,7 @@ http-request https:\/\/minapp\.xqrobot\.net\/* script-path=xiaoleziye.js, requir
 #小乐
 ############## surge
 
-微打卡 坚持打卡 微早起打卡 = type=http-request,pattern=https:\/\/minapp\.xqrobot\.net\/*,script-path=xiaoleziye.js, requires-body=true
+小乐签到 = type=http-request,pattern=https:\/\/minapp\.xqrobot\.net\/*,script-path=xiaoleziye.js, requires-body=true
 
 
 
