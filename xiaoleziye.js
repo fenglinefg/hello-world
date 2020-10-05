@@ -4,6 +4,12 @@
 
 微信扫码 https://raw.githubusercontent.com/ziye12/JavaScript/master/xiaoleziye.png  获取授权
 
+开重写，点击我的  获取第一个ck   ，关重写，然后进签到，开重写，点签到获取签到ck，
+
+
+10.5 增加更多通知内容
+
+
 
 
 hostname=minapp.xqrobot.net,
@@ -30,6 +36,7 @@ http-request https:\/\/minapp\.xqrobot\.net\/* script-path=https://raw.githubuse
 
 
 */
+
 
 
 
@@ -148,15 +155,17 @@ if (xiaoleuserVal)        sy.setdata(xiaoleuserVal,xiaoleuserKey)
 
  {
 
-   for(var i=0;i<3;i++)
+   for(var i=0;i<4;i++)
  { (function(i) {
             setTimeout(function() {
     
      if(i==0) xiaoletask(i);
 
 else if(i==1) xiaoleuser(i);
+else if(i==2) xiaolesy(i);
 
-else if(i==2) showmsg(i);
+
+else if(i==3) showmsg(i);
 }, (i + 1) *1000);
                 })(i)
 
@@ -241,6 +250,72 @@ tz+=userinfo.show
     })
    })
   }  
+
+
+
+
+function xiaolesy() {
+return new Promise((resolve, reject) => {
+
+  const toxiaolesyurl = {
+      url: xiaoleuserVal.replace(/mod=index/g, `mod=tbk_jiang&page=1`),
+headers: JSON.parse(xiaoleheaderVal),
+
+  };
+   sy.post(toxiaolesyurl,(error, response, data) =>{
+if(logs) sy.log(`${jsname}, 收益信息: ${data}`)
+     syinfo =JSON.parse(data)
+var xx=syinfo.list[0].jiang_text
+var tt=xx.substring(xx.indexOf("用户")+2,xx.indexOf("奖励"));
+
+
+
+      if (syinfo.result==true)
+ {
+tz+=
+'【收益信息】👤：'+tt+'\n'+
+'【下单时间】🧧：'+syinfo.list[0].jiang_atime+'\n'+
+'【预计收益】🧧：'+syinfo.list[0].jiang_money+'元'+'\n'
+
+
+
+
+
+
+}
+
+
+else if (userinfo.result==false)
+ {
+tz+=userinfo.show
+}
+
+
+
+    resolve()
+    })
+   })
+  }  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
