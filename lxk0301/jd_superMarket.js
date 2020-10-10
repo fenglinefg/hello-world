@@ -542,6 +542,7 @@ async function limitTimeProduct() {
     for (let item of productList) {
       if (item['productType'] === 2 && item['groundStatus'] === 1) {
         //未上架并且限时商品
+        console.log(`出现限时商品[${item.name}]`)
         productList2.push(item);
       }
     }
@@ -558,7 +559,11 @@ async function limitTimeProduct() {
             }
           }
           if (shelfList2 && shelfList2.length > 0) {
-            await smtg_ground(item2['productId'], shelfList2.slice(-1));
+            const groundRes = await smtg_ground(item2['productId'], shelfList2.slice(-1)[0]);
+            if (groundRes.data.bizCode === 0) {
+              console.log(`限时商品上架成功`);
+              message += `【限时商品】上架成功\n`;
+            }
           }
         }
       }
