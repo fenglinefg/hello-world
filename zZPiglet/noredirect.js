@@ -39,7 +39,7 @@ if (oldurl.indexOf("links.jianshu.com/go") != -1) {
 } else if (oldurl.indexOf("www.jianshu.com/go") != -1) {
 	newurl = decodeURIComponent(jianshur2.exec(oldurl)[1]);
 } else if (oldurl.indexOf("link.zhihu.com/?target") != -1) {
-	newurl = decodeURIComponent(zhihur.exec(oldurl)[1]);
+	newurl = decodeURIComponent(zhihur.exec(oldurl)[1].replace(/&source=.*/, ""));
 } else if (oldurl.indexOf("weibo.cn/sinaurl?toasturl") != -1) {
 	newurl = decodeURIComponent(weibor.exec(oldurl)[1]);
 } else if (oldurl.indexOf("sinaurl.cn") != -1 || oldurl.indexOf("t.cn") != -1) {
