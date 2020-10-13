@@ -79,7 +79,8 @@ http-request ^https:\/\/ph0001\.hezyq\.com\/* script-path= https://raw.githubuse
 
 
 let s = 200 //各数据接口延迟
-const $ = new Env("早起打卡")
+const $ = new Env('早起打卡')
+const jsname='早起打卡'
 let notifyInterval=1
 const notify = $.isNode() ? require('./sendNotify') : '';
 let logs = $.getdata('zqlogs')||false, signresult; 
