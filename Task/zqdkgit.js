@@ -84,38 +84,13 @@ const jsname="早起打卡"
 let notifyInterval=1
 const notify = $.isNode() ? require('./sendNotify') : '';
 let logs = $.getdata('zqlogs')||false, signresult; 
-let cookiesArr = [], dkurl = '',
-    
-let Cookiezqdk = [
-    '',//账号一ck 
-    '',//账号二ck,如有更多,依次类推
-] ,
-    
-if ($.isNode()) {
-  if (process.env.ZQDK_URL && process.env.ZQDK_URL.split('#') && process.env.ZQDK_URL.split('#').length > 0) {
-  Cookiezqdk = process.env.ZQDK_URL.split('#');
-  }
- 
-}
-    
-if ($.isNode()) {
-    Object.keys(Cookiezqdk).forEach((item) => {
-        if (Cookiezqdk[item]) {
-          cookiesArr.push(Cookiezqdk[item])
-        }
-      })
+let dkurl = 'https://ph0001.hezyq.com/app/index.php?i=597&t=0&v=1.0.2&from=wxapp&c=entry&a=wxapp&do=distribute&m=bh_rising&sign=2b18eebf989b3a26a9ca677492b74724&action=today&contr=index&token=8ddce1ace72e7b6ac0e8befd789a69be&version=2.0.34
+'
     
       console.log(`\n============ 脚本执行来自 Github Action  ==============\n`)
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
-    } else {
-    cookiesArr.push($.getdata('zqdkurl'));
     
-}
-
-
-
-
 
 if (isGetCookie = typeof $request !== 'undefined') {
    GetCookie()
