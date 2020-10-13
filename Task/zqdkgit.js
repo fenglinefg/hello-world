@@ -1,80 +1,3 @@
-/*ziye 早起打卡
-
-
-非常重要！！！   
-
-微信扫码  https://raw.githubusercontent.com/ziye12/JavaScript/master/zqdkziye.png 进入小程序，登录获取授权，再启动软件获取ck 
-建议设置6点到23点之间打卡，时间间隔30分钟以上,否则容易封号
-
-
-
-
-2020.9.9
-
-
-《《《《《《《《《《制作其他打卡js的说明
-
-抓包小程序，然后替换以下内容来制作其他打卡js，
-需要替换的内容如下，按顺序替换字符，自己用电脑或者KODE软件替换，KODE下载链接https://apps.apple.com/cn/app/koder-code-editor/id1447489375
-
-
-ph0001.hezyq.com
-早起打卡
-cs = 20
-xj = 1
-zqdkurl
-i=597
-zqdk
-
-手动替换
-ph0001\.hezyq\.com
-
-制作其他打卡js的说明》》》》》》》》》》》
-
-
-
-
-
-
-////////////////////////////////////////正文
-
-
-使用说明：
-
-一，微信扫码  https://raw.githubusercontent.com/ziye12/JavaScript/master/zqdkziye.png 进入小程序，登录获取授权
-
-二，然后将hostname复制粘贴进配置文件
-
-三，将重写复制到 rewrite_local 下，再进入程序获取ck，建议 放入新建配置片段，获取之后禁用即可
-
-功能如下：
-1.每日打卡，设置了开关，完成任务不再打卡
-2.打卡币统计，
-3.现金统计，自动提现
-
-hostname= ph0001.hezyq.com,
-
-
-
-//surge
-早起打卡 = type=http-request,pattern=^https:\/\/ph0001\.hezyq\.com\/*,requires-body=1,max-size=0,script-path= https://raw.githubusercontent.com/ziye12/JavaScript/master/zqdkziye.js
-
-
-
-//圈x
-https:\/\/ph0001\.hezyq\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/zqdkziye.js
-
-
-//loon
-http-request ^https:\/\/ph0001\.hezyq\.com\/* script-path= https://raw.githubusercontent.com/ziye12/JavaScript/master/zqdkziye.js
-, requires-body=true, timeout=10, tag=早起打卡
-
-
-
-
-*/
-
-
 
 
 
@@ -85,18 +8,49 @@ let notifyInterval=1
 const dkurl = 'https://ph0001.hezyq.com/app/index.php?i=597&t=0&v=1.0.2&from=wxapp&c=entry&a=wxapp&do=distribute&m=bh_rising&sign=2b18eebf989b3a26a9ca677492b74724&action=today&contr=index&token=8ddce1ace72e7b6ac0e8befd789a69be&version=2.0.34
 '
     
-      
-if (isGetCookie = typeof $request !== 'undefined') {
+ 
+let isGetCookie = typeof $request !== 'undefined'
+if (isGetCookie) {
    GetCookie()
-} else 
-  await dktj();
-  await dkxj();
-  await showmsg();
- }
-})()
-  .catch((e) => $.logErr(e))
-  .finally(() => $.done())
+} else {
+   all()
 }
+     
+
+
+
+function GetCookie() {
+if ($request && $request.url.match(/i=597&/))
+if ($request && $request.url.match(/action=today&contr=index/))
+ {
+  const dkurl =  $request.url
+  sy.log(`dkurl:${dkurl}`)
+  if (dkurl) sy.setdata(dkurl, dkurlkey)
+  sy.msg(dkurlkey, `获取cookie: 成功🎉`, ``)
+}
+
+}
+  
+
+
+
+
+function all()
+
+ {
+
+   for(var i=0;i<3;i++)
+ { (function(i) {
+            setTimeout(function() {
+    
+     if(i==0) dktj(i);
+else if(i==1) dkxj(i); 
+else if(i==2) showmsg(i);
+}, (i + 1) * 1000);
+                })(i)
+
+
+}}
 
 
 
