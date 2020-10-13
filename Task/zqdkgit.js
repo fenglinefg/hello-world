@@ -119,19 +119,7 @@ if ($.isNode()) {
 
 if (isGetCookie = typeof $request !== 'undefined') {
    GetCookie()
-} else {
- !(async () => {
-  if (!cookiesArr[0]) {
-    $.msg($.name, '【提示】请先获取早起打卡一cookie')
-    return;
-  }
-  for (let i = 0; i < readArr.length; i++) {
-    if (cookiesArr[i]) {
-      dkurl = cookiesArr[i];
-      
-      $.index = i + 1;
-      console.log(`-------------------------\n\n开始【早起打卡${$.index}】`)
-    }
+} else 
   await dktj();
   await dkxj();
   await showmsg();
