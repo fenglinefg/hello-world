@@ -49,16 +49,17 @@ hostname = api.weibo.cn, pay.sc.weibo.com
 */
 
 const $ = new Env('新浪微博')
+const notify = $.isNode() ? require('./sendNotify') : '';
 let tokenArr = [],payArr = [];
 if ($.isNode()) {
-  if (process.env.WB_TOKEN && process.env.WB_TOKEN.split('&') && process.env.WB_TOKEN.split('&').length > 0) {
-  wbtoken = process.env.WB_TOKEN.split('&');
+  if (process.env.WB_TOKEN && process.env.WB_TOKEN.split('#') && process.env.WB_TOKEN.split('#').length > 0) {
+  wbtoken = process.env.WB_TOKEN.split('#');
   }
   else if (process.env.WB_TOKEN && process.env.WB_TOKEN.split('\n') && process.env.WB_TOKEN.split('\n').length > 0) {
   wbtoken = process.env.WB_TOKEN.split('\n');
   };
-  if (process.env.WB_PAY && process.env.WB_PAY.split('&') && process.env.WB_PAY.split('&').length > 0) {
-  wbPay = process.env.WB_PAY.split('&');
+  if (process.env.WB_PAY && process.env.WB_PAY.split('#') && process.env.WB_PAY.split('#').length > 0) {
+  wbPay = process.env.WB_PAY.split('#');
   }
   else if (process.env.WB_PAY && process.env.WB_PAY.split('\n') && process.env.WB_PAY.split('\n').length > 0) {
   wbPay = process.env.WB_PAY.split('\n');
@@ -93,8 +94,7 @@ if (isGetCookie = typeof $request !==`undefined`) {
       token = tokenArr[i];
       payheaderVal = payArr[i];
       $.index = i + 1;
-      console.log(`-------------------------\n\n开始【微博签到${$.index}】`)
-    }
+      console.log(`-------------共${tokenArr.length}个账号\n开始【微博签到${$.index}】`)
      await getsign();
      await doCard();
  if (payheaderVal !== undefined){
@@ -102,6 +102,7 @@ if (isGetCookie = typeof $request !==`undefined`) {
     };
      await showmsg()
    }
+  }
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
