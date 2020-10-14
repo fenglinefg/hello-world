@@ -130,18 +130,33 @@ function GetCookie() {
   $.msg($.name, `获取提现地址: 成功`, ``)
   }
 }
-function run() { 
+async function run() { 
+ if ($.isNode()) {
+      if ($.time('HH')>11){
+       await sleep();
+       await CarveUp();
+    }
+   else if($.time('HH') > 3&&$.time('HH') <5){
+       await getCUpcoin();
+       await walk();
+    }
+   else if($.time('HH') > 22 ){
+       await wakeup()
+    }
+ }
+  else {
    if ($.time('HH')>17){
-       sleep();
-       CarveUp();
-  }
+       await sleep();
+       await CarveUp();
+    }
    else if($.time('HH') > 11&&$.time('HH') <14){
-       getCUpcoin();
-       walk();
-   }
+       await getCUpcoin();
+       await walk();
+    }
    else if($.time('HH') > 6&&$.time('HH') <9){
-       wakeup()
-   }
+       await wakeup()
+    }
+  }
 }
    
 function signin() {      
@@ -296,7 +311,7 @@ function walk() {
       if(logs)$.log(`走路任务: ${data}\n`)
       const result = JSON.parse(data)
        if (result.data.unGetCoin>10){
-      $.get({ url: `${dianshijia_API}/taskext/getCoin?code=walk&coin=${walkcoin}&ext=1`, headers: JSON.parse(signheaderVal)}, (error, response, data) => 
+      $.get({ url: `${dianshijia_API}/taskext/getCoin?code=walk&coin=${result.data.unGetCoin}&ext=1`, headers: JSON.parse(signheaderVal)}, (error, response, data) => 
       {
       })
      }
@@ -343,6 +358,7 @@ resolve()
 
 function coinlist() {
  return new Promise((resolve, reject) => {
+    setTimeout(() =>  {
    let url = { url: `${dianshijia_API}/coin/detail`, 
     headers: JSON.parse(signheaderVal)}
    $.get(url, (error, response, data) => {
@@ -406,7 +422,8 @@ function coinlist() {
      $.msg($.name+`  `+sleeping, subTitle, detail)
       resolve()
      }
-   })
+    })
+   },1000)
  })
 }
 
