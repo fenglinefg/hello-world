@@ -3,7 +3,7 @@
 说明：微信扫码 https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.png 获取授权  
 
 10.8 一共20个，自行删减替换（不一定都能提现，可自行关闭）
-10.14 因为大部分打卡失效，现删减整理，剩余6个
+10.14 因为大部分打卡失效，现删减整理，剩余5个
 
 
 功能如下：
@@ -16,7 +16,7 @@
 
 二，将hostname复制粘贴进配置文件
 
-三，将重写复制到 rewrite_local 下，设置ck的值，开启软件，进对应程序获取ck（会卡住，但是可以获取ck），目前一共20个打卡小程序，
+三，将重写复制到 rewrite_local 下，开启软件，进对应程序获取ck（会卡住，但是可以获取ck），目前一共5个打卡小程序，
 
 建议新建配置片段，获取ck后禁用，
 换号则复制js文件，修改jbid的值就可以了
@@ -31,8 +31,6 @@ ck=1
 早起打卡
 圈子打卡
 
-ck=2
-is打卡
 
 
 时间设置  
@@ -73,9 +71,6 @@ https:\/\/www\.baimaa\.com\/* url script-request-header https://raw.githubuserco
 https:\/\/ph0001\.hezyq\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
 
 
-// is打卡
-https:\/\/daka\.isfx\.cn\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
 
 //圈子打卡
 https:\/\/wq\.inqan\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
@@ -97,8 +92,6 @@ http-request https:\/\/www\.baimaa\.com\/* script-path=https://raw.githubusercon
 http-request https:\/\/ph0001\.hezyq\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
-// is打卡
-http-request https:\/\/daka\.isfx\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
 //圈子打卡
@@ -123,9 +116,6 @@ http-request https:\/\/wq\.inqan\.com\/* script-path=https://raw.githubuserconte
 早起打卡 = type=http-request,pattern=https:\/\/ph0001\.hezyq\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
-// is打卡
-is打卡 = type=http-request,pattern=https:\/\/daka\.isfx\.cn\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
 
 //圈子打卡
 圈子打卡 = type=http-request,pattern=https:\/\/wq\.inqan\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
@@ -141,7 +131,7 @@ is打卡 = type=http-request,pattern=https:\/\/daka\.isfx\.cn\/*,script-path=htt
 
 const $ = new Env()//模版引用
 const jbid =1// 换号则复制js，修改jbid的值就可以了
-const CK=1// CK开关,1 2 切换获取ck  0关闭
+const CK=1// 
 const jsname = '打卡合集'
 const notify = 1; //通知开为1，关为0
 const logs = 1; // 日志开为1，关为0
@@ -202,20 +192,6 @@ const yydkkey = "yydkkey"+jbid  //保存ck
 const yydkurl =$.getdata(yydkkey)//读取ck
 
 
-
-
-
-
-const isdkname = "is打卡";//程序名
-const isdkid = 2;//ck id
-const isdkcs = 10;//打卡次数
-const isdktx = 5;//提现标准
-const isdkxs = 10;//限速标准.单位为分钟
-const isdkdh = 1000;//兑换标准
-const isdkdhid = 143;//兑换id
-const isdkdhsp = "1元";//兑换商品
-const isdkkey = "isdkkey"+jbid  //保存ck
-const isdkurl =$.getdata(isdkkey)//读取ck
 
 
 
@@ -281,7 +257,7 @@ if (isGetCookie) {
 
  {
 
-   for(var i=0;i<7;i++)
+   for(var i=0;i<6;i++)
  { (function(i) {
             setTimeout(function() {
      
@@ -296,9 +272,9 @@ else if(i==4) qzdk(i);
 
 
 
-else if(i==5) isdk(i);
 
-else if(i==6) showmsg(i);
+
+else if(i==5) showmsg(i);
 
 
   
@@ -329,15 +305,6 @@ if ($request && $request.url.match(/action=today&contr=index/))
 }
 
 
-
-
-if ($request && $request.url.match(/i=3&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const jcdkurl =  $request.url
-  $.log(`jcdkurl:${jcdkurl}`)
-  if (jcdkurl) $.setdata(jcdkurl, jcdkkey)
-  $.msg(jcdkkey, `获取cookie: 成功🎉`, ``)
-}
 
 
 
@@ -388,22 +355,9 @@ if ($request && $request.url.match(/action=today&contr=index/))
 }
 
 
-/////////////////////CK=2
-
-if (CK==2)
-{
 
 
-if ($request && $request.url.match(/i=2&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const isdkurl =  $request.url
-  $.log(`isdkurl:${isdkurl}`)
-  if (isdkurl) $.setdata(isdkurl, isdkkey)
-  $.msg(isdkkey, `获取cookie: 成功🎉`, ``)
-}
 
-	
-}
 
 }
 
@@ -453,12 +407,6 @@ B(A)
 
 
 
-
-
-function isdk() {
-var A={Y:[isdkurl,isdkname,isdkcs,isdktx,isdkxs,isdkdh,isdkdhid,isdkdhsp]}
-B(A)
-}
 
 
 
