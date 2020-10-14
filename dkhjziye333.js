@@ -3,6 +3,8 @@
 说明：
 
 10.8 一共20个，自行删减替换（不一定都能提现，可自行关闭）
+10.14 因为大部分打卡失效，现删减整理，剩余7个
+
 
 功能如下：
 1.读秒限速打卡，
@@ -27,34 +29,11 @@ ck=1
 坚持打卡
 微早起打卡
 音乐打卡
-爱尚打卡
 早起打卡
-多啦打卡
 圈子打卡
-懒人打卡
-玩游戏打卡
-打卡赚赚钱打卡
-小打卡赚钱打卡
-天天打卡有礼打卡
-
 
 ck=2
-
 is打卡
-墨尚打卡
-晨起打卡
-
-
-ck=3
-
-开乐打卡
-卡神打卡
-
-
-ck=4
-
-开心打卡
-一起打卡
 
 
 时间设置  
@@ -92,7 +71,7 @@ https:\/\/zm\.shujumagician\.com\/* url script-request-header https://raw.github
 https:\/\/www\.baimaa\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
 
 
-//爱尚打卡 多啦打卡 早起打卡
+// 早起打卡
 https:\/\/ph0001\.hezyq\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
 
 
@@ -105,48 +84,6 @@ https:\/\/wq\.inqan\.com\/* url script-request-header https://raw.githubusercont
 
 
 
-//墨尚打卡
-https:\/\/www\.ahmsdk\.cn\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//开乐打卡
-https:\/\/ka\.luxiysd\.cn\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//懒人打卡
-https:\/\/m\.juxiaoli\.cc\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//开心打卡
-https:\/\/wq\.kakaz\.com\.cn\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//卡神打卡
-https:\/\/dkdk\.vvrtf\.cn\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//玩游戏打卡
-https:\/\/we7\.ivee\.top\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//打卡赚赚钱打卡
-https:\/\/pd\.xuexgchn\.xyz\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//小打卡赚钱打卡
-https:\/\/www\.2xtj7\.cn\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//天天打卡有礼打卡
-https:\/\/wx\.hanxiaocong\.cn\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-//晨起打卡
-https:\/\/a\.yubu\.xyz\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-//一起打卡
-https:\/\/zqdk\.fanyc\.club\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
 
 
 ############## loon
@@ -158,7 +95,7 @@ http-request https:\/\/zm\.shujumagician\.com\/* script-path=https://raw.githubu
 http-request https:\/\/www\.baimaa\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
-//爱尚打卡 多啦打卡 早起打卡
+// 早起打卡
 http-request https:\/\/ph0001\.hezyq\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
@@ -171,47 +108,7 @@ http-request https:\/\/wq\.inqan\.com\/* script-path=https://raw.githubuserconte
 
 
 
-//墨尚打卡
-http-request https:\/\/www\.ahmsdk\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
-
-//开乐打卡
-http-request https:\/\/ka\.luxiysd\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//懒人打卡
-http-request https:\/\/m\.juxiaoli\.cc\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//开心打卡
-http-request https:\/\/wq\.kakaz\.com\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//卡神打卡
-http-request https:\/\/dkdk\.vvrtf\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//玩游戏打卡
-http-request https:\/\/we7\.ivee\.top\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//打卡赚赚钱打卡
-http-request https:\/\/pd\.xuexgchn\.xyz\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//小打卡赚钱打卡
-http-request https:\/\/www\.2xtj7\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//天天打卡有礼打卡
-http-request https:\/\/wx\.hanxiaocong\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-//晨起打卡
-http-request https:\/\/a\.yubu\.xyz\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//一起打卡
-http-request https:\/\/zqdk\.fanyc\.club\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
 
@@ -224,8 +121,8 @@ http-request https:\/\/zqdk\.fanyc\.club\/* script-path=https://raw.githubuserco
 音乐打卡 = type=http-request,pattern=https:\/\/www\.baimaa\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
-//爱尚打卡 多啦打卡 早起打卡
-爱尚打卡 多啦打卡 早起打卡 = type=http-request,pattern=https:\/\/ph0001\.hezyq\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
+// 早起打卡
+早起打卡 = type=http-request,pattern=https:\/\/ph0001\.hezyq\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
 // is打卡
@@ -237,47 +134,7 @@ is打卡 = type=http-request,pattern=https:\/\/daka\.isfx\.cn\/*,script-path=htt
 
 
 
-//墨尚打卡
-墨尚打卡 = type=http-request,pattern=https:\/\/www\.ahmsdk\.cn\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
-
-//开乐打卡
-开乐打卡 = type=http-request,pattern=https:\/\/ka\.luxiysd\.cn\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//懒人打卡
-懒人打卡 = type=http-request,pattern=https:\/\/m\.juxiaoli\.cc\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//开心打卡
-开心打卡 = type=http-request,pattern=https:\/\/wq\.kakaz\.com\.cn\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//卡神打卡
-卡神打卡 = type=http-request,pattern=https:\/\/dkdk\.vvrtf\.cn\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//玩游戏打卡
-玩游戏打卡 = type=http-request,pattern=https:\/\/we7\.ivee\.top\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//打卡赚赚钱打卡
-打卡赚赚钱打卡 = type=http-request,pattern=https:\/\/pd\.xuexgchn\.xyz\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//小打卡赚钱打卡
-小打卡赚钱打卡 = type=http-request,pattern=https:\/\/www\.2xtj7\.cn\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//天天打卡有礼打卡
-天天打卡有礼打卡 = type=http-request,pattern=https:\/\/wx\.hanxiaocong\.cn\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-//晨起打卡
-晨起打卡 = type=http-request,pattern=https:\/\/a\.yubu\.xyz\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-//一起打卡
-一起打卡 = type=http-request,pattern=https:\/\/zqdk\.fanyc\.club\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
 */
@@ -286,7 +143,7 @@ is打卡 = type=http-request,pattern=https:\/\/daka\.isfx\.cn\/*,script-path=htt
 
 const $ = new Env()//模版引用
 const jbid =1// 换号则复制js，修改jbid的值就可以了
-const CK=1// CK开关,1 2 3 4切换获取ck  0关闭
+const CK=1// CK开关,1 2 切换获取ck  0关闭
 const jsname = '打卡合集'
 const notify = 1; //通知开为1，关为0
 const logs = 1; // 日志开为1，关为0
@@ -360,18 +217,6 @@ const yydkurl =$.getdata(yydkkey)//读取ck
 
 
 
-const asdkname = "爱尚打卡";//程序名
-const asdkid = 972;//ck id
-const asdkcs = 30;//打卡次数
-const asdktx = 10;//提现标准
-const asdkxs = 10;//限速标准.单位为分钟
-const asdkdh = 1000;//兑换标准
-const asdkdhid = 143;//兑换id
-const asdkdhsp = "1元";//兑换商品
-const asdkkey = "asdkkey"+jbid  //保存ck
-const asdkurl =$.getdata(asdkkey)//读取ck
-
-
 
 
 const isdkname = "is打卡";//程序名
@@ -388,17 +233,6 @@ const isdkurl =$.getdata(isdkkey)//读取ck
 
 
 
-
-const dldkname = "哆啦打卡";//程序名
-const dldkid = 1384;//ck id
-const dldkcs = 15;//打卡次数
-const dldktx = 10;//提现标准
-const dldkxs = 10;//限速标准.单位为分钟
-const dldkdh = 7880;//兑换标准
-const dldkdhid = 232;//兑换id
-const dldkdhsp = "5元";//兑换商品
-const dldkkey = "dldkkey"+jbid  //保存ck
-const dldkurl =$.getdata(dldkkey)//读取ck
 
 
 
@@ -431,155 +265,8 @@ const qzdkurl =$.getdata(qzdkkey)//读取ck
 
 
 
-const msdkname = "墨尚打卡";//程序名
-const msdkid = 3;//ck id
-const msdkcs = 12;//打卡次数
-const msdktx = 10;//提现标准
-const msdkxs = 10;//限速标准.单位为分钟
-const msdkdh = 1000;//兑换标准
-const msdkdhid = 143;//兑换id
-const msdkdhsp = "1元";//兑换商品
-const msdkkey = "msdkkey"+jbid  //保存ck
-const msdkurl =$.getdata(msdkkey)//读取ck
 
 
-
-
-const kldkname = "开乐打卡";//程序名
-const kldkid = 2;//ck id
-const kldkcs = 15;//打卡次数
-const kldktx = 10;//提现标准
-const kldkxs = 10;//限速标准.单位为分钟
-const kldkdh = 20;//兑换标准
-const kldkdhid = 2;//兑换id
-const kldkdhsp = "0.3元";//兑换商品
-const kldkkey = "kldkkey"+jbid  //保存ck
-const kldkurl =$.getdata(kldkkey)//读取ck
-
-
-
-
-const lrdkname = "懒人打卡";//程序名
-const lrdkid = 25;//ck id
-const lrdkcs = 10;//打卡次数
-const lrdktx = 10;//提现标准
-const lrdkxs = 10;//限速标准.单位为分钟
-const lrdkdh = 1800;//兑换标准
-const lrdkdhid = 11;//兑换id
-const lrdkdhsp = "抽纸";//兑换商品
-const lrdkkey = "lrdkkey"+jbid  //保存ck
-const lrdkurl =$.getdata(lrdkkey)//读取ck
-
-
-
-
-const kxdkname = "开心打卡";//程序名
-const kxdkid = 2;//ck id
-const kxdkcs = 10;//打卡次数
-const kxdktx = 10;//提现标准
-const kxdkxs = 10;//限速标准.单位为分钟
-const kxdkdh = 13000;//兑换标准
-const kxdkdhid = 8;//兑换id
-const kxdkdhsp = "腾讯月卡";//兑换商品
-const kxdkkey = "kxdkkey"+jbid  //保存ck
-const kxdkurl =$.getdata(kxdkkey)//读取ck
-
-
-
-
-const ksdkname = "卡神打卡";//程序名
-const ksdkid = 3;//ck id
-const ksdkcs = 10;//打卡次数
-const ksdktx = 10;//提现标准
-const ksdkxs = 10;//限速标准.单位为分钟
-const ksdkdh = 8000;//兑换标准
-const ksdkdhid = 10;//兑换id
-const ksdkdhsp = "5元";//兑换商品
-const ksdkkey = "ksdkkey"+jbid  //保存ck
-const ksdkurl =$.getdata(ksdkkey)//读取ck
-
-
-
-
-const wyxdkname = "玩游戏打卡";//程序名
-const wyxdkid = 6;//ck id
-const wyxdkcs = 5;//打卡次数
-const wyxdktx = 10;//提现标准
-const wyxdkxs = 10;//限速标准.单位为分钟
-const wyxdkdh = 10000;//兑换标准
-const wyxdkdhid = 8;//兑换id
-const wyxdkdhsp = "100元话费";//兑换商品
-const wyxdkkey = "wyxdkkey"+jbid  //保存ck
-const wyxdkurl =$.getdata(wyxdkkey)//读取ck
-
-
-
-
-const dkzzqdkname = "打卡赚赚钱打卡";//程序名
-const dkzzqdkid = 12;//ck id
-const dkzzqdkcs = 10;//打卡次数
-const dkzzqdktx = 10;//提现标准
-const dkzzqdkxs = 10;//限速标准.单位为分钟
-const dkzzqdkdh = 1000;//兑换标准
-const dkzzqdkdhid = 143;//兑换id
-const dkzzqdkdhsp = "1元";//兑换商品
-const dkzzqdkkey = "dkzzqdkkey"+jbid  //保存ck
-const dkzzqdkurl =$.getdata(dkzzqdkkey)//读取ck
-
-
-
-
-const xdkzqdkname = "小打卡赚钱打卡";//程序名
-const xdkzqdkid = 14;//ck id
-const xdkzqdkcs = 20;//打卡次数
-const xdkzqdktx = 10;//提现标准
-const xdkzqdkxs = 10;//限速标准.单位为分钟
-const xdkzqdkdh = 1000;//兑换标准
-const xdkzqdkdhid = 143;//兑换id
-const xdkzqdkdhsp = "1元";//兑换商品
-const xdkzqdkkey = "xdkzqdkkey"+jbid  //保存ck
-const xdkzqdkurl =$.getdata(xdkzqdkkey)//读取ck
-
-
-
-
-const ttdkyldkname = "天天打卡有礼打卡";//程序名
-const ttdkyldkid = 17;//ck id
-const ttdkyldkcs = 7;//打卡次数
-const ttdkyldktx = 10;//提现标准
-const ttdkyldkxs = 10;//限速标准.单位为分钟
-const ttdkyldkdh = 8888;//兑换标准
-const ttdkyldkdhid = 11;//兑换id
-const ttdkyldkdhsp = "10元";//兑换商品
-const ttdkyldkkey = "ttdkyldkkey"+jbid  //保存ck
-const ttdkyldkurl =$.getdata(ttdkyldkkey)//读取ck
-
-
-
-
-const cqdkname = "晨起打卡";//程序名
-const cqdkid = 17;//ck id
-const cqdkcs = 10;//打卡次数
-const cqdktx = 10;//提现标准
-const cqdkxs = 10;//限速标准.单位为分钟
-const cqdkdh = 1000;//兑换标准
-const cqdkdhid = 143;//兑换id
-const cqdkdhsp = "1元";//兑换商品
-const cqdkkey = "cqdkkey"+jbid  //保存ck
-const cqdkurl =$.getdata(cqdkkey)//读取ck
-
-
-
-const yqdkname = "一起打卡";//程序名
-const yqdkid = 3;//ck id
-const yqdkcs = 10;//打卡次数
-const yqdktx = 10;//提现标准
-const yqdkxs = 10;//限速标准.单位为分钟
-const yqdkdh = 5000;//兑换标准
-const yqdkdhid = 10;//兑换id
-const yqdkdhsp = "50元话费";//兑换商品
-const yqdkkey = "yqdkkey"+jbid  //保存ck
-const yqdkurl =$.getdata(yqdkkey)//读取ck
 
 
 
@@ -607,7 +294,7 @@ if (isGetCookie) {
 
  {
 
-   for(var i=0;i<21;i++)
+   for(var i=0;i<8;i++)
  { (function(i) {
             setTimeout(function() {
      
@@ -615,27 +302,16 @@ if (isGetCookie) {
 else if(i==1) jcdk(i);
 else if(i==2) wzqdk(i);
 else if(i==3) yydk(i);
-else if(i==4) asdk(i);
-else if(i==5) zqdk(i);
-else if(i==6) dldk(i);
-else if(i==7) qzdk(i);
-else if(i==8) lrdk(i);
-else if(i==9) wyxdk(i);
-else if(i==10) dkzzqdk(i);
-else if(i==11) xdkzqdk(i);
-else if(i==12) ttdkyldk(i);
 
-else if(i==13) isdk(i);
-else if(i==14) msdk(i);
-else if(i==15) cqdk(i);
+else if(i==4) zqdk(i);
 
-else if(i==16) kldk(i);
-else if(i==17) ksdk(i);
+else if(i==5) qzdk(i);
 
-else if(i==18) kxdk(i);
-else if(i==19) yqdk(i);
 
-else if(i==20) showmsg(i);
+
+else if(i==6) isdk(i);
+
+else if(i==7) showmsg(i);
 
 
   
@@ -656,6 +332,7 @@ function GetCookie() {
 
 if (CK==1)
 {
+	
 if ($request && $request.url.match(/i=2&/))
 if ($request && $request.url.match(/action=today&contr=index/))
 {const wdkurl =  $request.url
@@ -700,25 +377,6 @@ if ($request && $request.url.match(/action=today&contr=index/))
 
 
 
-if ($request && $request.url.match(/i=972&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const asdkurl =  $request.url
-  $.log(`asdkurl:${asdkurl}`)
-  if (asdkurl) $.setdata(asdkurl, asdkkey)
-  $.msg(asdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-if ($request && $request.url.match(/i=1384&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const dldkurl =  $request.url
-  $.log(`dldkurl:${dldkurl}`)
-  if (dldkurl) $.setdata(dldkurl, dldkkey)
-  $.msg(dldkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
 if ($request && $request.url.match(/i=597&/))
 if ($request && $request.url.match(/action=today&contr=index/))
 {const zqdkurl =  $request.url
@@ -740,70 +398,6 @@ if ($request && $request.url.match(/action=today&contr=index/))
 
 
 
-
-if ($request && $request.url.match(/i=25&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const lrdkurl =  $request.url
-  $.log(`lrdkurl:${lrdkurl}`)
-  if (lrdkurl) $.setdata(lrdkurl, lrdkkey)
-  $.msg(lrdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-if ($request && $request.url.match(/i=6&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const wyxdkurl =  $request.url
-  $.log(`wyxdkurl:${wyxdkurl}`)
-  if (wyxdkurl) $.setdata(wyxdkurl, wyxdkkey)
-  $.msg(wyxdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-if ($request && $request.url.match(/i=12&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const dkzzqdkurl =  $request.url
-  $.log(`dkzzqdkurl:${dkzzqdkurl}`)
-  if (dkzzqdkurl) $.setdata(dkzzqdkurl, dkzzqdkkey)
-  $.msg(dkzzqdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-
-
-if ($request && $request.url.match(/i=14&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const xdkzqdkurl =  $request.url
-  $.log(`xdkzqdkurl:${xdkzqdkurl}`)
-  if (xdkzqdkurl) $.setdata(xdkzqdkurl, xdkzqdkkey)
-  $.msg(xdkzqdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-
-
-if ($request && $request.url.match(/i=17&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const ttdkyldkurl =  $request.url
-  $.log(`ttdkyldkurl:${ttdkyldkurl}`)
-  if (ttdkyldkurl) $.setdata(ttdkyldkurl, ttdkyldkkey)
-  $.msg(ttdkyldkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-
-
-
-
-
 }
 
 
@@ -821,138 +415,10 @@ if ($request && $request.url.match(/action=today&contr=index/))
   $.msg(isdkkey, `获取cookie: 成功🎉`, ``)
 }
 
-
-
-if ($request && $request.url.match(/i=3&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const msdkurl = $request.url
-  $.log(`msdkurl:${msdkurl}`)
-  if (msdkurl)  $.setdata(msdkurl, msdkkey)
-  $.msg(msdkkey, `获取cookie: 成功🎉`, ``)
-
+	
 }
 
-
-
-
-if ($request && $request.url.match(/i=17&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const cqdkurl =  $request.url
-  $.log(`cqdkurl:${cqdkurl}`)
-  if (cqdkurl) $.setdata(cqdkurl, cqdkkey)
-  $.msg(cqdkkey, `获取cookie: 成功🎉`, ``)
 }
-
-
-
-
-
-
-
-
-
-
-
-
-}
- 
-
-
-
-/////////////////////CK=3
-
-
-
-
-if (CK==3)
-{
-if ($request && $request.url.match(/i=2&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const kldkurl =  $request.url
-  $.log(`kldkurl:${kldkurl}`)
-  if (kldkurl) $.setdata(kldkurl, kldkkey)
-  $.msg(kldkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-
-if ($request && $request.url.match(/i=3&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const ksdkurl =  $request.url
-  $.log(`ksdkurl:${ksdkurl}`)
-  if (ksdkurl) $.setdata(ksdkurl, ksdkkey)
-  $.msg(ksdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-
-
-
-
-
-
-
- }
-
-
-
-/////////////////////CK=4
-
-
-
-if (CK==4)
-{
-if ($request && $request.url.match(/i=2&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const kxdkurl =  $request.url
-  $.log(`kxdkurl:${kxdkurl}`)
-  if (kxdkurl) $.setdata(kxdkurl, kxdkkey)
-  $.msg(kxdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-if ($request && $request.url.match(/i=3&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const yqdkurl =  $request.url
-  $.log(`yqdkurl:${yqdkurl}`)
-  if (yqdkurl) $.setdata(yqdkurl, yqdkkey)
-  $.msg(yqdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-
- }
-
-/////////////////////CK=5
-if (CK==5)
-{
-if ($request && $request.url.match(/i=2&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const eryiurl =  $request.url
-  $.log(`eryiurl:${eryiurl}`)
-  if (eryiurl) $.setdata(eryiurl, eryiurlkey)
-  $.msg(eryiurlkey, `获取cookie: 成功🎉`, ``)
-}
- }
-
-
-
-
-
-
-
-
-}
-
-
-
 
 
 
@@ -971,11 +437,7 @@ if ($request && $request.url.match(/action=today&contr=index/))
 
 ///////////////////////////////////////运行
 
-function dkdk() {
 
-var yyy=1
-
-}
 
 function wdk() {
 var A={Y:[wdkurl,wdkname,wdkcs,wdktx,wdkxs,wdkdh,wdkdhid,wdkdhsp]}
@@ -1008,12 +470,6 @@ B(A)
 
 
 
-function asdk() {
-var A={Y:[asdkurl,asdkname,asdkcs,asdktx,asdkxs,asdkdh,asdkdhid,asdkdhsp]}
-B(A)
-}
-
-
 
 
 function isdk() {
@@ -1021,11 +477,6 @@ var A={Y:[isdkurl,isdkname,isdkcs,isdktx,isdkxs,isdkdh,isdkdhid,isdkdhsp]}
 B(A)
 }
 
-
-function dldk() {
-var A={Y:[dldkurl,dldkname,dldkcs,dldktx,dldkxs,dldkdh,dldkdhid,dldkdhsp]}
-B(A)
-}
 
 
 
@@ -1047,92 +498,7 @@ B(A)
 
 
 
-function msdk() {
-var A={Y:[msdkurl,msdkname,msdkcs,msdktx,msdkxs,msdkdh,msdkdhid,msdkdhsp]}
-B(A)
-}
 
-
-
-
-
-
-
-
-function kldk() {
-var A={Y:[kldkurl,kldkname,kldkcs,kldktx,kldkxs,kldkdh,kldkdhid,kldkdhsp]}
-B(A)
-}
-
-
-function lrdk() {
-var A={Y:[lrdkurl,lrdkname,lrdkcs,lrdktx,lrdkxs,lrdkdh,lrdkdhid,lrdkdhsp]}
-B(A)
-}
-
-
-
-
-
-function kxdk() {
-var A={Y:[kxdkurl,kxdkname,kxdkcs,kxdktx,kxdkxs,kxdkdh,kxdkdhid,kxdkdhsp]}
-B(A)
-}
-
-
-
-
-function ksdk() {
-var A={Y:[ksdkurl,ksdkname,ksdkcs,ksdktx,ksdkxs,ksdkdh,ksdkdhid,ksdkdhsp]}
-B(A)
-}
-
-
-
-
-function wyxdk() {
-var A={Y:[wyxdkurl,wyxdkname,wyxdkcs,wyxdktx,wyxdkxs,wyxdkdh,wyxdkdhid,wyxdkdhsp]}
-B(A)
-}
-
-
-
-
-
-function dkzzqdk() {
-var A={Y:[dkzzqdkurl,dkzzqdkname,dkzzqdkcs,dkzzqdktx,dkzzqdkxs,dkzzqdkdh,dkzzqdkdhid,dkzzqdkdhsp]}
-B(A)
-}
-
-
-function xdkzqdk() {
-var A={Y:[xdkzqdkurl,xdkzqdkname,xdkzqdkcs,xdkzqdktx,xdkzqdkxs,xdkzqdkdh,xdkzqdkdhid,xdkzqdkdhsp]}
-B(A)
-}
-
-
-
-
-function ttdkyldk() {
-var A={Y:[ttdkyldkurl,ttdkyldkname,ttdkyldkcs,ttdkyldktx,ttdkyldkxs,ttdkyldkdh,ttdkyldkdhid,ttdkyldkdhsp]}
-B(A)
-}
-
-
-
-
-function cqdk() {
-var A={Y:[cqdkurl,cqdkname,cqdkcs,cqdktx,cqdkxs,cqdkdh,cqdkdhid,cqdkdhsp]}
-B(A)
-}
-
-
-
-
-function yqdk() {
-var A={Y:[yqdkurl,yqdkname,yqdkcs,yqdktx,yqdkxs,yqdkdh,yqdkdhid,yqdkdhsp]}
-B(A)
-}
 
 
 
