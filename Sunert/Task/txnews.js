@@ -88,8 +88,9 @@ if ($.isNode()) {
 
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
-  GetCookie()
-} else {
+  GetCookie();
+  $.done()
+} 
 !(async () => {
  if(!cookiesArr[0]){
       $.msg($.name, '【提示】🉐登录腾讯新闻app获取cookie',"qqnews://article_9500?tab=news_news&from=self", {"open-url": "qqnews://article_9500?tab=news_news&from=self"});
@@ -127,7 +128,7 @@ if (isGetCookie) {
   })()
       .catch((e) => $.logErr(e))
       .finally(() => $.done())
-}
+
 
 function GetCookie() {
   if ($request &&$request.body.indexOf("article_read")> -1) {
@@ -278,7 +279,7 @@ function Redpack() {
         }
         catch(error){
           $.log("打开红包失败,响应数据: "+ data+"\n错误代码:"+error) };
-        $.msg($.name, "开红包失败，详情请看日志 ❌", err)
+          $.msg($.name, "开红包失败，详情请看日志 ❌", error)
         resolve()
       })
     },s)
