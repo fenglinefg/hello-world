@@ -13,6 +13,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        YOUTH_READ: ${{ secrets.YOUTH_READ }}
     steps:
       - uses: actions/checkout@v1
       - name: Use Node.js 10.x
@@ -20,13 +22,13 @@ jobs:
         with:
           node-version: 10.x
       - name: npm install
+        if: env.YOUTH_READ
         run: |
           npm install
       - name: '运行 【中青看点自动阅读】'
         run: |
           node Task/Youth_Read.js
         env:
-          YOUTH_READ: ${{ secrets.YOUTH_READ }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
