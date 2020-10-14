@@ -1,9 +1,9 @@
 /*ziye 
 
-说明：
+说明：微信扫码 https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.png 获取授权  
 
 10.8 一共20个，自行删减替换（不一定都能提现，可自行关闭）
-10.14 因为大部分打卡失效，现删减整理，剩余7个
+10.14 因为大部分打卡失效，现删减整理，剩余6个
 
 
 功能如下：
@@ -26,7 +26,6 @@
 ck=1
 
 微打卡
-坚持打卡
 微早起打卡
 音乐打卡
 早起打卡
@@ -59,12 +58,11 @@ is打卡
 
 
 
-hostname=zm.shujumagician.com,www.baimaa.com,ph0001.hezyq.com,daka.isfx.cn,wq.inqan.com,www.ahmsdk.cn,ka.luxiysd.cn,m.juxiaoli.cc,wq.kakaz.com.cn,dkdk.vvrtf.cn,we7.ivee.top,pd.xuexgchn.xyz,www.2xtj7.cn,wx.hanxiaocong.cn,a.yubu.xyz,zqdk.fanyc.club,
-
+hostname=zm.shujumagician.com,www.baimaa.com,ph0001.hezyq.com,daka.isfx.cn,wq.inqan.com,
 
 ############## 圈x
 
-//微打卡 坚持打卡 微早起打卡
+//微打卡  微早起打卡
 https:\/\/zm\.shujumagician\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
 
 //音乐打卡
@@ -88,7 +86,7 @@ https:\/\/wq\.inqan\.com\/* url script-request-header https://raw.githubusercont
 
 ############## loon
 
-//微打卡 坚持打卡 微早起打卡
+//微打卡  微早起打卡
 http-request https:\/\/zm\.shujumagician\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 //音乐打卡
@@ -114,8 +112,8 @@ http-request https:\/\/wq\.inqan\.com\/* script-path=https://raw.githubuserconte
 
 ############## surge
 
-//微打卡 坚持打卡 微早起打卡
-微打卡 坚持打卡 微早起打卡 = type=http-request,pattern=https:\/\/zm\.shujumagician\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
+//微打卡  微早起打卡
+微打卡  微早起打卡 = type=http-request,pattern=https:\/\/zm\.shujumagician\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 //音乐打卡
 音乐打卡 = type=http-request,pattern=https:\/\/www\.baimaa\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
@@ -174,17 +172,6 @@ const wdkurl =$.getdata(wdkkey)//读取ck
 
 
 
-
-const jcdkname = "坚持打卡";//程序名
-const jcdkid = 3;//ck id
-const jcdkcs = 10;//打卡次数
-const jcdktx = 10;//提现标准
-const jcdkxs = 10;//限速标准.单位为分钟
-const jcdkdh = 1500;//兑换标准
-const jcdkdhid = 7;//兑换id
-const jcdkdhsp = "爱奇艺月卡";//兑换商品
-const jcdkkey = "jcdkkey"+jbid  //保存ck
-const jcdkurl =$.getdata(jcdkkey)//读取ck
 
 
 
@@ -294,24 +281,24 @@ if (isGetCookie) {
 
  {
 
-   for(var i=0;i<8;i++)
+   for(var i=0;i<7;i++)
  { (function(i) {
             setTimeout(function() {
      
      if(i==0) wdk(i);
-else if(i==1) jcdk(i);
-else if(i==2) wzqdk(i);
-else if(i==3) yydk(i);
 
-else if(i==4) zqdk(i);
+else if(i==1) wzqdk(i);
+else if(i==2) yydk(i);
 
-else if(i==5) qzdk(i);
+else if(i==3) zqdk(i);
+
+else if(i==4) qzdk(i);
 
 
 
-else if(i==6) isdk(i);
+else if(i==5) isdk(i);
 
-else if(i==7) showmsg(i);
+else if(i==6) showmsg(i);
 
 
   
@@ -445,10 +432,6 @@ B(A)
 }
 
 
-function jcdk() {
-var A={Y:[jcdkurl,jcdkname,jcdkcs,jcdktx,jcdkxs,jcdkdh,jcdkdhid,jcdkdhsp]}
-B(A)
-}
 
 
 
