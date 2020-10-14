@@ -46,7 +46,7 @@ const $ = new Env('电视家')
 const notify = $.isNode() ? require('./sendNotify') : '';
 
 const dianshijia_API = 'http://api.gaoqingdianshi.com/api'
-let tokenArr = [], DsjurlArr = [], DrawalArr = [];
+let tokenArr = [], DsjurlArr = [], DrawalArr = [],drawalVal;
 if ($.isNode()) {
   if (process.env.DSJ_HEADERS && process.env.DSJ_HEADERS.split('#') && process.env.DSJ_HEADERS.split('#').length > 0) {
   Dsjheaders = process.env.DSJ_HEADERS.split('#');
@@ -95,8 +95,11 @@ if (isGetCookie = typeof $request !== 'undefined') {
       console.log(`\n开始【电视家${$.index}】`)
   await signin();     // 签到
   await signinfo();   // 签到信息
-  await Withdrawal(); // 金额提现
-//await Withdrawal2();// 固定金额
+  if (drawalVal != undefined){
+  await Withdrawal()
+   } else {
+       detail += `【金额提现】❌ 请获取提现地址 \n`
+  };// 金额提现
   await tasks(); // 任务状态
   await getGametime();// 游戏时长
   await total();      // 总计
@@ -363,10 +366,13 @@ function coinlist() {
     let url = { url: `${dianshijia_API}/coin/detail`, 
     headers: JSON.parse(signheaderVal)}
    $.get(url, (error, response, data) => {
-//$.log(`金币列表: ${data}`)
+    //console.log(`金币列表: ${data}`)
       let  result = JSON.parse(data)
-      let onlamount =  vdamount = gamestime = todaysign = 0;
-    for (i=0;i<result.data.length&&result.data[i].ctime>=time;i++){
+      let onlamount =  0, vdamount = 0,
+          gamestime = 0, todaysign = 0;
+  try {
+    for (i=0;i<result.data.length && result.data[i].ctime >= time;i++){
+    console.log(i)
      if (result.data[i].from=="领取走路金币"){
       detail += `【走路任务】✅ 获得金币`+result.data[i].amount+'\n'
       }
@@ -389,35 +395,37 @@ function coinlist() {
       gamestime += result.data[i].amount
       }
      if (result.data[i].from =="激励视频"){
-     vdamount += result.data[i].amount
+      vdamount += result.data[i].amount
      }
      if (result.data[i].from=="手机在线"){
-     onlamount += result.data[i].amount
+      onlamount += result.data[i].amount
       }
-    if (result.data[i].from=="签到"){
-      todaysign += parseInt(result.data[i].amount)
+     if (result.data[i].from=="签到"){
+      todaysign += result.data[i].amount
       }
    }
-if(todaysign){
-   detail += `【每日签到】✅ 获得金币`+todaysign+'\n'
-}
-if(vdamount){
-   detail += `【激励视频】✅ 获得金币`+vdamount+'\n'
-}
-if(onlamount){
-   detail += `【手机在线】✅ 获得金币`+onlamount+'\n'
-}
-if(gamestime){
+   if(todaysign){
+    detail += `【每日签到】✅ 获得金币`+todaysign+'\n'
+   }
+   if(vdamount){
+    detail += `【激励视频】✅ 获得金币`+vdamount+'\n'
+   }
+   if(onlamount){
+    detail += `【手机在线】✅ 获得金币`+onlamount+'\n'
+   }
+   if(gamestime){
    detail += `【游戏时长】✅ 获得金币`+gamestime+'\n'
-}
-   if (i<7){
-   detail += '【未完成/总计】'+`${i-1}/7`
-}
-   else if (i>=7){
+   }
+   if(i>0){
    detail += `【任务统计】共完成${i-1}次任务🌷`
-}
+   }
    $.msg($.name+`  `+sleeping, subTitle, detail)
-   resolve()
+    resolve()
+  } catch(error) {
+   console.log(`获取任务金币列表失败，错误代码${error}+ \n响应数据:${data}`)
+     $.msg($.name+`  `+sleeping, subTitle, detail)
+      resolve()
+     }
    })
  })
 }
@@ -440,11 +448,7 @@ resolve()
 }
 function getCUpcoin() {
   return new Promise((resolve, reject) => {
-    let url = { 
-     url: `${dianshijia_API}/taskext/getCoin?code=carveUp&coin=0&ext=1`, 
-     headers: JSON.parse(signheaderVal),
-   }
-    $.get(url, (error, response, data) => {
+    $.get({ url: `${dianshijia_API}/taskext/getCoin?code=carveUp&coin=0&ext=1`, headers: JSON.parse(signheaderVal)}, (error, response, data) => {
    if(logs) $.log(`瓜分百万金币: ${data}`)
    })
    resolve()
@@ -452,8 +456,6 @@ function getCUpcoin() {
 }
 function Withdrawal() {
   return new Promise((resolve, reject) => {
-  console.log(drawal)
-   if (drawalVal != undefined){
     $.get({url: drawalVal, headers: JSON.parse(signheaderVal)}, (error, response, data) => {
     if(logs)$.log(`金币随机兑换 : ${data}\n`)
       const result = JSON.parse(data)
@@ -462,11 +464,6 @@ function Withdrawal() {
     } 
     resolve()
    })
-  }
-else {
-      detail += `【金额提现】❌ 请获取提现地址 \n`
-   }
-resolve()
  })
 }
 function getGametime() {
