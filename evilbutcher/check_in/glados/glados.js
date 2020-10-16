@@ -27,20 +27,20 @@
 [Script]
 GLaDOS签到 = type=cron,cronexp=5 0 * * *,wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
 
-获取GLaDOS_Cookie = type=http-request, pattern=https:\/\/glados\.rocks\/api\/user\/status, script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
+获取GLaDOS_Cookie = type=http-request, pattern=https:\/\/glados\.rocks\/api\/user, script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
 
 【Loon】
 -----------------
 [Script]
 cron "5 0 * * *" tag=GLaDOS签到, script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
 
-http-request https:\/\/glados\.rocks\/api\/user\/status tag=获取GLaDOS_Cookie, script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
+http-request https:\/\/glados\.rocks\/api\/user tag=获取GLaDOS_Cookie, script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
 
 
 【Quantumult X】
 -----------------
 [rewrite_local]
-https:\/\/glados\.rocks\/api\/user\/status url script-request-header https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
+https:\/\/glados\.rocks\/api\/user url script-request-header https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
 
 [task_local]
 1 0 * * * https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/glados/glados.js
@@ -80,25 +80,49 @@ var message = "";
 
 function signin() {
   return new Promise(resolve => {
+    const header = {
+      Accept: `application/json, text/plain, */*`,
+      Origin: `https://glados.rocks`,
+      "Accept-Encoding": `gzip, deflate, br`,
+      Cookie: sicookie,
+      "Content-Type": `application/json;charset=utf-8`,
+      Host: `glados.rocks`,
+      Connection: `keep-alive`,
+      "User-Agent": `Mozilla/5.0 (iPhone; CPU iPhone OS 14_0_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.0 Mobile/15E148 Safari/604.1`,
+      Referer: `https://glados.rocks/console/checkin`,
+      "Accept-Language": `zh-cn`
+    };
+    const body = `{ "token": "glados_network" }`;
     const signinRequest = {
       url: "https://glados.rocks/api/user/checkin",
-      headers: { Cookie: sicookie }
+      headers: header,
+      body: body
     };
     $.post(signinRequest, (error, response, data) => {
       var body = response.body;
       var obj = JSON.parse(body);
-      if (obj.code == 0) {
-        change = obj.list[0].change;
-        changeday = parseInt(change);
+      if (obj.code == 1) {
         msge = obj.message;
         if (msge == "Please Checkin Tomorrow") {
           message += "今日已签到";
         } else {
-          message += `签到获得${changeday}天`;
+          var date = new Date();
+          var y = date.getFullYear();
+          var m = date.getMonth() + 1;
+          if (m < 10) m = "0" + m;
+          var d = date.getDate();
+          if (d < 10) d = "0" + d;
+          var time = y + "-" + m + "-" + d;
+          var business = obj.list[0].business
+          var sysdate = business.slice(-10)
+          if (JSON.stringify(time) == JSON.stringify(sysdate)) {
+            change = obj.list[0].change;
+            changeday = parseInt(change);
+            message += `签到获得${changeday}天`;
+          } else {
+            message += `签到获得0天`;
+          }
         }
-      } else {
-        msge = obj.message;
-        message += msge;
       }
       resolve();
     });
@@ -134,7 +158,7 @@ function getCookie() {
   if (
     $request &&
     $request.method != "OPTIONS" &&
-    $request.url.match(/status/)
+    $request.url.match(/checkin/)
   ) {
     const sicookie = $request.headers["Cookie"];
     $.log(sicookie);
