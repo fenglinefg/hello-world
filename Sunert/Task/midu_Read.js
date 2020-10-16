@@ -110,6 +110,7 @@ function readTime() {
                     detail += '【阅读时长】失败'
                     $.msg(cookieName, subTitle, detail)
                 }
+                  console.log(" 总计金币:"+total_coin+" 现金收益"+readtime.data.popup.corner)
                 resolve()
             } catch (e) {
                 $.msg(cookieName, `阅读时长: 失败`, `说明: ${e}`)
@@ -122,11 +123,10 @@ function readTime() {
 }
 function drawPrize() {
     return new Promise((resolve, reject) => {
-        const drawPrizeurlVal = 'https://apiwz.midukanshu.com/wz/task/drawPrize'
+        const drawPrizeurlVal = 'https://apiwz.midukanshu.com/wz/task/drawPrize?' + tokenVal
         const url = {
             url: drawPrizeurlVal,
-            headers: {},
-            body: drawVal
+            headers: {}
         }
         url.headers['token'] = tokenVal
         url.headers['Host'] = 'apiwz.midukanshu.com'
@@ -152,11 +152,10 @@ function drawPrize() {
 // 观看视频获取抽奖机会
 function prizeTask() {
     return new Promise((resolve, reject) => {
-        const prizeTaskurlVal = 'https://apiwz.midukanshu.com/wz/task/prizeTask'
+        const prizeTaskurlVal = 'https://apiwz.midukanshu.com/wz/task/prizeTask?'+tokenVal
         const url = {
             url: prizeTaskurlVal,
             headers: {},
-            body: drawVal       
        }
         url.headers['token'] = tokenVal
         url.headers['Host'] = 'apiwz.midukanshu.com'
