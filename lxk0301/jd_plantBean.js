@@ -1,6 +1,6 @@
 /*
 种豆得豆 搬的https://github.com/uniqueque/QuantumultX/blob/4c1572d93d4d4f883f483f907120a75d925a693e/Script/jd_plantBean.js
-更新时间:2020-10-06
+更新时间:2020-10-12
 已支持IOS京东双账号,云端N个京东账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 会自动关注任务中的店铺跟商品
@@ -12,7 +12,7 @@
 [Script]
 cron "1 7-21/2 * * *" script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_plantBean.js,tag=京东种豆得豆
 // Surge
-// 京东种豆得豆 = type=cron,cronexp="1 7-21/2 * * *",wake-system=1,timeout=20,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_plantBean.js
+// 京东种豆得豆 = type=cron,cronexp="1 7-21/2 * * *",wake-system=1,timeout=120,script-path=https://raw.githubusercontent.com/lxk0301/scripts/master/jd_plantBean.js
 一天只能帮助3个人。多出的助力码无效
 注：如果使用Node.js, 需自行安装'crypto-js,got,http-server,tough-cookie'模块. 例: npm install crypto-js http-server tough-cookie got --save
 */
@@ -70,8 +70,7 @@ async function jdPlantBean() {
     const shareUrl = $.plantBeanIndexResult.data.jwordShareInfo.shareUrl
     $.myPlantUuid = getParam(shareUrl, 'plantUuid')
     console.log(`\n【您的互助码plantUuid】 ${$.myPlantUuid}\n`);
-
-await $.http.get({url: "http://jdhelper.tk/plantbean/"+$.myPlantUuid+"?ti="+Date.now()}).then((resp) => {jdPlantBeanShareArr=resp.body.split(`@`);console.log(`【查询jdBeanShareArr】`+resp.body);});await shareCodesFormat();
+await $.http.get({url: "http://jdhelper.tk/plantbean/"+$.myPlantUuid}).then((resp) => {jdPlantBeanShareArr=resp.body.split(`@`);console.log(`【查询jdBeanShareArr】`+resp.body);});await shareCodesFormat();
     roundList = $.plantBeanIndexResult.data.roundList;
     currentRoundId = roundList[1].roundId;//本期的roundId
     lastRoundId = roundList[0].roundId;//上期的roundId
@@ -363,6 +362,8 @@ function showTaskProcess() {
 //助力好友
 async function doHelp() {
   for (let plantUuid of newShareCodes) {
+    console.log(`开始助力京东账号${$.index} - ${UserName}的好友: ${plantUuid}`);
+    if (!plantUuid) continue;
     if (plantUuid === $.myPlantUuid) {
       console.log(`\n跳过自己的plantUuid\n`)
       continue
@@ -379,7 +380,7 @@ async function doHelp() {
           console.log('您今日助力的机会已耗尽，已不能再帮助好友助力了\n');
           break;
         } else if ($.helpResult.data.helpShareRes.state === '3') {
-          console.log('该好友今日已满20人助力,明天再来为Ta助力吧\n')
+          console.log('该好友今日已满9人助力/20瓶营养液,明天再来为Ta助力吧\n')
         } else if ($.helpResult.data.helpShareRes.state === '4') {
           console.log(`${$.helpResult.data.helpShareRes.promptText}\n`)
         } else {
