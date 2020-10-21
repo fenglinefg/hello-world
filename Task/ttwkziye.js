@@ -47,7 +47,7 @@ hostname = operation-api.jimistore.com
 const $ = new Env('支付宝天天挖矿')//js名字 支付宝天天挖矿
 
 
-const notify = $.isNode() ? require('./sendNotify') : '';//通知项
+const notify = $.isNode()
 let bodyArr = [],headerArr = [];//定义Secret设置 合集
 
 if (isGetCookie = typeof $request !==`undefined`) {
