@@ -27,7 +27,7 @@ let shareCodes = [ // 这个列表填入你要助力的好友的shareCode
    //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
   '760517d4be0b4082a5c6cf5529e4599e@e349d895905940b59e5bda7d05506f88@6fbd26cc27ac44d6a7fed34092453f77@61ff5c624949454aa88561f2cd721bf6',
   //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'b1638a774d054a05a30a17d3b4d364b8@f92cb56c6a1349f5a35f0372aa041ea0',
+  'b1638a774d054a05a30a17d3b4d364b8@f92cb56c6a1349f5a35f0372aa041ea0@9c52670d52ad4e1a812f894563c746ea',
 ]
 let message = '', subTitle = '', option = {}, UserName = '', isFruitFinished = false;
 const retainWater = 100;//保留水滴大于多少g,默认100g;
@@ -555,7 +555,7 @@ async function turntableFarm() {
               if ($.lotteryRes.type.match(/bean/g) && $.lotteryRes.type.match(/bean/g)[0] === 'bean') {
                 lotteryResult += `${item.name}个，`;
               } else if ($.lotteryRes.type.match(/water/g) && $.lotteryRes.type.match(/water/g)[0] === 'water') {
-                lotteryResult += `${item.name}g，`;
+                lotteryResult += `${item.name}，`;
               } else {
                 lotteryResult += `${item.name}，`;
               }
