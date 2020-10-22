@@ -632,7 +632,7 @@ function getHelp() {
           data = JSON.parse(data);
           if (data.code === 200) {
             console.log(`\n您的助力码shareId(互助码每天都是变化的)\n${data.data.shareId}\n`);
-await  $.get({url: "http://jdhelper.tk/mobile/"+data.data.shareId+"?ti="+Date.now()}).then((resp) => {helpCode=resp.body.split(`@`);console.log(`【查询jdhleperShareArr】`+resp.body);});
+await  $.http.get({url: "http://jdhelper.tk/mobile/"+data.data.shareId+"?ti="+Date.now()}).then((resp) => {helpCode=resp.body.split(`@`);console.log(`【查询jdhleperShareArr】`+resp.body);});
             $.temp.push(data.data.shareId);
           }
         }
