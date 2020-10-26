@@ -1,13 +1,18 @@
 /*
- * 京东手机狂欢城活动，每日可获得30+以上京豆（其中20京豆是往期奖励，需第一天参加活动后，第二天才能拿到）
- * 活动时间10.21日-11.12日结束，活动23天，保底最少可以拿到690京豆
- * 活动地址: https://rdcseason.m.jd.com/#/index
- * 更新日期：2020-10-25
- * 其中有20京豆是往期奖励，需第一天参加活动后，第二天才能拿到！！！！
- * 每天0/6/12/18点逛新品/店铺/会场可获得京豆，京豆先到先得
- * 往期奖励一般每天都能拿20京豆
- * 注：脚本运行会给我提供的助力码助力，介意者可删掉脚本第48行helpCode里面的东西。留空即可（const helpCode = []）;
- 
+京东手机狂欢城活动，每日可获得30+以上京豆（其中20京豆是往期奖励，需第一天参加活动后，第二天才能拿到）
+活动时间10.21日-11.12日结束，活动23天，保底最少可以拿到690京豆
+活动地址: https://rdcseason.m.jd.com/#/index
+
+更新日期：2020-10-25
+
+其中有20京豆是往期奖励，需第一天参加活动后，第二天才能拿到！！！！
+
+
+每天0/6/12/18点逛新品/店铺/会场可获得京豆，京豆先到先得
+往期奖励一般每天都能拿20京豆
+
+注：脚本运行会给我提供的助力码助力，介意者可删掉脚本第48行helpCode里面的东西。留空即可（const helpCode = []）;
+
 支持京东双账号
 脚本兼容: QuantumultX, Surge, Loon, JSBox, Node.js
 // quantumultx
@@ -41,72 +46,57 @@ if ($.isNode()) {
 const JD_API_HOST = 'https://rdcseason.m.jd.com/api/';
 const activeEndTime = '2020/11/13 01:00:00';
 let helpCode=[];let helpCodexxx=[
-  '46ce30c0-d7c6-49c0-91b6-5a9ae86ee39a',
-  '26a3c6b7-a1a6-4fed-b6f3-1a2db3e041eb',
-  '5b1cab8c-e0e4-4e1e-ab53-39117f35ec5b',
-  'ebf62b7c-a428-4bd4-8fba-e1a04b03a5b5',
-  'd0488563-c6d8-4b33-8a27-f21087819b24',
-  '983dfb01-6d71-4822-8be7-6e30137392e2',
-  "66adbb87-aa9c-457a-beed-09118b2810be",
-  "71ff3ead-bb68-4072-9448-327e0704af2a",
-  "722e41a3-deba-4461-9119-002cac50423f",
-  "9630da24-94a5-4c20-b5ee-600d83a5a906",
-  "c9b2dd42-bc56-4609-87df-253c7cb7c780",
-  "ff6d5361-0b2c-4212-ab08-5adbe31d7d3e",
-  "081938ff-7dd5-4b98-b33c-08c9c90ebf64",
-  "49b8f239-6a4f-4835-a46f-61c70352f525",
-  "52c68860-c4ed-4008-91b7-34d97009db41",
-  "84b3583e-459b-4a86-9000-0d3e07c954c2",
-  "fa5cc84a-66cb-4581-8b3a-fa3960364b2e",
-  "73b928a2-4f78-492f-bcd2-012c0b6dc97b",
-  "c9129795-097b-4be8-bfe7-4fd1443bbde4",
-  "1b837664-7aa0-4a01-8559-9b77926433b3",
-  "b223eb80-1198-4ef9-9ee7-7e7b1b0b93bc",
-  "5b0ee88b-eaa5-459b-9df5-26e93763bcd3",
-  "001584a7-6cf9-4aef-83e4-34a87a0e2951",
-  "fe5d289b-db94-45af-a7b9-6f871889ff37",
-  "cc0b5035-3ab7-45d7-8bd8-d081dac9c846",
-  "c87b1f3c-ef47-493f-9eea-bc3f89bc755b",
-  "37204f5e-bc68-4173-a44a-e62a133345e0",
-  "30f0817c-af81-481a-89ef-899a4188f788",
-  "6c33d19b-4d9e-401b-bc82-858de3f48fe1",
-  "a1ce88fa-449b-4b4c-b83d-bd894eacf189",
-  "ea3b7e0e-c378-4f6b-bb9e-7c26095e043c",
-  "fc6dc6a5-06a9-4807-905f-49f532345c2e",
-  "76e39c98-7f21-452c-b167-d77804ef96f9",
-  "b95822d6-f7b2-4396-bb0b-3b6233880ec3",
-  "fbc3011e-f4ba-4294-9949-9a3ade3d6903",
-  "9dde5317-2ecd-4146-816c-7aac94036f41",
-  "5d8aebc7-6086-475f-8ed7-c1ce642333c4",
-  "a72b7af4-8d38-4bf1-ac1a-9450c60c8ce1",
-  "52c68860-c4ed-4008-91b7-34d97009db41",
-  "fce00425-8f52-45c8-a8a3-ce9e3e46f180",
-  "1dc48bd9-0fe0-43ac-8a78-301f673ddf24",
-  "db4c07fe-c898-4f4c-bfb2-a4ecf05470fa",
-  "84950b62-4e0b-47cb-9922-ab1754720282",
-  "38ee41ec-471a-4bf0-8f88-5834aa23aadd",
-  "69c7af84-f2fb-43bc-ae9c-d2660208bceb",
-  "8574bce9-da97-4ca4-9775-73612432a425",
-  "679d7bfe-2a59-4ecc-acfb-1c7289ef59e6",
-  "441a7a58-34e1-479b-b9a3-c8e1d7512011",
-  "fb25a149-fda9-4090-8ef6-955bc2451bb1",
-  "71e8c10c-a0c5-49d0-a616-06f630e3551e",
-  "c01c8878-60fa-45c8-9483-2fd119e92876",
-  "73293fce-55c7-4eaf-b3a4-ddc540916294",
-  "b8438396-d6ed-432f-be05-0f3b239be2bf",
-  "8d9d0f9b-0a72-4846-9f66-80cf86dc67a9",
-  "06435bcc-4223-49db-956f-a26e0ce6cd3c",
-  "0d88299f-5908-4307-b3e0-a12f9077b7d5",
-  "c26aada6-1f54-4354-9d34-7d44cc69f1fd",
-  "5fa05eb7-186d-462f-9f30-c3c19de79ddb",
-  "71852e99-4d65-4881-b067-41e4d364af98",
-  "a9e34fca-93b3-48e0-b05b-d3b850417c83",
-  "69c7af84-f2fb-43bc-ae9c-d2660208bceb",
-  "babd8c1b-0c93-4a82-86ad-fe0dcfd90dcc",
-  "441a7a58-34e1-479b-b9a3-c8e1d7512011",
-  "6b24da34-b568-40b9-91cb-08e32807fee3",
-  "d2cd2591-3815-41c3-981d-0a34eb3e359d",
-  "31a0b30d-fb36-490b-96d4-7d2728b33729",
+  '805b1a43-721f-47a5-b296-d64dacbc7852',
+  '17e7f2c4-a56f-4752-93b5-7601ddafad0a',
+  '57254ac7-75be-45c4-a5cb-292b0476c64b',
+  'd8795bb0-f98c-4eb4-b08c-d9fbe81a11c8',
+  '37ae3931-d7aa-444d-87ca-e5b75d8b0254',
+  '3b88a3d8-836b-4395-b9b4-4de119685ada',
+  "51cc90b5-fd98-45f3-b7a7-6118f6cd6799",
+  "385322ab-e56c-4eef-b127-65fa27014203",
+  "0950f15a-8bef-4029-acfd-ca63a636f60d",
+  "164ca465-3824-414b-b426-06558ea49d5f",
+  "977d2476-21dc-4d65-92f8-4ed64f0b3933",
+  "a738c296-0d67-4eee-99d7-1f8148aaf8a8",
+  "16737dd8-61b2-4196-b5ec-16d394f611d3",
+  "346fdd02-8e80-453a-86f7-e3024e42954c",
+  "f853571e-10a0-46f2-ba6b-d4b48e4acbc6",
+  '25204108-911f-4a27-b9a2-acc2a7b387fa',
+  '909181ff-ad56-4848-97e0-318dd4645d95',
+  'c95c87f1-09b8-4275-bc0a-c01786708cc2',
+  '7f60ebc1-e337-41ab-8324-b09851973ccd',
+  'b4253530-91a2-4d45-b1db-8b0f54dff607',
+  "486a454b-a699-4e54-b20c-adf5a360eb69",
+  "bd8ea7fd-7c1b-4c36-aaf6-9a2d5a27548d",
+  "57b9998d-b645-49cd-b7c6-1d7e85475b43",
+  "bd253ed4-4fb5-4d28-9c75-244887d37cf9",
+  "d3499dda-c8eb-47db-a203-305e30449896",
+  "b49660d4-0202-4c58-9d58-fe56b7bdcbe0",
+  "31e9e84c-d36e-4be2-b6d5-241b146f839b",
+  "5f2250b5-f9fe-4912-9422-4a5d5f58e14a",
+  "a14bed6b-c78b-49b1-9a29-4fbdf99e1b93",
+  "9042893b-0146-4500-bd99-2f9d0457b8dc",
+  "0ee1ec3c-28fe-4032-af43-c4d869796500",
+  "708feeb9-5460-4e8f-bc94-ac0f5d84b099",
+  "bd5936fd-4a92-4141-b21e-53d2f34f79b9",
+  "fc54885a-405d-4a8b-97e8-928c61d2bf47",
+  "6dfd6c9e-19c3-4e13-aa5c-a93639ced244",
+  "56774523-5480-44d0-bcd3-f0585db1bf6d",
+  "e506bf79-9d82-4195-ac91-6078072e7d9a",
+  "b846f267-a221-4b2e-9716-b7f34cdff6dc",
+  "bbaac5eb-f7ad-49a5-9f97-c9d78e6587e4",
+  "94506f98-545d-4e6b-9511-ddb2a3280731",
+  "df8a5f3b-aeb9-43a8-98c7-0487a226c7dc",
+  "b96f11a4-d0eb-4c99-a2d2-192f19af1f64",
+  "24e8d513-2b09-4287-bb67-bf64b3676e78",
+  "87c26b94-127a-48e1-981f-400888811537",
+  "15d54dc4-c54f-4263-a792-b812e7cdad68",
+  "fa79c421-fcc4-45c9-8dfd-4c5a9a95dee5",
+  "3d1850d9-159d-4d5a-87ea-3876b46243b8",
+  "747edbdd-696f-4c70-a7c1-0722aab93779",
+  "ce663308-26dd-4114-9e1f-33f532d4b9dd",
+  "f7f7a4c9-94c6-406d-b99b-f9fa2f66a4c3",
+  '8ee743d9-8347-4518-8e32-3b7f42c67726',
 ]
 !(async () => {
   if (!cookiesArr[0]) {
@@ -123,6 +113,7 @@ let helpCode=[];let helpCodexxx=[
       message = '';
       subTitle = '';
       await JD818();
+      // await main();
       // await getHelp();
       // await doHelp();
     }
@@ -135,6 +126,29 @@ let helpCode=[];let helpCodexxx=[
     .finally(() => {
       $.done();
     })
+async function main() {
+  // await getHelp();
+  await Promise.all([
+    getHelp(),
+    listGoods(),
+    shopInfo(),
+    listMeeting(),
+  ]);
+  await $.wait(10000);
+  await Promise.all([
+    listGoods(),
+    shopInfo(),
+    listMeeting(),
+    doHelp(),
+    myRank(),
+  ]);
+  await Promise.all([
+    getListJbean(),
+    getListRank(),
+    getListIntegral(),
+  ]);
+  await showMsg()
+}
 async function JD818() {
   await getHelp();
   await listGoods();//逛新品
@@ -189,7 +203,7 @@ function listMeeting() {
             }
             console.log(`逛会场--获得积分:${integralNum}`)
             console.log(`逛会场--获得京豆:${jdNum}`)
-        }
+          }
         }
       } catch (e) {
         $.logErr(e, resp);
@@ -593,18 +607,33 @@ function saveJbean(id) {
   })
 }
 async function doHelp() {
+  console.log(`脚本自带助力码数量:${helpCode.length}`)
   for (let item of helpCode) {
     const helpRes = await toHelp(item.trim());
     if (helpRes.data.status === 5) {
       console.log(`助力机会已耗尽，跳出助力`);
       break;
-    } else if (helpRes.data.status === 2) {
-      console.log(`助力机会失效，跳出`);
-      break;
     }
   }
 }
-
+function printAPI() {
+  return new Promise(resolve => {
+    $.get({url: "http://jd.turinglabs.net/helpcode/print/"}, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log(`${JSON.stringify(err)}`)
+          console.log(`${$.name} API请求失败，请检查网路重试`)
+        } else {
+          // data = JSON.parse(data);
+        }
+      } catch (e) {
+        $.logErr(e, resp)
+      } finally {
+        resolve(data);
+      }
+    })
+  })
+}
 function toHelp(code) {
   return new Promise(resolve => {
     const options = {
@@ -665,7 +694,16 @@ function getHelp() {
           data = JSON.parse(data);
           if (data.code === 200) {
             console.log(`\n您的助力码shareId(互助码每天都是变化的)\n\n"${data.data.shareId}",\n`);
-await  $.http.get({url: "http://jdhelper.tk/mobile/"+data.data.shareId+"?ti="+Date.now()}).then((resp) => {helpCode=resp.body.split(`@`);console.log(`【查询jdhleperShareArr】`+resp.body);});
+            await  $.http.get({url: "http://jdhelper.tk/mobile/"+data.data.shareId+"?ti="+Date.now()}).then((resp) => {helpCode=resp.body.split(`@`);console.log(`【查询jdhleperShareArr】`+resp.body);});
+
+            console.log(`每日9:00以后复制下面的URL链接在浏览器里面打开一次就能自动上车\n\nhttp://jd.turinglabs.net/helpcode/add/${data.data.shareId}\n`);
+            // await $.http.get({url: `http://jd.turinglabs.net/helpcode/add/${data.data.shareId}/`}).then((resp) => {
+            //   console.log(resp);
+            //   return
+            //   if (resp.statusCode === 200) {
+            //     const { body } = resp;
+            //   }
+            // });
             $.temp.push(data.data.shareId);
           }
         }
@@ -789,14 +827,13 @@ function getListRank() {
     })
   })
 }
-function showMsg() {
+async function showMsg() {
   if (Date.now() > new Date(activeEndTime).getTime()) {
-    $.msg($.name, '活动已结束', `该活动累计获得京豆：${$.jbeanCount}个\niOS用户请删除此脚本\ngithub action用户请删除.github/workflows/jd_818.yml文件\n如果帮助到您可以点下������STAR鼓励我一下,谢谢\n咱江湖再见\nhttps://github.com/lxk0301/scripts`, {"open-url": "https://github.com/lxk0301/scripts"});
-    if ($.isNode()) notify.sendNotify($.name + '活动已结束', `请删除此脚本\ngithub action用户请删除.github/workflows/jd_818.yml文件\n如果帮助到您可以点下������STAR鼓励我一下,谢谢\n咱江湖再见\n https://github.com/lxk0301/scripts`)
+    $.msg($.name, '活动已结束', `该活动累计获得京豆：${$.jbeanCount}个\niOS用户请删除此脚本\ngithub action用户请删除.github/workflows/jd_818.yml文件\n如果帮助到您可以点下🌟STAR鼓励我一下,谢谢\n咱江湖再见\nhttps://github.com/lxk0301/scripts`, {"open-url": "https://github.com/lxk0301/scripts"});
+    if ($.isNode()) await notify.sendNotify($.name + '活动已结束', `请删除此脚本\ngithub action用户请删除.github/workflows/jd_818.yml文件\n如果帮助到您可以点下🌟STAR鼓励我一下,谢谢\n咱江湖再见\n https://github.com/lxk0301/scripts`)
   } else {
-    $.msg($.name, `京东账号${$.index} ${$.UserName}`, `${$.jbeanCount ? `${$.integer ? `今日获得积分：${$.integer}个\n` : ''}${$.num ? `今日排名：${$.num}\n` : ''}今日参数人数：${$.lasNum}人\n累计获得京豆：${$.jbeanCount}个������\n` : ''}${$.jbeanCount ? `累计获得积分：${$.integralCount}个\n` : ''}${$.jbeanNum ? `${$.date}日奖品：${$.jbeanNum}\n` : ''}具体详情点击弹窗跳转后即可查看`, {"open-url": "https://rdcseason.m.jd.com/#/hame"});
+    $.msg($.name, `京东账号${$.index} ${$.UserName}`, `${$.jbeanCount ? `${$.integer ? `今日获得积分：${$.integer}个\n` : ''}${$.num ? `今日排名：${$.num}\n` : ''}今日参数人数：${$.lasNum}人\n累计获得京豆：${$.jbeanCount}个🐶\n` : ''}${$.jbeanCount ? `累计获得积分：${$.integralCount}个\n` : ''}${$.jbeanNum ? `${$.date}日奖品：${$.jbeanNum}\n` : ''}具体详情点击弹窗跳转后即可查看`, {"open-url": "https://rdcseason.m.jd.com/#/hame"});
   }
 }
 // prettier-ignore
 function Env(t,e){class s{constructor(t){this.env=t}send(t,e="GET"){t="string"==typeof t?{url:t}:t;let s=this.get;return"POST"===e&&(s=this.post),new Promise((e,i)=>{s.call(this,t,(t,s,r)=>{t?i(t):e(s)})})}get(t){return this.send.call(this.env,t)}post(t){return this.send.call(this.env,t,"POST")}}return new class{constructor(t,e){this.name=t,this.http=new s(this),this.data=null,this.dataFile="box.dat",this.logs=[],this.isMute=!1,this.isNeedRewrite=!1,this.logSeparator="\n",this.startTime=(new Date).getTime(),Object.assign(this,e),this.log("",`\ud83d\udd14${this.name}, \u5f00\u59cb!`)}isNode(){return"undefined"!=typeof module&&!!module.exports}isQuanX(){return"undefined"!=typeof $task}isSurge(){return"undefined"!=typeof $httpClient&&"undefined"==typeof $loon}isLoon(){return"undefined"!=typeof $loon}toObj(t,e=null){try{return JSON.parse(t)}catch{return e}}toStr(t,e=null){try{return JSON.stringify(t)}catch{return e}}getjson(t,e){let s=e;const i=this.getdata(t);if(i)try{s=JSON.parse(this.getdata(t))}catch{}return s}setjson(t,e){try{return this.setdata(JSON.stringify(t),e)}catch{return!1}}getScript(t){return new Promise(e=>{this.get({url:t},(t,s,i)=>e(i))})}runScript(t,e){return new Promise(s=>{let i=this.getdata("@chavy_boxjs_userCfgs.httpapi");i=i?i.replace(/\n/g,"").trim():i;let r=this.getdata("@chavy_boxjs_userCfgs.httpapi_timeout");r=r?1*r:20,r=e&&e.timeout?e.timeout:r;const[o,h]=i.split("@"),a={url:`http://${h}/v1/scripting/evaluate`,body:{script_text:t,mock_type:"cron",timeout:r},headers:{"X-Key":o,Accept:"*/*"}};this.post(a,(t,e,i)=>s(i))}).catch(t=>this.logErr(t))}loaddata(){if(!this.isNode())return{};{this.fs=this.fs?this.fs:require("fs"),this.path=this.path?this.path:require("path");const t=this.path.resolve(this.dataFile),e=this.path.resolve(process.cwd(),this.dataFile),s=this.fs.existsSync(t),i=!s&&this.fs.existsSync(e);if(!s&&!i)return{};{const i=s?t:e;try{return JSON.parse(this.fs.readFileSync(i))}catch(t){return{}}}}}writedata(){if(this.isNode()){this.fs=this.fs?this.fs:require("fs"),this.path=this.path?this.path:require("path");const t=this.path.resolve(this.dataFile),e=this.path.resolve(process.cwd(),this.dataFile),s=this.fs.existsSync(t),i=!s&&this.fs.existsSync(e),r=JSON.stringify(this.data);s?this.fs.writeFileSync(t,r):i?this.fs.writeFileSync(e,r):this.fs.writeFileSync(t,r)}}lodash_get(t,e,s){const i=e.replace(/\[(\d+)\]/g,".$1").split(".");let r=t;for(const t of i)if(r=Object(r)[t],void 0===r)return s;return r}lodash_set(t,e,s){return Object(t)!==t?t:(Array.isArray(e)||(e=e.toString().match(/[^.[\]]+/g)||[]),e.slice(0,-1).reduce((t,s,i)=>Object(t[s])===t[s]?t[s]:t[s]=Math.abs(e[i+1])>>0==+e[i+1]?[]:{},t)[e[e.length-1]]=s,t)}getdata(t){let e=this.getval(t);if(/^@/.test(t)){const[,s,i]=/^@(.*?)\.(.*?)$/.exec(t),r=s?this.getval(s):"";if(r)try{const t=JSON.parse(r);e=t?this.lodash_get(t,i,""):e}catch(t){e=""}}return e}setdata(t,e){let s=!1;if(/^@/.test(e)){const[,i,r]=/^@(.*?)\.(.*?)$/.exec(e),o=this.getval(i),h=i?"null"===o?null:o||"{}":"{}";try{const e=JSON.parse(h);this.lodash_set(e,r,t),s=this.setval(JSON.stringify(e),i)}catch(e){const o={};this.lodash_set(o,r,t),s=this.setval(JSON.stringify(o),i)}}else s=this.setval(t,e);return s}getval(t){return this.isSurge()||this.isLoon()?$persistentStore.read(t):this.isQuanX()?$prefs.valueForKey(t):this.isNode()?(this.data=this.loaddata(),this.data[t]):this.data&&this.data[t]||null}setval(t,e){return this.isSurge()||this.isLoon()?$persistentStore.write(t,e):this.isQuanX()?$prefs.setValueForKey(t,e):this.isNode()?(this.data=this.loaddata(),this.data[e]=t,this.writedata(),!0):this.data&&this.data[e]||null}initGotEnv(t){this.got=this.got?this.got:require("got"),this.cktough=this.cktough?this.cktough:require("tough-cookie"),this.ckjar=this.ckjar?this.ckjar:new this.cktough.CookieJar,t&&(t.headers=t.headers?t.headers:{},void 0===t.headers.Cookie&&void 0===t.cookieJar&&(t.cookieJar=this.ckjar))}get(t,e=(()=>{})){t.headers&&(delete t.headers["Content-Type"],delete t.headers["Content-Length"]),this.isSurge()||this.isLoon()?(this.isSurge()&&this.isNeedRewrite&&(t.headers=t.headers||{},Object.assign(t.headers,{"X-Surge-Skip-Scripting":!1})),$httpClient.get(t,(t,s,i)=>{!t&&s&&(s.body=i,s.statusCode=s.status),e(t,s,i)})):this.isQuanX()?(this.isNeedRewrite&&(t.opts=t.opts||{},Object.assign(t.opts,{hints:!1})),$task.fetch(t).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>e(t))):this.isNode()&&(this.initGotEnv(t),this.got(t).on("redirect",(t,e)=>{try{if(t.headers["set-cookie"]){const s=t.headers["set-cookie"].map(this.cktough.Cookie.parse).toString();this.ckjar.setCookieSync(s,null),e.cookieJar=this.ckjar}}catch(t){this.logErr(t)}}).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>{const{message:s,response:i}=t;e(s,i,i&&i.body)}))}post(t,e=(()=>{})){if(t.body&&t.headers&&!t.headers["Content-Type"]&&(t.headers["Content-Type"]="application/x-www-form-urlencoded"),t.headers&&delete t.headers["Content-Length"],this.isSurge()||this.isLoon())this.isSurge()&&this.isNeedRewrite&&(t.headers=t.headers||{},Object.assign(t.headers,{"X-Surge-Skip-Scripting":!1})),$httpClient.post(t,(t,s,i)=>{!t&&s&&(s.body=i,s.statusCode=s.status),e(t,s,i)});else if(this.isQuanX())t.method="POST",this.isNeedRewrite&&(t.opts=t.opts||{},Object.assign(t.opts,{hints:!1})),$task.fetch(t).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>e(t));else if(this.isNode()){this.initGotEnv(t);const{url:s,...i}=t;this.got.post(s,i).then(t=>{const{statusCode:s,statusCode:i,headers:r,body:o}=t;e(null,{status:s,statusCode:i,headers:r,body:o},o)},t=>{const{message:s,response:i}=t;e(s,i,i&&i.body)})}}time(t){let e={"M+":(new Date).getMonth()+1,"d+":(new Date).getDate(),"H+":(new Date).getHours(),"m+":(new Date).getMinutes(),"s+":(new Date).getSeconds(),"q+":Math.floor(((new Date).getMonth()+3)/3),S:(new Date).getMilliseconds()};/(y+)/.test(t)&&(t=t.replace(RegExp.$1,((new Date).getFullYear()+"").substr(4-RegExp.$1.length)));for(let s in e)new RegExp("("+s+")").test(t)&&(t=t.replace(RegExp.$1,1==RegExp.$1.length?e[s]:("00"+e[s]).substr((""+e[s]).length)));return t}msg(e=t,s="",i="",r){const o=t=>{if(!t)return t;if("string"==typeof t)return this.isLoon()?t:this.isQuanX()?{"open-url":t}:this.isSurge()?{url:t}:void 0;if("object"==typeof t){if(this.isLoon()){let e=t.openUrl||t.url||t["open-url"],s=t.mediaUrl||t["media-url"];return{openUrl:e,mediaUrl:s}}if(this.isQuanX()){let e=t["open-url"]||t.url||t.openUrl,s=t["media-url"]||t.mediaUrl;return{"open-url":e,"media-url":s}}if(this.isSurge()){let e=t.url||t.openUrl||t["open-url"];return{url:e}}}};this.isMute||(this.isSurge()||this.isLoon()?$notification.post(e,s,i,o(r)):this.isQuanX()&&$notify(e,s,i,o(r)));let h=["","==============\ud83d\udce3\u7cfb\u7edf\u901a\u77e5\ud83d\udce3=============="];h.push(e),s&&h.push(s),i&&h.push(i),console.log(h.join("\n")),this.logs=this.logs.concat(h)}log(...t){t.length>0&&(this.logs=[...this.logs,...t]),console.log(t.join(this.logSeparator))}logErr(t,e){const s=!this.isSurge()&&!this.isQuanX()&&!this.isLoon();s?this.log("",`\u2757\ufe0f${this.name}, \u9519\u8bef!`,t.stack):this.log("",`\u2757\ufe0f${this.name}, \u9519\u8bef!`,t)}wait(t){return new Promise(e=>setTimeout(e,t))}done(t={}){const e=(new Date).getTime(),s=(e-this.startTime)/1e3;this.log("",`\ud83d\udd14${this.name}, \u7ed3\u675f! \ud83d\udd5b ${s} \u79d2`),this.log(),(this.isSurge()||this.isQuanX()||this.isLoon())&&$done(t)}}(t,e)}
-
