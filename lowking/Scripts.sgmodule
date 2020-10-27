@@ -26,15 +26,3 @@ Bili Region = type=http-response, pattern=https:\/\/api\.bilibili\.com\/pgc\/vie
 
 [MITM]
 hostname = %APPEND% api.bilibili.com, api.m.jd.com, trade-acs.m.taobao.com, weather-data.apple.com
-
-
-
-#!name=Historical price temp
-#!desc=Display commodity historical price.
-#!system=ios
-[Script]
-http-response ^https?://api\.m\.jd\.com/client\.action\?functionId=(serverConfig|wareBusiness|basicConfig) requires-body=1,script-path=https://raw.githubusercontent.com/Tartarus2014/Script/master/JDprice.js
-http-request ^http://.+/amdc/mobileDispatch requires-body=1,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/tb_price.js
-http-response ^https?://trade-acs\.m\.taobao\.com/gw/mtop\.taobao\.detail\.getdetail requires-body=1,script-path=https://raw.githubusercontent.com/yichahucha/surge/master/tb_price.js
-[MITM]
-hostname = %APPEND% api.m.jd.com, amdc.m.taobao.com, trade-acs.m.taobao.com
