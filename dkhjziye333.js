@@ -5,6 +5,7 @@
 10.8 一共20个，自行删减替换（不一定都能提现，可自行关闭）
 10.14 因为大部分打卡失效，现删减整理，剩余5个
 10.28 增加京优打卡和云端打卡，注意  云端打卡用本地js   改ck=2  进行获取
+10.28 增加久诺打卡和每天打卡，注意  久诺打卡用本地js   改ck=2  进行获取
 
 功能如下：
 1.读秒限速打卡，
@@ -16,7 +17,7 @@
 
 二，将hostname复制粘贴进配置文件
 
-三，将重写复制到 rewrite_local 下，开启软件，进对应程序获取ck（会卡住，但是可以获取ck），目前一共5个打卡小程序，
+三，将重写复制到 rewrite_local 下，开启软件，进对应程序获取ck（会卡住，但是可以获取ck），目前一共9个打卡小程序，
 
 建议新建配置片段，获取ck后禁用，
 换号则复制js文件，修改jbid的值就可以了
@@ -31,15 +32,16 @@ ck=1
 早起打卡
 圈子打卡
 京优打卡
-
+每天打卡
 
 
 
 ck=2
 
 云端打卡
+久诺打卡
 
-云端打卡用本地js   改ck=2  获取ck
+用本地js   改ck=2  获取ck
 
 
 
@@ -67,7 +69,7 @@ ck=2
 
 
 
-hostname=zm.shujumagician.com,www.baimaa.com,ph0001.hezyq.com,daka.isfx.cn,wq.inqan.com,www.zq221727.com,cps.0day.fun
+hostname=zm.shujumagician.com,www.baimaa.com,ph0001.hezyq.com,daka.isfx.cn,wq.inqan.com,www.zq221727.com,cps.0day.fun,am.kuqi5.cn,w.1688sywh.com,
 
 ############## 圈x
 
@@ -97,6 +99,26 @@ https:\/\/www\.zq221727\.com\/* url script-request-header https://raw.githubuser
 
 //云端打卡
 https:\/\/cps\.0day\.fun\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
+
+
+
+
+
+
+//久诺打卡
+https:\/\/am\.kuqi5\.cn\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
+
+
+
+
+//每天打卡
+https:\/\/w\.1688sywh\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
+
+
+
+
+
+
 
 
 
@@ -135,6 +157,28 @@ http-request https:\/\/cps\.0day\.fun\/* script-path=https://raw.githubuserconte
 
 
 
+
+
+
+
+//久诺打卡
+http-request https:\/\/am\.kuqi5\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
+
+
+
+
+//每天打卡
+http-request https:\/\/w\.1688sywh\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
+
+
+
+
+
+
+
+
+
+
 ############## surge
 
 //微打卡  微早起打卡
@@ -170,14 +214,44 @@ http-request https:\/\/cps\.0day\.fun\/* script-path=https://raw.githubuserconte
 
 
 
+//久诺打卡
+久诺打卡 = type=http-request,pattern=https:\/\/am\.kuqi5\.cn\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
+
+
+
+
+
+//每天打卡
+每天打卡 = type=http-request,pattern=https:\/\/w\.1688sywh\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 */
 
 //////////////////////////////////////////正文
+
+const CK=1// 修改ck 获取对应程序cookie
+
 const jsname = '打卡合集'
 const $ = new Env(jsname)//模版引用
 const jbid =1// 换号则复制js，修改jbid的值就可以了
-const CK=1// 
 const notify = 1; //通知开为1，关为0
 const logs = 0; // 日志开为1，关为0
 const dk=1//打卡开关
@@ -304,6 +378,33 @@ const yddkurl =$.getdata(yddkkey)//读取ck
 
 
 
+const jndkname = "久诺打卡";//程序名
+const jndkid = 8;//ck id
+const jndkcs = 10;//打卡次数
+const jndktx = 10;//提现标准
+const jndkxs = 10;//限速标准.单位为分钟
+const jndkdh = 3500;//兑换标准
+const jndkdhid = 4;//兑换id
+const jndkdhsp = "50元话费";//兑换商品
+const jndkkey = "jndkkey"+jbid  //保存ck
+const jndkurl =$.getdata(jndkkey)//读取ck
+
+
+
+
+const mtdkname = "每天打卡";//程序名
+const mtdkid = 57;//ck id
+const mtdkcs = 10;//打卡次数
+const mtdktx = 10;//提现标准
+const mtdkxs = 10;//限速标准.单位为分钟
+const mtdkdh = 3500;//兑换标准
+const mtdkdhid = 4;//兑换id
+const mtdkdhsp = "50元话费";//兑换商品
+const mtdkkey = "mtdkkey"+jbid  //保存ck
+const mtdkurl =$.getdata(mtdkkey)//读取ck
+
+
+
 
 
 
@@ -329,7 +430,7 @@ if (isGetCookie) {
 
  {
 
-   for(var i=0;i<9;i++)
+   for(var i=0;i<11;i++)
  { (function(i) {
             setTimeout(function() {
      
@@ -346,9 +447,12 @@ else if(i==5) jydk(i);
 
 else if(i==6) yddk(i);
 
+else if(i==7) jndk(i);
+
+else if(i==8) mtdk(i);
 
 
-else if(i==8) showmsg(i);
+else if(i==10) showmsg(i);
 
 
   
@@ -445,6 +549,15 @@ if ($request && $request.url.match(/action=today&contr=index/))
 
 
 
+if ($request && $request.url.match(/i=57&/))
+if ($request && $request.url.match(/action=today&contr=index/))
+{const mtdkurl =  $request.url
+  $.log(`mtdkurl:${mtdkurl}`)
+  if (mtdkurl) $.setdata(mtdkurl, mtdkkey)
+  $.msg(mtdkkey, `获取cookie: 成功🎉`, ``)
+}
+
+
 
 
 
@@ -461,6 +574,10 @@ if ($request && $request.url.match(/action=today&contr=index/))
 if (CK==2)
 {
 	
+	
+	
+	
+	
 if ($request && $request.url.match(/i=2&/))
 if ($request && $request.url.match(/action=today&contr=index/))
 {const yddkurl =  $request.url
@@ -468,6 +585,19 @@ if ($request && $request.url.match(/action=today&contr=index/))
   if (yddkurl) $.setdata(yddkurl, yddkkey)
   $.msg(yddkkey, `获取cookie: 成功🎉`, ``)
 }
+
+
+
+	
+if ($request && $request.url.match(/i=8&/))
+if ($request && $request.url.match(/action=today&contr=index/))
+{const jndkurl =  $request.url
+  $.log(`jndkurl:${jndkurl}`)
+  if (jndkurl) $.setdata(jndkurl, jndkkey)
+  $.msg(jndkkey, `获取cookie: 成功🎉`, ``)
+}
+
+
 
 
 
@@ -568,6 +698,21 @@ B(A)
 
 
 
+
+
+function jndk() {
+var A={Y:[jndkurl,jndkname,jndkcs,jndktx,jndkxs,jndkdh,jndkdhid,jndkdhsp]}
+B(A)
+}
+
+
+
+
+
+function mtdk() {
+var A={Y:[mtdkurl,mtdkname,mtdkcs,mtdktx,mtdkxs,mtdkdh,mtdkdhid,mtdkdhsp]}
+B(A)
+}
 
 
 
