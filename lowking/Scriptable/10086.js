@@ -93,7 +93,7 @@ if (config.runsInWidget || isRunWidget) {
         // Your code here
         if (now.getDate() == 1) {
             // 每个月1号维护查询不到数据
-            createWidget(widget, "移不动", '-', '-', '-')
+            widget = createWidget(widget, "移不动", '-', '-', '-')
         } else {
             if (true || minutes >= 0 && minutes <= 20) {
                 $.CryptoJS = $.require(crypto)
@@ -102,7 +102,7 @@ if (config.runsInWidget || isRunWidget) {
                 await loginapp()
                 await queryfee()
                 await querymeal()
-                await showmsg(widget)
+                widget = await showmsg(widget)
             }
         }
         Script.setWidget(widget)
@@ -213,10 +213,10 @@ function showmsg(w) {
             $.voiceRes = `[语音] ${voiceRes.allRemainRes}${allUnit}`
         }
 
-        createWidget(w, "移不动", $.subt, $.flowRes, $.voiceRes)
+        let widget = createWidget(w, "移不动", $.subt, $.flowRes, $.voiceRes)
 
         log('显示信息end')
-        resolve()
+        resolve(widget)
     })
 }
 
