@@ -189,7 +189,7 @@ return new Promise((resolve, reject) => {
 
   const toflwhblhurl = {
 
-    url: flwhburlVal.replace(/ajaxInit?init_reward=&invite_userid=&wx_openid=/g, `ajaxDoTask76728`),
+    url: 'https://huodong.fanli.com/h5/Fanlishare20201111/ajaxDoTask76728',
 
     headers: JSON.parse(flwhbheaderVal),
     body: flwhbbodyVal
@@ -236,7 +236,7 @@ return new Promise((resolve, reject) => {
 
   const toflwhbtxurl = {
 
-    url: flwhburlVal.replace(/ajaxInit?init_reward=&invite_userid=&wx_openid=/g, `ajaxExchangeCash`),
+    url: 'https://huodong.fanli.com/h5/Fanlishare20201111/ajaxExchangeCash',
 
     headers: JSON.parse(flwhbheaderVal),
 
