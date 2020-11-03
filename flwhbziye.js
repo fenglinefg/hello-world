@@ -53,7 +53,7 @@ const jsname='返利网红包'
 const logs = 0;   //0为关闭日志，1为开启
 const notifyInterval=1//0为关闭通知，1为开启
 const jbid=1;
-const txbz=1.2//设置余额大于等于多少提现，必须大于0.3
+const txbz=1//设置余额大于等于多少提现，必须大于0.3
 
 
 
