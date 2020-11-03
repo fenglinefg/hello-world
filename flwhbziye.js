@@ -1,6 +1,7 @@
 
 /*ziye
 
+11.3 修复重写问题
 
 
 复制到微信里打开领取红包并下载  http://huodong.3p6z.cn/h5/Fanlishare20201111/share?spm=page_name.h5.pty-sharepv~module-home~std-76452&invite_userid=373511081
@@ -29,13 +30,13 @@ https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201111\/ajaxInit url script-reque
 ############## loon
 
 //
-https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201111\/ajaxDoTask76728 script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js, requires-header=true
+https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201111\/ajaxInit script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js, requires-header=true
 
 
 #返利网红包
 ############## surge
 
-返利网红包 = type=http-request,pattern=https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201111\/ajaxDoTask76728,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js, requires-header=true
+返利网红包 = type=http-request,pattern=https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201111\/ajaxInit,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js, requires-header=true
 
 
 
