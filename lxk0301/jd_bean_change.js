@@ -1,8 +1,8 @@
 /*
  * @Author: lxk0301 https://github.com/lxk0301 
- * @Date: 2020-11-03 16:25:41
+ * @Date: 2020-11-01 16:25:41
  * @Last Modified by:   lxk0301 
- * @Last Modified time: 2020-11-01 16:25:41
+ * @Last Modified time: 2020-11-03 16:25:41
  */
 /*
 京豆变动通知脚本：https://raw.githubusercontent.com/lxk0301/scripts/master/jd_bean_change.js
@@ -82,6 +82,7 @@ async function bean() {
   //前一天的0:0:0时间戳
   // console.log(`北京时间零点时间戳:${parseInt((Date.now() + 28800000) / 86400000) * 86400000 - 28800000}`);
   // console.log(`北京时间2020-10-28 06:16:05::${new Date("2020/10/28 06:16:05+08:00").getTime()}`)
+  // 不管哪个时区。得到都是当前时刻北京时间的时间戳 new Date().getTime() + new Date().getTimezoneOffset()*60*1000 + 8*60*60*1000
   const tm = parseInt((Date.now() + 28800000) / 86400000) * 86400000 - 28800000 - (24 * 60 * 60 * 1000);
   // 今天0:0:0时间戳
   const tm1 = parseInt((Date.now() + 28800000) / 86400000) * 86400000 - 28800000;

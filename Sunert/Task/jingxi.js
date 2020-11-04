@@ -60,7 +60,7 @@ function getsign() {
         Referer: "https://wqsh.jd.com/pingou/taskcenter/index.html"
       },
     }
-    $.get(signurl, (err, resp, data) => {
+    $.get(signurl, async(err, resp, data) => {
       signres = JSON.parse(data)
       if (signres.retCode == '0') {
         nickname = signres.data.nickname
@@ -75,6 +75,10 @@ function getsign() {
         }
       } else if (signres.retCode == '30003') {
         $.msg($.name, '【提示】京东cookie已失效,请重新登录获取', 'https://bean.m.jd.com/', {"open-url": "https://bean.m.jd.com/"});
+        if($.isNode()){
+         await notify.sendNotify($.name + " 账号" + $.index, `【提示】京东cookie已失效,请重新登录获取`)
+        }
+        return
       }
       resolve()
     })
