@@ -1,17 +1,21 @@
 /*ziye
 
 如果显示未获取定位，则重启软件多试几次
- 
-放到构造请求里方便修改
+
+
+下载到文件到本地
+放到构造请求里方便修改    (远程不能修改)
 
 浏览器打开https://raw.githubusercontent.com/ziye12/JavaScript/master/diqudaima.txt，然后搜索地区，修改下面👇的6位数
+
+
 
 
 [MITM]
 hostname=restapi.amap.com
 [rewrite_local]
 #云闪付改定位
-^https:\/\/restapi\.amap\.com\/v3\/geocode\/regeo? url script-response-body https://raw.githubusercontent.com/ziye12/JavaScript/master/ysfdw.js
+^https:\/\/restapi\.amap\.com\/v3\/geocode\/regeo? url script-response-body ysfdw.js
 
 */
 
