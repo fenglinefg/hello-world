@@ -11,7 +11,7 @@
 hostname=restapi.amap.com
 [rewrite_local]
 #云闪付改定位
-^https:\/\/restapi\.amap\.com\/v3\/geocode\/regeo? url script-response-body ysfdw.js
+^https:\/\/restapi\.amap\.com\/v3\/geocode\/regeo? url script-response-body https://raw.githubusercontent.com/ziye12/JavaScript/master/ysfdw.js
 
 */
 
