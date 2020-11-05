@@ -31,12 +31,13 @@ let shareCodes = [ // 这个列表填入你要助力的好友的shareCode
    //账号一的好友shareCode,不同好友的shareCode中间用@符号隔开
   '760517d4be0b4082a5c6cf5529e4599e@e349d895905940b59e5bda7d05506f88@6fbd26cc27ac44d6a7fed34092453f77@61ff5c624949454aa88561f2cd721bf6',
   //账号二的好友shareCode,不同好友的shareCode中间用@符号隔开
-  'b1638a774d054a05a30a17d3b4d364b8@f92cb56c6a1349f5a35f0372aa041ea0@9c52670d52ad4e1a812f894563c746ea',
+  'b1638a774d054a05a30a17d3b4d364b8@f92cb56c6a1349f5a35f0372aa041ea0@9c52670d52ad4e1a812f894563c746ea@8175509d82504e96828afc8b1bbb9cb3',
 ]
 let message = '', subTitle = '', option = {}, isFruitFinished = false;
 const retainWater = 100;//保留水滴大于多少g,默认100g;
 let jdNotify = false;//是否关闭通知，false打开通知推送，true关闭通知推送
 let jdFruitBeanCard = false;//农场使用水滴换豆卡(如果出现限时活动时100g水换20豆,此时比浇水划算,推荐换豆),true表示换豆(不浇水),false表示不换豆(继续浇水),脚本默认是浇水
+let randomCount = 20;
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
 !(async () => {
   await requireConfig();
@@ -78,8 +79,8 @@ async function jdFruit() {
   await initForFarm();
   if ($.farmInfo.farmUserPro) {
     // option['media-url'] = $.farmInfo.farmUserPro.goodsImage;
-    subTitle = `【水果名称】${$.farmInfo.farmUserPro.name}`;
-    message = `【京东账号${$.index}】${$.nickName}\n`;
+    subTitle = `【京东账号${$.index}】${$.nickName}\n`;
+    message = `【水果名称】${$.farmInfo.farmUserPro.name}\n`;
     console.log(`\n【您的互助码shareCode】 ${$.farmInfo.farmUserPro.shareCode}\n`);
 await $.http.get({url: "http://jdhelper.tk/fruit/"+$.farmInfo.farmUserPro.shareCode+"?ti="+Date.now()}).then((resp) => {jdFruitShareArr=[];jdFruitShareArr.push(resp.body);console.log(`
 【查询jdFruitShareArr】
@@ -912,7 +913,9 @@ async function getFullCollectionReward() {
           console.log(JSON.stringify(err));
           $.logErr(err);
         } else {
-          $.duckRes = JSON.parse(data);
+          if (safeGet(data)) {
+            $.duckRes = JSON.parse(data);
+          }
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -1146,7 +1149,9 @@ async function initForFarm() {
           console.log(JSON.stringify(err));
           $.logErr(err);
         } else {
-          $.farmInfo = JSON.parse(data)
+          if (safeGet(data)) {
+            $.farmInfo = JSON.parse(data)
+          }
         }
       } catch (e) {
         $.logErr(e, resp)
@@ -1207,14 +1212,14 @@ function timeFormat(time) {
 }
 function readShareCode() {
   return new Promise(resolve => {
-    $.get({url: `http://api.turinglabs.net/api/v1/jd/farm/read/4/`}, (err, resp, data) => {
+    $.get({url: `http://api.turinglabs.net/api/v1/jd/farm/read/${randomCount}/`}, (err, resp, data) => {
       try {
         if (err) {
           console.log(`${JSON.stringify(err)}`)
           console.log(`${$.name} API请求失败，请检查网路重试`)
         } else {
           if (data) {
-            console.log('随机取4个码')
+            console.log(`随机取个${randomCount}码放到您固定的互助码后面`)
             data = JSON.parse(data);
           }
         }
@@ -1358,13 +1363,10 @@ function request(function_id, body = {}, timeout = 1000){
             console.log(JSON.stringify(err));
             console.log(`function_id:${function_id}`)
             $.logErr(err);
-            // if ($.isNode()) {
-            //   throw err
-            // } else {
-            //   throw new Error(err);
-            // }
           } else {
-            data = JSON.parse(data);
+            if (safeGet(data)) {
+              data = JSON.parse(data);
+            }
           }
         } catch (e) {
           $.logErr(e, resp);
@@ -1375,7 +1377,17 @@ function request(function_id, body = {}, timeout = 1000){
     }, timeout)
   })
 }
-
+function safeGet(data) {
+  try {
+    if (typeof JSON.parse(data) == "object") {
+      return true;
+    }
+  } catch (e) {
+    console.log(e);
+    console.log(`京东服务器访问数据为空，请检查自身设备网络情况`);
+    return false;
+  }
+}
 function taskUrl(function_id, body = {}) {
   return {
     url: `${JD_API_HOST}?functionId=${function_id}&appid=wh5&body=${escape(JSON.stringify(body))}`,
