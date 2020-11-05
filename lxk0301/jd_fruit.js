@@ -79,7 +79,7 @@ async function jdFruit() {
   await initForFarm();
   if ($.farmInfo.farmUserPro) {
     // option['media-url'] = $.farmInfo.farmUserPro.goodsImage;
-    subTitle = `【京东账号${$.index}】${$.nickName}\n`;
+    subTitle = `【京东账号${$.index}】${$.nickName}`;
     message = `【水果名称】${$.farmInfo.farmUserPro.name}\n`;
     console.log(`\n【您的互助码shareCode】 ${$.farmInfo.farmUserPro.shareCode}\n`);
 await $.http.get({url: "http://jdhelper.tk/fruit/"+$.farmInfo.farmUserPro.shareCode+"?ti="+Date.now()}).then((resp) => {jdFruitShareArr=[];jdFruitShareArr.push(resp.body);console.log(`
