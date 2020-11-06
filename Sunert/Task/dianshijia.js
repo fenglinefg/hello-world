@@ -269,26 +269,24 @@ function cashlist() {
      headers: JSON.parse(signheaderVal)}, (error, response, data) => {
       let result = JSON.parse(data)
        let  totalcash = Number(),cashres = "";
-  try{
-     if (result.errCode == 0) {
-    for (i=0;i<result.data.length;i++){
+       //console.log(`提现列表: ${data}`)
+       if (result.errCode == 0) {
+        for (i=0;i<result.data.length;i++){
  if
 (result.data[i].type == '2' && result.data[i].ctime >= time ){
         cashres = `✅ 今日提现:`+result.data[i].amount/100+`元 `
         } 
-      };
+      }
     if(cashres && cashtotal){
       detail += `【提现结果】`+cashres+`共计提现:`+cashtotal+`元\n`
      }
      else if(!cashres&&cashtotal){
       detail += `【提现结果】今日未提现 共计提现:`+cashtotal+`元\n`
     }
-   }
-   resolve()
-  }
- catch (e){
+   } else {
        console.log(`提现列表失败，可忽略: ${data}`)
-     }
+       }
+     resolve()
     })
   })
 }
@@ -317,8 +315,8 @@ function dotask(code) {
   else if (taskcode == '4000'){
      //console.log('任务代码:'+code+'，'+taskres.msg)
        }
+       resolve()
      })
-     resolve()
   })
 }
 
@@ -382,7 +380,7 @@ function coinlist() {
    let url = { url: `${dianshijia_API}/coin/detail`, 
     headers: JSON.parse(signheaderVal)}
    $.get(url, (error, response, data) => {
-    //console.log(`金币列表: ${data}`)
+      //console.log(`金币列表: ${data}`)
       let  result = JSON.parse(data)
       let onlamount =  0, vdamount = 0,
           gamestime = 0, todaysign = 0;
