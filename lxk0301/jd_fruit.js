@@ -57,7 +57,7 @@ const JD_API_HOST = 'https://api.m.jd.com/client.action';
       if (!$.isLogin) {
         $.msg($.name, `【提示】cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取\nhttps://bean.m.jd.com/`, {"open-url": "https://bean.m.jd.com/"});
         $.setdata('', `CookieJD${i ? i + 1 : "" }`);//cookie失效，故清空cookie。
-        if ($.isNode()) await notify.sendNotify(`${$.name}cookie已失效`, `京东账号${$.index} ${$.nickName || $.UserName}\n请重新登录获取cookie`);
+        if ($.isNode()) await notify.sendNotify(`${$.name}cookie已失效 - ${$.UserName}`, `京东账号${$.index} ${$.UserName}\n请重新登录获取cookie`);
         continue
       }
       message = '';
@@ -91,7 +91,7 @@ await $.http.get({url: "http://jdhelper.tk/fruit/"+$.farmInfo.farmUserPro.shareC
       option['open-url'] = "openApp.jdMobile://";
       $.msg($.name, `【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取`, '请去京东APP或微信小程序查看', option);
       if ($.isNode()) {
-        await notify.sendNotify(`${$.name}水果已可领取`, `京东账号${$.index} ${$.nickName}\n${$.farmInfo.farmUserPro.name}已可领取`);
+        await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}水果已可领取`, `京东账号${$.index} ${$.nickName}\n${$.farmInfo.farmUserPro.name}已可领取`);
       }
       return
     } else if ($.farmInfo.treeState === 1){
@@ -101,7 +101,7 @@ await $.http.get({url: "http://jdhelper.tk/fruit/"+$.farmInfo.farmUserPro.shareC
       option['open-url'] = "openApp.jdMobile://";
       $.msg($.name, `【提醒⏰】请重新种植水果`, `上轮水果${$.farmInfo.farmUserPro.name}已兑换成功\n请去京东APP或微信小程序选购并种植新的水果\n`, option);
       if ($.isNode()) {
-        await notify.sendNotify(`${$.name}请重新种植水果`, `京东账号${$.index} ${$.nickName}\n上轮水果${$.farmInfo.farmUserPro.name}已兑换成功\n\n请去京东APP或微信小程序选购并种植新的水果`);
+        await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}请重新种植水果`, `京东账号${$.index} ${$.nickName}\n上轮水果${$.farmInfo.farmUserPro.name}已兑换成功\n\n请去京东APP或微信小程序选购并种植新的水果`);
       }
       return
     }
@@ -281,7 +281,7 @@ async function doTenWater() {
       $.msg($.name, `【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取`, '请去京东APP或微信小程序查看', option);
       $.done();
       if ($.isNode()) {
-        await notify.sendNotify(`${$.name}水果已可领取`, `京东账号${$.index} ${$.nickName}\n${$.farmInfo.farmUserPro.name}已可领取`);
+        await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName || $.UserName}水果已可领取`, `京东账号${$.index} ${$.nickName}\n${$.farmInfo.farmUserPro.name}已可领取`);
       }
     }
   } else {
@@ -407,7 +407,7 @@ async function doTenWaterAgain() {
       $.msg($.name, `【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取`, '请去京东APP或微信小程序查看', option);
       $.done();
       if ($.isNode()) {
-        await notify.sendNotify(`${$.name}水果已可领取`, `京东账号${$.index} ${$.nickName}\n${$.farmInfo.farmUserPro.name}已可领取`);
+        await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}水果已可领取`, `京东账号${$.index} ${$.nickName}\n${$.farmInfo.farmUserPro.name}已可领取`);
       }
     }
   } else if (overageEnergy >= 10) {
@@ -435,7 +435,7 @@ async function doTenWaterAgain() {
       $.msg($.name, `【提醒⏰】${$.farmInfo.farmUserPro.name}已可领取`, '请去京东APP或微信小程序查看', option);
       $.done();
       if ($.isNode()) {
-        await notify.sendNotify(`${$.name}水果已可领取`, `京东账号${$.index} ${$.nickName}\n${$.farmInfo.farmUserPro.name}已可领取`);
+        await notify.sendNotify(`${$.name} - 账号${$.index} - ${$.nickName}水果已可领取`, `京东账号${$.index} ${$.nickName}\n${$.farmInfo.farmUserPro.name}已可领取`);
       }
     }
   } else {
