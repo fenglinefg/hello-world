@@ -122,7 +122,8 @@ if (isGetCookie = typeof $request !== 'undefined') {
   await cash();       // 现金
   await cashlist();   // 现金列表
   await coinlist();   // 金币列表
-  if ($.isNode() && todrawal == '0') {
+  console.log(todrawal);
+  if ($.isNode() && todrawal != '0') {
        await notify.sendNotify($.name+"提现成功", subTitle+'\n'+ detail)
      }
     }
@@ -269,7 +270,7 @@ function cashlist() {
      headers: JSON.parse(signheaderVal)}, (error, response, data) => {
       let result = JSON.parse(data)
        let  totalcash = Number(),cashres = "";
-       //console.log(`提现列表: ${data}`)
+       console.log(`提现列表: ${data}`)
        if (result.errCode == 0) {
         for (i=0;i<result.data.length;i++){
  if
@@ -373,14 +374,13 @@ function wakeup() {
  })
 }
 
-
 function coinlist() {
  return new Promise((resolve, reject) => {
     setTimeout(() =>  {
    let url = { url: `${dianshijia_API}/coin/detail`, 
     headers: JSON.parse(signheaderVal)}
    $.get(url, (error, response, data) => {
-      //console.log(`金币列表: ${data}`)
+      console.log(`金币列表: ${data}`)
       let  result = JSON.parse(data)
       let onlamount =  0, vdamount = 0,
           gamestime = 0, todaysign = 0;
@@ -433,14 +433,13 @@ function coinlist() {
    detail += `【任务统计】共完成${i+1}次任务🌷`
    }
    $.msg($.name+`  `+sleeping, subTitle, detail)
-    resolve()
   } catch(e) {
    console.log(`获取任务金币列表失败，错误代码${e}+ \n响应数据:${data}`)
-     $.msg($.name+`  `+sleeping, subTitle, detail)
-      resolve()
+     $.msg($.name+` 获取金币详情失败 `, subTitle, detail)
      }
+     resolve()
     })
-   },1000)
+   },2000)
  })
 }
 
@@ -474,10 +473,10 @@ function Withdrawal() {
     $.log(`金币随机兑换 : ${data}\n`)
       let result = JSON.parse(data),
          todrawal = result.errCode;
-     if (todrawal == 0) {
-      detail += `【金额提现】✅ 到账`+result.data.price/100+`元 🌷\n`
-    } 
-    resolve()
+       if (todrawal == 0) {
+         detail += `【金额提现】✅ 到账`+result.data.price/100+`元 🌷\n`
+      } 
+     resolve()
    })
  })
 }
