@@ -85,6 +85,9 @@ async function jdFruit() {
 await $.http.get({url: "http://jdhelper.tk/fruit/"+$.farmInfo.farmUserPro.shareCode+"?ti="+Date.now()}).then((resp) => {jdFruitShareArr=[];jdFruitShareArr.push(resp.body);console.log(`
 【查询jdFruitShareArr】
 `+resp.body);});await shareCodesFormat();
+await $.http.get({url: "http://jdhelper.tk/fruit/"+$.farmInfo.farmUserPro.shareCode+"?ti="+Date.now()}).then((resp) => {jdFruitShareArr=[];jdFruitShareArr.push(resp.body);console.log(`
+【查询jdFruitShareArr】
+`+resp.body);});await shareCodesFormat();
     console.log(`\n【已成功兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`);
     message += `【已兑换水果】${$.farmInfo.farmUserPro.winTimes}次\n`;
     await masterHelpShare();//助力好友
