@@ -5,8 +5,7 @@
 11.9 调整礼盒通知问题
 
 
-复制到微信里打开领取红包并下载  http://huodong.3p6z.cn/h5/Fanlishare20201111/share?spm=page_name.h5.pty-sharepv~module-home~std-76452&invite_userid=373511081
-
+复制到微信里打开领取红包并下载  http://huodong.0w2ne27.cn/h5/Fanlishare20201111/share?spm=page_name.h5.pty-sharepv~module-home~std-76452&invite_userid=373511081
 
 下载后
 
