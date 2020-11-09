@@ -2,6 +2,7 @@
 /*ziye
 
 11.3 修复重写问题
+11.9 调整礼盒通知问题
 
 
 复制到微信里打开领取红包并下载  http://huodong.3p6z.cn/h5/Fanlishare20201111/share?spm=page_name.h5.pty-sharepv~module-home~std-76452&invite_userid=373511081
@@ -198,7 +199,7 @@ return new Promise((resolve, reject) => {
    sy.get(toflwhblhurl,(error, response, data) =>{
      if(logs) sy.log(`${jsname}, 惊喜礼盒: ${data}`)
      jxlh =JSON.parse(data)
-      if (jxlh.remain_num_76728>0)
+      if (jxlh.data.remain_num_76728>0)
  {
 tz+='【开启礼盒】🎉:'+jxlh.data.amount+'元'+'\n'+
 '【剩余礼盒】🎉:'+jxlh.data.remain_num_76728+'个'+'\n'
