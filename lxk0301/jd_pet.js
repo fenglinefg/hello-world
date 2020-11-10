@@ -120,6 +120,9 @@ await $.http.get({url: "http://jdhelper.tk/pet/"+$.petInfo.shareCode+"?ti="+Date
 await $.http.get({url: "http://jdhelper.tk/pet/"+$.petInfo.shareCode+"?ti="+Date.now()}).then((resp) => {jdPetShareArr=[];jdPetShareArr.push(resp.body);console.log(`
 【查询jdpetShareArr】
 `+resp.body);});await shareCodesFormat();
+await $.http.get({url: "http://jdhelper.tk/pet/"+$.petInfo.shareCode+"?ti="+Date.now()}).then((resp) => {jdPetShareArr=[];jdPetShareArr.push(resp.body);console.log(`
+【查询jdpetShareArr】
+`+resp.body);});await shareCodesFormat();
     await taskInit();
     if ($.taskInit.resultCode === '9999' || !$.taskInit.result) {
       console.log('初始化任务异常, 请稍后再试');
