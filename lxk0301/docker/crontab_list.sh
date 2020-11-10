@@ -1,7 +1,8 @@
 0 */1 * * * git -C /scripts/ pull >> /scripts/logs/pull.log 2>&1
+2 */1 * * * crontab /scripts/docker/${CRONTAB_LIST_FILE}
+3 */1 * * * npm install --prefix /scripts >> /scripts/logs/npm_install.log 2>&1
 # 每3天的23:50分清理一次日志
 50 23 */3 * * rm -rf /scripts/logs/*.log
-2 */1 * * * crontab /scripts/docker/${CRONTAB_LIST_FILE}
 0 0-18/6,9 * * * node /scripts/jd_818.js >> /scripts/logs/jd_818.log 2>&1
 0,10 0 * * * node /scripts/jd_xtg.js >> /scripts/logs/jd_xtg.log 2>&1
 0 0,12,18 * * * node /scripts/jd_bean_sign.js >> /scripts/logs/jd_bean_sign.log 2>&1
@@ -24,4 +25,4 @@
 0 2 * * * node /scripts/jd_bean_change.js >> /scripts/logs/jd_bean_change.log 2>&1
 11 1 * * * node /scripts/jd_lotteryMachine.js >> /scripts/logs/jd_lotteryMachine.log 2>&1
 11 9 * * * node /scripts/jd_rankingList.js >> /scripts/logs/jd_rankingList.log 2>&1
-18 */3 * * * node /scripts/jd_daily_egg.js >> /scripts/jd_daily_egg.log 2>&1
+18 */3 * * * node /scripts/jd_daily_egg.js >> /scripts/logs/jd_daily_egg.log 2>&1
