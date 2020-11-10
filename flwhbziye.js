@@ -3,6 +3,7 @@
 
 11.3 修复重写问题
 11.9 调整礼盒通知问题
+11.10 修复loon重写问题
 
 
 复制到微信里打开领取红包并下载  http://huodong.0w2ne27.cn/h5/Fanlishare20201111/share?spm=page_name.h5.pty-sharepv~module-home~std-76452&invite_userid=373511081
@@ -29,8 +30,9 @@ https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201111\/ajaxInit url script-reque
 #返利网红包
 ############## loon
 
-//
-https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201111\/ajaxInit script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js, requires-header=true
+http-request ^https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201111\/ajaxInit script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js, timeout=10, tag=返利网获取ck
+
+
 
 
 #返利网红包
