@@ -1,21 +1,6 @@
-## Github Action使用教程说明
- - Fork [此仓库项目](https://github.com/lxk0301/scripts) > 点击右上角fork按钮即可, [再不会可看此图](icon/fork.png)
+## 环境变量说明
 
- - 然后参考github@ruicky写的特别详细的小白教程[@ruicky教程](https://ruicky.me/2020/06/05/jd-sign/) (**注：此 [@ruicky教程](https://ruicky.me/2020/06/05/jd-sign/) 里面获取ck的方法不对。参考下面两种获取京东cookie的方式才对.**)
-
-   
-
-### 注意几个地方就行
-
-
-
-####  **fork后必须修改一下文件，才能执行定时任务**
-  - 比如修改一下`README.md`文件(enter键回车)，再提交   
-  - 不知怎么修改README.md文件的看[这个图](icon/action3.png);
     
-
-
-
 #### 京东Cookie
 
   - Secret新增`JD_COOKIE`，填入cookie信息，多账号的cookie， 使用`&`或者换行隔开(两种方法)
@@ -35,37 +20,7 @@
     - [浏览器获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie.md) 或者 [插件获取京东cookie教程](https://github.com/lxk0301/scripts/blob/master/backUp/GetJdCookie2.md)
     - IOS代理软件(Surge, Quantumult X, Loon)等用户有使用过BoxJs的,可在BoxJs里面提取京东cookie(打开BoxJs -> 底部中间的 `应用` -> NobyDa脚本订阅 -> 京东(多合一签到) -> 点击会话右上方的三个点点 -> 修改会话 -> 全选复制即可)，再不会看此[图文教程](icon/jd8.png)
     
-    
-#### Action里面cron时间
-
-  - 此时间是国际标准时间，与北京时间不同，github action写16点才表示北京时间0点，具体可参考下面两个链接写cron
-
-  -  [参考链接一](https://datetime360.com/cn/utc-beijing-time/) ， [参考链接二](http://www.timebie.com/cn/universalbeijing.php)
-
-  - 根据使用经验发现github action 会有延迟现象，一般会延迟15分钟左右吧。比如action设置`北京时间16:00`运行，action其实要`16:15左右`才会执行脚本的。
-
-
-
-#### 如何查看Action运行情况
-
-   - [查看运行状态](https://raw.githubusercontent.com/lxk0301/scripts/master/icon/action1.png)
-    
-   - [查看运行日志](https://raw.githubusercontent.com/lxk0301/scripts/master/icon/action2.png)  
-
-
-
-#### 如何禁用单个或者多个脚本(Action)
-
-   - 操作步骤[看此图](./icon/disable-action.jpg) 
-
-
-
-#### Fork后Action未运行
-
-  > 是因为`/.github/workflows/`路径里面的`.yml`后缀文件里面的cron时间未到，如需立马看到效果
-
-  - 方法：在自己仓库，手动点击仓库的右上角`star图标按钮`即可，稍后就能看到运行 
-  - 注：之后如果想单独运行某一个脚本(此处的前提条件是执行过上面的方法)，手动点击 Run workflow [根据此图片示例操作](https://user-images.githubusercontent.com/21308593/93980945-e28ab000-fdb1-11ea-977c-c50705e79ac3.png) ，再次点一下`Actions`图标即可看到效果(或者等待10秒左右也可) 
+     
 
 
 
@@ -208,7 +163,6 @@ jd_blueCoin.js是每次兑换到了奖品通知一次，
 jd_818.js是每次获取新的互助码会通知一次，以帮助您快速上车，
 其余的脚本平常运行都是不通知，只有在京东cookie失效后，才会推送通知    
   ```
-  - 如果填写了推送通知所需的secret后,运行上面有通知的脚本,还没收到通知的话,请自行查看action运行日志(如何查看日志教程请看上面的`如何查看action运行情况`),里面会推送通知发送失败的log
 
 
 ​    
@@ -217,4 +171,3 @@ jd_818.js是每次获取新的互助码会通知一次，以帮助您快速上�
     
 [GitHub Actions 入门教程](https://p3terx.com/archives/github-actions-started-tutorial.html)
 
-[github@ruicky教程](https://ruicky.me/2020/06/05/jd-sign/)
