@@ -77,8 +77,9 @@ async function main() {
                 await querymeal()
                 // 执行失败，降级处理
                 if (!$.execStatus) {
-                    $.log('整个流程有错误发生，降级处理')
-                    widget = createWidget(widget, "移不动", '-', '-', '-')
+                    $.log('整个流程有错误发生，降级处理，读取上次成功执行的数据')
+                    $.log(`读取数据：${await $.getDataFile('local')}`)
+                    widget = createWidget(widget, "移不动", await $.getVal('subt', 'local', '-'), await $.getVal('flowRes', 'local', '-'), await $.getVal('voiceRes', 'local', '-'))
                 } else {
                     $.log('整个流程执行正常')
                     widget = await showmsg(widget)
@@ -124,6 +125,13 @@ function showmsg(w) {
 async function createWidget(w, pretitle, title, subtitle, other) {
     $.log('创建widget')
 
+    // 保存成功执行的数据
+    if (title != '-') {
+        $.setVal('subt', title, 'local')
+        $.setVal('flowRes', subtitle, 'local')
+        $.setVal('voiceRes', other, 'local')
+        $.log(`写入数据：${await $.getDataFile('local')}`)
+    }
     const bgColor = new LinearGradient()
     bgColor.colors = [new Color("#001A27"), new Color("#00334e")]
     bgColor.locations = [0.0, 1.0]
@@ -175,7 +183,7 @@ async function createWidget(w, pretitle, title, subtitle, other) {
     otherTxt.textSize = normalFontSize
     w.addSpacer(sp)
 
-    let minTxt = w.addText(`更新于：${hours > 9 ? hours : "0" + hours}:${minutes > 9 ? minutes : "0" + minutes}`)
+    let minTxt = w.addText(`${$.execStatus?'':'⚬'}更新于：${hours > 9 ? hours : "0" + hours}:${minutes > 9 ? minutes : "0" + minutes}`)
     minTxt.textColor = new Color("#777")
     minTxt.font = Font.systemFont(11)
     minTxt.textSize = 11
