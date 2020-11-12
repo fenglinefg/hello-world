@@ -116,7 +116,7 @@ function ScriptableToolKit(scriptName, scriptId, options) {
         }
 
         saveLog() {
-            if (this.isSaveLog) {
+            if (this.isSaveLog && !this.execStatus) {
                 let message
                 if (Array.isArray(this.notifyInfo)) {
                     message = this.notifyInfo.join("")
