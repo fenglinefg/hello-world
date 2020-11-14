@@ -6,7 +6,7 @@
 10.14 因为大部分打卡失效，现删减整理，剩余5个
 10.28 增加京优打卡和云端打卡，注意  云端打卡用本地js   改ck=2  进行获取
 10.29 增加久诺打卡和每天打卡，注意  久诺打卡用本地js   改ck=2  进行获取
-11.14 
+11.14 剔除无用打卡  剩余4个
 
 功能如下：
 1.读秒限速打卡，
@@ -27,22 +27,12 @@
 
 ck=1
 
-微打卡
-微早起打卡
 音乐打卡
 早起打卡
-圈子打卡
-京优打卡
-每天打卡
-
-
-
-ck=2
-
 云端打卡
 久诺打卡
 
-用本地js   改ck=2  获取ck
+
 
 
 
@@ -70,12 +60,9 @@ ck=2
 
 
 
-hostname=zm.shujumagician.com,www.baimaa.com,ph0001.hezyq.com,daka.isfx.cn,wq.inqan.com,www.zq221727.com,cps.0day.fun,am.kuqi5.cn,w.1688sywh.com,
+hostname=www.baimaa.com,ph0001.hezyq.com,cps.0day.fun,am.kuqi5.cn,
 
 ############## 圈x
-
-//微打卡  微早起打卡
-https:\/\/zm\.shujumagician\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
 
 //音乐打卡
 https:\/\/www\.baimaa\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
@@ -86,23 +73,8 @@ https:\/\/ph0001\.hezyq\.com\/* url script-request-header https://raw.githubuser
 
 
 
-//圈子打卡
-https:\/\/wq\.inqan\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-
-
-//京优打卡
-https:\/\/www\.zq221727\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-
-
 //云端打卡
 https:\/\/cps\.0day\.fun\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-
 
 
 
@@ -111,25 +83,8 @@ https:\/\/am\.kuqi5\.cn\/* url script-request-header https://raw.githubuserconte
 
 
 
-
-//每天打卡
-https:\/\/w\.1688sywh\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
-
-
-
-
-
-
-
-
-
-
-
-
 ############## loon
 
-//微打卡  微早起打卡
-http-request https:\/\/zm\.shujumagician\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 //音乐打卡
 http-request https:\/\/www\.baimaa\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
@@ -139,51 +94,15 @@ http-request https:\/\/www\.baimaa\.com\/* script-path=https://raw.githubusercon
 http-request https:\/\/ph0001\.hezyq\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
-
-
-//圈子打卡
-http-request https:\/\/wq\.inqan\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-
-
-//京优打卡
-http-request https:\/\/www\.zq221727\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-
-
 //云端打卡
 http-request https:\/\/cps\.0day\.fun\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-
-
-
 
 
 //久诺打卡
 http-request https:\/\/am\.kuqi5\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
-
-
-//每天打卡
-http-request https:\/\/w\.1688sywh\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-
-
-
-
-
-
-
-
 ############## surge
-
-//微打卡  微早起打卡
-微打卡  微早起打卡 = type=http-request,pattern=https:\/\/zm\.shujumagician\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 //音乐打卡
 音乐打卡 = type=http-request,pattern=https:\/\/www\.baimaa\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
@@ -194,24 +113,8 @@ http-request https:\/\/w\.1688sywh\.com\/* script-path=https://raw.githubusercon
 
 
 
-//圈子打卡
-圈子打卡 = type=http-request,pattern=https:\/\/wq\.inqan\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-
-
-
-//京优打卡
-京优打卡 = type=http-request,pattern=https:\/\/www\.zq221727\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-
-
-
 //云端打卡
 云端打卡 = type=http-request,pattern=https:\/\/cps\.0day\.fun\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
 
 
 
@@ -222,34 +125,11 @@ http-request https:\/\/w\.1688sywh\.com\/* script-path=https://raw.githubusercon
 
 
 
-//每天打卡
-每天打卡 = type=http-request,pattern=https:\/\/w\.1688sywh\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 */
 
 //////////////////////////////////////////正文
 
 const CK=1// 修改ck 获取对应程序cookie
-
 const jsname = '打卡合集'
 const $ = new Env(jsname)//模版引用
 const jbid =1// 换号则复制js，修改jbid的值就可以了
@@ -261,41 +141,14 @@ const xj=1//现金开关
 const dm=1//读秒开关
 const tx=0//提现开关
 const dh=0//兑换开关
-const dd=2//运行时间，单位为秒
+const dd=4//运行时间，单位为秒
+
 var tz=''//通知循环
 
 
 
 
 
-
-const wdkname = "微打卡";//程序名
-const wdkid = 2;//ck id
-const wdkcs = 20;//打卡次数
-const wdktx = 10;//提现标准
-const wdkxs = 10;//限速标准.单位为分钟
-const wdkdh = 13000;//兑换标准
-const wdkdhid = 9;//兑换id
-const wdkdhsp = "腾讯月卡";//兑换商品
-const wdkkey = "wdkkey"+jbid  //保存ck
-const wdkurl =$.getdata(wdkkey)//读取ck
-
-
-
-
-
-
-
-const wzqdkname = "微早起打卡";//程序名
-const wzqdkid = 8;//ck id
-const wzqdkcs = 20;//打卡次数
-const wzqdktx = 10;//提现标准
-const wzqdkxs = 10;//限速标准.单位为分钟
-const wzqdkdh = 13000;//兑换标准
-const wzqdkdhid = 10;//兑换id
-const wzqdkdhsp = "腾讯月卡";//兑换商品
-const wzqdkkey = "wzqdkkey"+jbid  //保存ck
-const wzqdkurl =$.getdata(wzqdkkey)//读取ck
 
 
 
@@ -334,31 +187,8 @@ const zqdkurl =$.getdata(zqdkkey)//读取ck
 
 
 
-const qzdkname = "圈子打卡";//程序名
-const qzdkid = 9;//ck id
-const qzdkcs = 20;//打卡次数
-const qzdktx = 10;//提现标准
-const qzdkxs = 10;//限速标准.单位为分钟
-const qzdkdh = 3500;//兑换标准
-const qzdkdhid = 4;//兑换id
-const qzdkdhsp = "50元话费";//兑换商品
-const qzdkkey = "qzdkkey"+jbid  //保存ck
-const qzdkurl =$.getdata(qzdkkey)//读取ck
 
 
-
-
-
-const jydkname = "京优打卡";//程序名
-const jydkid = 39;//ck id
-const jydkcs = 5;//打卡次数
-const jydktx = 10;//提现标准
-const jydkxs = 10;//限速标准.单位为分钟
-const jydkdh = 3500;//兑换标准
-const jydkdhid = 4;//兑换id
-const jydkdhsp = "50元话费";//兑换商品
-const jydkkey = "jydkkey"+jbid  //保存ck
-const jydkurl =$.getdata(jydkkey)//读取ck
 
 
 
@@ -393,16 +223,6 @@ const jndkurl =$.getdata(jndkkey)//读取ck
 
 
 
-const mtdkname = "每天打卡";//程序名
-const mtdkid = 57;//ck id
-const mtdkcs = 10;//打卡次数
-const mtdktx = 10;//提现标准
-const mtdkxs = 10;//限速标准.单位为分钟
-const mtdkdh = 3500;//兑换标准
-const mtdkdhid = 4;//兑换id
-const mtdkdhsp = "50元话费";//兑换商品
-const mtdkkey = "mtdkkey"+jbid  //保存ck
-const mtdkurl =$.getdata(mtdkkey)//读取ck
 
 
 
@@ -431,29 +251,22 @@ if (isGetCookie) {
 
  {
 
-   for(var i=0;i<10;i++)
+   for(var i=0;i<6;i++)
  { (function(i) {
             setTimeout(function() {
      
-     if(i==0) wdk(i);
+     
+ if(i==0) yddk(i);
 
-else if(i==1) wzqdk(i);
+else if(i==1) zqdk(i);
+
 else if(i==2) yydk(i);
 
-else if(i==3) zqdk(i);
-
-else if(i==4) qzdk(i);
-
-else if(i==5) jydk(i);
-
-else if(i==6) yddk(i);
-
-else if(i==7) jndk(i);
-
-else if(i==8) mtdk(i);
+else if(i==3) jndk(i);
 
 
-else if(i==9) showmsg(i);
+
+else if(i==5) showmsg(i);
 
 
   
@@ -481,29 +294,31 @@ function GetCookie() {
 if (CK==1)
 {
 	
+
+
+
 if ($request && $request.url.match(/i=2&/))
 if ($request && $request.url.match(/action=today&contr=index/))
-{const wdkurl =  $request.url
-  $.log(`wdkurl:${wdkurl}`)
-  if (wdkurl) $.setdata(wdkurl, wdkkey)
-  $.msg(wdkkey, `获取cookie: 成功🎉`, ``)
+{const yddkurl =  $request.url
+  $.log(`yddkurl:${yddkurl}`)
+  if (yddkurl) $.setdata(yddkurl, yddkkey)
+  $.msg(yddkkey, `获取cookie: 成功🎉`, ``)
 }
 
 
 
-
-
-
+	
 if ($request && $request.url.match(/i=8&/))
 if ($request && $request.url.match(/action=today&contr=index/))
-{const wzqdkurl =  $request.url
-  $.log(`wzqdkurl:${wzqdkurl}`)
-  if (wzqdkurl) $.setdata(wzqdkurl, wzqdkkey)
-  $.msg(wzqdkkey, `获取cookie: 成功🎉`, ``)
+{const jndkurl =  $request.url
+  $.log(`jndkurl:${jndkurl}`)
+  if (jndkurl) $.setdata(jndkurl, jndkkey)
+  $.msg(jndkkey, `获取cookie: 成功🎉`, ``)
 }
 
 
 
+l
 
 if ($request && $request.url.match(/i=11&/))
 if ($request && $request.url.match(/action=today&contr=index/))
@@ -526,128 +341,17 @@ if ($request && $request.url.match(/action=today&contr=index/))
 
 
 
-
-if ($request && $request.url.match(/i=9&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const qzdkurl =  $request.url
-  $.log(`qzdkurl:${qzdkurl}`)
-  if (qzdkurl) $.setdata(qzdkurl, qzdkkey)
-  $.msg(qzdkkey, `获取cookie: 成功🎉`, ``)
 }
 
 
 
 
-if ($request && $request.url.match(/i=39&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const jydkurl =  $request.url
-  $.log(`jydkurl:${jydkurl}`)
-  if (jydkurl) $.setdata(jydkurl, jydkkey)
-  $.msg(jydkkey, `获取cookie: 成功🎉`, ``)
 }
-
-
-
-
-
-if ($request && $request.url.match(/i=57&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const mtdkurl =  $request.url
-  $.log(`mtdkurl:${mtdkurl}`)
-  if (mtdkurl) $.setdata(mtdkurl, mtdkkey)
-  $.msg(mtdkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-if (CK==2)
-{
-	
-	
-	
-	
-	
-if ($request && $request.url.match(/i=2&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const yddkurl =  $request.url
-  $.log(`yddkurl:${yddkurl}`)
-  if (yddkurl) $.setdata(yddkurl, yddkkey)
-  $.msg(yddkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-	
-if ($request && $request.url.match(/i=8&/))
-if ($request && $request.url.match(/action=today&contr=index/))
-{const jndkurl =  $request.url
-  $.log(`jndkurl:${jndkurl}`)
-  if (jndkurl) $.setdata(jndkurl, jndkkey)
-  $.msg(jndkkey, `获取cookie: 成功🎉`, ``)
-}
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
 
 ///////////////////////////////////////运行
-
-
-
-function wdk() {
-var A={Y:[wdkurl,wdkname,wdkcs,wdktx,wdkxs,wdkdh,wdkdhid,wdkdhsp]}
-B(A)
-}
-
-
-
-
-
-
-
-function wzqdk() {
-var A={Y:[wzqdkurl,wzqdkname,wzqdkcs,wzqdktx,wzqdkxs,wzqdkdh,wzqdkdhid,wzqdkdhsp]}
-B(A)
-}
 
 
 
@@ -661,30 +365,8 @@ B(A)
 
 
 
-
-
-
-
-
 function zqdk() {
 var A={Y:[zqdkurl,zqdkname,zqdkcs,zqdktx,zqdkxs,zqdkdh,zqdkdhid,zqdkdhsp]}
-B(A)
-}
-
-
-
-
-function qzdk() {
-var A={Y:[qzdkurl,qzdkname,qzdkcs,qzdktx,qzdkxs,qzdkdh,qzdkdhid,qzdkdhsp]}
-B(A)
-}
-
-
-
-
-
-function jydk() {
-var A={Y:[jydkurl,jydkname,jydkcs,jydktx,jydkxs,jydkdh,jydkdhid,jydkdhsp]}
 B(A)
 }
 
@@ -709,11 +391,6 @@ B(A)
 
 
 
-
-function mtdk() {
-var A={Y:[mtdkurl,mtdkname,mtdkcs,mtdktx,mtdkxs,mtdkdh,mtdkdhid,mtdkdhsp]}
-B(A)
-}
 
 
 
