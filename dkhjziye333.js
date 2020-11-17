@@ -141,7 +141,7 @@ const xj=1//现金开关
 const dm=1//读秒开关
 const tx=0//提现开关
 const dh=0//兑换开关
-const dd=4//运行时间，单位为秒
+const dd=5//运行时间，单位为秒
 
 var tz=''//通知循环
 
