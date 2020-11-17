@@ -141,7 +141,7 @@ const xj=1//现金开关
 const dm=1//读秒开关
 const tx=0//提现开关
 const dh=0//兑换开关
-const dd=5//运行时间，单位为秒
+const dd=4//运行时间，单位为秒
 
 var tz=''//通知循环
 
@@ -246,23 +246,23 @@ if (isGetCookie) {
 
  {
 
-   for(var i=0;i<4;i++)
+   for(var i=0;i<6;i++)
  { (function(i) {
             setTimeout(function() {
      
      
 
 
-if(i==1) jndk(i);
+if(i==0) jndk(i);
 
-else if(i==2) yddk(i);
+else if(i==1) yddk(i);
 
-//else if(i==3) jndk(i);
+else if(i==2) jndk(i);
 
-//else if(i==4) yddk(i);
+else if(i==3) yddk(i);
 
 
-else if(i==3) showmsg(i);
+else if(i==5) showmsg(i);
 
 
    
