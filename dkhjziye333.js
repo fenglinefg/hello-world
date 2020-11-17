@@ -257,9 +257,9 @@ if(i==0) jndk(i);
 
 else if(i==1) yddk(i);
 
-else if(i==2) jndk(i);
+else if(i==2) yydk(i);
 
-else if(i==3) yddk(i);
+else if(i==3) zqdk(i);
 
 
 else if(i==5) showmsg(i);
