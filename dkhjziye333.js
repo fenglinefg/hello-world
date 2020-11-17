@@ -148,11 +148,6 @@ var tz=''//通知循环
 
 
 
-
-
-
-
-
 const yydkname = "音乐打卡";//程序名
 const yydkid = 11;//ck id
 const yydkcs = 10;//打卡次数
@@ -256,14 +251,15 @@ if (isGetCookie) {
             setTimeout(function() {
      
      
- if(i==0) yddk(i);
 
-else if(i==1) zqdk(i);
+
+if(i==1) zqdk(i);
 
 else if(i==2) yydk(i);
 
 else if(i==3) jndk(i);
 
+else if(i==4) yddk(i);
 
 
 else if(i==5) showmsg(i);
