@@ -246,27 +246,26 @@ if (isGetCookie) {
 
  {
 
-   for(var i=0;i<6;i++)
+   for(var i=0;i<4;i++)
  { (function(i) {
             setTimeout(function() {
      
      
 
 
-if(i==1) zqdk(i);
+if(i==1) jndk(i);
 
-else if(i==2) yydk(i);
+else if(i==2) yddk(i);
 
-else if(i==3) jndk(i);
+//else if(i==3) jndk(i);
 
-else if(i==4) yddk(i);
-
-
-else if(i==5) showmsg(i);
+//else if(i==4) yddk(i);
 
 
-  
-  
+else if(i==3) showmsg(i);
+
+
+   
 }, (i + 1) * dd*1000);
                 })(i)
 
