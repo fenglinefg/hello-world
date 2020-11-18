@@ -313,7 +313,7 @@ if ($request && $request.url.match(/action=today&contr=index/))
 
 
 
-l
+
 
 if ($request && $request.url.match(/i=11&/))
 if ($request && $request.url.match(/action=today&contr=index/))
