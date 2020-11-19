@@ -4,9 +4,10 @@
 
 10.8 一共20个，自行删减替换（不一定都能提现，可自行关闭）
 10.14 因为大部分打卡失效，现删减整理，剩余5个
-10.28 增加京优打卡和云端打卡，注意  云端打卡用本地js   改ck=2  进行获取
-10.29 增加久诺打卡和每天打卡，注意  久诺打卡用本地js   改ck=2  进行获取
+10.28 增加京优打卡和云端打卡
+注意  久诺打卡用本地js   改ck=2  进行获取
 11.14 剔除无用打卡  剩余4个
+11.19 恢复微打卡 剩余5个 必须用本地文件获取微打卡的ck
 
 功能如下：
 1.读秒限速打卡，
@@ -33,7 +34,8 @@ ck=1
 久诺打卡
 
 
-
+ck=2
+微打卡
 
 
 
@@ -60,7 +62,7 @@ ck=1
 
 
 
-hostname=www.baimaa.com,ph0001.hezyq.com,cps.0day.fun,am.kuqi5.cn,
+hostname=www.baimaa.com,ph0001.hezyq.com,cps.0day.fun,am.kuqi5.cn,zm.shujumagician.com,
 
 ############## 圈x
 
@@ -83,6 +85,12 @@ https:\/\/am\.kuqi5\.cn\/* url script-request-header https://raw.githubuserconte
 
 
 
+//微打卡 
+https:\/\/zm\.shujumagician\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js
+
+
+
+
 ############## loon
 
 
@@ -100,6 +108,13 @@ http-request https:\/\/cps\.0day\.fun\/* script-path=https://raw.githubuserconte
 
 //久诺打卡
 http-request https:\/\/am\.kuqi5\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
+
+
+
+
+
+//微打卡  
+http-request https:\/\/zm\.shujumagician\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
 ############## surge
@@ -123,6 +138,8 @@ http-request https:\/\/am\.kuqi5\.cn\/* script-path=https://raw.githubuserconten
 
 
 
+//微打卡
+微打卡= type=http-request,pattern=https:\/\/zm\.shujumagician\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/dkhjziye333.js, requires-body=true
 
 
 */
@@ -130,11 +147,13 @@ http-request https:\/\/am\.kuqi5\.cn\/* script-path=https://raw.githubuserconten
 //////////////////////////////////////////正文
 
 const CK=1// 修改ck 获取对应程序cookie
+
 const jsname = '打卡合集'
 const $ = new Env(jsname)//模版引用
 const jbid =1// 换号则复制js，修改jbid的值就可以了
 const notify = 1; //通知开为1，关为0
 const logs = 0; // 日志开为1，关为0
+
 const dk=1//打卡开关
 const tj=1//统计开关
 const xj=1//现金开关
@@ -220,6 +239,19 @@ const jndkurl =$.getdata(jndkkey)//读取ck
 
 
 
+const wdkname = "微打卡";//程序名
+const wdkid = 2;//ck id
+const wdkcs = 20;//打卡次数
+const wdktx = 10;//提现标准
+const wdkxs = 10;//限速标准.单位为分钟
+const wdkdh = 13000;//兑换标准
+const wdkdhid = 9;//兑换id
+const wdkdhsp = "腾讯月卡";//兑换商品
+const wdkkey = "wdkkey"+jbid  //保存ck
+const wdkurl =$.getdata(wdkkey)//读取ck
+
+
+
 
 
 
@@ -260,7 +292,8 @@ else if(i==1) yddk(i);
 else if(i==2) yydk(i);
 
 else if(i==3) zqdk(i);
-
+		    
+else if(i==4) wdk(i);
 
 else if(i==5) showmsg(i);
 
@@ -339,6 +372,22 @@ if ($request && $request.url.match(/action=today&contr=index/))
 }
 
 
+	
+	if (CK==2)
+{
+
+		
+if ($request && $request.url.match(/i=2&/))
+if ($request && $request.url.match(/action=today&contr=index/))
+{const wdkurl =  $request.url
+  $.log(`wdkurl:${wdkurl}`)
+  if (wdkurl) $.setdata(wdkurl, wdkkey)
+  $.msg(wdkkey, `获取cookie: 成功🎉`, ``)
+}
+
+	
+	}
+	
 
 
 }
@@ -384,6 +433,13 @@ B(A)
 }
 
 
+
+
+
+function wdk() {
+var A={Y:[wdkurl,wdkname,wdkcs,wdktx,wdkxs,wdkdh,wdkdhid,wdkdhsp]}
+B(A)
+}
 
 
 
