@@ -1,174 +1,114 @@
 /*
-索尼俱乐部签到-lowking-v1.4
+哔哩哔哩大会员特权领取-lowking-v1.0
 
-⚠️v1.2之后需要订阅BoxJs之后填写帐号密码
+⚠️注意，本月领取过如果再执行，会提示"网络繁忙"
+
+按下面配置完之后，手机哔哩哔哩点击我的-我的大会员-卡券包，领取一张券获取Cookie
+或浏览器登录b站之后打开https://big.bilibili.com/mobile/cardBag，领取一张券获取Cookie
+
+hostname = *.bilibili.com
 
 ************************
 Surge 4.2.0+ 脚本配置:
 ************************
+
 [Script]
-# > 索尼俱乐部签到
-索尼俱乐部签到 = type=cron,cronexp="0 0 0 * * ?",wake-system=1,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/sony/sonyClub.js
-
-
+# > 哔哩哔哩大会员特权领取
+哔哩哔哩大会员特权领取cookie = type=http-request,pattern=https:\/\/api.bilibili.com\/x\/vip\/privilege\/receive,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bilibili/privilegeReceive.js
+哔哩哔哩大会员特权领取 = type=cron,cronexp="0 0 0,1 * * ?",wake-system=1,script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bilibili/privilegeReceive.js
 
 
 ************************
-QuantumultX 脚本配置:
+QuantumultX 本地脚本配置:
 ************************
+
+[rewrite_local]
+#哔哩哔哩大会员特权领取cookie
+https:\/\/api.bilibili.com\/x\/vip\/privilege\/receive url script-request-header https://raw.githubusercontent.com/lowking/Scripts/master/bilibili/privilegeReceive.js
+
 [task_local]
-0 0 0 * * ? https://raw.githubusercontent.com/lowking/Scripts/master/sony/sonyClub.js
-
-
-
+0 0 0,1 * * ? https://raw.githubusercontent.com/lowking/Scripts/master/bilibili/privilegeReceive.js
 
 ************************
-LOON 脚本配置:
+LOON 本地脚本配置:
 ************************
+
 [Script]
-cron "0 0 0 * * *" script-path=https://raw.githubusercontent.com/lowking/Scripts/master/sony/sonyClub.js, tag=索尼俱乐部签到
+http-request https:\/\/api.bilibili.com\/x\/vip\/privilege\/receive script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bilibili/privilegeReceive.js, timeout=10, tag=哔哩哔哩大会员特权领取cookie
+cron "0 0 0,1 * * *" script-path=https://raw.githubusercontent.com/lowking/Scripts/master/bilibili/privilegeReceive.js, tag=哔哩哔哩大会员特权领取
 
 */
-const sonyClubTokenKey = 'lkSonyClubToken'
-const lk = new ToolKit('索尼俱乐部签到', 'SonyClub')
-const signurlVal = `https://www.sonystyle.com.cn/eSolverOmniChannel/account/signupPoints.do?channel=WAP&access_token=`
-var sonyClubToken = !lk.getVal(sonyClubTokenKey) ? `` : lk.getVal(sonyClubTokenKey)
-const userAgent = `Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/12.0.2 Safari/605.1.15`
 
-if (!lk.isExecComm) {
-    all()
+const lk = new ToolKit(`哔哩哔哩大会员特权领取`, `BilibiliPrivilegeReceive`)
+const requestHeaders = !lk.getVal('lkBilibiliPrivilegeReceiveRequestHeaders') ? '' : JSON.parse(lk.getVal('lkBilibiliPrivilegeReceiveRequestHeaders'))
 
-    async function all() {
-        lk.boxJsJsonBuilder({"author": "@lowking"})
-        await signIn() //签到
-        await notify() //通知
-    }
-
-    function signIn() {
-        return new Promise(async (resolve, reject) => {
-            try {
-                let url = {
-                    url: `${signurlVal}${sonyClubToken}`,
-                    headers: {
-                        "User-Agent": userAgent
-                    }
-                }
-                lk.log(`${JSON.stringify(url)}`)
-                lk.post(url, async (error, response, data) => {
-                    try {
-                        lk.log(data)
-                        if (data == undefined) {
-                            lk.log(`进入自动登录`)
-                            // 不通知直接登录获取token
-                            if (loginCount > 3) {
-                                lk.appendNotifyInfo(`登录尝试3次，均失败❌请确认帐号密码是否正确！`)
-                                lk.execFail()
-                            } else {
-                                await loginSonyClub()
-                            }
-                        } else {
-                            const result = JSON.parse(data)
-                            if (result.resultMsg[0].code == "00") {
-                                lk.appendNotifyInfo(`连续签到${result.resultData.successiveSignupDays}天🎉\n本次签到获得【${result.resultData.signupRankingOfDay}】成长值，共【${result.resultData.totalPoints}】成长值`)
-                            } else if (result.resultMsg[0].code == "99") {
-                                lk.appendNotifyInfo(`重复签到🔁`)
-                            } else if (result.resultMsg[0].code == "98") {
-                                if (loginCount > 3) {
-                                    lk.appendNotifyInfo(`登录尝试3次，均失败❌请确认帐号密码是否正确！`)
-                                    lk.execFail()
-                                } else {
-                                    await loginSonyClub()
-                                }
-                            } else {
-                                lk.appendNotifyInfo(`签到失败❌\\n${result.resultMsg[0].message}`)
-                                lk.execFail()
-                            }
-                        }
-                    } catch (ee) {
-                        throw ee
-                    } finally {
-                        resolve()
-                    }
-                })
-            } catch (e) {
-                lk.log(`${lk.name}异常：\n${e}`)
-                lk.execFail()
-                lk.appendNotifyInfo(`签到异常，请带上日志联系作者❌`)
-                return resolve()
-            }
+if(!lk.isExecComm) {
+    if (lk.isRequest()) {
+        getCookie()
+        lk.done()
+    } else {
+        lk.boxJsJsonBuilder({
+            "settings": {
+                "id": "lkBilibiliPrivilegeReceiveRequestHeaders",
+                "name": "哔哩哔哩大会员特权领取Headers",
+                "val": "",
+                "type": "text",
+                "desc": "哔哩哔哩大会员特权领取Headers"
+            },
+            "keys": ["lkBilibiliPrivilegeReceiveRequestHeaders"]
         })
-    }
-
-    var loginCount = 0
-
-    async function loginSonyClub() {
-        ++loginCount
-        return new Promise(async (resolve, reject) => {
-            lk.log(`第${loginCount}次尝试登录`)
-            let loginId = lk.getVal("lkSonyClubLoginId")
-            let pwd = lk.getVal("lkSonyClubPassword")
-            if (lk.isEmpty(loginId) || lk.isEmpty(pwd)) {
-                lk.appendNotifyInfo(`请到BoxJs填写帐号密码⚠️`)
-                lk.execFail()
-                return resolve()
-            }
-            let loginUrl = {
-                url: `https://www.sonystyle.com.cn/eSolverOmniChannel/account/login.do`,
-                headers: {
-                    "User-Agent": userAgent,
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    "channel": "WAP",
-                    "loginID": loginId,
-                    "password": pwd
-                })
-            };
-            try {
-                lk.log(JSON.stringify(loginUrl))
-                lk.post(loginUrl, async (error, response, data) => {
-                    try {
-                        lk.log(data)
-                        if (data == undefined) {
-                            if (loginCount > 3) {
-                                lk.appendNotifyInfo(`登录尝试3次，均失败❌请确认帐号密码是否正确！`)
-                                lk.execFail()
-                                return resolve()
-                            } else {
-                                await loginSonyClub()
-                            }
-                        } else {
-                            const result = JSON.parse(data)
-                            if (result.resultMsg[0].code == "00") {
-                                //登录成功，调用签到
-                                let accessToken = result.resultData["access_token"]
-                                lk.log(`登录成功，token：${accessToken}`)
-                                lk.setVal(sonyClubTokenKey, accessToken)
-                                sonyClubToken = accessToken
-                                await signIn()
-                            } else {
-                                lk.appendNotifyInfo(`登录失败❌\n${result.resultMsg[0].message}`)
-                                lk.execFail()
-                                return resolve()
-                            }
-                        }
-                    } finally {
-                        resolve()
-                    }
-                })
-            } catch (e) {
-                lk.execFail()
-                throw e
-            }
-        })
+        all()
     }
 }
 
-function notify() {
-    return new Promise((resolve, reject) => {
-        lk.msg(``)
-        lk.done()
-        return resolve()
+function getCookie() {
+    if (lk.isGetCookie(/\/x\/vip\/privilege\/receive/)) {
+        lk.setVal('lkBilibiliPrivilegeReceiveRequestHeaders', JSON.stringify($request.headers))
+        lk.msg(``, `获取Cookie成功🎉`)
+    }
+}
+
+async function all() {
+    if (requestHeaders == '') {
+        lk.execFail()
+        lk.appendNotifyInfo(`⚠️请先到app中我的-我的大会员-卡券包，领取一张券获取Cookie`)
+    } else {
+        await getBBTicket()
+    }
+    lk.msg(``)
+    lk.done()
+}
+
+function getBBTicket() {
+    lk.log('领取每月B币券')
+    let url = {
+        url: 'https://api.bilibili.com/x/vip/privilege/receive',
+        body: `csrf=${requestHeaders['X-CSRF-TOKEN']})&type=1}`,
+        headers: {
+            "User-Agent": requestHeaders
+        }
+    }
+    lk.post(url, (error, response, data) => {
+        try {
+            lk.log(error)
+            if (error) {
+                lk.execFail()
+                lk.appendNotifyInfo(`领取B币券失败❌请稍后再试`)
+            } else {
+                let ret = JSON.parse(data)
+                if (ret.code == 0) {
+                    lk.appendNotifyInfo(`🎉领取B币券成功`)
+                } else {
+                    lk.execFail()
+                    lk.appendNotifyInfo(`❌领取B币券失败：${ret.message}`)
+                }
+            }
+        } catch (e) {
+            lk.logErr(e)
+            lk.log(`b站返回数据：${data}`)
+            lk.execFail()
+            lk.appendNotifyInfo(`领取B币券错误❌请带上日志联系作者`)
+        }
     })
 }
 
