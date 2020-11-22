@@ -763,8 +763,8 @@ function grabCoupons(id) {
 function getToken() {
 	let reg = /^https:\/\/as\.xiaojukeji\.com\/ep\/as\/toggles\?.*city=(\d+)&.*ticket=(.*)&/;
 	if (reg.exec($request.url)) {
-		let CityValue = reg.exec(requrl)[1];
-		let TokenValue = decodeURIComponent(reg.exec(requrl)[2]);
+		let CityValue = reg.exec($request.url)[1];
+		let TokenValue = decodeURIComponent(reg.exec($request.url)[2]);
 		if ($.read("#DiDi") != (undefined || null)) {
 			if ($.read("#DiDi") != TokenValue || $.read("#DiDi_city") != CityValue) {
 				$.write(TokenValue, "#DiDi");
