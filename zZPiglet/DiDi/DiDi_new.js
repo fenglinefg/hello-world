@@ -226,6 +226,8 @@ function getIds() {
 			$.sparePointSignURL = obj.sparePointSignURL;
 			$.probability = obj.p;
 			$.source_id = obj.source_id;
+			let other_source_id = obj.other_source_id;
+			$.source_id.push(Choose(other_source_id));
 			$.drawlids = obj.drawlids;
 			$.expenddrawlids = obj.expenddrawlids;
 			$.financeActId = obj.financeActId;
@@ -310,9 +312,11 @@ async function pointSign() {
 		$.realPointSignURL = $.sparePointSignURL;
 		await prePointSign();
 	}
-	await getPointSignDay();
-	await doPointSign();
-	if ($.canRewardPointSign) await rewardPointSign();
+	if ($.pointSignActivityId) {
+		await getPointSignDay();
+		await doPointSign();
+		if ($.canRewardPointSign) await rewardPointSign();
+	}
 }
 
 function getPointSignURL() {
@@ -436,9 +440,10 @@ function pointInfo() {
 			let expirepoint = obj.data.dcoin.expire_balance;
 			let expiredate = obj.data.dcoin.expire_date;
 			$.detail += "账户共有 " + total + " 积分";
-			$.detail += expiredate
-				? "，有 " + expirepoint + " 积分将在 " + expiredate + " 过期。"
-				: "。";
+			$.detail +=
+				expiredate && expirepoint
+					? "，有 " + expirepoint + " 积分将在 " + expiredate + " 过期。"
+					: "。";
 		})
 		.catch((err) => {
 			$.error(err);
