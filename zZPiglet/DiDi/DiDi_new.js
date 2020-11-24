@@ -465,27 +465,30 @@ function storeActId() {
 			$.delete("actIdAM");
 			$.delete("actIdPM");
 			if (obj && obj.errno == 0) {
+				let actIdAM = [];
+				let actIdPM = [];
 				for (let a of obj.data.calendar[today]) {
 					if (a.act_conf.receive_start_at) {
-						$.info(a.act_conf.receive_start_at + ": " + a.act_id);
-						$.detail += "\n券编号：" + a.act_conf.receive_start_at + ": " + a.act_id;
-						let actIdAM = [];
-						let actIdPM = [];
 						if (a.act_conf.receive_start_at.match("09:00:00")) {
 							actIdAM.push(a.act_id);
+							$.info(a.act_conf.receive_start_at + ": " + a.act_id + " 已存 ✅");
 							//$.write(a.act_id, "actIdAM");
-							$.detail += " 已存 ✅";
+							//$.detail += " 已存 ✅";
 						} else if (a.act_conf.receive_start_at.match("20:00:00")) {
 							actIdPM.push(a.act_id);
 							//$.write(a.act_id, "actIdPM");
+							$.info(a.act_conf.receive_start_at + ": " + a.act_id + " 已存 ✅");
+							$.detail +=
+								"\n券编号：" + a.act_conf.receive_start_at + ": " + a.act_id;
 							$.detail += " 已存 ✅";
 						} else {
-							$.detail += " 未存 ❌";
+							$.info(a.act_conf.receive_start_at + ": " + a.act_id + " 未存 ❌");
+							//$.detail += " 未存 ❌";
 						}
-						$.write(JSON.stringify(actIdAM), "actIdAM");
-						$.write(JSON.stringify(actIdPM), "actIdPM");
 					}
 				}
+				$.write(JSON.stringify(actIdAM), "actIdAM");
+				$.write(JSON.stringify(actIdPM), "actIdPM");
 				$.tail +=
 					"\n\n" +
 					obj.data.greeting.text.substr(3) +
@@ -598,7 +601,8 @@ function draw(lid) {
 			}
 		})
 		.catch((err) => {
-			throw err;
+			$.error("draw " + lid + ": \n");
+			$.error(err);
 		});
 }
 
@@ -619,7 +623,8 @@ function share(lid) {
 			$.times += obj.data.incr_num;
 		})
 		.catch((err) => {
-			throw err;
+			$.error("share " + lid + ": \n");
+			$.error(err);
 		});
 }
 
@@ -710,6 +715,7 @@ function joinInstance() {
 			}
 		})
 		.catch((err) => {
+			$.error("joinInstance: \n");
 			$.error(err);
 		});
 }
@@ -732,6 +738,7 @@ function getInstance() {
 			$.instance_activity_id = obj.data.activity_info.activity_id;
 		})
 		.catch((err) => {
+			$.error("getInstance: \n");
 			$.error(err);
 		});
 }
@@ -755,6 +762,7 @@ function rewardInstance() {
 			}
 		})
 		.catch((err) => {
+			$.error("rewardInstance: \n");
 			$.error(err);
 		});
 }
