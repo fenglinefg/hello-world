@@ -164,12 +164,12 @@ if ($.isRequest) {
 						})
 					);
 				}
+				await reward();
 				await checkin();
 				await pointCollect();
 				await pointSign();
 				await pointInfo();
 				await storeActId();
-				await reward();
 				//await lucina();
 				//await didibus();
 				if ($.activity_instance_id && Math.random() < $.probability) {
@@ -520,7 +520,7 @@ async function reward() {
 	$.rewardtotal = 0;
 	await rewardList();
 	if ($.rewardList) await getReward();
-	if ($.rewardtotal) $.detail += "\n捡回遗忘的 " + $.rewardtotal.toFixed(2) + " 元福利金。";
+	if ($.rewardtotal) $.detail += "捡回遗忘的 " + $.rewardtotal.toFixed(2) + " 元福利金。";
 }
 
 function rewardList() {
