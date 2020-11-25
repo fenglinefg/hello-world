@@ -6,15 +6,15 @@
 
 11.25 增加 阅读时长上传，阅读金币，阅读随机金币
 11.25 修复翻倍宝箱不同时领取的问题.增加阅读金币判定
-
+11.25 修复阅读时长问题，请重新获取时长cookie
 
 ⚠️cookie获取方法：
 
 进 https://m.q.qq.com/a/s/d3eacc70120b9a37e46bad408c0c4c2a  点我的   获取cookie
 
-进一本书 3秒 然后退出，获取阅读时长cookie
+进一本书 看 10秒以下 然后退出，获取阅读时长cookie，看书一定不能超过10秒
 
-可能会卡住，但是能获取到cookie，再注释cookie重写就行了！
+可能某些页面会卡住，但是能获取到cookie，再注释cookie重写就行了！
 
 
 
@@ -111,7 +111,7 @@ const qqreadtimeheaderKey = 'qqreadtimehd'+jbid
 const qqreadtimeheaderVal= $.getdata(qqreadtimeheaderKey)
 
 
-const qqreadtimebodyVal = ''
+
 
 
 
@@ -144,12 +144,12 @@ function GetCookie() {
   const qqreadurlVal = $request.url
 if (qqreadurlVal)        $.setdata(qqreadurlVal,qqreadurlKey)
     $.log(`[${jsname}] 获取url请求: 成功,qqreadurlVal: ${qqreadurlVal}`)
-//$.msg(qqreadurlKey, `获取url: 成功🎉`, ``)
+
     
   const qqreadbodyVal = $request.body
     if (qqreadbodyVal)        $.setdata(qqreadbodyVal,qqreadbodyKey)
     $.log(`[${jsname}] 获取阅读: 成功,qqreadbodyVal: ${qqreadbodyVal}`)
-//$.msg(qqreadbodyKey, `获取body: 成功🎉`, ``)
+
     
 const qqreadheaderVal = JSON.stringify($request.headers)
     if (qqreadheaderVal)        $.setdata(qqreadheaderVal,qqreadheaderKey)
@@ -168,9 +168,18 @@ else if($request &&$request.url.indexOf("addReadTimeWithBid?")>=0) {
   const qqreadtimeurlVal = $request.url
 if (qqreadtimeurlVal)        $.setdata(qqreadtimeurlVal,qqreadtimeurlKey)
     $.log(`[${jsname}] 获取阅读时长url: 成功,qqreadtimeurlVal: ${qqreadtimeurlVal}`)
-$.msg(qqreadtimeurlKey, `获取阅读时长cookie: 成功🎉`, ``)
+
     
-    
+ 
+
+
+const qqreadtimeheaderVal = JSON.stringify($request.headers)
+    if (qqreadtimeheaderVal)        $.setdata(qqreadtimeheaderVal,qqreadtimeheaderKey)
+    $.log(`[${jsname}] 获取时长header: 成功,qqreadtimeheaderVal: ${qqreadtimeheaderVal}`)
+    $.msg(qqreadtimeheaderKey, `获取阅读时长cookie: 成功🎉`, ``)
+
+
+   
   
 
 }
@@ -189,10 +198,10 @@ function all()
  { (function(i) {
             setTimeout(function() {
 
-     if (i==0)qqreadinfo()
+     if (i==0)qqreadinfo();
 else if  (i==1)qqreadtime();
 
-else if (i==2)qqreadtask()
+else if (i==2)qqreadtask();
 
 
 else if (i==3&&task.data.treasureBox.doneFlag==0)
@@ -228,7 +237,7 @@ qqreadbox2();
 
 
 
-else if (i==12) showmsg()
+else if (i==12) showmsg();
 
  }
 
@@ -365,7 +374,7 @@ return new Promise((resolve, reject) => {
     url: qqreadtimeurlVal.replace(/readTime=/g, `readTime=${TIME}`),
 
     headers: JSON.parse(qqreadtimeheaderVal),
-     body:qqreadtimebodyVal
+     
     };
    $.get(toqqreadtimeurl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 阅读时长: ${data}`)
