@@ -185,7 +185,7 @@ function all()
 
  {
 
-   for(var i=0;i<12;i++)
+   for(var i=0;i<13;i++)
  { (function(i) {
             setTimeout(function() {
 
@@ -217,18 +217,18 @@ qqreadsign();
 else if (i==8)
 qqreadconfig();
 
-else if (i==9&&task.data.treasureBox.videoDoneFlag==0)
-qqreadbox2();
+
 		    
-else if (i==10&&sign.data.videoDoneFlag==0)
+else if (i==9&&sign.data.videoDoneFlag==0)
 qqreadsign2();
 
+else if (i==10&&task.data.treasureBox.videoDoneFlag==0)
+qqreadbox2();
 
 
 
 
-
-else if (i==11) showmsg()
+else if (i==12) showmsg()
 
  }
 
