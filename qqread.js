@@ -217,13 +217,14 @@ qqreadsign();
 else if (i==8)
 qqreadconfig();
 
-
-else if (i==9&&sign.data.videoDoneFlag==0)
+else if (i==9&&task.data.treasureBox.videoDoneFlag==0)
+qqreadbox2();
+		    
+else if (i==10&&sign.data.videoDoneFlag==0)
 qqreadsign2();
 
 
-else if (i==10&&task.data.treasureBox.videoDoneFlag==0)
-qqreadbox2();
+
 
 
 
