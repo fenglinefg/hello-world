@@ -6,7 +6,7 @@
 
 11.25 增加 阅读时长上传，阅读金币，阅读随机金币
 11.25 修复翻倍宝箱不同时领取的问题.增加阅读金币判定
-11.25 修复阅读时长问题，请重新获取时长cookie
+11.25 修复阅读时长问题，阅读金币问题，请重新获取时长cookie
 
 ⚠️cookie获取方法：
 
@@ -457,7 +457,7 @@ for(let i=0;i<config.data.pageParams.readTimeTask.length;i++)
 var ssrid=config.data.pageParams.readTimeTask[i].seconds
 
  
-const toqqreadssrurl = {url: `https://mqqapi.reader.qq.com/mqq/red_packet/user/read_time_reward?seconds=${ssrid}`,
+const toqqreadssrurl = {url: `https://mqqapi.reader.qq.com/mqq/red_packet/user/read_time?seconds=${ssrid}`,
 
 
     headers: JSON.parse(qqreadheaderVal),
