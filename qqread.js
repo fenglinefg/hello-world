@@ -511,14 +511,6 @@ if (sign.data.videoDoneFlag)
  {
 tz+=
 '【金币签到】:获得'+sign.data.todayAmount+'金币\n'
-
-for(let i=0;i<sign.data.dayList.length;i++)
- {
-tz+=sign.data.dayList[i].dayText+sign.data.dayList[i].amount+'金币\n'
-
-}
-
-
     }
 
 
