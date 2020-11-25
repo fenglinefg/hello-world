@@ -5,7 +5,7 @@
 转载请备注个名字，谢谢
 
 11.25 增加 阅读时长上传，阅读金币，阅读随机金币
-11.25 修复翻倍宝箱不同时领取的问题
+11.25 修复翻倍宝箱不同时领取的问题.增加阅读金币判定
 
 
 ⚠️cookie获取方法：
@@ -427,9 +427,8 @@ const toqqreadssrprourl = {
    $.get(toqqreadssrprourl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 金币额外奖励: ${data}`)
      ssrpro =JSON.parse(data)
-
-tz+=
-'【阅读随机金币】获得'+ssrpro.data.amount+'金币\n'
+if (ssrpro.code==0)
+tz+='【阅读随机金币】获得'+ssrpro.data.amount+'金币\n'
 
      
 
@@ -457,8 +456,8 @@ const toqqreadssrurl = {url: `https://mqqapi.reader.qq.com/mqq/red_packet/user/r
    $.get(toqqreadssrurl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 金币奖励: ${data}`)
      ssr =JSON.parse(data)
-tz+=
-'【阅读金币】获得'+ssr.data.amount+'金币\n'
+	if (ssr.code==0)   
+tz+='【阅读金币】获得'+ssr.data.amount+'金币\n'
 
 
      
