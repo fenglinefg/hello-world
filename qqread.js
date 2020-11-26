@@ -203,7 +203,7 @@ qqreadsign();//金币签到
 else if (i==4&&task.data.treasureBox.doneFlag==0)
 qqreadbox();//宝箱
 
-else if (i==5&&task.data.taskList[2].doneFlag==1)
+else if (i==5&&task.data.taskList[2].doneFlag==0)
 qqreadssr1();//阅读金币1
 
 else if (i==6)
@@ -215,7 +215,7 @@ qqreadtake();//阅豆签到
 else if (i==8&&task.data.taskList[1].doneFlag==0)
 qqreaddayread();//阅读任务
 
-else if (i==9&&task.data.taskList[2].doneFlag==1)
+else if (i==9&&task.data.taskList[2].doneFlag==0)
 qqreadssr2();//阅读金币2
 
 else if (i==10&&task.data.taskList[3].doneFlag==0)
@@ -227,7 +227,7 @@ qqreadsign2();//签到翻倍
 else if (i==12&&task.data.treasureBox.videoDoneFlag==0)
 qqreadbox2();//宝箱翻倍
 
-else if (i==13&&task.data.taskList[2].doneFlag==1)
+else if (i==13&&task.data.taskList[2].doneFlag==0)
 qqreadssr3();//阅读金币3
 
 else if (i==14)
