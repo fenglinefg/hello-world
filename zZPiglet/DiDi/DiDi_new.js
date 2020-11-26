@@ -44,8 +44,8 @@ Quantumult X:
 Surge:
 [Script]
 滴滴出行 = type=cron,cronexp="0 1,20 * * *",wake-system=1,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi_new.js
-滴滴出行APPCookie = type=http-request,pattern=^https:\/\/as\.xiaojukeji\.com\/ep\/as\/toggles\?,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi.js
-滴滴出行小程序Cookie = type=http-request,pattern=^https:\/\/common\.diditaxi\.com\.cn\/webapp\/config\/sidebar\?,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi.js
+滴滴出行APPCookie = type=http-request,pattern=^https:\/\/as\.xiaojukeji\.com\/ep\/as\/toggles\?,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi_new.js
+滴滴出行小程序Cookie = type=http-request,pattern=^https:\/\/common\.diditaxi\.com\.cn\/webapp\/config\/sidebar\?,script-path=https://raw.githubusercontent.com/zZPiglet/Task/master/DiDi/DiDi_new.js
 
 Loon、Shadowrocket:
 [Script]
@@ -142,6 +142,7 @@ if ($.isRequest) {
 			}  
 			*/
 				if (aff) await getIds();
+				await checkin();
 				if ($.drawlids) {
 					await Promise.all(
 						$.drawlids.map(async (lid) => {
@@ -165,7 +166,6 @@ if ($.isRequest) {
 					);
 				}
 				await reward();
-				await checkin();
 				await pointCollect();
 				await pointSign();
 				await pointInfo();
@@ -245,7 +245,7 @@ async function checkin() {
 	let params = "&city_id=" + $.city;
 	if ($.source_id) {
 		$.s_i = await Choose($.source_id);
-		$.info("Thanks aff to : \n" + $.s_i);
+		$.info("Thanks try to aff to : \n" + $.s_i);
 		params += "&share_source_id=" + $.s_i + "&share_date=" + today;
 	}
 	await $.get({
@@ -273,6 +273,7 @@ async function checkin() {
 					}
 					let total = obj.data.welfare.balance;
 					$.detail += "账户共有 " + total + " 福利金，可抵扣 " + total / 100 + " 元。";
+					if (obj.data.message.text) $.info(obj.data.message.tex)
 					for (let message of obj.data.notification.reverse()) {
 						$.expire += "\n" + message;
 					}
