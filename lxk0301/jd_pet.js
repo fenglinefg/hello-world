@@ -111,6 +111,24 @@ async function jdPet() {
       return
     }
     console.log(`\n【您的互助码shareCode】 ${$.petInfo.shareCode}\n`);
+    await   $.get({
+      url: "http://jdhelper.tk/pet/" + $.petInfo.shareCode + "?ti=" + Date.now()
+    }, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log('\n查询jdpetShareCode: API查询请求失败 ‼️‼️')
+          $.logErr(err);
+        } else {
+          //jdPetShareArr = [];
+          //jdPetShareArr.push(resp.body);
+          newShareCodes = resp.body.split(`@`);
+          console.log(`\n【查询jdpetShareArr】\n` + resp.body);
+        }
+      } catch (e) {
+        $.logErr(e, resp);
+      }
+    });
+   // await shareCodesFormat();
     await taskInit();
     if ($.taskInit.resultCode === '9999' || !$.taskInit.result) {
       console.log('初始化任务异常, 请稍后再试');
@@ -464,7 +482,7 @@ function shareCodesFormat() {
     }
     const readShareCodeRes = await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
-      newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
+    //  newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
     }
     console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
     resolve();

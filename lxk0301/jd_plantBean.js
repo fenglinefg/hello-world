@@ -90,6 +90,21 @@ async function jdPlantBean() {
     const shareUrl = $.plantBeanIndexResult.data.jwordShareInfo.shareUrl
     $.myPlantUuid = getParam(shareUrl, 'plantUuid')
     console.log(`\n【您的互助码plantUuid】 ${$.myPlantUuid}\n`);
+    await   $.get({
+      url: "http://jdhelper.tk/plantbean/" + $.myPlantUuid + "?ti=" + Date.now()
+    }, (err, resp, data) => {
+      try {
+        if (err) {
+          console.log('\n查询jdpetShareCode: API查询请求失败 ‼️‼️')
+          $.logErr(err);
+        } else {
+          newShareCodes = resp.body.split(`@`);
+          console.log(`【查询jdBeanShareArr】` + resp.body);
+        }
+      } catch (e) {
+        $.logErr(e, resp);
+      }
+    });
     roundList = $.plantBeanIndexResult.data.roundList;
     currentRoundId = roundList[1].roundId;//本期的roundId
     lastRoundId = roundList[0].roundId;//上期的roundId
@@ -535,7 +550,7 @@ function shareCodesFormat() {
     }
     const readShareCodeRes = await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
-      newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
+      //newShareCodes = [...new Set([...newShareCodes, ...(readShareCodeRes.data || [])])];
     }
     console.log(`第${$.index}个京东账号将要助力的好友${JSON.stringify(newShareCodes)}`)
     resolve();
