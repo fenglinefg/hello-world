@@ -786,7 +786,7 @@ const toqqreadPackageurl = {
      if(logs) $.log(`${jsname}, 领周阅读时长: ${data}`)
      Package =JSON.parse(data)
      if (Package.code==0)
-tz+='【周时长奖励'+i+'】:领取'+Packageid[i]+'阅豆\n'
+tz+='【周时长奖励'+(i+1)+'】:领取'+Packageid[i]+'阅豆\n'
 
      
 })			
