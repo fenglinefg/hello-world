@@ -225,7 +225,7 @@ qqreadssr2();//阅读金币2
 else if (i==10&&task.data.taskList[3].doneFlag==0)
 qqreadvideo();//视频任务
 
-else if(i==11&&&&task.data.taskList[0].doneFlag==0)
+else if(i==11&&task.data.taskList[0].doneFlag==0)
 qqreadsign2();//签到翻倍
 
 else if (i==12&&task.data.treasureBox.videoDoneFlag==0)
