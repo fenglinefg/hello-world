@@ -60,7 +60,7 @@ http-request https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid? script-
 
 
 //企鹅读书获取时长cookie
-企鹅读书 = type=http-request,pattern=https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid? script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js, requires-header=true
+企鹅读书 = type=http-request,pattern=https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid?,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/qqread.js, requires-header=true
 
 
 
@@ -199,7 +199,7 @@ qqreadconfig();//时长查询
 else if (i==2)
 qqreadtask();//任务列表
 
-else if (i==3)
+else if (i==3&&task.data.taskList[0].doneFlag==0)
 qqreadsign();//金币签到
 
 else if (i==4&&task.data.treasureBox.doneFlag==0)
@@ -208,7 +208,7 @@ qqreadbox();//宝箱
 else if (i==5&&task.data.taskList[2].doneFlag==0)
 qqreadssr1();//阅读金币1
 
-else if (i==6)
+else if (i==6&&config.data.pageParams.todayReadSeconds/3600<=maxtime)
 qqreadtime();//上传时长
 
 else if (i==7&&task.data.taskList[0].doneFlag==0)
@@ -409,9 +409,7 @@ return new Promise((resolve, reject) => {
     headers: JSON.parse(qqreadtimeheaderVal),
      
     };
-
-if (config.data.pageParams.todayReadSeconds/3600<=maxtime){
-
+	
    $.get(toqqreadtimeurl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 阅读时长: ${data}`)
      time =JSON.parse(data)
@@ -422,8 +420,6 @@ tz+='【阅读时长】:上传'+TIME/6+'分钟\n'
 
 resolve()
     })
-
-}
    })
   }  
 
