@@ -315,7 +315,8 @@ return new Promise((resolve, reject) => {
      info =JSON.parse(data)
 
 tz+=
-'\n【用户信息】:'+info.data.user.nickName+'\n'
+'========== 账号${K+1} ==========
+	   \n【用户信息】:'+info.data.user.nickName+'\n'
 
 resolve()
     })
