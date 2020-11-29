@@ -844,7 +844,7 @@ tz+='【周时长奖励'+(i+1)+'】:领取'+Packageid[i]+'阅豆\n'
 function showmsg() {
 
 	
-tz += `============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`;
+tz += `\n\n============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n\n`;
 	
 if (notifyInterval==1)
 $.msg(jsname,'',tz)//显示所有通知
