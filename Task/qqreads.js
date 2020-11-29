@@ -189,10 +189,11 @@ function all(){
    for(var i=0;i<18;i++)
  { (function(i) {
             setTimeout(function() {
-console.log(`-------------------------\n\n开始【${jsname+num}】`)
-     if (i==0)
-qqreadinfo();//用户名
 
+     if (i==0){
+console.log(`-------------------------\n\n开始【${jsname+num}】--\n\n`)
+qqreadinfo();//用户名
+}
 else if (i==1)
 qqreadconfig();//时长查询
 
