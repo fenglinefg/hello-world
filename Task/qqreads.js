@@ -354,7 +354,7 @@ return new Promise((resolve, reject) => {
    $.get(toqqreadinfourl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 用户名: ${data}`)
      info =JSON.parse(data)
-console.log(`-------------------------\n\n开始【${jsname+(num+1)}】--\n\n`)
+
 tz+=
 '【用户信息】:'+info.data.user.nickName+'\n'
 
@@ -847,7 +847,7 @@ tz+='【周时长奖励'+(i+1)+'】:领取'+Packageid[i]+'阅豆\n'
 function showmsg() {
 
 	
-
+console.log(`-------------------------\n\n开始【${jsname+(num+1)}】--\n\n`)
 	
 if (notifyInterval==1)
 $.msg(jsname,'',tz)//显示所有通知
