@@ -152,11 +152,13 @@ if ($.isNode()) {
 
 
 
-if (isGetCookie = typeof $request !== 'undefined') {
-   GetCookie();   
-   else {
+let isGetCookie = typeof $request !== 'undefined'
+if (isGetCookie) {
+   GetCookie()
+} else {
    all()
 }
+
 
 
 function GetCookie() {
