@@ -174,6 +174,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
       console.log(`-------------------------\n\n开始【企鹅读书${$.index}】`)
     }
   await all();
+  await  showmsg();
   
    
  }
@@ -213,7 +214,7 @@ function all()
 
  {
 
-   for(var i=0;i<18;i++)
+   for(var i=0;i<16;i++)
  { (function(i) {
             setTimeout(function() {
 
@@ -266,11 +267,6 @@ qqreadwktime();//周时长查询
 else if (i==15)
 qqreadpick();//领周时长奖励
 
-else if (i==16)
-showmsg();//通知
-
-else if (i==17)
-$.done();//结束
 
  }
 
