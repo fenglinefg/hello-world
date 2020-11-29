@@ -77,9 +77,6 @@ const $ = Env(jsname)
 const notify = $.isNode() ? require('./sendNotify') : '';
 var tz=''
 
-
-console.log(`\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})} =========\n`)
-
 const logs = 0;   //0为关闭日志，1为开启
 const notifyInterval=1
 //0为关闭通知，1为所有通知，2为宝箱领取成功通知，3为宝箱每15次通知一次
@@ -847,7 +844,7 @@ tz+='【周时长奖励'+(i+1)+'】:领取'+Packageid[i]+'阅豆\n'
 function showmsg() {
 
 	
-tz += `\n脚本执行：${new Date().toLocaleString()}\n\n`;
+tz += `============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`;
 	
 if (notifyInterval==1)
 $.msg(jsname,'',tz)//显示所有通知
