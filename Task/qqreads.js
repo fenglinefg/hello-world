@@ -848,7 +848,7 @@ tz += `\n\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 
 
 if ($.isNode())
 {
-     notify.sendNotify(jsname,'',tz)
+     $.notify.sendNotify(jsname,'',tz)
 }
 
 	
