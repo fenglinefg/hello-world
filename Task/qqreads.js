@@ -847,7 +847,7 @@ tz+='【周时长奖励'+(i+1)+'】:领取'+Packageid[i]+'阅豆\n'
 function showmsg() {
 
 	
-console.log(`-------------------------\n\n开始【${jsname+(num+1)}】--\n\n`)
+tz += `\n脚本执行：${new Date().toLocaleString()}\n\n`;
 	
 if (notifyInterval==1)
 $.msg(jsname,'',tz)//显示所有通知
