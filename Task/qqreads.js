@@ -240,10 +240,10 @@ else if (i==15)
 qqreadpick();//领周时长奖励
 
 else if (i == 16) showmsg();
-          else if (i == 17 && num < cookiesArr.length - 1) {
+          else if (i == 17 && num < qqreadhdArr.length - 1) {
             num += 1;
             all();
-          } else if (i == 17 && num == cookiesArr.length - 1) {
+          } else if (i == 17 && num == qqreadhdArr.length - 1) {
             $.done();
           }
         },
