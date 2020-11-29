@@ -101,11 +101,9 @@ const wktimess=1200//周奖励领取标准，默认1200分钟
 let qqreadhdArr = [], signheaderVal = '',
     qqreadtimeurlArr = [], qqreadtimeurlbodyVal = '',
     qqreadtimehdArr = [], articlebodyVal ='',
-    
-    
-let CooKieQqread =[], ARTBODYS=[],  
-    REDBODYs =[],
-if ($.isNode()) {
+let CooKieQqread = [], ARTBODYS = [], 
+    REDBODYs  = [],;    
+  if ($.isNode()) {
   if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf('#') > -1) {
   CooKieQqread = process.env.QQREAD_HEADER.split('#');
   } else {
