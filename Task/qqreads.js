@@ -103,42 +103,42 @@ let qqreadhdArr = [], signheaderVal = '',
     qqreadtimehdArr = [], articlebodyVal ='',
     
     
-let qqreadHD = [], qqreadtimeURL  = [],  qqreadtimeHD = [],
+let qqreadH = [], qqreadtimeUR  = [],  qqreadtimeH = [],
 if ($.isNode()) {
   if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf('#') > -1) {
-  qqreadHD = process.env.QQREAD_HEADER.split('#');
+  qqreadH = process.env.QQREAD_HEADER.split('#');
   } else {
-      qqreadHD = process.env.QQREAD_HEADER.split()
+      qqreadH = process.env.QQREAD_HEADER.split()
   };
        
   if (process.env.QQREAD_TIMEURL && process.env.QQREAD_TIMEURL.indexOf('\n') > -1) {
-  qqreadtimeURL = process.env.QQREAD_TIMEURL.split('\n');
+  qqreadtimeUR = process.env.QQREAD_TIMEURL.split('\n');
   } else {
-      qqreadtimeURL = process.env.QQREAD_TIMEURL.split()
+      qqreadtimeUR = process.env.QQREAD_TIMEURL.split()
   };
   
   if (process.env.QQREAD_TIMEHD && process.env.QQREAD_TIMEHD.indexOf('#') > -1) {
-  qqreadtimeHD = process.env.QQREAD_TIMEHD.split('#');
+  qqreadtimeH = process.env.QQREAD_TIMEHD.split('#');
   } else {
-      qqreadtimeHD = process.env.QQREAD_TIMEHD.split()
+      qqreadtimeH = process.env.QQREAD_TIMEHD.split()
   }; 
  
 }
     
 if ($.isNode()) {
-    Object.keys(qqreadHD).forEach((item) => {
-        if (qqreadHD[item]) {
-          qqreadhdArr.push(qqreadHD[item])
+    Object.keys(qqreadH).forEach((item) => {
+        if (qqreadH[item]) {
+          qqreadhdArr.push(qqreadH[item])
         }
       })
-    Object.keys(qqreadtimeURL).forEach((item) => {
-        if (qqreadtimeURL[item]) {
-          qqreadtimeurlArr.push(qqreadtimeURL[item])
+    Object.keys(qqreadtimeUR).forEach((item) => {
+        if (qqreadtimeUR[item]) {
+          qqreadtimeurlArr.push(qqreadtimeUR[item])
         }
       })	  
-    Object.keys(qqreadtimeHD).forEach((item) => {
-        if (qqreadtimeHD[item]) {
-          qqreadtimehdArr.push(qqreadtimeHD[item])
+    Object.keys(qqreadtimeH).forEach((item) => {
+        if (qqreadtimeH[item]) {
+          qqreadtimehdArr.push(qqreadtimeH[item])
         }
       })
 	  
