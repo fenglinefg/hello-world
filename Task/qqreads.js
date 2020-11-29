@@ -156,6 +156,7 @@ let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
    GetCookie()
 } else {
+   let num = 0;
    all()
 }
 
@@ -184,7 +185,7 @@ const qqreadtimeheaderVal = JSON.stringify($request.headers)
 }
 
 
-let num = 0;
+
 function all(){
       qqreadheaderVal = qqreadhdArr[num];
       qqreadtimeurlVal = qqreadtimeurlArr[num];
