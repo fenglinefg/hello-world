@@ -101,43 +101,43 @@ const wktimess=1200//周奖励领取标准，默认1200分钟
 let qqreadhdArr = [], signheaderVal = '',
     qqreadtimeurlArr = [], qqreadtimeurlbodyVal = '',
     qqreadtimehdArr = [], articlebodyVal ='',
-    CooKieQqread = [], ARTBODYS = [], 
-    REDBODYs  = [];    
+    qqreadHD = [], qqreadtimeURL = [], 
+    qqreadtimeHD = [];    
   if ($.isNode()) {
   if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf('#') > -1) {
-  CooKieQqread = process.env.QQREAD_HEADER.split('#');
+  qqreadHD = process.env.QQREAD_HEADER.split('#');
   } else {
-      CooKieQqread = process.env.QQREAD_HEADER.split()
+      qqreadHD = process.env.QQREAD_HEADER.split()
   };
        
   if (process.env.QQREAD_TIMEURL && process.env.QQREAD_TIMEURL.indexOf('\n') > -1) {
-  ARTBODYS = process.env.QQREAD_TIMEURL.split('\n');
+  qqreadtimeURL = process.env.QQREAD_TIMEURL.split('\n');
   } else {
-      ARTBODYS = process.env.QQREAD_TIMEURL.split()
+      qqreadtimeURL = process.env.QQREAD_TIMEURL.split()
   };
   
   if (process.env.QQREAD_TIMEHD && process.env.QQREAD_TIMEHD.indexOf('#') > -1) {
-  REDBODYs = process.env.QQREAD_TIMEHD.split('#');
+  qqreadtimeHD = process.env.QQREAD_TIMEHD.split('#');
   } else {
-      REDBODYs = process.env.QQREAD_TIMEHD.split()
+      qqreadtimeHD = process.env.QQREAD_TIMEHD.split()
   }; 
  
 }
     
 if ($.isNode()) {
-    Object.keys(CooKieQqread).forEach((item) => {
-        if (CooKieQqread[item]) {
-          qqreadhdArr.push(CooKieQqread[item])
+    Object.keys(qqreadHD).forEach((item) => {
+        if (qqreadHD[item]) {
+          qqreadhdArr.push(qqreadHD[item])
         }
       })
-    Object.keys(ARTBODYS).forEach((item) => {
-        if (ARTBODYS[item]) {
-          qqreadtimeurlArr.push(ARTBODYS[item])
+    Object.keys(qqreadtimeURL).forEach((item) => {
+        if (qqreadtimeURL[item]) {
+          qqreadtimeurlArr.push(qqreadtimeURL[item])
         }
       })	  
-    Object.keys(REDBODYs).forEach((item) => {
-        if (REDBODYs[item]) {
-          qqreadtimehdArr.push(REDBODYs[item])
+    Object.keys(qqreadtimeHD).forEach((item) => {
+        if (qqreadtimeHD[item]) {
+          qqreadtimehdArr.push(qqreadtimeHD[item])
         }
       })
 	  
@@ -167,10 +167,9 @@ if (isGetCookie = typeof $request !== 'undefined') {
   }
   for (let i = 0; i < qqreadhdArr.length; i++) {
     if (qqreadhdArr[i]) {
-      signheaderVal = qqreadhdArr[i];
-      articlebodyVal = qqreadtimehdArr[i];
-      timebodyVal = timeArr[i];
+      qqreadheaderVal = qqreadhdArr[i];
       qqreadtimeurlbodyVal = qqreadtimeurlArr[i];
+	  qqreadtimeheaderVal = qqreadtimehdArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【企鹅读书${$.index}】`)
     }
@@ -194,7 +193,6 @@ const qqreadheaderVal = JSON.stringify($request.headers)
     $.log(`[${jsname}] 获取Cookie: 成功,qqreadheaderVal: ${qqreadheaderVal}`)
     $.msg(jsname, `获取cookie: 成功🎉`, ``)
  }
-
 
     else if($request &&$request.url.indexOf("addReadTimeWithBid?")>=0) {
 const qqreadtimeurlVal = $request.url
