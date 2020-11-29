@@ -210,7 +210,7 @@ else if (i == 16) showmsg();
             K += 1;
             all();
           } else if (i == 17 && K == qqreadhdArr.length - 1) {
-		  
+		if ($.isNode())notify.sendNotify(jsname,tz)  
             $.done();
           }
         },
