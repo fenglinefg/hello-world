@@ -86,7 +86,6 @@ const notifyInterval=2
 
 
 
-
 const dd=1//单次任务延迟,默认1秒
 
 const TIME=30//单次时长上传限制，默认5分钟
@@ -94,8 +93,6 @@ const TIME=30//单次时长上传限制，默认5分钟
 const maxtime=20//每日上传时长限制，默认20小时
 
 const wktimess=1200//周奖励领取标准，默认1200分钟
-
-
 
 
 let qqreadhdArr = [], qqreadheaderVal = '',
@@ -156,44 +153,10 @@ if ($.isNode()) {
 
 
 if (isGetCookie = typeof $request !== 'undefined') {
-   GetCookie();
-   $.xxx()
-} 
-
-
-  
-   
- function xxx()
-
- {
-
-if (!qqreadhdArr[0]) {
-    $.msg(jsname, '【提示】请先获取企鹅读书一cookie')
-    return;
-  }
-   for(var i=0;i<qqreadhdArr.length+2;i++)//修改为i<账号数2
- { (function(i) {
-            setTimeout(function() {								
-if (qqreadhdArr[i]) {
-      qqreadheaderVal = qqreadhdArr[i];
-      qqreadtimeurlVal = qqreadtimeurlArr[i];
-      qqreadtimeheaderVal = qqreadtimehdArr[i];
-      $.index = i + 1;
-      console.log(`-------------------------\n\n开始【企鹅读书${$.index}】`)
-    	
-all();	
-
-if (i==qqreadhdArr.length)	
-showmsg()	
-if (i==qqreadhdArr.length+1)	
-$.done()
-             }
-           }
-, (i + 1) *17000);
-     })(i)
-   }
+   GetCookie();   
+   else {
+   all()
 }
-
 
 
 function GetCookie() {
@@ -219,13 +182,12 @@ const qqreadtimeheaderVal = JSON.stringify($request.headers)
 }
 
 
-
-
-function all()
-
- {
-
-   for(var i=0;i<16;i++)
+let num = 0;
+function all(){
+      qqreadheaderVal = qqreadhdArr[num];
+      qqreadtimeurlVal = qqreadtimeurlArr[num];
+      qqreadtimeheaderVal = qqreadtimehdArr[num];
+   for(var i=0;i<18;i++)
  { (function(i) {
             setTimeout(function() {
 
@@ -278,22 +240,20 @@ qqreadwktime();//周时长查询
 else if (i==15)
 qqreadpick();//领周时长奖励
 
+else if (i == 16) showmsg();
+          else if (i == 17 && num < cookiesArr.length - 1) {
+            num += 1;
+            all();
+          } else if (i == 17 && num == cookiesArr.length - 1) {
+            $.done();
+          }
+        },
 
-
- }
-
-
-, (i + 1) *dd*1000);
-                })(i)
-
-
-
+        (i + 1) * dd * 1000
+      );
+    })(i);
+  }
 }
-
-
-}
-
-
 
 
 
@@ -311,22 +271,66 @@ return new Promise((resolve, reject) => {
      if(logs) $.log(`${jsname}, 任务列表: ${data}`)
      task =JSON.parse(data)
 tz+=
-'【任务列表】:余额'+task.data.user.amount+'金币\n'+
-'【第'+task.data.invite.issue+'期】:时间'+task.data.invite.dayRange+'\n'
-+'已邀请'+task.data.invite.inviteCount+'人，再邀请'+task.data.invite.nextInviteConfig.count+'人获得'+task.data.invite.nextInviteConfig.amount+'金币\n'+
-'【'+task.data.taskList[0].title+'】:'+task.data.taskList[0].amount+'金币,'+task.data.taskList[0].actionText+'\n'+
-'【'+task.data.taskList[1].title+'】:'+task.data.taskList[1].amount+'金币,'+task.data.taskList[1].actionText+'\n'+
-'【'+task.data.taskList[2].title+'】:'+task.data.taskList[2].amount+'金币,'+task.data.taskList[2].actionText+'\n'+
-'【'+task.data.taskList[3].title+'】:'+task.data.taskList[3].amount+'金币,'+task.data.taskList[3].actionText+'\n'+
-'【宝箱任务'+(task.data.treasureBox.count+1)+'】:'+task.data.treasureBox.tipText+'\n'+
-'【'+task.data.fans.title+'】:'+task.data.fans.fansCount+'个好友,'+task.data.fans.todayAmount+'金币\n'
+    '【任务列表】:余额'+
+    task.data.user.amount+
+	'金币\n'+
+    '【第'+
+	task.data.invite.issue+
+	'期】:时间'+
+    task.data.invite.dayRange+
+	'\n'+
+    '已邀请'+
+	task.data.invite.inviteCount+
+    '人，再邀请'+
+	task.data.invite.nextInviteConfig.count+
+    '人获得'+
+	task.data.invite.nextInviteConfig.amount+
+	'金币\n'+
+    '【'+
+	task.data.taskList[0].title+
+	'】:'+
+    task.data.taskList[0].amount+
+	'金币,'+
+    task.data.taskList[0].actionText+
+	'\n'+
+    '【'+
+	task.data.taskList[1].title+
+	'】:'+
+    task.data.taskList[1].amount+
+	'金币,'+
+    task.data.taskList[1].actionText+
+	'\n'+
+    '【'+
+	task.data.taskList[2].title+
+	'】:'+
+    task.data.taskList[2].amount+
+    '金币,'+
+    task.data.taskList[2].actionText+
+    '\n'+
+    '【'+
+	task.data.taskList[3].title+
+    '】:'+
+    task.data.taskList[3].amount+
+    '金币,'+
+    task.data.taskList[3].actionText+
+    '\n'+
+    '【宝箱任务'+
+    (task.data.treasureBox.count+1)+
+    '】:'+
+    task.data.treasureBox.tipText+
+    '\n'+
+    '【'+task.data.fans.title+
+	'】:'+
+    task.data.fans.fansCount+
+    '个好友,'+
+    task.data.fans.todayAmount+
+    '金币\n'
 
 
 
 resolve()
 
     })
-
    })
   }  
 
