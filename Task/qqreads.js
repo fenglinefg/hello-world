@@ -153,7 +153,9 @@ if ($.isNode()) {
 
 
 
- GetCookie()
+ if (isGetCookie = typeof $request !== 'undefined') {
+   GetCookie();
+ }
 
 function GetCookie() {
     if($request &&$request.url.indexOf("init")>=0) {
