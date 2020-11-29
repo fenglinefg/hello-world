@@ -152,15 +152,8 @@ if ($.isNode()) {
 
 
 
-let isGetCookie = typeof $request !== 'undefined'
-if (isGetCookie) {
-   GetCookie()
-} else {
-   let num = 0;
-   all()
-}
 
-
+ GetCookie()
 
 function GetCookie() {
     if($request &&$request.url.indexOf("init")>=0) {
@@ -185,7 +178,8 @@ const qqreadtimeheaderVal = JSON.stringify($request.headers)
 }
 
 
-
+let num = 0;
+   all()
 function all(){
       qqreadheaderVal = qqreadhdArr[num];
       qqreadtimeurlVal = qqreadtimeurlArr[num];
