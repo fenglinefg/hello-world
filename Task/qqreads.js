@@ -103,42 +103,43 @@ let qqreadhdArr = [], signheaderVal = '',
     qqreadtimehdArr = [], articlebodyVal ='',
     
     
-let qqreadH = [], qqreadtimeUR  = [],  qqreadtimeH = [],
+let CookieQqread =[], ARTBODYs  =[],  
+    REDBODYs =[],
 if ($.isNode()) {
   if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf('#') > -1) {
-  qqreadH = process.env.QQREAD_HEADER.split('#');
+  CookieQqread = process.env.QQREAD_HEADER.split('#');
   } else {
-      qqreadH = process.env.QQREAD_HEADER.split()
+      CookieQqread = process.env.QQREAD_HEADER.split()
   };
        
   if (process.env.QQREAD_TIMEURL && process.env.QQREAD_TIMEURL.indexOf('\n') > -1) {
-  qqreadtimeUR = process.env.QQREAD_TIMEURL.split('\n');
+  ARTBODYs = process.env.QQREAD_TIMEURL.split('\n');
   } else {
-      qqreadtimeUR = process.env.QQREAD_TIMEURL.split()
+      ARTBODYs = process.env.QQREAD_TIMEURL.split()
   };
   
   if (process.env.QQREAD_TIMEHD && process.env.QQREAD_TIMEHD.indexOf('#') > -1) {
-  qqreadtimeH = process.env.QQREAD_TIMEHD.split('#');
+  REDBODYs = process.env.QQREAD_TIMEHD.split('#');
   } else {
-      qqreadtimeH = process.env.QQREAD_TIMEHD.split()
+      REDBODYs = process.env.QQREAD_TIMEHD.split()
   }; 
  
 }
     
 if ($.isNode()) {
-    Object.keys(qqreadH).forEach((item) => {
-        if (qqreadH[item]) {
-          qqreadhdArr.push(qqreadH[item])
+    Object.keys(CookieQqread).forEach((item) => {
+        if (CookieQqread[item]) {
+          qqreadhdArr.push(CookieQqread[item])
         }
       })
-    Object.keys(qqreadtimeUR).forEach((item) => {
-        if (qqreadtimeUR[item]) {
-          qqreadtimeurlArr.push(qqreadtimeUR[item])
+    Object.keys(ARTBODYs).forEach((item) => {
+        if (ARTBODYs[item]) {
+          qqreadtimeurlArr.push(ARTBODYs[item])
         }
       })	  
-    Object.keys(qqreadtimeH).forEach((item) => {
-        if (qqreadtimeH[item]) {
-          qqreadtimehdArr.push(qqreadtimeH[item])
+    Object.keys(REDBODYs).forEach((item) => {
+        if (REDBODYs[item]) {
+          qqreadtimehdArr.push(REDBODYs[item])
         }
       })
 	  
