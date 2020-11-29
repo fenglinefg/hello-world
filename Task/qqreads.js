@@ -81,7 +81,7 @@ var tz=''
 console.log(`\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})} =========\n`)
 
 const logs = 0;   //0为关闭日志，1为开启
-const notifyInterval=1
+const notifyInterval=2
 //0为关闭通知，1为所有通知，2为宝箱领取成功通知，3为宝箱每15次通知一次
 
 
@@ -173,48 +173,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【企鹅读书${$.index}】`)
     }
-  await all();
-  await  showmsg();
-  
-   
- }
-})()
-  .catch((e) => $.logErr(e))
-  .finally(() => $.done())
-
-
-
-
-function GetCookie() {
-    if($request &&$request.url.indexOf("init")>=0) {
-
-
-const qqreadheaderVal = JSON.stringify($request.headers)
-    if (qqreadheaderVal)        $.setdata(qqreadheaderVal,'qqreadhd')
-    $.log(`[${jsname}] 获取Cookie: 成功,qqreadheaderVal: ${qqreadheaderVal}`)
-    $.msg(jsname, `获取cookie: 成功🎉`, ``)
- }
-
-    else if($request &&$request.url.indexOf("addReadTimeWithBid?")>=0) {
-const qqreadtimeurlVal = $request.url
-    if (qqreadtimeurlVal)        $.setdata(qqreadtimeurlVal,'qqreadtimeurl')
-    $.log(`[${jsname}] 获取阅读时长url: 成功,qqreadtimeurlVal: ${qqreadtimeurlVal}`)
-
-const qqreadtimeheaderVal = JSON.stringify($request.headers)
-    if (qqreadtimeheaderVal)        $.setdata(qqreadtimeheaderVal,'qqreadtimehd')
-    $.log(`[${jsname}] 获取时长header: 成功,qqreadtimeheaderVal: ${qqreadtimeheaderVal}`)
-    $.msg(jsname, `获取阅读时长cookie: 成功🎉`, ``)
- }
-}
-
-
-
-
-function all()
-
- {
-
-   for(var i=0;i<16;i++)
+  await for(var i=0;i<18;i++)
  { (function(i) {
             setTimeout(function() {
 
@@ -267,6 +226,11 @@ qqreadwktime();//周时长查询
 else if (i==15)
 qqreadpick();//领周时长奖励
 
+else if (i==16)
+showmsg();//通知
+
+else if (i==17)
+$.done();//结束
 
  }
 
@@ -276,10 +240,39 @@ qqreadpick();//领周时长奖励
 
 
 
-}
+};
+  
+   
+ }
+})()
+  .catch((e) => $.logErr(e))
+  .finally(() => $.done())
 
 
+
+
+function GetCookie() {
+    if($request &&$request.url.indexOf("init")>=0) {
+
+
+const qqreadheaderVal = JSON.stringify($request.headers)
+    if (qqreadheaderVal)        $.setdata(qqreadheaderVal,'qqreadhd')
+    $.log(`[${jsname}] 获取Cookie: 成功,qqreadheaderVal: ${qqreadheaderVal}`)
+    $.msg(jsname, `获取cookie: 成功🎉`, ``)
+ }
+
+    else if($request &&$request.url.indexOf("addReadTimeWithBid?")>=0) {
+const qqreadtimeurlVal = $request.url
+    if (qqreadtimeurlVal)        $.setdata(qqreadtimeurlVal,'qqreadtimeurl')
+    $.log(`[${jsname}] 获取阅读时长url: 成功,qqreadtimeurlVal: ${qqreadtimeurlVal}`)
+
+const qqreadtimeheaderVal = JSON.stringify($request.headers)
+    if (qqreadtimeheaderVal)        $.setdata(qqreadtimeheaderVal,'qqreadtimehd')
+    $.log(`[${jsname}] 获取时长header: 成功,qqreadtimeheaderVal: ${qqreadtimeheaderVal}`)
+    $.msg(jsname, `获取阅读时长cookie: 成功🎉`, ``)
+ }
 }
+
 
 
 
