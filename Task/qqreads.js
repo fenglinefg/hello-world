@@ -103,19 +103,19 @@ let qqreadhdArr = [], signheaderVal = '',
     qqreadtimehdArr = [], articlebodyVal ='',
     
     
-let CookieQqread =[], ARTBODYs  =[],  
+let CooKieQqread =[], ARTBODYS=[],  
     REDBODYs =[],
 if ($.isNode()) {
   if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf('#') > -1) {
-  CookieQqread = process.env.QQREAD_HEADER.split('#');
+  CooKieQqread = process.env.QQREAD_HEADER.split('#');
   } else {
-      CookieQqread = process.env.QQREAD_HEADER.split()
+      CooKieQqread = process.env.QQREAD_HEADER.split()
   };
        
   if (process.env.QQREAD_TIMEURL && process.env.QQREAD_TIMEURL.indexOf('\n') > -1) {
-  ARTBODYs = process.env.QQREAD_TIMEURL.split('\n');
+  ARTBODYS = process.env.QQREAD_TIMEURL.split('\n');
   } else {
-      ARTBODYs = process.env.QQREAD_TIMEURL.split()
+      ARTBODYS = process.env.QQREAD_TIMEURL.split()
   };
   
   if (process.env.QQREAD_TIMEHD && process.env.QQREAD_TIMEHD.indexOf('#') > -1) {
@@ -127,14 +127,14 @@ if ($.isNode()) {
 }
     
 if ($.isNode()) {
-    Object.keys(CookieQqread).forEach((item) => {
-        if (CookieQqread[item]) {
-          qqreadhdArr.push(CookieQqread[item])
+    Object.keys(CooKieQqread).forEach((item) => {
+        if (CooKieQqread[item]) {
+          qqreadhdArr.push(CooKieQqread[item])
         }
       })
-    Object.keys(ARTBODYs).forEach((item) => {
-        if (ARTBODYs[item]) {
-          qqreadtimeurlArr.push(ARTBODYs[item])
+    Object.keys(ARTBODYS).forEach((item) => {
+        if (ARTBODYS[item]) {
+          qqreadtimeurlArr.push(ARTBODYS[item])
         }
       })	  
     Object.keys(REDBODYs).forEach((item) => {
