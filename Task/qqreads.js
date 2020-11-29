@@ -173,7 +173,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【企鹅读书${$.index}】`)
     }
-  await for(var i=0;i<18;i++)
+   for(var i=0;i<18;i++)
  { (function(i) {
             setTimeout(function() {
 
