@@ -98,9 +98,9 @@ const wktimess=1200//周奖励领取标准，默认1200分钟
 
 
 
-let qqreadhdArr = [], signheaderVal = '',
-    qqreadtimeurlArr = [], qqreadtimeurlbodyVal = '',
-    qqreadtimehdArr = [], articlebodyVal ='',
+let qqreadhdArr = [], qqreadheaderVal = '',
+    qqreadtimeurlArr = [], qqreadtimeurlVal = '',
+    qqreadtimehdArr = [], qqreadtimeheaderVal ='',
     qqreadHD = [], qqreadtimeURL = [], 
     qqreadtimeHD = [];    
   if ($.isNode()) {
