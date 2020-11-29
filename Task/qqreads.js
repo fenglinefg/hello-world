@@ -152,7 +152,7 @@ function all(){
       qqreadheaderVal = qqreadhdArr[K];
       qqreadtimeurlVal = qqreadtimeurlArr[K];
       qqreadtimeheaderVal = qqreadtimehdArr[K];
-   for(var i=0;i<18;i++)
+   for(var i=0;i<17;i++)
  { (function(i) {
             setTimeout(function() {
 
@@ -207,10 +207,10 @@ qqreadpick();//领周时长奖励
 
 
 		 
-else if (i == 17 && K < qqreadhdArr.length - 1) {
+else if (i == 16 && K < qqreadhdArr.length - 1) {
 K += 1;
 all();
- } else if (i == 17 && K == qqreadhdArr.length - 1) {
+ } else if (i == 16 && K == qqreadhdArr.length - 1) {
 	 showmsg();//通知
 	 console.log(tz)
 if ($.isNode()&&task.data.treasureBox.count==0||task.data.treasureBox.count==35)notify.sendNotify(jsname,tz)  
@@ -315,7 +315,7 @@ return new Promise((resolve, reject) => {
      info =JSON.parse(data)
 
 tz+=
-'【用户信息】:'+info.data.user.nickName+'\n'
+'\n【用户信息】:'+info.data.user.nickName+'\n'
 
 resolve()
     })
