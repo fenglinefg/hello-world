@@ -242,6 +242,7 @@ qqreadpick();//领周时长奖励
 else if (i == 16) showmsg();
           else if (i == 17 && num < qqreadhdArr.length - 1) {
             num += 1;
+		  console.log(`-------------------------\n\n开始【${jsname+num}】`)
             all();
           } else if (i == 17 && num == qqreadhdArr.length - 1) {
             $.done();
