@@ -211,6 +211,7 @@ else if (i == 17 && K < qqreadhdArr.length - 1) {
 K += 1;
 all();
  } else if (i == 17 && K == qqreadhdArr.length - 1) {
+	 console.log(tz)
 if ($.isNode())notify.sendNotify(jsname,tz)  
             $.done();
           }
