@@ -157,23 +157,75 @@ if ($.isNode()) {
 
 if (isGetCookie = typeof $request !== 'undefined') {
    GetCookie();
-   $.done()
+   $.xxx()
 } 
 
- !(async () => {
-  if (!qqreadhdArr[0]) {
+
+  
+   
+ function xxx()
+
+ {
+
+if (!qqreadhdArr[0]) {
     $.msg(jsname, '【提示】请先获取企鹅读书一cookie')
     return;
   }
-  for (let i = 0; i < qqreadhdArr.length; i++) {
-    if (qqreadhdArr[i]) {
+   for(var i=0;i<qqreadhdArr.length+2;i++)//修改为i<账号数2
+ { (function(i) {
+            setTimeout(function() {								
+if (qqreadhdArr[i]) {
       qqreadheaderVal = qqreadhdArr[i];
       qqreadtimeurlVal = qqreadtimeurlArr[i];
       qqreadtimeheaderVal = qqreadtimehdArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【企鹅读书${$.index}】`)
-    }
-   for(var i=0;i<18;i++)
+    	
+all();	
+
+if (i==qqreadhdArr.length)	
+showmsg()	
+if (i==qqreadhdArr.length+1)	
+$.done()
+             }
+           }
+, (i + 1) *17000);
+     })(i)
+   }
+}
+
+
+
+function GetCookie() {
+    if($request &&$request.url.indexOf("init")>=0) {
+
+
+const qqreadheaderVal = JSON.stringify($request.headers)
+    if (qqreadheaderVal)        $.setdata(qqreadheaderVal,'qqreadhd')
+    $.log(`[${jsname}] 获取Cookie: 成功,qqreadheaderVal: ${qqreadheaderVal}`)
+    $.msg(jsname, `获取cookie: 成功🎉`, ``)
+ }
+
+    else if($request &&$request.url.indexOf("addReadTimeWithBid?")>=0) {
+const qqreadtimeurlVal = $request.url
+    if (qqreadtimeurlVal)        $.setdata(qqreadtimeurlVal,'qqreadtimeurl')
+    $.log(`[${jsname}] 获取阅读时长url: 成功,qqreadtimeurlVal: ${qqreadtimeurlVal}`)
+
+const qqreadtimeheaderVal = JSON.stringify($request.headers)
+    if (qqreadtimeheaderVal)        $.setdata(qqreadtimeheaderVal,'qqreadtimehd')
+    $.log(`[${jsname}] 获取时长header: 成功,qqreadtimeheaderVal: ${qqreadtimeheaderVal}`)
+    $.msg(jsname, `获取阅读时长cookie: 成功🎉`, ``)
+ }
+}
+
+
+
+
+function all()
+
+ {
+
+   for(var i=0;i<16;i++)
  { (function(i) {
             setTimeout(function() {
 
@@ -226,11 +278,7 @@ qqreadwktime();//周时长查询
 else if (i==15)
 qqreadpick();//领周时长奖励
 
-else if (i==16)
-showmsg();//通知
 
-else if (i==17)
-$.done();//结束
 
  }
 
@@ -240,39 +288,10 @@ $.done();//结束
 
 
 
-};
-  
-   
- }
-})()
-  .catch((e) => $.logErr(e))
-  .finally(() => $.done())
-
-
-
-
-function GetCookie() {
-    if($request &&$request.url.indexOf("init")>=0) {
-
-
-const qqreadheaderVal = JSON.stringify($request.headers)
-    if (qqreadheaderVal)        $.setdata(qqreadheaderVal,'qqreadhd')
-    $.log(`[${jsname}] 获取Cookie: 成功,qqreadheaderVal: ${qqreadheaderVal}`)
-    $.msg(jsname, `获取cookie: 成功🎉`, ``)
- }
-
-    else if($request &&$request.url.indexOf("addReadTimeWithBid?")>=0) {
-const qqreadtimeurlVal = $request.url
-    if (qqreadtimeurlVal)        $.setdata(qqreadtimeurlVal,'qqreadtimeurl')
-    $.log(`[${jsname}] 获取阅读时长url: 成功,qqreadtimeurlVal: ${qqreadtimeurlVal}`)
-
-const qqreadtimeheaderVal = JSON.stringify($request.headers)
-    if (qqreadtimeheaderVal)        $.setdata(qqreadtimeheaderVal,'qqreadtimehd')
-    $.log(`[${jsname}] 获取时长header: 成功,qqreadtimeheaderVal: ${qqreadtimeheaderVal}`)
-    $.msg(jsname, `获取阅读时长cookie: 成功🎉`, ``)
- }
 }
 
+
+}
 
 
 
