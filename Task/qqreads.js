@@ -168,8 +168,8 @@ if (isGetCookie = typeof $request !== 'undefined') {
   for (let i = 0; i < qqreadhdArr.length; i++) {
     if (qqreadhdArr[i]) {
       qqreadheaderVal = qqreadhdArr[i];
-      qqreadtimeurlbodyVal = qqreadtimeurlArr[i];
-	  qqreadtimeheaderVal = qqreadtimehdArr[i];
+      qqreadtimeurlVal = qqreadtimeurlArr[i];
+      qqreadtimeheaderVal = qqreadtimehdArr[i];
       $.index = i + 1;
       console.log(`-------------------------\n\n开始【企鹅读书${$.index}】`)
     }
