@@ -204,13 +204,14 @@ qqreadwktime();//周时长查询
 else if (i==15)
 qqreadpick();//领周时长奖励
 
-else if (i == 16) showmsg();
-		    
-          else if (i == 17 && K < qqreadhdArr.length - 1) {
-            K += 1;
-            all();
-          } else if (i == 17 && K == qqreadhdArr.length - 1) {
-		if ($.isNode())notify.sendNotify(jsname,tz)  
+else if (i == 16) 
+showmsg();//通知
+		 
+else if (i == 17 && K < qqreadhdArr.length - 1) {
+K += 1;
+all();
+ } else if (i == 17 && K == qqreadhdArr.length - 1) {
+if ($.isNode())notify.sendNotify(jsname,tz)  
             $.done();
           }
         },
