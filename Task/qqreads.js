@@ -240,6 +240,10 @@ else if (i == 16) showmsg();
             num += 1;
             all();
           } else if (i == 17 && num == qqreadhdArr.length - 1) {
+		  if ($.isNode())
+{
+     notify.sendNotify(jsname,tz)
+}
             $.done();
           }
         },
@@ -846,10 +850,7 @@ function showmsg() {
       
 tz += `\n\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})} \n\n`;
 
-if ($.isNode())
-{
-     notify.sendNotify(jsname,tz)
-}
+
 
 	
 	
