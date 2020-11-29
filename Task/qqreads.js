@@ -204,13 +204,14 @@ qqreadwktime();//周时长查询
 else if (i==15)
 qqreadpick();//领周时长奖励
 
-else if (i == 16) 
-showmsg();//通知
+
+
 		 
 else if (i == 17 && K < qqreadhdArr.length - 1) {
 K += 1;
 all();
  } else if (i == 17 && K == qqreadhdArr.length - 1) {
+	 showmsg();//通知
 	 console.log(tz)
 if ($.isNode()&&task.data.treasureBox.count==0||task.data.treasureBox.count==35)notify.sendNotify(jsname,tz)  
             $.done();
