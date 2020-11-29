@@ -845,6 +845,14 @@ function showmsg() {
 	
       
 tz += `\n\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})} \n\n`;
+
+if ($.isNode())
+{
+     notify.sendNotify(jsname,'',tz)
+}
+
+	
+	
 	
 if (notifyInterval==1)
 $.msg(jsname,'',tz)//显示所有通知
@@ -855,7 +863,6 @@ $.msg(jsname,'',tz)//宝箱领取成功通知
 
 else if (notifyInterval==3&&task.data.treasureBox.count==0||task.data.treasureBox.count==15||task.data.treasureBox.count==30||task.data.treasureBox.count==45||task.data.treasureBox.count==60)
 $.msg(jsname,'',tz)//宝箱每15次通知一次
-
 
 
 }
