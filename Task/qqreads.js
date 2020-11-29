@@ -190,10 +190,9 @@ function all(){
  { (function(i) {
             setTimeout(function() {
 
-     if (i==0){
-console.log(`-------------------------\n\n开始【${jsname+num}】--\n\n`)
+     if (i==0)
 qqreadinfo();//用户名
-}
+
 else if (i==1)
 qqreadconfig();//时长查询
 
@@ -355,6 +354,7 @@ return new Promise((resolve, reject) => {
    $.get(toqqreadinfourl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 用户名: ${data}`)
      info =JSON.parse(data)
+console.log(`-------------------------\n\n开始【${jsname+(num+1)}】--\n\n`)
 tz+=
 '【用户信息】:'+info.data.user.nickName+'\n'
 
