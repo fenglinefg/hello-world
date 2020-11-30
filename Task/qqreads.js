@@ -631,7 +631,8 @@ tz+='【周时长奖励'+(i+1)+'】:领取'+Packageid[i]+'阅豆\n'
 function showmsg() {      
 tz += `\n\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})} \n\n`;
 	
-if ($.isNode()&&$.time('HH')==21)notify.sendNotify(jsname,tz)
+if ($.isNode()&&$.time('HH')=21)
+notify.sendNotify(jsname,tz)
 	
 if (notifyInterval==1)
 $.msg(jsname,'',tz)//显示所有通知
