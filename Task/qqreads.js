@@ -632,7 +632,7 @@ function showmsg() {
 tz += `\n\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})} \n\n`;
 	tz +=$.time('HH');
 	
-if (($.isNode())&&$.time('HH')==15)
+if (($.isNode())&&$.time('HH')+8==23)
 notify.sendNotify(jsname,tz)
 	
 if (notifyInterval==1)
