@@ -642,7 +642,7 @@ function showmsg() {
 tz += `\n\n========= 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()} \n\n`;
 	
 let d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
-if (d.getHours()==3 && d.getMinutes()<=59 ) {
+if (d.getHours()==21 && d.getMinutes()<=20 ) {
          notify.sendNotify(jsname,kz)
  }
 	
