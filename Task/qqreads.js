@@ -213,7 +213,7 @@ all();
  } else if (i == 16 && K == qqreadhdArr.length - 1) {
 	 showmsg();//通知
 	 console.log(tz)
-if ($.isNode()&&$.time('HH')>17)notify.sendNotify(jsname,tz)  
+if ($.isNode()&&$.time('HH')>5)notify.sendNotify(jsname,tz)  
             $.done();
           }
         },
