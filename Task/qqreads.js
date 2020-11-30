@@ -250,7 +250,7 @@ tz+=
 	'期】:时间'+
     task.data.invite.dayRange+
 	'\n'+
-    '  已邀请'+
+    ' 已邀请'+
 	task.data.invite.inviteCount+
     '人，再邀请'+
 	task.data.invite.nextInviteConfig.count+
