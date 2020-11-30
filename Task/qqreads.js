@@ -209,8 +209,7 @@ K += 1;
 all();
  } else if (i == 16 && K == qqreadhdArr.length - 1) {
 	 showmsg();//通知
-	 console.log(tz)
-if ($.isNode())notify.sendNotify(jsname,tz)  
+	 console.log(tz)  
             $.done();
           }
         },
@@ -631,6 +630,8 @@ tz+='【周时长奖励'+(i+1)+'】:领取'+Packageid[i]+'阅豆\n'
 
 function showmsg() {      
 tz += `\n\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})} \n\n`;
+	
+if ($.isNode())notify.sendNotify(jsname,tz)
 	
 if (notifyInterval==1)
 $.msg(jsname,'',tz)//显示所有通知
