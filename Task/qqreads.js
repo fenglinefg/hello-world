@@ -203,9 +203,6 @@ qqreadwktime();//周时长查询
 
 else if (i==15)
 qqreadpick();//领周时长奖励
-
-
-
 		 
 else if (i == 16 && K < qqreadhdArr.length - 1) {
 K += 1;
@@ -213,7 +210,7 @@ all();
  } else if (i == 16 && K == qqreadhdArr.length - 1) {
 	 showmsg();//通知
 	 console.log(tz)
-if ($.isNode()&&task.data.treasureBox.count>15)notify.sendNotify(jsname,tz)  
+if ($.isNode())notify.sendNotify(jsname,tz)  
             $.done();
           }
         },
