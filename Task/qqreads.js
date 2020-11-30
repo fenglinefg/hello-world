@@ -238,7 +238,7 @@ return new Promise((resolve, reject) => {
     (task.data.user.amount/10000).toFixed(2)+
 	'元\n'+
     '【已开宝箱】:'+
-   (task.data.treasureBox.count+1)+
+    task.data.treasureBox.count+
 	'个\n'
     
 tz+=
@@ -250,7 +250,7 @@ tz+=
 	'期】:时间'+
     task.data.invite.dayRange+
 	'\n'+
-    '已邀请'+
+    '  已邀请'+
 	task.data.invite.inviteCount+
     '人，再邀请'+
 	task.data.invite.nextInviteConfig.count+
