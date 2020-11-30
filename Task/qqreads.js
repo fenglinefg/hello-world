@@ -235,7 +235,7 @@ return new Promise((resolve, reject) => {
      task =JSON.parse(data)
 	   kz+=
     '【现金余额】:'+
-    task.data.user.amount/10000.toFixed(2)+
+    (task.data.user.amount/10000).toFixed(2)+
 	'元\n'+
     '【已开宝箱】:'+
    (task.data.treasureBox.count+1)+
@@ -243,7 +243,7 @@ return new Promise((resolve, reject) => {
     
 tz+=
     '【现金余额】:'+
-    task.data.user.amount/10000.toFixed(2)+
+    (task.data.user.amount/10000).toFixed(2)+
 	'元\n'+
     '【第'+
 	task.data.invite.issue+
