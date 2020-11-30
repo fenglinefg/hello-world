@@ -234,15 +234,17 @@ return new Promise((resolve, reject) => {
      if(logs) $.log(`${jsname}, 任务列表: ${data}`)
      task =JSON.parse(data)
 	   kz+=
-    '【任务列表】:余额'+
-    task.data.user.amount+
-	'金币\n'+'【宝箱任务'+
-    (task.data.treasureBox.count+1)+
-    '】:'
+    '【现金余额】:'+
+    task.data.user.amount/10000.toFixed(2)+
+	'元\n'+
+    '【已开宝箱】:'+
+   (task.data.treasureBox.count+1)+
+	'个\n'
+    
 tz+=
-    '【任务列表】:余额'+
-    task.data.user.amount+
-	'金币\n'+
+    '【现金余额】:'+
+    task.data.user.amount/10000.toFixed(2)+
+	'元\n'+
     '【第'+
 	task.data.invite.issue+
 	'期】:时间'+
