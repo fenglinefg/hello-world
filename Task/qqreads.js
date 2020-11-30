@@ -57,6 +57,7 @@ const jsname='企鹅读书'
 const $ = Env(jsname)
 const notify = $.isNode() ? require('./sendNotify') : '';
 var tz=''
+var kz=''
 
 const logs = 0;   //0为关闭日志，1为开启
 const notifyInterval=2
@@ -232,6 +233,12 @@ return new Promise((resolve, reject) => {
    $.get(toqqreadtaskurl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 任务列表: ${data}`)
      task =JSON.parse(data)
+	   kz+=
+    '【任务列表】:余额'+
+    task.data.user.amount+
+	'金币\n'+'【宝箱任务'+
+    (task.data.treasureBox.count+1)+
+    '】:'
 tz+=
     '【任务列表】:余额'+
     task.data.user.amount+
@@ -309,7 +316,8 @@ return new Promise((resolve, reject) => {
    $.get(toqqreadinfourl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 用户名: ${data}`)
      info =JSON.parse(data)
-
+kz+=
+'\n========== 【'+info.data.user.nickName+'】 ==========\n'
 tz+=
 '\n========== 【'+info.data.user.nickName+'】 ==========\n'
 
@@ -633,14 +641,7 @@ tz += `\n\n========= 脚本执行-北京时间(UTC+8)：${new Date(new Date().ge
 	
 let d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
 if (d.getHours()==2 && d.getMinutes()<=59 ) {
-         notify.sendNotify(jsname,
-			   '【任务列表】:余额'+
-                             task.data.user.amount+
-	                    '金币\n'+
-			   '【宝箱奖励'+box.data.count+'】:获得'+
-			    box.data.amount+
-			    '金币\n'
-			  )
+         notify.sendNotify(jsname,kz)
  }
 	
 if (notifyInterval==1)
