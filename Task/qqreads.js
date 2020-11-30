@@ -632,8 +632,15 @@ function showmsg() {
 tz += `\n\n========= 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()} \n\n`;
 	
 let d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
-if (d.getHours()==1 && d.getMinutes()<=59 ) {
-         notify.sendNotify(jsname,tz)
+if (d.getHours()==2 && d.getMinutes()<=59 ) {
+         notify.sendNotify(jsname,
+			   '【任务列表】:余额'+
+                             task.data.user.amount+
+	                    '金币\n'+
+			   '【宝箱奖励'+box.data.count+'】:获得'+
+			    box.data.amount+
+			    '金币\n'
+			  )
  }
 	
 if (notifyInterval==1)
