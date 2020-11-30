@@ -74,8 +74,8 @@ let qqreadhdArr = [], qqreadheaderVal = '',
     qqreadHD = [], qqreadtimeURL = [], 
     qqreadtimeHD = [];    
   if ($.isNode()) {
-  if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf('#') > -1) {
-  qqreadHD = process.env.QQREAD_HEADER.split('#');
+  if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf('\n') > -1) {
+  qqreadHD = process.env.QQREAD_HEADER.split('\n');
   } else {
       qqreadHD = process.env.QQREAD_HEADER.split()
   };
@@ -86,8 +86,8 @@ let qqreadhdArr = [], qqreadheaderVal = '',
       qqreadtimeURL = process.env.QQREAD_TIMEURL.split()
   };
   
-  if (process.env.QQREAD_TIMEHD && process.env.QQREAD_TIMEHD.indexOf('#') > -1) {
-  qqreadtimeHD = process.env.QQREAD_TIMEHD.split('#');
+  if (process.env.QQREAD_TIMEHD && process.env.QQREAD_TIMEHD.indexOf('\n') > -1) {
+  qqreadtimeHD = process.env.QQREAD_TIMEHD.split('\n');
   } else {
       qqreadtimeHD = process.env.QQREAD_TIMEHD.split()
   }; 
