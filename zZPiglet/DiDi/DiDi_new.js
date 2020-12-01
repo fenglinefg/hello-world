@@ -149,8 +149,8 @@ if ($.isRequest) {
 					$.info("Thanks try to aff to : \n" + s_i);
 					$.checkinParams += "&share_source_id=" + s_i + "&share_date=" + today;
 				}
-				await checkin();
 				await storeActId();
+				await checkin();
 				if ($.drawlids) {
 					await Promise.all(
 						$.drawlids.map(async (lid) => {
@@ -341,6 +341,7 @@ function storeActId() {
 						}
 					}
 				}
+				if (obj.data.message && obj.data.message.text) $.info(obj.data.message.text);
 				$.write(JSON.stringify(actIdAM), "actIdAM");
 				$.write(JSON.stringify(actIdPM), "actIdPM");
 				$.tail +=
