@@ -58,6 +58,7 @@ const $ = Env(jsname)
 const notify = $.isNode() ? require('./sendNotify') : '';
 var tz=''
 var kz=''
+var COOKIES_SPLIT='\n'  //自定义多cookie之间连接的分隔符，默认为\n换行分割，不熟悉的不要改动和配置，为了兼容本地node执行
 
 const logs = 0;   //0为关闭日志，1为开启
 const notifyInterval=3
@@ -75,20 +76,24 @@ let qqreadhdArr = [], qqreadheaderVal = '',
     qqreadHD = [], qqreadtimeURL = [], 
     qqreadtimeHD = [];    
   if ($.isNode()) {
-  if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf('\n') > -1) {
-  qqreadHD = process.env.QQREAD_HEADER.split('\n');
+  if (process.env.COOKIES_SPLIT){
+      COOKIES_SPLIT = process.env.COOKIES_SPLIT;
+  };
+  console.log(`============ cookies分隔符为：${COOKIES_SPLIT} =============\n`);
+  if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf(COOKIES_SPLIT) > -1) {
+  qqreadHD = process.env.QQREAD_HEADER.split(COOKIES_SPLIT);
   } else {
       qqreadHD = process.env.QQREAD_HEADER.split()
   };
        
-  if (process.env.QQREAD_TIMEURL && process.env.QQREAD_TIMEURL.indexOf('\n') > -1) {
-  qqreadtimeURL = process.env.QQREAD_TIMEURL.split('\n');
+  if (process.env.QQREAD_TIMEURL && process.env.QQREAD_TIMEURL.indexOf(COOKIES_SPLIT) > -1) {
+  qqreadtimeURL = process.env.QQREAD_TIMEURL.split(COOKIES_SPLIT);
   } else {
       qqreadtimeURL = process.env.QQREAD_TIMEURL.split()
   };
   
-  if (process.env.QQREAD_TIMEHD && process.env.QQREAD_TIMEHD.indexOf('\n') > -1) {
-  qqreadtimeHD = process.env.QQREAD_TIMEHD.split('\n');
+  if (process.env.QQREAD_TIMEHD && process.env.QQREAD_TIMEHD.indexOf(COOKIES_SPLIT) > -1) {
+  qqreadtimeHD = process.env.QQREAD_TIMEHD.split(COOKIES_SPLIT);
   } else {
       qqreadtimeHD = process.env.QQREAD_TIMEHD.split()
   }; 
