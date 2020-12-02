@@ -149,8 +149,8 @@ if ($.isRequest) {
 					$.info("Thanks try to aff to : \n" + s_i);
 					$.checkinParams += "&share_source_id=" + s_i + "&share_date=" + today;
 				}
-				await storeActId();
 				await checkin();
+				await storeActId();
 				if ($.drawlids) {
 					await Promise.all(
 						$.drawlids.map(async (lid) => {
