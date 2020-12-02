@@ -435,6 +435,7 @@ function prePointSign() {
 				let obj = signobj.layers[0].activityConfig;
 				$.pointSignActivityId = obj.activity_id;
 				$.signPointIds = obj.config.daily_prize;
+				$.pointSignDayMax = obj.config.signin_days;
 			} else {
 				$.pointSignWrongURL = true;
 			}
@@ -456,7 +457,10 @@ function getPointSignDay() {
 		.then((resp) => {
 			$.log("getPointSignDay: " + JSON.stringify(resp.body));
 			let obj = JSON.parse(resp.body);
-			$.pointSignDay = obj.signins.length + 1 > 7 ? 7 : obj.signins.length + 1;
+			$.pointSignDay =
+				obj.signins.length + 1 > $.pointSignDayMax
+					? $.pointSignDayMax
+					: obj.signins.length + 1;
 		})
 		.catch((err) => {
 			throw err;
