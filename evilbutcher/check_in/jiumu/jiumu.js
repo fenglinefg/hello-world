@@ -76,6 +76,7 @@ $.body = $.read("evil_jiumuBody");
   } else {
     $.notify("九木杂物社", "", "❌ 请先获取Cookie");
   }
+  $.done();
 })()
   .catch((err) => {
     if (err instanceof ERR.ParseError) {
@@ -89,7 +90,6 @@ $.body = $.read("evil_jiumuBody");
     }
     $.done();
   })
-  .finally();
 
 function checkin() {
   const url = `https://wxavip-up.ezrpro.cn/Vip/SignIn/SignIn`;
@@ -125,7 +125,7 @@ function checkin() {
 }
 
 function showmsg() {
-  if ($.data.Result.ErrMsg != "null") {
+  if ($.data.Result.ErrMsg != null) {
     $.notify("九木杂物社", "", $.data.Result.ErrMsg);
   } else {
     var msg = $.data.Msg;
