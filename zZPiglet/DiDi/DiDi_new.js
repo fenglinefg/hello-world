@@ -262,6 +262,7 @@ function checkin() {
 			"Didi-Ticket": $.Ticket,
 		},
 	})
+		.delay(500)
 		.then((resp) => {
 			if (resp.statusCode == 403) {
 				throw new ERR.TokenError("Token 失效");
