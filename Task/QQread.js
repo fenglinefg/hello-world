@@ -171,7 +171,7 @@ QQreadboxinfo();//宝箱
 else if (i==3&&task.data.watchVideo.videoCount==0)
 QQreadsign();//金币签到
 
-else if (i==4&&task.data.watchVideo.videoCount<10)
+else if (i==4&&task.data.watchVideo.videoCount<=9)
 QQreadvideo();//视频任务	    
 
 
