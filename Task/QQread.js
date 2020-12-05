@@ -14,9 +14,9 @@
 
 ⚠️cookie获取方法：
 
-进 QQ阅读APP  点我的   获取cookie
+进 QQ阅读APP 点我的   获取cookie            秘密为   QQREADAPP_HEADER 多账号换行
 
-点 免费 福利  日常福利-看视频 获取视频cookie
+点 免费 福利 日常福利-看视频 获取视频cookie  秘密为   QQREADAPP_VIDEOHD 多账号换行
 
 
 
@@ -80,18 +80,18 @@ QQreadvideohdArr = [], QQreadvideoheaderVal = '',
       COOKIES_SPLIT = process.env.COOKIES_SPLIT;
   };
   console.log(`============ cookies分隔符为：${COOKIES_SPLIT} =============\n`);
-  if (process.env.QQREAD_HEADER && process.env.QQREAD_HEADER.indexOf(COOKIES_SPLIT) > -1) {
-  QQreadHD = process.env.QQREAD_HEADER.split(COOKIES_SPLIT);
+  if (process.env.QQREADAPP_HEADER && process.env.QQREADAPP_HEADER.indexOf(COOKIES_SPLIT) > -1) {
+  QQreadHD = process.env.QQREADAPP_HEADER.split(COOKIES_SPLIT);
   } else {
-      QQreadHD = process.env.QQREAD_HEADER.split()
+      QQreadHD = process.env.QQREADAPP_HEADER.split()
   };
        
   
   
-  if (process.env.QQREAD_VIDEOHD && process.env.QQREAD_VIDEOHD.indexOf(COOKIES_SPLIT) > -1) {
-  QQreadvideoHD = process.env.QQREAD_VIDEOHD.split(COOKIES_SPLIT);
+  if (process.env.QQREADAPP_VIDEOHD && process.env.QQREADAPP_VIDEOHD.indexOf(COOKIES_SPLIT) > -1) {
+  QQreadvideoHD = process.env.QQREADAPP_VIDEOHD.split(COOKIES_SPLIT);
   } else {
-      QQreadvideoHD = process.env.QQREAD_VIDEOHD.split()
+      QQreadvideoHD = process.env.QQREADAPP_VIDEOHD.split()
   }; 
  
 }
