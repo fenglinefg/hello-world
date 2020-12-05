@@ -160,8 +160,9 @@ function all(){
  { (function(i) {
             setTimeout(function() {
 
-          if (i==0)
+     if (i==0)
 QQreadinfo();//用户名 
+		    
 else if (i==1)
 QQreadtask();//任务列表
 
@@ -201,9 +202,7 @@ return new Promise((resolve, reject) => {
   const toQQreadinfourl = {
 
     url: 'https://commontgw6.reader.qq.com/v7_5_2/nativepage/getAcctInfo',
-
-    headers: JSON.parse(QQreadheaderVal),
-    
+    headers: JSON.parse(QQreadheaderVal),  
  timeout:60000};
    $.get(toQQreadinfourl,(error, response, data) =>{
      if(logs) $.log(`${jsname}, 用户名: ${data}`)
