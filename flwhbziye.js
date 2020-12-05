@@ -31,13 +31,15 @@ https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxInit url script-reque
 ############## loon
 
 
-https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxDoTask76728 script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js, requires-header=true
+http-request https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxDoTask76728 script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js,requires-header=true, tag=返利网红包获取cookie 
 
 
 #返利网红包
 ############## surge
 
 返利网红包 = type=http-request,pattern=https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxDoTask76728,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js, requires-header=true
+
+
 
 
 
