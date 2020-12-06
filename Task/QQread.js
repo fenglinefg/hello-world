@@ -156,7 +156,7 @@ let K = 0;
 function all(){
       QQreadheaderVal = QQreadhdArr[K];
       QQreadvideoheaderVal = QQreadvideohdArr[K];
-   for(var i=0;i<6;i++)
+   for(var i=0;i<7;i++)
  { (function(i) {
             setTimeout(function() {
 
@@ -169,18 +169,18 @@ QQreadtask();//任务列表
 else if (i==2)
 QQreadboxinfo();//宝箱
 
-else if (i==3&&task.data.watchVideo.videoCount==0)
+else if (i==4&&task.data.watchVideo.videoCount==0)
 QQreadsign();//金币签到
 
-else if (i==4&&task.data.watchVideo.videoCount<=9)
+else if (i==5&&task.data.watchVideo.videoCount<=9)
 QQreadvideo();//视频任务	    
 
 
 		 
-else if (i == 5 && K < QQreadhdArr.length - 1) {
+else if (i == 6 && K < QQreadhdArr.length - 1) {
 K += 1;
 all();
- } else if (i == 5 && K == QQreadhdArr.length - 1) {
+ } else if (i == 6 && K == QQreadhdArr.length - 1) {
 	 showmsg();//通知
 	 console.log(tz)  
             $.done();
