@@ -16,6 +16,7 @@
 12.2 修复打卡问题
 12.3 缩短运行时间，由于企鹅读书版本更新.请手动进去看一次书
 12.3 调整推送时间为12点和24点左右
+12.6 精简打印通知
 
 ⚠️cookie获取方法：
 
@@ -216,8 +217,7 @@ else if (i == 13 && K < qqreadhdArr.length - 1) {
 K += 1;
 all();
  } else if (i == 13 && K == qqreadhdArr.length - 1) {
-	 showmsg();//通知
-	 console.log(tz)  
+	 showmsg();//通知	 
             $.done();
           }
         },
@@ -645,13 +645,17 @@ tz+='【周时长奖励'+(i+1)+'】:领取'+Packageid[i]+'阅豆\n'
  }
 
 
-function showmsg() {      
+function showmsg() { 
+	
 tz += `\n\n========= 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()} \n\n`;
 	
 let d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
 if (d.getHours()==12 && d.getMinutes()<=20 ||d.getHours()==23 && d.getMinutes()>=40 ) {
          notify.sendNotify(jsname,kz)
  }
+
+if (notifyInterval!=1)
+console.log(tz)//无通知时，打印通知	
 	
 if (notifyInterval==1)
 $.msg(jsname,'',tz)//显示所有通知
