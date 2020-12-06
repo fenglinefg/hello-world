@@ -165,7 +165,7 @@ function all(){
       qqreadheaderVal = qqreadhdArr[K];
       qqreadtimeurlVal = qqreadtimeurlArr[K];
       qqreadtimeheaderVal = qqreadtimehdArr[K];
-   for(var i=0;i<14;i++)
+   for(var i=0;i<15;i++)
  { (function(i) {
             setTimeout(function() {
 
@@ -178,45 +178,45 @@ qqreadconfig();//时长查询
 else if (i==1)
 qqreadtask();//任务列表
 		    
-else if (i==2&&config.data.pageParams.todayReadSeconds/3600<=maxtime)
+else if (i==3&&config.data.pageParams.todayReadSeconds/3600<=maxtime)
 qqreadtime();//上传时长
 
-else if (i==3&&task.data.taskList[1].doneFlag==0)
+else if (i==4&&task.data.taskList[1].doneFlag==0)
 qqreadssr1();//阅读金币1		    
 		    
-else if (i==4&&task.data.taskList[2].doneFlag==0){
+else if (i==5&&task.data.taskList[2].doneFlag==0){
 qqreadsign();//金币签到
 qqreadtake();//阅豆签到	  
 }
 			    
-else if (i==5&&task.data.treasureBox.doneFlag==0)
+else if (i==6&&task.data.treasureBox.doneFlag==0)
 qqreadbox();//宝箱
 
-else if (i==6&&task.data.taskList[0].doneFlag==0)
+else if (i==7&&task.data.taskList[0].doneFlag==0)
 qqreaddayread();//阅读任务
 
-else if (i==7&&task.data.taskList[1].doneFlag==0)
+else if (i==8&&task.data.taskList[1].doneFlag==0)
 qqreadssr2();//阅读金币2
 
-else if (i==8)
-qqreadpick();//领周时长奖励	    
+else if (i==9)
+qqreadpick();//领周时长奖励    
 		    
-else if (i==9&&task.data.taskList[3].doneFlag==0)
+else if (i==10&&task.data.taskList[3].doneFlag==0)
 qqreadvideo();//视频任务		    
 		    
-else if(i==10&&task.data.taskList[2].doneFlag==0)
+else if(i==11&&task.data.taskList[2].doneFlag==0)
 qqreadsign2();//签到翻倍
 
-else if (i==11&&task.data.treasureBox.videoDoneFlag==0)
+else if (i==12&&task.data.treasureBox.videoDoneFlag==0)
 qqreadbox2();//宝箱翻倍
 
-else if (i==12&&task.data.taskList[1].doneFlag==0)
+else if (i==13&&task.data.taskList[1].doneFlag==0)
 qqreadssr3();//阅读金币3
 		 
-else if (i == 13 && K < qqreadhdArr.length - 1) {
+else if (i == 14 && K < qqreadhdArr.length - 1) {
 K += 1;
 all();
- } else if (i == 13 && K == qqreadhdArr.length - 1) {
+ } else if (i == 14 && K == qqreadhdArr.length - 1) {
 	 showmsg();//通知	 
             $.done();
           }
