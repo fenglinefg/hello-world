@@ -1,6 +1,9 @@
 /* ziye
 
-本人github地址     https://github.com/ziye12/JavaScript
+github地址     https://github.com/ziye12/JavaScript
+TG频道地址     https://t.me/ziyescript
+TG交流群       https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
+
 转载请备注个名字，谢谢
 
 11.25 增加 阅读时长上传，阅读金币，阅读随机金币
@@ -17,6 +20,7 @@
 12.3 调整推送时间为12点和24点左右
 12.6 精简打印通知
 12.7 解决1金币问题，务必重新获取一次更新body
+12.8 更新支持boxjs
 
 ⚠️cookie获取方法：
 
