@@ -21,12 +21,13 @@ TG交流群       https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
 12.6 精简打印通知
 12.7 解决1金币问题，务必重新获取一次更新body
 12.8 更新支持boxjs
+12.9 修复surge重写获取不到body的问题
 
 ⚠️cookie获取方法：
 
 进 https://m.q.qq.com/a/s/d3eacc70120b9a37e46bad408c0c4c2a  
 
-进书库选择一本书,看10秒以下,然后退出，获取时长url和时长header以及更新body，看书一定不能超过10秒
+进书库选择一本书,看10秒以下,然后退出，获取更新body 和 时长url 以及 时长header，看书一定不能超过10秒
 
 
 
@@ -52,18 +53,18 @@ https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid? url script-request-h
 
 ############## loon
 
-//企鹅读书获取更新body
+#企鹅读书获取更新body
 http-request https:\/\/mqqapi\.reader\.qq\.com\/log\/v4\/mqq\/track script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js,requires-body=true, tag=企鹅读书获取更新body
 
-//企鹅读书获取时长cookie
+#企鹅读书获取时长cookie
 http-request https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid? script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js, requires-header=true, tag=企鹅读书获取时长cookie
 
 ############## surge
 
-//企鹅读书获取更新body
-企鹅读书获取更新body = type=http-request,pattern=https:\/\/mqqapi\.reader\.qq\.com\/log\/v4\/mqq\/track,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js, 
+#企鹅读书获取更新body
+企鹅读书获取更新body = type=http-request,pattern=https:\/\/mqqapi\.reader\.qq\.com\/log\/v4\/mqq\/track,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js, script-update-interval=0
 
-//企鹅读书获取时长cookie
+#企鹅读书获取时长cookie
 企鹅读书获取时长cookie = type=http-request,pattern=https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid?,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/qqreads.js, 
 
 
