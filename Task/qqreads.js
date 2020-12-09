@@ -336,12 +336,9 @@ function qqreadtask() {
 
 // 金币统计
 function qqreadtrans() {
-  return new Promise((resolve, reject) => {
-    
-for(var y=1;y<9;y++)
-{
-const daytime=new Date(new Date().toLocaleDateString()).getTime()
-
+  return new Promise((resolve, reject) => {  
+for(var y=1;y<9;y++){
+    const daytime=new Date(new Date().toLocaleDateString()).getTime()
     const toqqreadtransurl = { 
       url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/trans/list?pn="+y, 
       headers: JSON.parse(qqreadtimeheaderVal), 
@@ -350,15 +347,11 @@ const daytime=new Date(new Date().toLocaleDateString()).getTime()
     $.get(toqqreadtransurl, (error, response, data) => {
       if (logs) $.log(`${jsname}, 今日收益: ${data}`);
       trans = JSON.parse(data);
-
-    for(var i=0;i<20;i++)
-{
+    for(var i=0;i<20;i++){
 if(trans.data.list[i].createTime>=daytime)
   day+=trans.data.list[i].amount;
 }
-
-tz+="【今日收益】:累计"+day+'\n'
-
+tz+="【今日收益】:累计"+day+'\n'	    
 resolve();
       });
      }
