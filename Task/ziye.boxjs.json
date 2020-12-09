@@ -7,7 +7,21 @@
   "apps": [{
     "id": "qqread",
     "name": "企鹅读书",
-    "keys": ["qqreadbd", "qqreadtimeurl", "qqreadtimehd", "qqreadbd2", "qqreadtimeurl2", "qqreadtimehd2", "qqreadbd3", "qqreadtimeurl3", "qqreadtimehd3"],
+    "keys": [
+	"qqreadbd1", "qqreadtimeurl1", "qqreadtimehd1", "qqreadbd2", "qqreadtimeurl2", "qqreadtimehd2", "qqreadbd3", "qqreadtimeurl3", "qqreadtimehd3", "qqreadbd4", "qqreadtimeurl4", "qqreadtimehd4", "qqreadbd5", "qqreadtimeurl5", "qqreadtimehd5", "qqreadbd6", "qqreadtimeurl6", "qqreadtimehd6", "qqreadbd7", "qqreadtimeurl7", "qqreadtimehd7", "qqreadbd8", "qqreadtimeurl8", "qqreadtimehd8",
+	"qqreadbd9", "qqreadtimeurl9", "qqreadtimehd9",
+	"qqreadbd10", "qqreadtimeurl10", "qqreadtimehd10",
+	"qqreadbd11", "qqreadtimeurl11", "qqreadtimehd11",
+	"qqreadbd12", "qqreadtimeurl12", "qqreadtimehd12",
+	"qqreadbd13", "qqreadtimeurl13", "qqreadtimehd13",
+	"qqreadbd14", "qqreadtimeurl14", "qqreadtimehd14",
+	"qqreadbd15", "qqreadtimeurl15", "qqreadtimehd15",
+	"qqreadbd16", "qqreadtimeurl16", "qqreadtimehd16",
+	"qqreadbd17", "qqreadtimeurl17", "qqreadtimehd17",
+	"qqreadbd18", "qqreadtimeurl18", "qqreadtimehd18",
+	"qqreadbd19", "qqreadtimeurl19", "qqreadtimehd19",
+	"qqreadbd20", "qqreadtimeurl20", "qqreadtimehd20",
+	],
     "author": "@ziye",
     "settings": [{
         "id": "qeSuffix",
