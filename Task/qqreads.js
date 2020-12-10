@@ -729,10 +729,14 @@ function qqreadpick() {
 }
 
 function showmsg() {
+	
+	if ($.isNode()) {
   tz += `\n\n========= 脚本执行-北京时间(UTC+8)：${new Date(
     new Date().getTime() + 8 * 60 * 60 * 1000
   ).toLocaleString()} \n\n`;
-
+}else tz += `\n\n========= 脚本执行-北京时间(UTC+8)：${new Date(
+    new Date().getTime()
+  ).toLocaleString()} \n\n`;
   
   if (
     (d.getHours() == 12 && d.getMinutes() <= 20) ||
