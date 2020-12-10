@@ -2,7 +2,7 @@
 "name": "quantumultX some Task",
 "description": "这是收集各个圈x脚本作者的task库，感谢各位大佬的辛勤付出",
 "task": [
-  "25 10 1,10,20 * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/shareCode-auto.js, tag=commitCode, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png"
+  "25 10 1,10,20 * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/shareCode-auto.js, tag=commitCode, img-url=https://raw.githubusercontent.com/Orz-3/task/master/jd.png",
 "*/11 * * * * https://raw.githubusercontent.com/photonmang/quantumultX/master/cache/qqreads1.js, tag=QQ阅读自定义账号, img-url=https://raw.githubusercontent.com/Orz-3/task/master/QQ.png, enabled=false",
 "*/11 * * * * https://raw.githubusercontent.com/photonmang/quantumultX/master/cache/qqreads.js, tag=QQ阅读多账号, img-url=https://raw.githubusercontent.com/Orz-3/task/master/QQ.png, enabled=false",
 "0 9 * * * https://raw.githubusercontent.com/whyour/hundun/master/quanx/jdzz.js, tag=京东赚赚, img-url=https://raw.githubusercontent.com/58xinian/icon/master/jdzz.png, enabled=false",
