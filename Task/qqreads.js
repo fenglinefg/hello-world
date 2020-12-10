@@ -80,7 +80,6 @@ let tz = "";
 let kz = "";
 let task = "";
 let config = "";
-let day=0
 let K = 0;
 
 
@@ -337,6 +336,7 @@ function qqreadtask() {
 function qqreadtrans() {
   return new Promise((resolve, reject) => {  
 for(var y=1;y<9;y++){
+     let day=0;
     const daytime=new Date(new Date().toLocaleDateString()).getTime()
     const toqqreadtransurl = { 
       url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/trans/list?pn="+y, 
@@ -350,7 +350,7 @@ for(var y=1;y<9;y++){
 if(trans.data.list[i].createTime>=daytime)
   day+=trans.data.list[i].amount;
 }
-tz+="【今日收益】:累计"+day+'\n'	    
+tz+="【今日收益】:获得"+day+'\n'	    
 resolve();
       });
      }
