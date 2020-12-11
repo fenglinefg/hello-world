@@ -95,8 +95,7 @@ const TIME = 30; // 单次时长上传限制，默认5分钟
 const maxtime = 12; // 每日上传时长限制，默认12小时
 const wktimess = 1200; // 周奖励领取标准，默认1200分钟
 
-const d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);//GITHUB
-const b = new Date(new Date().getTime());//手机
+const d = new Date(new Date().getTime() + 8 * 60 * 60 * 1000);
 
 const qqreadbdArr = [];
 let qqreadbodyVal = "";
@@ -124,6 +123,7 @@ if ($.isNode()) {
   } else {
     qqreadBD = process.env.QQREAD_BODY.split();
   }
+
   if (
     process.env.QQREAD_TIMEURL &&
     process.env.QQREAD_TIMEURL.indexOf(COOKIES_SPLIT) > -1
@@ -132,6 +132,7 @@ if ($.isNode()) {
   } else {
     qqreadtimeURL = process.env.QQREAD_TIMEURL.split();
   }
+
   if (
     process.env.QQREAD_TIMEHD &&
     process.env.QQREAD_TIMEHD.indexOf(COOKIES_SPLIT) > -1
@@ -141,6 +142,7 @@ if ($.isNode()) {
     qqreadtimeHD = process.env.QQREAD_TIMEHD.split();
   }
 }
+
 if ($.isNode()) {
   Object.keys(qqreadBD).forEach((item) => {
     if (qqreadBD[item]) {
@@ -157,6 +159,7 @@ if ($.isNode()) {
       qqreadtimehdArr.push(qqreadtimeHD[item]);
     }
   });
+
   console.log(
     `============ 共${qqreadtimehdArr.length}个企鹅读书账号  =============\n`
   );
@@ -180,17 +183,13 @@ if ($.isNode()) {
   }
 }
 
-if ($.isNode()) {
-const daytime=new Date(new Date().toLocaleDateString()).getTime()- 8 * 60 * 60 * 1000
-}else {
-const daytime=new Date(new Date().toLocaleDateString()).getTime()
-}
-
 if ((isGetCookie = typeof $request !== "undefined")) {
   GetCookie();
 $.done();
 }
+
 function GetCookie() {
+
 if ($request && $request.url.indexOf("addReadTimeWithBid?") >= 0) {
     const qqreadtimeurlVal = $request.url;
     if (qqreadtimeurlVal) $.setdata(qqreadtimeurlVal, "qqreadtimeurl" + $.idx);
@@ -212,8 +211,13 @@ if ($request && $request.url.indexOf("addReadTimeWithBid?") >= 0) {
       `[${jsname + $.idx}] 获取更新body: 成功,qqreadbodyVal: ${qqreadbodyVal}`
     );
     $.msg(jsname + $.idx, `获取更新body: 成功🎉`, ``);
+
     } 
+
 }
+
+
+
 all();
 function all() {
   qqreadbodyVal = qqreadbdArr[K];
@@ -257,18 +261,10 @@ function all() {
      else if (i == 8){
           if (task.data && 
 task.data.user.amount >= 100000&&d.getHours() == 23)
-     else if (i == 8&& task.data &&
-task.data.user.amount >= 100000){
-          if ($.isNode()&&d.getHours() == 23)
-              qqreadwithdraw();//现金提现
-     else if (b.getHours() == 23)
               qqreadwithdraw();//现金提现
 }
      else if (i == 9){
           if (d.getHours() == 23 && d.getMinutes() >= 40)
-          if ($.isNode()&&d.getHours() == 23 && d.getMinutes() >= 40)
-              qqreadtrans();//今日收益累计
-    else  if (b.getHours() == 23 && b.getMinutes() >= 40)
               qqreadtrans();//今日收益累计
 }
      else if (i == 11 ){        
@@ -287,17 +283,22 @@ task.data.user.amount >= 100000){
   }
  }
 },
+
         (i + 1) * dd * 1000
       );
     })(i);
   }
 }
+
+
+
 // 任务列表
 function qqreadtask() {
   return new Promise((resolve, reject) => {
     const toqqreadtaskurl = {
       url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/page?fromGuid=",
       headers: JSON.parse(qqreadtimeheaderVal),
+
       timeout: 60000,
     };
     $.get(toqqreadtaskurl, (error, response, data) => {
@@ -306,6 +307,7 @@ function qqreadtask() {
       kz +=
         `【现金余额】:${(task.data.user.amount / 10000).toFixed(2)}元\n` +
         `【已开宝箱】:${task.data.treasureBox.count}个\n`;
+
       tz +=
         `【现金余额】:${(task.data.user.amount / 10000).toFixed(2)}元\n` +
         `【第${task.data.invite.issue}期】:时间${task.data.invite.dayRange}\n` +
@@ -318,16 +320,50 @@ function qqreadtask() {
           task.data.treasureBox.tipText
         }\n` +
         `【${task.data.fans.title}】:${task.data.fans.fansCount}个好友,${task.data.fans.todayAmount}金币\n`;
+
       resolve();
     });
   });
 }
+
+
+
+
+
+
+
 // 金币统计
 function qqreadtrans() {
   return new Promise((resolve, reject) => {  
 for(var y=1;y<9;y++){
      let day=0;
+    const daytime=new Date(new Date().toLocaleDateString()).getTime()
     const toqqreadtransurl = { 
+      url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/trans/list?pn="+y, 
+      headers: JSON.parse(qqreadtimeheaderVal), 
+      timeout: 60000, 
+    };
+    $.get(toqqreadtransurl, (error, response, data) => {
+      if (logs) $.log(`${jsname}, 今日收益: ${data}`);
+      trans = JSON.parse(data);
+    for(var i=0;i<20;i++){
+if(trans.data.list[i].createTime>=daytime)
+  day+=trans.data.list[i].amount;
+}
+tz+="【今日收益】:获得"+day+'\n'	    
+resolve();
+      });
+     }
+  });
+}
+
+
+
+// 更新
+function qqreadtrack() {
+  return new Promise((resolve, reject) => {
+    const body = qqreadbodyVal.replace(new RegExp(/"dis":[0-9]{13}/),`"dis":${new Date().getTime()}`) 
+    const toqqreadtrackurl = { 
       url: "https://mqqapi.reader.qq.com/log/v4/mqq/track", 
       headers: JSON.parse(qqreadtimeheaderVal), 
    body: body,       
