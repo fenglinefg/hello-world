@@ -269,13 +269,12 @@ function all() {
 }    
      else if (i == 8){
           if (task.data && 
-task.data.user.amount >= 100000&&d.getHours() == 23)
-     else if (i == 8&& task.data &&
-task.data.user.amount >= 100000){
+task.data.user.amount >= 100000) {  
           if ($.isNode()&&d.getHours() == 23)
               qqreadwithdraw();//现金提现
      else if (b.getHours() == 23)
               qqreadwithdraw();//现金提现
+}
 }
      else if (i == 9){
           if (d.getHours() == 23 && d.getMinutes() >= 40)
