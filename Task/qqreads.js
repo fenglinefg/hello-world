@@ -267,17 +267,15 @@ function all() {
           if (task.data && task.data.taskList[2].doneFlag == 0)
               qqreadsign2();// 签到翻倍
 }    
-     else if (i == 8){
-          if (task.data && 
-task.data.user.amount >= 100000) {  
+     else if (i == 8&&task.data && 
+task.data.user.amount >= 100000){
           if ($.isNode()&&d.getHours() == 23)
               qqreadwithdraw();//现金提现
      else if (b.getHours() == 23)
               qqreadwithdraw();//现金提现
 }
-}
+
      else if (i == 9){
-          if (d.getHours() == 23 && d.getMinutes() >= 40)
           if ($.isNode()&&d.getHours() == 23 && d.getMinutes() >= 40)
               qqreadtrans();//今日收益累计
     else  if (b.getHours() == 23 && b.getMinutes() >= 40)
