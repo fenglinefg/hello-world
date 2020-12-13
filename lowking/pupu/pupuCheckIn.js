@@ -38,7 +38,7 @@ cron "0 10 0 * * ?" script-path=https://raw.githubusercontent.com/lowking/Script
 
 const lk = new ToolKit(`朴朴签到`, `PuPuCheckIn`, {"httpApia": "ffff@192.168.8.117:6166"})
 const pupuTokenKey = 'lkPuPuTokenKey'
-const pupuToken = !lk.getVal(pupuTokenKey) ? 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIiLCJhdWQiOiJodHRwczovL3VjLnB1cHVhcGkuY29tIiwiaXNfbm90X25vdmljZSI6IjEiLCJpc3MiOiJodHRwczovL3VjLnB1cHVhcGkuY29tIiwiZ2l2ZW5fbmFtZSI6IuOAguOAguOAgiIsImV4cCI6MTYxMDIwNzIyOCwianRpIjoiNTExNWY2NmEtNWRjNi00Mzc2LWE5ZjktNWMyNmFjYmIxMjkyIn0.29UPOO048eFuG5S-S-qYN0HUxwRxXcGZ1PuR-Egi5CM' : lk.getVal(pupuTokenKey)
+const pupuToken = !lk.getVal(pupuTokenKey) ? '' : lk.getVal(pupuTokenKey)
 
 if(!lk.isExecComm) {
     if (lk.isRequest()) {
