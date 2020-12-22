@@ -29,6 +29,13 @@ $.random = Math.floor(Math.random() * 60);
   console.log(`\n此脚本延迟${$.random}秒执行\n`);	
   for (let i = 0; i < shareCodes.length; i++) {	
     const { zd, nc, mc, ddgc, jxgc } = shareCodes[i];	
+  
+  console.log(`\n码zd1${zd}\n`);	
+  console.log(`\n码nc${nc}\n`);	
+  console.log(`\n码mc${mc}\n`);	
+  console.log(`\n码ddgc${ddgc}\n`);	
+  console.log(`\n码jxgc${jxgc}\n`);	
+
     await $.wait($.random);	
     zd &&	
       (await create(	
