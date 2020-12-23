@@ -46,7 +46,7 @@ jobs:
       - name: '运行 【汽车之家极速版】'
         if: env.QCZJ_GetUserInfoURL
         run: |
-          cd ~/QCZJSPEED
+          cd ~/hello-world
           node Task/qczjspeed.js
         env:
           
