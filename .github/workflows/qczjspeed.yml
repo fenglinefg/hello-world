@@ -33,7 +33,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/ziye12/QCZJSPEED.git ~/hello-world
+          git clone https://github.com/ziye12/QCZJSPEED.git ~/QCZJSPEED
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -41,12 +41,12 @@ jobs:
       - name: npm install
         if: env.QCZJ_GetUserInfoURL
         run: |
-          cd ~/hello-world
+          cd ~/QCZJSPEED
           npm install
       - name: '运行 【汽车之家极速版】'
         if: env.QCZJ_GetUserInfoURL
         run: |
-          cd ~/hello-world
+          cd ~/QCZJSPEED
           node Task/qczjspeed.js
         env:
           
