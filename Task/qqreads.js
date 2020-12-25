@@ -429,7 +429,8 @@ function qqreadinfo() {
    if (info.data.user.nickName){
       kz += `\n========== 【${info.data.user.nickName}】 ==========\n`;
       tz += `\n========== 【${info.data.user.nickName}】 ==========\n`;
-      if (!info.data.user.nickName){
+      }
+   if (!info.data.user.nickName){
       kz += `\n========== 【⚠️COOKE失效，请重新获取】 ==========\n`;
       tz += `\n========== 【⚠️COOKE失效，请重新获取】 ==========\n`;
      }
