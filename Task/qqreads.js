@@ -426,9 +426,10 @@ function qqreadinfo() {
     $.get(toqqreadinfourl, (error, response, data) => {
       if (logs) $.log(`${jsname}, 用户名: ${data}`);
       info = JSON.parse(data);
+   if (info.data.user.nickName){
       kz += `\n========== 【${info.data.user.nickName}】 ==========\n`;
       tz += `\n========== 【${info.data.user.nickName}】 ==========\n`;
-      if (info.code==-2){
+      else{
       kz += `\n========== 【⚠️COOKE失效，请重新获取】 ==========\n`;
       tz += `\n========== 【⚠️COOKE失效，请重新获取】 ==========\n`;
      }
