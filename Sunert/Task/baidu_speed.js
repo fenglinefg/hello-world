@@ -126,7 +126,7 @@ function TaskCenter() {
    $.get(rewurl, async(error, resp, data) => {
   try{
      let get_tasks = JSON.parse(data)
-      $.log("获取任务数据"+data)
+      //$.log("获取任务数据"+data)
        tasks = get_tasks.data.comps
       for ( x in tasks){
          taskid = tasks[x].taskId
@@ -141,16 +141,19 @@ function TaskCenter() {
           taskName = '【'+jingangs.jingangName+'】'
           RefererUrl = jingangs.jingangUrl
         $.log(taskName+"tid:"+tid)
-   $.log(tasks[x].data.countDown[tid].countDown)
-          downtime = tasks[x].data.countDown[tid].countDown
-         if(downtime == 0){
+   //$.log(tasks[x].data.countDown[tid].countDown)
+        if ($.isNode()){
+           await $.wait(1000)
+           await get_pkg();
+          } 
+else if(tasks[x].data.countDown[tid].countDown ==0){
            await $.wait(1000)
            await get_pkg();
           } else {
-           $.log( "  请等待"+Number(downtime/60).toFixed(2)+"分钟")
-            }
+           $.log( "  请等待"+Number(tasks[x].data.countDown[tid].countDown/60).toFixed(2)+"分钟")
            }
           }
+         }
         } else if(id ==1076){
          for ( tasklists  of  tasks[x].data.tasklist){
           tid = tasklists.id
