@@ -34,12 +34,9 @@ https:\/\/passport\.fanli\.com\/* url script-request-header https://raw.githubus
 #返利网红包
 ############## loon
 
-
 http-request https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxDoTask76728 script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js,requires-header=true, tag=返利网红包获取cookie 
 
-https:\/\/passport\.fanli\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js,requires-header=true, tag=返利网红包获取cookie 
-
-
+http-request https:\/\/passport\.fanli\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js,requires-header=true, tag=返利网红包获取cookie
 
 
 #返利网红包
