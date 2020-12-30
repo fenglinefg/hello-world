@@ -25,7 +25,7 @@ if ($.isNode()) {
   JKCookie = process.env.JUKAN_COOKIE.split()
   }
   if (process.env.JUKAN_BODY && process.env.JUKAN_BODY.indexOf('&') > -1) {
-  JKbody = process.env.BODY_BODY.split('&');
+  JKbody = process.env.JUKAN_BODY.split('&');
   }
  if (process.env.JUKAN_BODY && process.env.JUKAN_BODY.indexOf('\n') > -1) {
   JKbody = process.env.JUKAN_BODY.split('\n');
@@ -85,8 +85,8 @@ if (typeof $request !== 'undefined') {
       apptoken = decodeURIComponent(bodyval).match(/"apptoken" : "\w+"/)
       bodys = [bodyval,bodyval.replace(/time%22%20%3A%20%22\d+/, 'cateid%22%20:%20%2253')]
       $.index = i + 1;
-      await getsign();
-      await signShare();
+       await getsign();
+       await signShare();
  for ( readbodyVal of bodys){
          await artList()
    }
@@ -208,7 +208,7 @@ function artList() {
          $.log("正在观看视频: "+art_Title +"  -------- <"+screen_Name +">\n ")
           await readTask(lists.art_id,arttype)
           }
-        if(taskresult  == `R-ART-1002`|| taskresult ==`R-ART-0017`){
+        if(taskresult  == `R-ART-1002`|| taskresult ==`R-ART-0011`){
          break 
           }
          }
@@ -282,8 +282,10 @@ function BoxProfit() {
       url: `https://www.xiaodouzhuan.cn/jkd/task/getTaskBoxProfit.action`,
       headers: {Cookie:cookieval,'User-Agent':UA}, body: `box_type=${boxtype}`
       }
+
+$.log(profiturl.body)
    $.post(profiturl, async(error, resp, data) => {
-     //$.log(data+"\n")
+     $.log(data+"\n")
      let do_box = JSON.parse(data)
      if (do_box.ret == "ok"&&do_box.profit>0){
        $.log("获得收益: +"+do_box.profit)
