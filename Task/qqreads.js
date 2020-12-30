@@ -654,7 +654,6 @@ function qqreadbox() {
     $.get(toqqreadboxurl, (error, response, data) => {
       if (logs) $.log(`${O}, 宝箱奖励: ${data}`);
       box = JSON.parse(data);
-      let box = JSON.parse(data);
       if (box.code==0){
         tz += `【宝箱奖励${box.data.count}】:获得${box.data.amount}金币\n`;	
 }
