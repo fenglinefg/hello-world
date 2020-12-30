@@ -1,8 +1,7 @@
 
 /*ziye
 
-//返利网1212天天领现金，活动时间 12月  5号 9号到12号
-每天1.95
+//返利网 天天领现金，活动时间 不一定
 
 下载地址  http://m.a8fdj.cn/Invite/promotion?id=775&spm=page_name.h5.pty-wxzcpv~std-65354&go=http%3A%2F%2Fhuodong.a8fdj.cn%2Fh5%2FInvitefriendsreward%2FregisterCallback%3Fuserid%3D373511081%26id%3D775%26sn%3D47ecab06aba43e015082e531d8214eb5
 
@@ -13,17 +12,22 @@
 ⚠️会卡住，但是能获取到cookie，然后注释重写就行了！
 提现请先微信关注返利网公众号
 
-hostname=huodong.fanli.com,
+hostname=huodong.fanli.com,passport.fanli.com
 
 时间👇
 
-0 1-16 10 5,9,10,11,12 * *
+
 
 
 
 #返利网红包
 ############## 圈x
 https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxInit url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js   
+
+
+https:\/\/passport\.fanli\.com\/* url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js   
+
+
 
 
 
@@ -33,6 +37,10 @@ https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxInit url script-reque
 
 http-request https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxDoTask76728 script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js,requires-header=true, tag=返利网红包获取cookie 
 
+https:\/\/passport\.fanli\.com\/* script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js,requires-header=true, tag=返利网红包获取cookie 
+
+
+
 
 #返利网红包
 ############## surge
@@ -40,6 +48,7 @@ http-request https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxDoTask76
 返利网红包 = type=http-request,pattern=https:\/\/huodong\.fanli\.com\/h5\/Fanlishare20201212\/ajaxDoTask76728,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js,
 
 
+返利网红包 = type=https:\/\/passport\.fanli\.com\/*,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/flwhbziye.js,
 
 
 
@@ -57,7 +66,7 @@ const $ = Env(jsname)
 const logs = 0;   //0为关闭日志，1为开启
 const notifyInterval=1//0为关闭通知，1为开启
 const jbid=1;
-const txbz=1.45//设置余额大于等于多少提现，必须大于0.3
+const txbz=1//设置余额大于等于多少提现，必须大于0.3
 
 
 
@@ -67,6 +76,9 @@ const flwhburlKey = 'flwhburl'+jbid
 
 const flwhbheaderKey = 'flwhbhd'+jbid
 
+const flwhbdlurlKey = 'flwhbdlurl'+jbid
+
+const flwhbdlhdKey = 'flwhbdlhd'+jbid
 
 
 const flwhburlVal = $.getdata(flwhburlKey)
@@ -77,8 +89,9 @@ const flwhbbodyVal = ''
 
 
 
+const flwhbdlurlVal = $.getdata(flwhbdlurlKey)
 
-
+const flwhbdlhdVal = $.getdata(flwhbdlhdKey)
 
 
 
@@ -115,8 +128,23 @@ const flwhbheaderVal = JSON.stringify($request.headers)
 
   }
 
+if($request &&$request.url.indexOf("getUserInfo")>=0) {
+
+  const flwhbdlurlVal = $request.url
+if (flwhbdlurlVal)        $.setdata(flwhbdlurlVal,flwhbdlurlKey)
+    $.log(`[${jsname}] 获取登录url请求: 成功,flwhbdlurlVal: ${flwhbdlurlVal}`)
+
+const flwhbdlhdVal = JSON.stringify($request.headers)
+if (flwhbdlhdVal)        $.setdata(flwhbdlhdVal,flwhbdlhdKey)
+    $.log(`[${jsname}] 获取登录hd请求: 成功,flwhbdlhdVal: ${flwhbdlhdVal}`)
+  $.msg(flwhbdlhdKey, `获取登录cookie: 成功🎉`, ``)
+
+
 }
 
+
+
+}
 
 
 
@@ -132,14 +160,15 @@ const flwhbheaderVal = JSON.stringify($request.headers)
 
  {
 
-   for(var i=0;i<3;i++)
+   for(var i=0;i<4;i++)
  { (function(i) {
             setTimeout(function() {
-    
-     if(i==0) flwhbtask();
-     if(i==1) flwhblh();
 
-else if(i==2) {
+     if(i==0) flwhbdl();
+else if(i==1) flwhbtask();
+else if(i==2) flwhblh();
+
+else if(i==3) {
 showmsg()
 $.done()}
 }, (i + 1) *500);
@@ -219,6 +248,46 @@ tz+='【开启完毕】✖️:'+'礼盒已全部开启'+'\n'
     })
    })
   }  
+
+
+
+
+
+//用户登录
+function flwhbdl() {
+return new Promise((resolve, reject) => {
+
+  const toflwhbdlurl = {
+
+    url: flwhbdlurlVal,
+
+    headers: JSON.parse(flwhbdlhdVal),
+    //body: flwhbbodyVal
+  };
+   $.get(toflwhbdlurl,(error, response, data) =>{
+     if(logs) $.log(`${jsname}, 用户登录: ${data}`)
+     dlinfo =JSON.parse(data)
+      if (dlinfo.status==1)
+ {
+tz+='【用户登录】'+'登录id:'+dlinfo.data.username+'\n'
+
+}
+
+else
+tz+='【出现问题】✖️:'+dlinfo.data+'\n'
+
+
+
+
+
+
+    resolve()
+    })
+   })
+  }  
+
+
+
 
 
 
