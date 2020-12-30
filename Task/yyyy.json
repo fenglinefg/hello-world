@@ -36,6 +36,34 @@
         "val": "1",
         "type": "number",
         "desc": "设置从哪个账号结束打印，根据需要来设值"
+      },
+      {
+        "id": "qebody",
+        "name": "打印body",
+        "val": "0",
+        "type": "number",
+        "desc": "设置为1则打印"
+      },
+      {
+        "id": "qetimeurl",
+        "name": "打印timeurl",
+        "val": "0",
+        "type": "number",
+        "desc": "设置为1则打印"
+      },
+      {
+        "id": "qetimeheader",
+        "name": "打印timeheader",
+        "val": "0",
+        "type": "number",
+        "desc": "设置为1则打印"
+      },
+      {
+        "id": "qeGG",
+        "name": "打印连接符号",
+        "val": "",
+        "type": "text",
+        "desc": "设置连接符号，默认为换行，如有其他需要请设值"
       }
     ],
     "repo": "https://github.com/ziye12/JavaScript/blob/master/Task/qqreads.js",
