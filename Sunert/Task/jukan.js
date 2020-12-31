@@ -11,7 +11,7 @@ hostname = www.xiaodouzhuan.cn
 
 */
 const $ = new Env('聚看点')
-let drawcash = $.getdata('jukan_name') || 30 //提现金额
+let drawcash = $.getdata('jukan_cash') || 30 //提现金额
 let wxname = $.getdata('jukan_name') || ""//微信真实名字，可以在双引号内填入
 let CookieArr=[],BodyArr=[];
 let cookie = $.getdata('jukan_ck')
