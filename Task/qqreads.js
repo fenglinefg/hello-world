@@ -29,7 +29,7 @@ boxjs链接      https://raw.githubusercontent.com/ziye12/JavaScript/master/Task
 12.11 修复git与手机 时间不兼容问题
 12.30 增加提现开关，优化部分代码
 12.31 修复版本更新带来的判定问题
-1.1 修复签到问题
+
       
 
 ⚠️cookie获取方法：
