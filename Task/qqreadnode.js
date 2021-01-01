@@ -15,6 +15,7 @@ boxjs链接      https://raw.githubusercontent.com/ziye12/JavaScript/master/Task
 12.28 解决通知问题，notifyInterval     0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 12.28 增加 无通知时打印通知
 12.29 修复手机通知问题，增加外部推送开关
+1.1 修复签到问题
 
 
 ⚠️cookie获取方法：
@@ -323,16 +324,16 @@ function qqreaddayread() {
 function qqreadsign() {
   return new Promise((resolve, reject) => {
     const toqqreadsignurl = {
-      url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/clock_in/page",
+      url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/clock_in",
       headers: JSON.parse(qqreadtimeheaderVal),
       timeout: 60000,
     };
     $.get(toqqreadsignurl, (error, response, data) => {
       if (logs) $.log(`${O}, 金币签到: ${data}`);
       sign = JSON.parse(data);
-      if (sign.data.videoDoneFlag) {
-        tz += `【金币签到】:获得${sign.data.todayAmount}金币\n`;
-		kz += `【金币签到】:获得${sign.data.todayAmount}金币\n`;
+      if (sign.code == 0) {
+        tz += `【金币签到】:获得${sign.data.amount}金币\n`;
+		kz += `【金币签到】:获得${sign.data.amount}金币\n`;
       }
       resolve();
     });

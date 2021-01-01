@@ -634,15 +634,15 @@ function qqreadssr3() {
 function qqreadsign() {
   return new Promise((resolve, reject) => {
     const toqqreadsignurl = {
-      url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/clock_in/page",
+      url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/clock_in",
       headers: JSON.parse(qqreadtimeheaderVal),
       timeout: 60000,
     };
     $.get(toqqreadsignurl, (error, response, data) => {
       if (logs) $.log(`${O}, 金币签到: ${data}`);
       sign = JSON.parse(data);
-      if (sign.data.videoDoneFlag) {
-        tz += `【金币签到】:获得${sign.data.todayAmount}金币\n`;
+      if (sign.code == 0) {
+        tz += `【金币签到】:获得${sign.data.amount}金币\n`;
       }
       resolve();
     });
