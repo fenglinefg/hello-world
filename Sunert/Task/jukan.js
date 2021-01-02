@@ -1,7 +1,7 @@
 /*
 聚看点签到任务，不支持Actions跑阅读任务，其他任务可运行
 打开'我的'获取Cookie
-
+更新时间: 2021-01-02 11:50
 https:\/\/www\.xiaodouzhuan\.cn\/jkd\/newMobileMenu\/infoMe\.action url script-request-body jukan.js
 
 可自动提现，提现需填写微信真实姓名，设置提现金额，默认30，此设置可以boxjs内完成，也可本地配置
@@ -17,7 +17,7 @@ let CookieArr=[],BodyArr=[];
 let bodys = $.getdata('jukan_body')
 let signtimes = $.getdata('jukan_times')
 let UA = 'JuKanDian/5.6.5 (iPhone; iOS 14.2; Scale/3.00)'
-let taskresult = ""
+let taskresult = "",sumnotify ="";
 
 if ($.isNode()) {
   if (process.env.JUKAN_BODY && process.env.JUKAN_BODY.indexOf('&') > -1) {
@@ -70,6 +70,7 @@ if (typeof $request !== 'undefined') {
       cookieval = `xz_jkd_appkey=${ID}!iOS!${appVersion}`
       times = Date.parse(new Date())/1000
       $.index = i + 1;
+   console.log("开始聚看点账号"+$.index+"任务\n")
       await sign();
      //await LuckDrawLevel();
      //return
@@ -97,10 +98,10 @@ if (typeof $request !== 'undefined') {
    } else {
      await artTotal() 
 }  
-   if (taskresult == 'R-ART-1002'){
-     $.desc += "\n"+sumnotify
-     $.msg($.name+" 昵称:"+userName, $.sub, $.desc,{'media-url': calendarpic })
+   if (artcount == 0&&videocount ==0){
+     $.msg($.name+" 昵称:"+userName, $.sub, "今日阅读任务已完成\n"+$.desc,{'media-url': calendarpic })
      }
+   $.log($.name+"账号"+$.index+" : "+userName+ "  本次运行任务已结束\n~~~~~~~~~~~~~~~~~~\n")
    }
  } 
 })()
