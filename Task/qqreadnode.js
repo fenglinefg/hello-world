@@ -163,6 +163,9 @@ if ($.isNode()) {
     }
   });
 } else {
+  qqreadbdArr.push($.getdata("qqreadbd"));
+  qqreadtimeurlArr.push($.getdata("qqreadtimeurl"));
+  qqreadtimehdArr.push($.getdata("qqreadtimehd"));
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   if ("qeCASH") {
     CASH = $.getval("qeCASH");
