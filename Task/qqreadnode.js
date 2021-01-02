@@ -55,6 +55,7 @@ http-request https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid? script-
 */
 
 const BOX = 2;//设置为0 日常任务，设置为1 单开宝箱，设置为2 完整功能版
+const NODE=0;//如需固定ck，请设置为1，下载到本地使用
 
 
 
@@ -133,7 +134,7 @@ process.env.QQREAD_BODY) {
   }
 }
 
-if (qqreadbodyVal!=``){
+if (NODE==1){
  QQ_READ_COOKIES = {  
   "qqreadbodyVal": qqreadbodyVal.split('\n'),
   "qqreadtimeurlVal": qqreadtimeurlVal.split('\n'),
@@ -144,7 +145,7 @@ Length = QQ_READ_COOKIES.qqreadbodyVal.length
   } 
   
   
-if (qqreadbodyVal==``){
+if (NODE!=1){
 
 if ($.isNode()) {
   Object.keys(qqreadBD).forEach((item) => {
@@ -269,12 +270,12 @@ async function all() {
   }
   
   for (let i = 0; i < Length; i++) {
-if (qqreadbodyVal!=``){
+if (NODE==1){
    qqreadbodyVal = QQ_READ_COOKIES.qqreadbodyVal[i];
    qqreadtimeurlVal = QQ_READ_COOKIES.qqreadtimeurlVal[i];   
    qqreadtimeheaderVal = QQ_READ_COOKIES.qqreadtimeheaderVal[i];    
 	  }
-	if (qqreadbodyVal==``){ 
+	if (NODE!=1){ 
    qqreadbodyVal = qqreadbdArr[i];
   qqreadtimeurlVal = qqreadtimeurlArr[i];
   qqreadtimeheaderVal = qqreadtimehdArr[i];
