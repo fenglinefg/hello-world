@@ -63,6 +63,11 @@ const jsname = '企鹅读书'
 const $ = Env(jsname)
 let task ,tz, kz,config = '';
 let wktime;
+let ydrw;
+let dk;
+let ljyd;
+let sp;
+
 console.log(`\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', {hour12: false})} =========\n`)
 const notify = $.isNode() ? require("./sendNotify") : "";
 const notifyttt = 0// 0为关闭外部推送，1为12 23 点外部推送
@@ -290,10 +295,10 @@ if (NODE==1){
     await qqreadtrack();//更新
 	await qqreadconfig();//时长查询
 	await qqreadwktime();//周时长查询
-	if (config.data.pageParams.todayReadSeconds / 3600 <= maxtime) {
+	if (config.data&&config.data.pageParams.todayReadSeconds / 3600 <= maxtime) {
     await qqreadtime();// 上传时长
     }
-	if (wktime.data.readTime >= wktimess && wktime.data.readTime <= 1250) {
+	if (wktime.data&&wktime.data.readTime >= wktimess && wktime.data.readTime <= 1250) {
 	await qqreadpick();//领周时长奖励
 	}	
     await qqreadtask();//任务列表
@@ -315,7 +320,7 @@ if (NODE==1){
     }
     if (nowTimes.getHours() >=23  && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 59)) 
     {
-    if (CASH>=1&&task.data.user.amount >= CASH*10000) {
+    if (CASH>=1&&task.data&&task.data.user.amount >= CASH*10000) {
       await qqreadwithdraw();//提现
       }		
       await qqreadtrans();//今日收益累计
@@ -355,10 +360,10 @@ if (NODE==1){
     await qqreadtrack();//更新
 	await qqreadconfig();//时长查询
 	await qqreadwktime();//周时长查询
-	if (config.data.pageParams.todayReadSeconds / 3600 <= maxtime) {
+	if (config.data&&config.data.pageParams.todayReadSeconds / 3600 <= maxtime) {
     await qqreadtime();// 上传时长
     }
-	if (wktime.data.readTime >= wktimess && wktime.data.readTime <= 1250) {
+	if (wktime.data&&wktime.data.readTime >= wktimess && wktime.data.readTime <= 1250) {
 	await qqreadpick();//领周时长奖励
 	}	
     await qqreadtask();//任务列表
@@ -388,7 +393,7 @@ if (NODE==1){
     }
     if (nowTimes.getHours() >=23  && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 59)) 
     {
-    if (CASH>=1&&task.data.user.amount >= CASH*10000) {
+    if (CASH>=1&&task.data&&task.data.user.amount >= CASH*10000) {
       await qqreadwithdraw();//提现
       }		
       await qqreadtrans();//今日收益累计
