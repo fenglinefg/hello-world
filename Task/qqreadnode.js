@@ -19,6 +19,7 @@ boxjs链接      https://raw.githubusercontent.com/ziye12/JavaScript/master/Task
 1.2 增加完整功能 兼容固定ck与boxjs以及变量版 
 1.3 增加ck失效提醒，并继续执行其他账号
 1.3 增加一个独立的cookie文件
+1.3 增加cookie获取时间显示
 
 ⚠️cookie获取方法：
 
@@ -465,8 +466,16 @@ function qqreadtrack() {
     $.post(toqqreadtrackurl, (error, response, data) => {
       if (logs) $.log(`${O}, 更新: ${data}`);
       let track = JSON.parse(data);
-      tz += `【数据更新】:更新${track.msg}\n`;
-      kz += `【数据更新】:更新${track.msg}\n`;
+var date = new Date(JSON.parse(qqreadbodyVal).dataList[0].dis);
+Y = date.getFullYear() + '-';
+M = (date.getMonth()+1 < 10 ? '0'+(date.getMonth()+1) : date.getMonth()+1) + '-';
+D = date.getDate() + ' ';
+h = date.getHours() + ':';
+m = date.getMinutes() + ':';
+s = date.getSeconds();
+time=Y+M+D+h+m+s;
+      tz += `【数据更新】:更新${track.msg},\n【cookie获取时间】${time}\n`;
+      kz += `【数据更新】:更新${track.msg},\n【cookie获取时间】${time}\n`;
       resolve();
     });
   });
