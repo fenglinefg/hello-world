@@ -16,6 +16,7 @@ const wxname = $.getdata('jukan_name') || ""//微信真实名字，可以在双�
 let CookieArr=[],BodyArr=[];
 let bodys = $.getdata('jukan_body')
 let signtimes = $.getdata('jukan_times')
+let cashout = $.getdata('jukan_out')|| false
 let UA = 'JuKanDian/5.6.5 (iPhone; iOS 14.2; Scale/3.00)'
 let taskresult = "",sumnotify ="";
 
@@ -84,8 +85,8 @@ if (typeof $request !== 'undefined') {
      for ( x =18;x<32;++x){
       await Stimulate(x)
      }
-  if (curcash >= drawcash && wxname){
-     // await realname();
+  if (cashout==true&&curcash >= drawcash && wxname){
+        await realname();
       //await Withdraw() //实名未通过，强制提现，可取消此注释，不保证成功
    }
    if (signtimes&&signtimes<5){
@@ -97,7 +98,7 @@ if (typeof $request !== 'undefined') {
      await artTotal() 
 }  
    if ((150-artcount) == 0&&(50-videocount) ==0){
-     $.msg($.name+" 昵称:"+userName, $.sub, $.desc+"\n<今日阅读任务已完成>",{'media-url': calendarpic })
+     $.msg($.name+" 昵称:"+userName, $.sub, $.desc+"<今日阅读任务已完成>",{'media-url': calendarpic })
      }
      $.log("\n"+ $.name+"账号"+$.index+" : "+userName+ "  本次运行任务已结束\n~~~~~~~~~~~~~~~~~~\n")
    }
@@ -362,8 +363,23 @@ function Withdraw() {
   return new Promise((resolve, reject) =>{
    let drawurl =  {
       url: `https://www.xiaodouzhuan.cn/jkd/weixin20/userWithdraw/userWithdrawPost.action`,
-      headers: {Cookie:cookieval,'User-Agent':UA}, body: `type=wx&sum=${sumcash}&mobile=&pid=0`
+      headers: {Cookie:cookieval,'User-Agent':UA,'Referer': 'https://www.xiaodouzhuan.cn/jkd/weixin20/userWithdraw/userWithdraw.action'}, body: `type=wx&sum=${sumcash}&mobile=&pid=0&accountid=&productcode=`
       }
+   $.post(drawurl, async(error, resp, data) => {
+       $.log("提现"+drawcash+"元"+data+"\n")
+       $.desc += "提现"+drawcash+"元  "+data+"\n"
+       resolve()
+    })
+  })
+}
+
+
+function  Cashstatus() {
+  return new Promise((resolve, reject) =>{
+   let drawurl =  {
+      url: `https://www.xiaodouzhuan.cn/jkd/weixin20/userWithdraw/userWithdrawPost.action`,
+      headers: {Cookie:cookieval,'User-Agent':UA}
+}
    $.post(drawurl, async(error, resp, data) => {
        $.log("提现"+drawcash+"元"+data+"\n")
        $.desc += "提现"+drawcash+"元  "+data+"\n"
@@ -411,10 +427,10 @@ function artTotal() {
      try{
       artcount = data.match(/(今日奖励次数\((\d+)次\))/g)[0].match(/\d+/)
       videocount = data.match(/(今日奖励次数\((\d+)次\))/g)[1].match(/\d+/)
-      artcoin = data.match(/\d+金币/g)[6]
-      videocoin =  data.match(/\d+金币/g)[7]
-      readtotal = data.match(/\d+金币/g)[8]
-      sharetotal = data.match(/\d+金币/g)[9]
+      artcoin = data.match(/\d+金币/g)[5]
+      videocoin =  data.match(/\d+金币/g)[6]
+      readtotal = data.match(/\d+金币/g)[7]
+      sharetotal = data.match(/\d+金币/g)[8]
       $.desc += "【今日阅读统计】\n  文章: " +Number(artcount) + "次 收益: "+artcoin+"\n  视频: " +Number(videocount)  + "次 收益: "+videocoin+"\n"
       $.desc += "【昨日阅读统计】\n  自阅收益: " +readtotal +"  分享收益: "+sharetotal +"\n"
       $.log( "当前阅读次数"+artcount+"次，视频次数"+videocount+"次\n")
@@ -574,6 +590,7 @@ function BoxProfit(boxtype) {
      let do_box = JSON.parse(data)
      if (do_box.ret == "ok"&&do_box.profit>0){
           $.log("计时宝箱获得收益: +"+do_box.profit)
+          $.desc += "【计时宝箱】+"+do_box.profit+"金币"
           position = do_box.advertPopup.position
           await Stimulate(position)
          // $.log(position)
