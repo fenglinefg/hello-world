@@ -54,7 +54,7 @@ http-request https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid? script-
 
 */
 
-const BOX = 1;//设置为0 日常任务，设置为1 单开宝箱，设置为2 完整功能版
+const BOX = 2;//设置为0 日常任务，设置为1 单开宝箱，设置为2 完整功能版
 const NODE = 0;//如需固定ck，请设置为1，下载到本地使用
 
 
