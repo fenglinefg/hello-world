@@ -17,7 +17,7 @@ boxjs链接      https://raw.githubusercontent.com/ziye12/JavaScript/master/Task
 12.29 修复手机通知问题，增加外部推送开关
 1.1 修复签到问题
 1.2 增加完整功能 兼容固定ck与boxjs以及变量版 
-
+1.3 增加ck失效提醒，并继续执行其他账号
 
 ⚠️cookie获取方法：
 
@@ -54,7 +54,7 @@ http-request https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid? script-
 
 */
 
-const BOX = 2;//设置为0 日常任务，设置为1 单开宝箱，设置为2 完整功能版
+const BOX = 1;//设置为0 日常任务，设置为1 单开宝箱，设置为2 完整功能版
 const NODE = 0;//如需固定ck，请设置为1，下载到本地使用
 
 
@@ -71,7 +71,7 @@ let sp;
 console.log(`\n========= 脚本执行时间(TM)：${new Date(new Date().getTime() + 0 * 60 * 60 * 1000).toLocaleString('zh', { hour12: false })} =========\n`)
 const notify = $.isNode() ? require("./sendNotify") : "";
 const notifyttt = 0// 0为关闭外部推送，1为12 23 点外部推送
-const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
+const notifyInterval = 1;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 const logs = 0;   //0为关闭日志，1为开启
 const maxtime = 10//每日上传时长限制，默认20小时
 const wktimess = 1200//周奖励领取标准，默认1200分钟
@@ -476,7 +476,7 @@ function qqreadtrack() {
   });
 }
 // 用户名
-function qqreadinfo(account_count) {
+function qqreadinfo() {
   return new Promise((resolve, reject) => {
     const toqqreadinfourl = {
       url: "https://mqqapi.reader.qq.com/mqq/user/init",
@@ -487,11 +487,15 @@ function qqreadinfo(account_count) {
       if (logs) $.log(`${O}, 用户名: ${data}`);
       let info = JSON.parse(data);
       if (!info.data.user) {
-        $.msg(`❌❌❌【${jsname + (account_count)}】COOKIE失效，请重新获取`);
-        let cookie_not_live_message = new Date(new Date().getTime()).toLocaleString() + "企鹅读书账号" + account_count + "COOKIE失效";
-        notify.sendNotify(jsname, cookie_not_live_message);
-        kz += "账号" + account_count + "COOKIE失效";
-        tz += "账号" + account_count + "COOKIE失效";
+let cookie_not_live_message = new Date(
+    new Date().getTime() +
+    new Date().getTimezoneOffset() * 60 * 1000 +
+    8 * 60 * 60 * 1000
+  ).toLocaleString()  + "❌❌❌COOKIE失效";
+        $.msg(O, cookie_not_live_message);
+if($.isNode()){      
+        notify.sendNotify(O, cookie_not_live_message);
+	  }       
         resolve(false);
       } else {
         tz += `\n========== 【${info.data.user.nickName}】 ==========\n`;
