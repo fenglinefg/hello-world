@@ -1,7 +1,7 @@
 /*
 聚看点签到任务，不支持Actions跑阅读任务，其他任务可运行
 打开'我的'获取Cookie
-更新时间: 2021-01-02 18:02
+更新时间: 2021-01-03 10:32
 https:\/\/www\.xiaodouzhuan\.cn\/jkd\/newMobileMenu\/infoMe\.action url script-request-body jukan.js
 
 可自动提现，提现需填写微信真实姓名，设置提现金额，默认30，此设置可以boxjs内完成，也可本地配置
@@ -212,7 +212,7 @@ function LuckDrawLevel() {
         }
      } 
       if(lktotalProfit){
-        $.desc += "\n【转盘任务】金币总计:"+ lktotalProfit+"剩余次数"+unNum+"次\n"
+        $.desc += "【转盘任务】金币总计:"+ lktotalProfit+"剩余次数"+unNum+"次\n"
       }
        let liststatus = JSON.parse(get_drawLevel.data.list)
       for ( var x in liststatus){
@@ -365,8 +365,8 @@ function Withdraw() {
       headers: {Cookie:cookieval,'User-Agent':UA}, body: `type=wx&sum=${sumcash}&mobile=&pid=0`
       }
    $.post(drawurl, async(error, resp, data) => {
-       $.log("提现"+sumcash+"元\n"+data)
-       $.desc += "\n提现"+sumcash+"元  "+data
+       $.log("提现"+drawcash+"元\n"+data)
+       $.desc += "提现"+drawcash+"元  "+data+"\n"
        resolve()
     })
   })
@@ -390,7 +390,7 @@ function userinfo() {
        gold = get_info.userinfo.infoMeGoldItem.title+": "+get_info.userinfo.infoMeGoldItem.value
     $.log("昵称:"+userName+"  "+gold +"\n"+sumcash + "/"+curcashtitle+curcash )
      $.sub += " "+gold
-     $.desc += sumcash + " ~~~~ "+curcashtitle+curcash 
+     $.desc += sumcash + " ~~~~ "+curcashtitle+curcash+"\n"
      }
      } catch (e) {
         $.logErr(e, data)
@@ -415,8 +415,8 @@ function artTotal() {
       videocoin =  data.match(/\d+金币/g)[7]
       readtotal = data.match(/\d+金币/g)[8]
       sharetotal = data.match(/\d+金币/g)[9]
-      $.desc += "\n【今日阅读统计】\n  文章: " +Number(artcount) + "次 收益: "+artcoin+"\n  视频: " +Number(videocount)  + "次 收益: "+videocoin+"\n"
-      $.desc += "【昨日阅读统计】\n  自阅收益: " +readtotal +"  分享收益: "+sharetotal 
+      $.desc += "【今日阅读统计】\n  文章: " +Number(artcount) + "次 收益: "+artcoin+"\n  视频: " +Number(videocount)  + "次 收益: "+videocoin+"\n"
+      $.desc += "【昨日阅读统计】\n  自阅收益: " +readtotal +"  分享收益: "+sharetotal +"\n"
       $.log( "当前阅读次数"+artcount+"次，视频次数"+videocount+"次\n")
        if(150-artcount > 0 ){
        readbodyVal = bodyval.replace(/time%22%20%3A%20%22\d+%22/, `time%22%20%3A%20%22${times}%22%2C%20`+'%22cateid%22%20%3A%203')
@@ -425,7 +425,7 @@ function artTotal() {
           $.log("今日阅读任务已完成，本次跳过")
        };
        if(50-videocount > 0 ){
-           readbodyVal = bodyval.replace(/time%22%20%3A%20%22\d+%22/,`time%22%20%3A%20%22${times+31000}%22%2C%20`+'%22cateid%22%20%3A%2053')
+         readbodyVal = bodyval.replace(/time%22%20%3A%20%22\d+%22/,`time%22%20%3A%20%22${times+31000}%22%2C%20`+'%22cateid%22%20%3A%2053')
         await artList(readbodyVal)
         }  else if ( artcount == 0  ){
         $.log("今日视频任务已完成，本次跳过")
@@ -462,7 +462,7 @@ function artList(readbodyVal) {
           art_Title = lists.art_title
           artid =lists.art_id
           screen_Name = lists.screen_name
-         $.log("【观看视频】: "+art_Title +"  -------- <"+screen_Name +">\n ")
+         $.log(" 【观看视频】: "+art_Title +"  -------- <"+screen_Name +">\n ")
           await readTask(lists.art_id,"2")
           }
         if(taskresult == 'R-ART-1002'|| taskresult ==`R-ART-0011`){
@@ -485,7 +485,7 @@ function readTask(artid,arttype) {
       }
    $.post(rewurl, async(error, resp, data) => {
      if(resp.statusCode ==200){
-        $.log("请等待30s\n")
+        $.log("   请等待30s\n")
          await $.wait(30000) 
          await finishTask(artid,arttype)
        } else {
@@ -508,10 +508,9 @@ function finishTask(artid,arttype) {
      let do_read = JSON.parse(data)
          taskresult = do_read.rtn_code
      if (do_read.ret == "ok"){
-       $.log("获得收益: +"+do_read.profit +"\n")
-         }  else if (arttype == 1 ){
-         sumnotify = do_read.rtn_msg
-           $.log(sumnotify)
+       $.log("   获得收益: +"+do_read.profit +"\n")
+         }  else {
+           $.log(do_read.rtn_msg)
         }
        resolve()
     })
@@ -572,7 +571,7 @@ function BoxProfit(boxtype) {
         //$.log(data+"\n")
      let do_box = JSON.parse(data)
      if (do_box.ret == "ok"&&do_box.profit>0){
-        $.log("计时宝箱获得收益: +"+do_box.profit)
+          $.log("计时宝箱获得收益: +"+do_box.profit)
           position = do_box.advertPopup.position
           await Stimulate(position)
          // $.log(position)
