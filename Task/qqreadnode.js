@@ -24,7 +24,7 @@ boxjs链接      https://raw.githubusercontent.com/ziye12/JavaScript/master/Task
 1.3 增加一个独立的cookie文件
 1.3 增加cookie获取时间显示
 1.4 单开宝箱不再ck失效提示，增加6点后显示今日收益
-1.4 修复CASH环境变量问题
+1.4 修复QQREAD_CASH环境变量问题
 
 ⚠️cookie获取方法：
 
@@ -67,7 +67,7 @@ http-request https:\/\/mqqapi\.reader\.qq\.com\/mqq\/addReadTimeWithBid? script-
 
 */
 
-const BOX = 2;//⚠️设置为0 日常任务，设置为1 单开宝箱，设置为2 完整功能版
+const BOX = 2;//设置为0 日常任务，设置为1 单开宝箱，设置为2 完整功能版
 
 
 
@@ -82,7 +82,7 @@ const logs = 0;   //0为关闭日志，1为开启
 const maxtime = 10//每日上传时长限制，默认20小时
 const wktimess = 1200//周奖励领取标准，默认1200分钟
 
-let task, tz, kz, config = '', CASH = '';
+let task, tz, kz, config = '', CASH = '', COOKIES_SPLIT = '' ;
 let dk,ljyd,sp,ydrw,wktime;
 
 let qqreadbodyVal = ``;
