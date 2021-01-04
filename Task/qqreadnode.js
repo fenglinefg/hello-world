@@ -897,7 +897,7 @@ async function getAmounts() {
       await $.wait(200)
     }
   }
-  if (logs) $.log(`${$.name}, 今日收益: ${amounts}金币,约${(amounts / 10000.0).toFixed(2)}元.`);
+  if (logs) $.log(`${O}, 今日收益: ${amounts}金币,约${(amounts / 10000.0).toFixed(2)}元.`);
   tz += `【今日收益】:获得${amounts}金币,约${(amounts / 10000.0).toFixed(2)}元.\n`
   kz += `【今日收益】:获得${amounts}金币,约${(amounts / 10000.0).toFixed(2)}元.\n`
 }
