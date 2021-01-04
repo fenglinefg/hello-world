@@ -23,7 +23,7 @@ boxjs链接      https://raw.githubusercontent.com/ziye12/JavaScript/master/Task
 1.3 增加ck失效提醒，并继续执行其他账号
 1.3 增加一个独立的cookie文件
 1.3 增加cookie获取时间显示
-1.4 单开宝箱不再ck失效提示
+1.4 单开宝箱不再ck失效提示，增加今日收益
 
 ⚠️cookie获取方法：
 
@@ -878,32 +878,6 @@ function qqreadwithdraw() {
     });
   });
 }
-// 金币统计
-function qqreadtrans() {
-  return new Promise((resolve, reject) => {
-    for (var y = 1; y < 9; y++) {
-      let day = 0;
-      const toqqreadtransurl = {
-        url: "https://mqqapi.reader.qq.com/mqq/red_packet/user/trans/list?pn=" + y,
-        headers: JSON.parse(qqreadtimeheaderVal),
-        timeout: 60000,
-      };
-      $.get(toqqreadtransurl, (error, response, data) => {
-        if (logs) $.log(`${O}, 今日收益: ${data}`);
-        trans = JSON.parse(data);
-        for (var i = 0; i < 20; i++) {
-          if (trans.data.list[i].createTime >= daytime)
-            day += trans.data.list[i].amount;
-        }
-        tz += "【今日收益】:获得" + day + '\n'
-        kz += "【今日收益】:获得" + day + '\n'
-        resolve();
-      });
-    }
-
-  });
-}
-
 // 统计金币
 async function getAmounts() {
   let page = 1
