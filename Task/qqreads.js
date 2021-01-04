@@ -107,7 +107,7 @@ const nowTimes = new Date(
 );
 let wktime;
 let ydrw;
-let obj;
+
 
 const qqreadbdArr = [];
 let qqreadbodyVal = "";
