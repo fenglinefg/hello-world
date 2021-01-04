@@ -95,7 +95,13 @@ const nowTimes = new Date(
   8 * 60 * 60 * 1000
 );
 // 今日0点时间戳
-const daytime = new Date(nowTimes.toLocaleDateString()).getTime();
+if ($.isNode()) {
+  daytime =
+    new Date(new Date().toLocaleDateString()).getTime() - 8 * 60 * 60 * 1000;
+} else {
+  daytime = new Date(new Date().toLocaleDateString()).getTime();
+}
+
 
 if ($.isNode() &&
   process.env.QQREAD_BODY) {
