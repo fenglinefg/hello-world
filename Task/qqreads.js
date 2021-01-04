@@ -92,6 +92,8 @@ let CASH = "";
 let config = "";
 let K = 0;
 let COOKIES_SPLIT = "";
+let dk,ydrw,sp,ydrw,wktime;
+
 
 const logs = 0; // 0为关闭日志，1为开启
 const notifyInterval = 3;
@@ -105,8 +107,7 @@ const nowTimes = new Date(
     new Date().getTimezoneOffset() * 60 * 1000 +
     8 * 60 * 60 * 1000
 );
-let wktime;
-let ydrw;
+
 
 
 const qqreadbdArr = [];
