@@ -320,7 +320,7 @@ async function all() {
           await qqreadwithdraw();//提现
         }
       }
-      if (obj.data &&nowTimes.getHours() >= 6) {    
+      if (nowTimes.getHours() >= 6) {    
       await getAmounts();//今日收益累计
 	  }  
       if (task.data && dk.doneFlag == 0) {
@@ -392,7 +392,7 @@ async function all() {
           await qqreadwithdraw();//提现
         }
       }
-      if (obj.data &&nowTimes.getHours() >= 6) {    
+      if (nowTimes.getHours() >= 6) {    
       await getAmounts();//今日收益累计
 	  }    
       if (task.data && dk.doneFlag == 0) {
