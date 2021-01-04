@@ -203,6 +203,12 @@ if ($.isNode()) {
 }
 
 
+if ((isGetCookie = typeof $request !== "undefined")) {
+  GetCookie();
+  $.done();
+}
+
+
 function GetCookie() {
   if ($request && $request.url.indexOf("addReadTimeWithBid?") >= 0) {
     const qqreadtimeurlVal = $request.url;
