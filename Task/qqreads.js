@@ -319,7 +319,6 @@ function all() {
           ) {
             qqreadwithdraw(); // 现金提现
           } else if (i == 9 &&
-            obj.data &&
             nowTimes.getHours() >= 6
           ) {
             getAmounts(); // 今日收益累计
