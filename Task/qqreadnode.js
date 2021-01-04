@@ -73,7 +73,7 @@ let ydrw;
 let dk;
 let ljyd;
 let sp;
-let obj;
+
 
 const COOKIE = $.isNode() ? require("./qqreadCOOKIE") : "";
 const notify = $.isNode() ? require("./sendNotify") : "";
