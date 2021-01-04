@@ -68,7 +68,7 @@ const BOX = 2;//设置为0 日常任务，设置为1 单开宝箱，设置为2 �
 const jsname = '企鹅读书'
 const $ = Env(jsname)
 let task, tz, kz, config = '';
-let dk,ydrw,sp,ydrw,wktime;
+let dk,sp,ljyd,ydrw,wktime;
 
 const COOKIE = $.isNode() ? require("./qqreadCOOKIE") : "";
 const notify = $.isNode() ? require("./sendNotify") : "";
