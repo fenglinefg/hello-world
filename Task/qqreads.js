@@ -92,7 +92,7 @@ let CASH = "";
 let config = "";
 let K = 0;
 let COOKIES_SPLIT = "";
-let dk,ydrw,sp,ydrw,wktime;
+let dk,sp,ljyd,ydrw,wktime;
 
 
 const logs = 0; // 0为关闭日志，1为开启
