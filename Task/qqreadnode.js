@@ -493,16 +493,18 @@ function qqreadinfo() {
     $.get(toqqreadinfourl, (error, response, data) => {
       if (logs) $.log(`${O}, 用户名: ${data}`);
       let info = JSON.parse(data);
-      if (!info.data.user&&BOX!=1) {
+      if (!info.data.user) {
 let cookie_not_live_message = new Date(
     new Date().getTime() +
     new Date().getTimezoneOffset() * 60 * 1000 +
     8 * 60 * 60 * 1000
   ).toLocaleString()  + "❌❌❌COOKIE失效";
+	  if(BOX!=1){         
         $.msg(O, cookie_not_live_message);
 if($.isNode()){      
         notify.sendNotify(O, cookie_not_live_message);
-	  }       
+	  }
+	   }    
         resolve(false);
       } else {
         tz += `\n========== 【${info.data.user.nickName}】 ==========\n`;
