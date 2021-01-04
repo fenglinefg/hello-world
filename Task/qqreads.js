@@ -29,7 +29,7 @@ boxjs链接      https://raw.githubusercontent.com/ziye12/JavaScript/master/Task
 12.11 修复git与手机 时间不兼容问题
 12.30 增加提现开关，优化部分代码
 12.31 修复版本更新带来的判定问题
-1.4 增加ck失效提醒，ck获取时间显示，今日收益，
+1.4 增加ck失效提醒，ck获取时间显示，6点后今日收益显示，
 
 
 ⚠️cookie获取方法：
@@ -107,6 +107,7 @@ const nowTimes = new Date(
 );
 let wktime;
 let ydrw;
+let obj;
 
 const qqreadbdArr = [];
 let qqreadbodyVal = "";
@@ -317,8 +318,9 @@ function all() {
             nowTimes.getHours() == 23
           ) {
             qqreadwithdraw(); // 现金提现
-          } else if (i == 9&&
-            obj.data
+          } else if (i == 9 &&
+            obj.data &&
+            nowTimes.getHours() >= 6
           ) {
             getAmounts(); // 今日收益累计
           } else if (i == 11) {
