@@ -23,6 +23,7 @@ boxjs链接      https://raw.githubusercontent.com/ziye12/JavaScript/master/Task
 1.3 增加ck失效提醒，并继续执行其他账号
 1.3 增加一个独立的cookie文件
 1.3 增加cookie获取时间显示
+1.4 单开宝箱不再ck失效提示
 
 ⚠️cookie获取方法：
 
@@ -492,7 +493,7 @@ function qqreadinfo() {
     $.get(toqqreadinfourl, (error, response, data) => {
       if (logs) $.log(`${O}, 用户名: ${data}`);
       let info = JSON.parse(data);
-      if (!info.data.user) {
+      if (!info.data.user&&BOX!=1) {
 let cookie_not_live_message = new Date(
     new Date().getTime() +
     new Date().getTimezoneOffset() * 60 * 1000 +
