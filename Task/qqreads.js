@@ -210,7 +210,10 @@ if ((isGetCookie = typeof $request !== "undefined")) {
 
 
 function GetCookie() {
-  if ($request && $request.url.indexOf("addReadTimeWithBid?") >= 0) {
+  if (
+      $request && $request.url.indexOf("addReadTimeWithBid?") >= 0 && 
+      $request.url.indexOf("book-category") >= 0
+    ) {
     const qqreadtimeurlVal = $request.url;
     if (qqreadtimeurlVal) $.setdata(qqreadtimeurlVal, `qqreadtimeurl${$.idx}`);
     $.log(
