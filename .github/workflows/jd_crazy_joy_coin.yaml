@@ -23,6 +23,7 @@ jobs:
             - name: 安装依赖包
               run: |
                   npm install
+                  npm install axios --save
             - name: "运行【京东疯狂JOY挂机】"
               run: |
                   node onlyOneExecute.js
