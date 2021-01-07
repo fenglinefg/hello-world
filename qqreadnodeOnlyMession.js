@@ -74,7 +74,13 @@ const BOX = 0;//设置为0 日常任务，设置为1 单开宝箱，设置为2 �
 
 const jsname = '企鹅读书'
 const $ = Env(jsname)
-const COOKIE = $.isNode() ? require("./qqreadCOOKIE") : "";
+let extendCookie = {
+	qqreadbodyVal:process.env.QQREAD_BODY,
+	qqreadtimeurlVal:process.env.QQREAD_TIMEURL,
+	qqreadtimeheaderVal:process.env.QQREAD_TIMEHD
+};
+
+const COOKIE = $.isNode() ? extendCookie : "";
 const notify = $.isNode() ? require("./sendNotify") : "";
 const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
@@ -105,7 +111,7 @@ if ($.isNode()) {
   daytime =
     new Date(new Date().toLocaleDateString()).getTime() - 8 * 60 * 60 * 1000;
 // 没有设置 QQREAD_CASH 则默认为 0 不提现
- CASH = process.env.QQREAD_CASH || 0;
+ CASH = process.env.QQREAD_CASH || 10;
 } else {
   daytime = new Date(new Date().toLocaleDateString()).getTime();
 }
