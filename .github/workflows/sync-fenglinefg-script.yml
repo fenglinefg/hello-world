@@ -23,6 +23,6 @@ jobs:
         if: env.PAT
         with:
           source_repo: "https://github.com/fenglinefg/hello-world.git"
-          source_branch: "master"
+          source_branch: "main"
           destination_branch: "mymain"
           github_token: ${{ secrets.SECRET_HJ }}
