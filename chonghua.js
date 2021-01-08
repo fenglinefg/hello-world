@@ -1,7 +1,7 @@
 /*
 # 葱花视频
 ==============================================
-成功的话请打开App-我的，帮我填下邀请码助力下：261880
+成功的话请打开App-我的，帮我填下邀请码助力下：346957
 ==============================================
 
 2021/01/06 修复分享视频判定问题,box增加uid(邀请码),实现今日金币模块，账号异常提醒
@@ -145,7 +145,16 @@ if ($.isNode()) {
   sharerewardbodyArr.push(process.env.CHGETBODY_SHAREREWARD);
   timeredbodyArr.push(process.env.CHGETBODY_TIMERED);
 }
-
+console.log(readbodyArr)
+console.log(`\n`)
+console.log(sharebodyArr)
+  console.log(`\n`)
+console.log(taskcenterbodyArr)
+console.log(`\n`)
+console.log(sharerewardbodyArr)
+  console.log(`\n`)
+console.log(timeredbodyArr)
+console.log(`\n`)
 
 ////////////////////////////////////////////////////////////////////////
 
