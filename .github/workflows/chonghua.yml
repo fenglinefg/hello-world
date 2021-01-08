@@ -30,7 +30,7 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【东东工厂】'
+      - name: '运行 【葱花视频】'
         run: |
           node chonghua.js
         env:
