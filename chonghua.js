@@ -151,16 +151,16 @@ Object.keys(sharebodyVal).forEach((item) => {
  // sharerewardbodyArr.push(process.env.CHGETBODY_SHAREREWARD);
   //timeredbodyArr.push(process.env.CHGETBODY_TIMERED);
 //}
-console.log(readbodyArr)
-console.log(`\n`)
-console.log(sharebodyArr)
-  console.log(`\n`)
-console.log(taskcenterbodyArr)
-console.log(`\n`)
-console.log(sharerewardbodyArr)
-  console.log(`\n`)
-console.log(timeredbodyArr)
-console.log(`\n`)
+//console.log(readbodyArr)
+//console.log(`\n`)
+//console.log(sharebodyArr)
+ // console.log(`\n`)
+//console.log(taskcenterbodyArr)
+////console.log(`\n`)
+//console.log(sharerewardbodyArr)
+//  console.log(`\n`)
+//console.log(timeredbodyArr)
+//console.log(`\n`)
 
 ////////////////////////////////////////////////////////////////////////
 
