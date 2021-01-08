@@ -89,9 +89,9 @@ let bodys2 = process.env.CHGETBODY_SHARE;
 let bodys3 = process.env.CHGETBODY_TASKCENTER;
 let bodys4 = process.env.CHGETBODY_SHAREREWARD;
 let bodys5 = process.env.CHGETBODY_TIMERED;
-let indexLast = 0;
+let indexLast = $.getdata('chgetbody_video_index');
 
-$.begin = indexLast ? parseInt(indexLast, 10) : 1;
+$.begin = indexLast ? parseInt(indexLast, 10) : 0;
 
 
 if (!(bodys && bodys != '')) {
