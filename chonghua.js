@@ -86,7 +86,7 @@ let sharescore = 0;
 
 let bodys = process.env.CHGETBODY_VIDEO;
 let bodys2 = process.env.CHGETBODY_SHARE;
-let indexLast = 1;
+let indexLast = 0;
 
 $.begin = indexLast ? parseInt(indexLast, 10) : 1;
 
