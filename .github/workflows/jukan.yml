@@ -3,7 +3,7 @@ name: 聚看点
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/5 * * * *'
+     - cron: '*/25 * * * *'
   watch:
     types: started
 jobs:
