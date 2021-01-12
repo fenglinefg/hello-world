@@ -17,15 +17,15 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/QiuYueBaiJXW/CN-Unicom-AutoSign.git ~/Scripts
+          git clone https://github.com/QiuYueBaiJXW/CN-Unicom-AutoSign.git ~/QiuYueBaiJXW
       - name: Install extensions
         run: |
-          cd ~/Scripts
+          cd ~/QiuYueBaiJXW
           pip3 install setuptools
       - name: Run program
         env:
            cookie: ${{ secrets.LT_COOKIE }}
         run: |
-          cd ~/Scripts
+          cd ~/QiuYueBaiJXW
           python3 UnicomAutoGetCoin.py ${cookie}
           
