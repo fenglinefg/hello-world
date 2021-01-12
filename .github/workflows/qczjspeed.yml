@@ -1,9 +1,12 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
 name: 汽车之家极速版
 
 on:
   workflow_dispatch:
   schedule:
-     - cron: '9 * * * *'
+     - cron: '*/20 * * * *'
   watch:
     types: started
 
@@ -26,6 +29,8 @@ jobs:
         QCZJ_reportAssHEADER: ${{ secrets.QCZJ_reportAssHEADER }}
         QCZJ_reportAssBODY: ${{ secrets.QCZJ_reportAssBODY }}
         QCZJ_cointowalletBODY: ${{ secrets.QCZJ_cointowalletBODY }}
+        QCZJ_CASH: ${{ secrets.QCZJ_CASH }}
+        
          
     steps:
       - name: Checkout
