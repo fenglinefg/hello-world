@@ -1,4 +1,4 @@
-name: AutoRun
+name: 联通营业厅签到领积分
 
 on:
   push:
@@ -16,13 +16,16 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        run: |
+          git clone https://github.com/QiuYueBaiJXW/CN-Unicom-AutoSign.git ~/Scripts
       - name: Install extensions
         run: |
+          cd ~/Scripts
           pip3 install setuptools
       - name: Run program
         env:
            cookie: ${{ secrets.LT_COOKIE }}
         run: |
+          cd ~/Scripts
           python3 UnicomAutoGetCoin.py ${cookie}
           
