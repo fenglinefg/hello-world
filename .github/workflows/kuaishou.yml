@@ -1,4 +1,4 @@
-name: 快手视频签到
+name: 快手视频签到3，10，20，50
  
 on:
   workflow_dispatch:
