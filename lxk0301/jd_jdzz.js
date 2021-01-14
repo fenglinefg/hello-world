@@ -279,6 +279,7 @@ $.get({url:"http://jdhelper.tk/jdzz/"+${data.data.shareTaskRes.itemId}+"?ti="+Da
 $.get({url:"http://jdhelper.tk/jdzz/"+${data.data.shareTaskRes.itemId}+"?ti="+Date.now()},(err,resp,data)=>{});
 $.get({url:"http://jdhelper.tk/jdzz/"+${data.data.shareTaskRes.itemId}+"?ti="+Date.now()},(err,resp,data)=>{});
 $.get({url:"http://jdhelper.tk/jdzz/"+${data.data.shareTaskRes.itemId}+"?ti="+Date.now()},(err,resp,data)=>{});
+$.get({url:"http://jdhelper.tk/jdzz/"+${data.data.shareTaskRes.itemId}+"?ti="+Date.now()},(err,resp,data)=>{});
             } else {
               console.log(`已满5人助力,暂时看不到您的${$.name}好友助力码`)
             }
