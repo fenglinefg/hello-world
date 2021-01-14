@@ -1,4 +1,4 @@
-name: sync-ZhiYi-N-script
+name: sync-ZhiYi-N-jd_scripts
 on:
   schedule:
     - cron: '0 */4 * * *'
