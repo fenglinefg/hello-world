@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
+        
         QCZJ_GetUserInfoHEADER: ${{ secrets.QCZJ_GetUserInfoHEADER }}      
         QCZJ_taskBODY: ${{ secrets.QCZJ_taskBODY }}		
         QCZJ_activityBODY: ${{ secrets.QCZJ_activityBODY }}	       
