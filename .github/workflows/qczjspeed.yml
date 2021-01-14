@@ -15,12 +15,11 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
     env:
-        
-        QCZJ_GetUserInfoHEADER: ${{ secrets.QCZJ_GetUserInfoHEADER }}      
-        QCZJ_taskBODY: ${{ secrets.QCZJ_taskBODY }}		
-        QCZJ_activityBODY: ${{ secrets.QCZJ_activityBODY }}	       
-        QCZJ_addCoinBODY: ${{ secrets.QCZJ_addCoinBODY }}
-        QCZJ_addCoin2BODY: ${{ secrets.QCZJ_addCoin2BODY }}
+        QCZJ_GetUserInfoHEADER: ${{ secrets.QCZJ_GETUSERINFOHEADER }}
+        QCZJ_taskBODY: ${{ secrets.QCZJ_TASKBODY }}		
+        QCZJ_activityBODY: ${{ secrets.QCZJ_ACTIVITYBODY }}	
+        QCZJ_addCoinBODY: ${{ secrets.QCZJ_ADDCOINBODY }}
+        QCZJ_addCoin2BODY: ${{ secrets.QCZJ_ADDCOIN2BODY }}
         QCZJ_CASH: ${{ secrets.QCZJ_CASH }}
         
          
