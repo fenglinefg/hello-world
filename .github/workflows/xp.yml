@@ -19,7 +19,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/ZhiYi-N/script.git ~/Scripts
+          git clone https://github.com/ZhiYi-N/Private-Script.git ~/Scripts
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -38,7 +38,7 @@ jobs:
       - name: '运行 【笑谱】'
         run: |
           cd ~/Scripts
-          node xp.js
+          node Scripts/xp.js
         env:
           VIDEOHEADER: ${{ secrets.XP_VIDEOHEADER }}
           VIDEOBODY: ${{ secrets.XP_VIDEOBODY }}
