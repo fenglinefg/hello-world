@@ -345,9 +345,9 @@ cookie3=cookie.substr(cookie.indexOf("app_sign"),41);
 cookie4=cookie.substr(cookie.indexOf("app_deviceid"),53);
 
 app_userid=cookie1.substring(cookie1.indexOf("app_userid")+11);
-	  console.log('app_userid' + '\n' + ${app_userid});
+	  console.log('app_userid' + '\n' + app_userid);
 	  app_userid=app_userid.replace(';','');
-	  console.log('app_userid' + '\n' + ${app_userid});
+	  console.log('app_userid' + '\n' + app_userid);
 pcpopclub=cookie2.substring(cookie2.indexOf("pcpopclub")+10);
 app_sign=cookie3.substring(cookie3.indexOf("app_sign")+9);
 app_deviceid=cookie4.substring(cookie4.indexOf("app_deviceid")+13);
