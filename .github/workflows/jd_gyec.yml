@@ -6,7 +6,7 @@ name: 京东工业品年末盛典-勇闯消消乐
 on:
   workflow_dispatch:
   schedule:
-    - cron: '4 6 * * *'
+    - cron: '20 * * * *'
   watch:
     types: started
   repository_dispatch:
