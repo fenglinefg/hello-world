@@ -35,7 +35,7 @@ jobs:
       - name: '运行 【QQ阅读】'
         run: |
           cd ~/Scripts
-          node QQread.js
+          node Task/QQread.js
         env:
           QQREADAPP_HEADER: ${{ secrets.QQREADAPP_HEADER }}
           QQREADAPP_VIDEOHD: ${{ secrets.QQREADAPP_VIDEOHD }}
