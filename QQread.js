@@ -5,6 +5,7 @@
 转载请备注个名字，谢谢
 
 11.28 ⚠️无时长功能，只有签到，视频，宝箱
+1.18 调整显示错误
 
 日均0.18收益
 
@@ -30,7 +31,7 @@ hostname=commontgw6.reader.qq.com,eventv36.reader.qq.com
 
 #QQ阅读APP获取cookie
 
-https:\/\/commontgw6\.reader\.qq\.com\/v7_5_5\/nativepage\/getAcctInfo url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQread.js
+https:\/\/commontgw6\.reader\.qq\.com\/v7_5_2\/nativepage\/getAcctInfo url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQread.js
 
 #QQ阅读APP获取视频cookie
 https:\/\/eventv36\.reader\.qq\.com\/activity\/pkg11955\/watchVideo url script-request-header https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQread.js
@@ -38,7 +39,7 @@ https:\/\/eventv36\.reader\.qq\.com\/activity\/pkg11955\/watchVideo url script-r
 ############## loon
 
 //QQ阅读APP获取cookie
-https:\/\/commontgw6\.reader\.qq\.com\/v7_5_5\/nativepage\/getAcctInfo script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQreads.js,requires-header=true, tag=QQ阅读APP获取cookie 
+https:\/\/commontgw6\.reader\.qq\.com\/v7_5_2\/nativepage\/getAcctInfo script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQreads.js,requires-header=true, tag=QQ阅读APP获取cookie 
 
 //QQ阅读APP获取时长cookie
 https:\/\/eventv36\.reader\.qq\.com\/activity\/pkg11955\/watchVideo script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQreads.js, requires-header=true, tag=QQ阅读APP获取视频cookie
@@ -46,7 +47,7 @@ https:\/\/eventv36\.reader\.qq\.com\/activity\/pkg11955\/watchVideo script-path=
 ############## surge
 
 //QQ阅读APP获取cookie
-QQ阅读APP获取cookie = type=https:\/\/commontgw6\.reader\.qq\.com\/v7_5_5\/nativepage\/getAcctInfo,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQreads.js, 
+QQ阅读APP获取cookie = type=https:\/\/commontgw6\.reader\.qq\.com\/v7_5_2\/nativepage\/getAcctInfo,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQreads.js, 
 
 //QQ阅读APP获取视频cookie
 QQ阅读APP获取视频cookie = https:\/\/eventv36\.reader\.qq\.com\/activity\/pkg11955\/watchVideo,script-path=https://raw.githubusercontent.com/ziye12/JavaScript/master/Task/QQreads.js,
@@ -172,7 +173,7 @@ QQreadboxinfo();//宝箱
 else if (i==4&& task.data&&task.data.watchVideo.videoCount==0)
 QQreadsign();//金币签到
 
-else if (i==5&& task.data&&task.data.watchVideo.videoCount<=9)
+else if (i==5&& task.data&&task.data.watchVideo.videoCount<=19)
 QQreadvideo();//视频任务	    
 
 
@@ -201,7 +202,7 @@ return new Promise((resolve, reject) => {
 
   const toQQreadinfourl = {
 
-    url: 'https://commontgw6.reader.qq.com/v7_5_5/nativepage/getAcctInfo',
+    url: 'https://commontgw6.reader.qq.com/v7_5_2/nativepage/getAcctInfo',
     headers: JSON.parse(QQreadheaderVal),  
  timeout:60000};
    $.get(toQQreadinfourl,(error, response, data) =>{
@@ -251,7 +252,7 @@ tz+=
 	'天\n'+
     '【已看视频】:'+
     task.data.watchVideo.videoCount+
-	'/10次\n'
+	'/20次\n'
 	  
 
 resolve()
