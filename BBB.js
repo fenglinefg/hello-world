@@ -50,6 +50,9 @@ if(CookieVal)$.setdata(CookieVal,'bbb_ck')
      $.done()
    }
 } else {
+      if ($.isNode()) {
+            const CookieVal = process.env.BBB_CK;
+            }
 !(async () => {
 
 $.msg($.name,"開始🎉🎉🎉")
