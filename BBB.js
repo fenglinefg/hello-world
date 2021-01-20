@@ -36,6 +36,7 @@ if ($.isNode()) {
       console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
       const CookieVal = process.env.BBB_CK;
+      $.log(`${CookieVal}`)
 }
 
 
@@ -51,7 +52,7 @@ if(CookieVal)$.setdata(CookieVal,'bbb_ck')
      $.done()
    }
 } else {
-
+$.log(`${CookieVal}`)
 !(async () => {
 
 $.msg($.name,"開始🎉🎉🎉")
