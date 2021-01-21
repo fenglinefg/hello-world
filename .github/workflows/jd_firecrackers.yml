@@ -3,39 +3,33 @@ name: 京东集鞭炮赢京豆
 on:
   workflow_dispatch:
   schedule:
-    - cron: '10 8,21 * * *'
+     - cron: '10 8,21 * * *'
   watch:
     types: started
-  repository_dispatch:
-    types: jd_firecrackers
+
 jobs:
   build:
-
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    env:
+        JD_COOKIE: ${{ secrets.JD_COOKIE }}
+          
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
-      - name: Cache node_modules
-        uses: actions/cache@v2 # 使用 GitHub 官方缓存 Action。
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
+          node-version: 12.x
       - name: npm install
+        if: env.JD_COOKIE
         run: |
           npm install
       - name: '运行 【京东集鞭炮赢京豆】'
+        if: env.JD_COOKIE
         run: |
           node jd_firecrackers.js
         env:
-          JD_COOKIE: ${{ secrets.JD_COOKIE }}
-          JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
