@@ -321,7 +321,6 @@ $.log('\n开始看视频\n')
          await $.wait(32000)
          await videoLimit()
       }
-      }
          }catch(e){
                $.log('\n'+ e)
          }
