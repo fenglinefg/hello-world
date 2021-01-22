@@ -90,14 +90,15 @@ if ($.isNode()) {
     };
     
     Object.keys(zcyheader).forEach((item) => {
-    if (zcyheader[item]) {
-      zcyheaderArr.push(zcyheader[item]);
-    }
-     Object.keys(zcybody).forEach((item) => {
-    if (zcybody[item]) {
-      zcybodyArr.push(zcybody[item]);
-    }
-  });
+       if (zcyheader[item]) {
+         zcyheaderArr.push(zcyheader[item]);
+       }
+    })
+    Object.keys(zcybody).forEach((item) => {
+       if (zcybody[item]) {
+         zcybodyArr.push(zcybody[item]);
+       }
+    })
     console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
     console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
  } else {
