@@ -89,13 +89,19 @@ function userInfo() {
       body: bodyVal,
       }
    $.post(userinfo, async(error, resp, data) => {
-     let info = JSON.parse(data)
-      if(info.code == 200){
-       name = info.data.CustomerNickname
-       coin = info.data.CoinNumber
-       $.msg($.name, "昵称:"+name+" 账户金币"+coin+"💰\n")
-         await videoLimit()
-     }
+      $.log('\n'+ data)
+         try{
+            let info = JSON.parse(data)
+            if(info.code == 200){
+                  name = info.data.CustomerNickname
+                  coin = info.data.CoinNumber
+                  $.msg($.name, "昵称:"+name+" 账户金币"+coin+"💰\n")
+                  await videoLimit()
+            }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+      
      resolve()
     })
   })
@@ -110,15 +116,21 @@ function signIn() {
       }
 $.log('\n开始签到\n')
    $.post(signin, async(error, response, data) => {
-     let sign = JSON.parse(data)
-     $.log('sign\n'+data)
-     if (sign.code == 200){
-          //$.log('\n'+ sign2.data.TopContent)
-          await doubleId()
-         }else{
-          $.log('\n'+data)
-          await doubleId()
-      }
+         $.log('sign\n'+ data)
+         try{
+            let sign = JSON.parse(data)
+                 $.log('sign\n'+data)
+                 if (sign.code == 200){
+                      //$.log('\n'+ sign2.data.TopContent)
+                      await doubleId()
+                     }else{
+                      $.log('\n'+data)
+                      await doubleId()
+                  }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+     
      resolve()
     })
   })
@@ -132,17 +144,23 @@ function doubleId() {
       }
 $.log('\n开始查询签到双倍ID\n')
    $.post(doubleid, async(error, resp, data) => {
-     let double = JSON.parse(data)
-     $.log('doubleid\n'+data)
-     if (double.code == 200){
-       for(doubleid of double.data){
-         if(doubleid.CanDouble == true){
-            ID = doubleid.ID
-            $.log(ID)
-            await signDouble()
-          }
-        }
-       }
+     $.log('doubleid\n'+ data)
+         try{
+            let double = JSON.parse(data)
+           $.log('doubleid\n'+data)
+           if (double.code == 200){
+             for(doubleid of double.data){
+               if(doubleid.CanDouble == true){
+                  ID = doubleid.ID
+                  $.log(ID)
+                  await signDouble()
+                }
+              }
+             }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
       resolve()
     })
   })
@@ -159,15 +177,21 @@ function signDouble() {
       }
 $.log('\n开始领取签到双倍\n')
    $.post(signdouble, async(error, resp, data) => {
-     let sign2 = JSON.parse(data)
-     $.log('signdouble\n'+data)
-     if(sign2.code == 200){
-        $.log('\n'+ sign2.data.TopContent)
-        await dailyTaskList();
-       }else {
-        $.log('\n'+data)
-        await dailyTaskList();
-      }
+     $.log('signdouble\n'+ data)
+         try{
+            let sign2 = JSON.parse(data)
+                 //$.log('signdouble\n'+data)
+                 if(sign2.code == 200){
+                    //$.log('\n'+ sign2.data.TopContent)
+                    await dailyTaskList();
+                   }else {
+                    $.log('\n'+data)
+                    await dailyTaskList();
+                  }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -181,7 +205,9 @@ function dailyTaskList() {
       }
 $.log('\n开始查询福利视频上限\n')
    $.post(dailytasklist, async(error, resp, data) => {
-     let dailytask = JSON.parse(data)
+      $.log('dailytaskdata\n'+ data)
+         try{
+            llet dailytask = JSON.parse(data)
      if (dailytask.code == 200){
        for(limit of dailytask.data.list){
          if (limit.ID == 11){
@@ -196,6 +222,11 @@ $.log('\n今日福利视频已上限,准备查询分享上限\n')
          }
         }
        }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
+         
       resolve()
     })
   })
@@ -209,7 +240,9 @@ function otherTaskList() {
       }
 $.log('\n开始查询分享上限\n')
    $.post(othertasklist, async(error, resp, data) => {
-     let othertask = JSON.parse(data)
+     $.log('othertask\n'+ data)
+         try{
+           let othertask = JSON.parse(data)
      if (othertask.code == 200){
        for(limit of othertask.data.list){
          if (limit.ID == 7){
@@ -224,6 +257,10 @@ $.log('\n今日分享已上限,准备查询小视频上限\n')
          }
         }
        }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
       resolve()
     })
   })
@@ -240,7 +277,9 @@ function smVideoTask() {
       }
 $.log('\n开始看小视频\n')
    $.post(smvideotask, async(error, resp, data) => {
-     let smvideo = JSON.parse(data)
+    $.log('smvideo\n'+ data)
+         try{
+           let smvideo = JSON.parse(data)
      //$.log(data)
      if(smvideo.code == 200){
      $.log('\n小视频: '+ smvideo.data.TopContent)
@@ -251,6 +290,10 @@ $.log('\n开始看小视频\n')
          await $.wait(32000)
          await videoLimit()
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -266,7 +309,9 @@ function videoTask() {
       }
 $.log('\n开始看视频\n')
    $.post(videotask, async(error, resp, data) => {
-     let video = JSON.parse(data)
+     $.log('video\n'+ data)
+         try{
+           let video = JSON.parse(data)
      if(video.code == 200){
      $.log('\n视频: '+ video.data.TopContent)
          await $.wait(32000)
@@ -276,6 +321,11 @@ $.log('\n开始看视频\n')
          await $.wait(32000)
          await videoLimit()
       }
+      }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -290,7 +340,9 @@ function inspireAd() {
       }
 $.log('\n开始看广告\n')
    $.post(inspiread, async(error, resp, data) => {
-     let inspire = JSON.parse(data)
+     $.log('inspire\n'+ data)
+         try{
+           let inspire = JSON.parse(data)
      if(inspire.msg.indexOf('15秒') != -1 ||inspire.msg.indexOf('成功') != -1){
      $.log('\n广告金币: '+inspire.data.TopContent)
          await $.wait(15000)
@@ -299,6 +351,10 @@ $.log('\n开始看广告\n')
 $.log('\n今日广告已上限,开始查询账户余额\n')
          await userInfo()
         }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -313,7 +369,9 @@ function bubbleList() {
       }
 //$.log('\n开始查询气泡ID\n')
    $.post(bubblelist, async(error, resp, data) => {
-     let bubble = JSON.parse(data)
+     $.log('bubble\n'+ data)
+         try{
+           let bubble = JSON.parse(data)
      if (bubble.code == 200){
        for(bubbleid of bubble.data.list){
 $.log('\n查询气泡ID成功,开始领取气泡\n')
@@ -324,6 +382,10 @@ $.log('\n查询气泡ID成功,开始领取气泡\n')
 $.log('\n当前没有气泡,开始观看广告\n')
          await invite()
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
       resolve()
     })
   })
@@ -339,13 +401,19 @@ function coinPick() {
       }
 $.log('\n开始收集气泡\n')
    $.post(coinpick, async(error, resp, data) => {
-     let pick = JSON.parse(data)
+    $.log('pick\n'+ data)
+         try{
+           let pick = JSON.parse(data)
      if(pick.code == 200){
      $.log('\n pick'+ pick.data.TopContent+'\n'+data)
          //await $.wait(1000)
        } else {
         $.log('\n'+data)
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -362,13 +430,19 @@ function coinDouble() {
       }
 $.log('\n开始领取气泡双倍奖励\n')
    $.post(coindouble, async(error, response, data) => {
-     let double = JSON.parse(data)
+     $.log('doublepick\n'+ data)
+         try{
+           let double = JSON.parse(data)
      if (double.code == 200){
           $.log('\n double'+ double.data.TopContent)
          //await $.wait(1000)
        } else {
         $.log('\n'+data)
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -384,7 +458,9 @@ function welfareVideo() {
       }
 $.log('\n开始看福利视频\n')
    $.post(welfarevideo, async(error, resp, data) => {
-     let welfare = JSON.parse(data)
+     $.log('welfare\n'+ data)
+         try{
+           let welfare = JSON.parse(data)
      $.log(data)
      if(welfare.code == 200){
      $.log('\n'+ welfare.data.TopContent)
@@ -393,6 +469,10 @@ $.log('\n开始看福利视频\n')
         $.log('\n'+data)
          await dailyTaskList()
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -407,7 +487,9 @@ function welfareDouble() {
       }
 $.log('\n开始领取福利视频双倍\n')
    $.post(welfaredouble, async(error, resp, data) => {
-     let welfare2 = JSON.parse(data)
+    $.log('welfare2\n'+ data)
+         try{
+           let welfare2 = JSON.parse(data)
      $.log(data)
      
      if(welfare2.code == 200){
@@ -417,6 +499,10 @@ $.log('\n开始领取福利视频双倍\n')
         $.log('\n'+data)
          await dailyTaskList()
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -432,7 +518,9 @@ function shareVideo() {
       }
 $.log('\n开始分享视频\n')
    $.post(sharevideo, async(error, resp, data) => {
-     let share = JSON.parse(data)
+    $.log('share\n'+ data)
+         try{
+           let share = JSON.parse(data)
      $.log(data)
      if(share.code == 200){
      $.log('\n'+ share.data.TopContent)
@@ -441,6 +529,10 @@ $.log('\n开始分享视频\n')
         $.log('\n'+data)
          await otherTaskList()
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -455,7 +547,9 @@ function shareDouble() {
       }
 $.log('\n开始领取分享视频双倍\n')
    $.post(sharedouble, async(error, resp, data) => {
-     $.log(data)
+     $.log('share2\n'+ data)
+         try{
+           //$.log(data)
      let share2 = JSON.parse(data)
      
      if(share2.code == 200){
@@ -465,6 +559,10 @@ $.log('\n开始领取分享视频双倍\n')
         $.log('\n'+data)
          await otherTaskList()
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
@@ -481,7 +579,9 @@ function smVideoLimit() {
       }
 $.log('\n开始查询小视频上限\n')
    $.post(smvideolimit, async(error, resp, data) => {
-     let smvideo = JSON.parse(data)
+     $.log('customerTaskStatus\n'+ data)
+         try{
+          let smvideo = JSON.parse(data)
      if (smvideo.code == 200){
        for(limit of smvideo.data.list){
          if (limit.ID == 16){
@@ -496,6 +596,10 @@ $.log('\n小视频已上限,准备查询视频上限\n')
          }
         }
        }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
       resolve()
     })
   })
@@ -508,7 +612,9 @@ function videoLimit() {
       headers: JSON.parse(CookieVal),
       }
    $.post(videolimit, async(error, resp, data) => {
-     let video = JSON.parse(data)
+      $.log('Videolimit\n'+ data)
+         try{
+          let video = JSON.parse(data)
      if (video.code == 200){
        for(limit of video.data.list){
          if (limit.ID == 5){
@@ -523,6 +629,10 @@ $.log('\n视频已上限,准备查询气泡ID\n')
          }
         }
        }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
       resolve()
     })
   })
@@ -537,7 +647,9 @@ function withDraw() {
       body: '{"id":2}',
       }
    $.post(withdraw, async(error, resp, data) => {
-     let draw = JSON.parse(data)
+     $.log('draw\n'+ data)
+         try{
+          let draw = JSON.parse(data)
      //$.log(data)
      if(draw.code == 200){
      $.log('\n'+ draw.msg)
@@ -546,6 +658,10 @@ function withDraw() {
         $.log('\n'+data)
      $.msg($.name,'',draw.msg)
       }
+         }catch(e){
+               $.log('\n'+ e)
+         }
+         
        resolve()
     })
   })
