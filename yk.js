@@ -455,8 +455,9 @@ function shareDouble() {
       }
 $.log('\n开始领取分享视频双倍\n')
    $.post(sharedouble, async(error, resp, data) => {
-     let share2 = JSON.parse(data)
      $.log(data)
+     let share2 = JSON.parse(data)
+     
      if(share2.code == 200){
      $.log('\n'+ share2.data.TopContent)
          await otherTaskList()
