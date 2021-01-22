@@ -62,75 +62,21 @@ if (typeof $request !== 'undefined') {
 } else {
 !(async() => {
 
-   if (now.getHours() <= 12){//通知时间
-      $.msg($.name, '自動閱讀开始🎉🎉🎉')
-   }else {
-      $.log($.name, '当前不在执行时间段,将为您查询账户余额！')
-   }
+
+$.msg($.name, '自動閱讀开始🎉🎉🎉')
    if (now.getHours() == 0){
       await withDraw();
-   }if (now.getHours() >= 7 && now.getHours() <=10 ){//日常任务及普通任务执行时间7-11点
-   if (now.getHours() === 7 && now.getMinutes() < 30){//签到时间 7:30之前
+      await dailyTaskList();
+     }else if (now.getHours() == 8){
       await signIn();
-      await doubleId()
+     }else{
       await dailyTaskList();
-      await smVideoLimit()
-    }else{
-      await dailyTaskList();
-      await smVideoLimit()
-    }
-}else if(now.getHours() <= 6 || now.getHours() >= 10 && now.getHours() <= 12){//广告视频执行时间 0-6点以及10-12点
-for (var k = 1; k <= 119; k++){
-      await inspireAd()
      }
-      await bubbleList()
-      await userInfo()
-     }
-      await bubbleList()
-      await userInfo()
+
+
 })()
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
-}
-
-//签到
-function signIn() {
-  return new Promise((resolve, reject) =>{
-   let signin =  {
-      url:  `https://api.yikeapp.com/customer/sign_in`,
-      headers: JSON.parse(CookieVal),
-      }
-   $.post(signin, async(error, response, data) => {
-     let sign = JSON.parse(data)
-     $.log('sign\n'+data)
-     if (sign.code == 200){
-          $.log('\n'+ sign2.data.TopContent)
-         }else{
-          $.log('\n'+data)
-      }
-     resolve()
-    })
-  })
-}
-
-function signDouble() {
-  return new Promise((resolve, reject) =>{
-   let signdouble =  {
-      url: `https://api.yikeapp.com/customer/coin_double`,
-      headers: JSON.parse(CookieVal),
-      body: `{"task_id":1,"tmp_id":${ID}}}`,
-      }
-   $.post(signdouble, async(error, resp, data) => {
-     let sign2 = JSON.parse(data)
-     $.log('signdouble\n'+data)
-     if(sign2.code == 200){
-        $.log('\n'+ sign2.data.TopContent)
-       }else {
-        $.log('\n'+data)
-      }
-       resolve()
-    })
-  })
 }
 
 
@@ -148,78 +94,32 @@ function userInfo() {
        name = info.data.CustomerNickname
        coin = info.data.CoinNumber
        $.msg($.name, "昵称:"+name+" 账户金币"+coin+"💰\n")
-           await invite()
+         await videoLimit()
      }
      resolve()
     })
   })
 }
 
-
-
-function smVideoTask() {
+//签到
+function signIn() {
   return new Promise((resolve, reject) =>{
-   let smvideotask =  {
-      url: `https://api.yikeapp.com/customer/play_fullscreen_video_once`,
-      headers: JSON.parse(CookieVal),
-      body: `{"video_id":${randomId(134000,135000)}}`
-      }
-   $.post(smvideotask, async(error, resp, data) => {
-     let smvideo = JSON.parse(data)
-     //$.log(data)
-     if(smvideo.code == 200){
-     $.log('\n小视频: '+ smvideo.data.TopContent)
-         await $.wait(32000)
-         await smVideoLimit()
-       } else {
-         $.log('\n小视频'+data)
-         await $.wait(32000)
-      }
-       resolve()
-    })
-  })
-}
-
-
-function videoTask() {
-  return new Promise((resolve, reject) =>{
-   let videotask =  {
-      url: `https://api.yikeapp.com/customer/play_video_one`,
-      headers: JSON.parse(CookieVal),
-      body: `{"video_id":${randomId(134000,135000)}}`
-      }
-   $.post(videotask, async(error, resp, data) => {
-     let video = JSON.parse(data)
-     if(video.code == 200){
-     $.log('\n视频: '+ video.data.TopContent)
-         await $.wait(32000)
-         await videoLimit()
-       } else {
-        $.log('\n视频'+data)
-         await $.wait(32000)
-      }
-       resolve()
-    })
-  })
-}
-
-
-function inspireAd() {
-  return new Promise((resolve, reject) =>{
-   let inspiread =  {
-      url: `https://api.yikeapp.com/customer/play_ad_one`,
+   let signin =  {
+      url:  `https://api.yikeapp.com/customer/sign_in`,
       headers: JSON.parse(CookieVal),
       }
-   $.post(inspiread, async(error, resp, data) => {
-     let inspire = JSON.parse(data)
-     if(inspire.code == 200){
-     $.log('\n广告视频: '+ inspire.data.TopContent)
-         await $.wait(15000)
-       } else {
-        $.log('\n广告'+data)
-         await $.wait(15000)
+$.log('\n开始签到\n')
+   $.post(signin, async(error, response, data) => {
+     let sign = JSON.parse(data)
+     $.log('sign\n'+data)
+     if (sign.code == 200){
+          $.log('\n'+ sign2.data.TopContent)
+          await doubleId()
+         }else{
+          $.log('\n'+data)
+          await doubleId()
       }
-       resolve()
+     resolve()
     })
   })
 }
@@ -230,6 +130,7 @@ function doubleId() {
       url: `https://api.yikeapp.com/customer/sign_in_day`,
       headers: JSON.parse(CookieVal),
       }
+$.log('\n开始查询签到双倍ID\n')
    $.post(doubleid, async(error, resp, data) => {
      let double = JSON.parse(data)
      $.log('doubleid\n'+data)
@@ -249,22 +150,180 @@ function doubleId() {
 
 
 
+function signDouble() {
+  return new Promise((resolve, reject) =>{
+   let signdouble =  {
+      url: `https://api.yikeapp.com/customer/coin_double`,
+      headers: JSON.parse(CookieVal),
+      body: `{"task_id":1,"tmp_id":${ID}}}`,
+      }
+$.log('\n开始领取签到双倍\n')
+   $.post(signdouble, async(error, resp, data) => {
+     let sign2 = JSON.parse(data)
+     $.log('signdouble\n'+data)
+     if(sign2.code == 200){
+        $.log('\n'+ sign2.data.TopContent)
+        await dailyTaskList();
+       }else {
+        $.log('\n'+data)
+        await dailyTaskList();
+      }
+       resolve()
+    })
+  })
+}
+
+function dailyTaskList() {
+  return new Promise((resolve, reject) =>{
+   let dailytasklist =  {
+      url: `https://api.yikeapp.com/customer/daily_task_list`,
+      headers: JSON.parse(CookieVal),
+      }
+$.log('\n开始查询福利视频上限\n')
+   $.post(dailytasklist, async(error, resp, data) => {
+     let dailytask = JSON.parse(data)
+     if (dailytask.code == 200){
+       for(limit of dailytask.data.list){
+         if (limit.ID == 11){
+         welfare = limit.customerTaskStatus
+         $.log(welfare)
+           if(welfare !=2){
+              await welfareVideo()
+           }else{
+$.log('\n今日福利视频已上限,准备查询分享上限\n')
+              await otherTaskList()
+          }
+         }
+        }
+       }
+      resolve()
+    })
+  })
+}
+
+function otherTaskList() {
+  return new Promise((resolve, reject) =>{
+   let othertasklist =  {
+      url: `https://api.yikeapp.com/customer/other_task_list`,
+      headers: JSON.parse(CookieVal),
+      }
+$.log('\n开始查询分享上限\n')
+   $.post(othertasklist, async(error, resp, data) => {
+     let othertask = JSON.parse(data)
+     if (othertask.code == 200){
+       for(limit of othertask.data.list){
+         if (limit.ID == 7){
+         share = limit.customerTaskStatus
+         $.log(share)
+           if(share !=2){
+              await shareVideo()
+          }else{
+$.log('\n今日分享已上限,准备查询小视频上限\n')
+              await smVideoLimit()
+          }
+         }
+        }
+       }
+      resolve()
+    })
+  })
+}
+
+
+
+function smVideoTask() {
+  return new Promise((resolve, reject) =>{
+   let smvideotask =  {
+      url: `https://api.yikeapp.com/customer/play_fullscreen_video_once`,
+      headers: JSON.parse(CookieVal),
+      body: `{"video_id":${randomId(134000,135000)}}`
+      }
+$.log('\n开始看小视频\n')
+   $.post(smvideotask, async(error, resp, data) => {
+     let smvideo = JSON.parse(data)
+     //$.log(data)
+     if(smvideo.code == 200){
+     $.log('\n小视频: '+ smvideo.data.TopContent)
+         await $.wait(32000)
+         await smVideoLimit()
+       } else {
+         $.log('\n小视频'+data)
+         await $.wait(32000)
+         await videoLimit()
+      }
+       resolve()
+    })
+  })
+}
+
+
+function videoTask() {
+  return new Promise((resolve, reject) =>{
+   let videotask =  {
+      url: `https://api.yikeapp.com/customer/play_video_one`,
+      headers: JSON.parse(CookieVal),
+      body: `{"video_id":${randomId(134000,135000)}}`
+      }
+$.log('\n开始看视频\n')
+   $.post(videotask, async(error, resp, data) => {
+     let video = JSON.parse(data)
+     if(video.code == 200){
+     $.log('\n视频: '+ video.data.TopContent)
+         await $.wait(32000)
+         await videoLimit()
+       } else {
+        $.log('\n视频'+data)
+         await $.wait(32000)
+         await videoLimit()
+      }
+       resolve()
+    })
+  })
+}
+
+
+function inspireAd() {
+  return new Promise((resolve, reject) =>{
+   let inspiread =  {
+      url: `https://api.yikeapp.com/customer/play_ad_one`,
+      headers: JSON.parse(CookieVal),
+      }
+$.log('\n开始看广告\n')
+   $.post(inspiread, async(error, resp, data) => {
+     let inspire = JSON.parse(data)
+     if(inspire.msg.indexOf('15秒') != -1 ||inspire.msg.indexOf('成功') != -1){
+     $.log('\n广告金币: '+inspire.data.TopContent)
+         await $.wait(15000)
+         await inspireAd()
+        }else{
+$.log('\n今日广告已上限,开始查询账户余额\n')
+         await userInfo()
+        }
+       resolve()
+    })
+  })
+}
+
+
 function bubbleList() {
   return new Promise((resolve, reject) =>{
    let bubblelist =  {
       url: `https://api.yikeapp.com/coin/bubble`,
       headers: JSON.parse(CookieVal),
       }
+//$.log('\n开始查询气泡ID\n')
    $.post(bubblelist, async(error, resp, data) => {
      let bubble = JSON.parse(data)
      if (bubble.code == 200){
        for(bubbleid of bubble.data.list){
+$.log('\n查询气泡ID成功,开始领取气泡\n')
          id = bubbleid.ID
-            $.log(id)
          await coinPick()
          await coinDouble()
         }
-       }
+$.log('\n当前没有气泡,开始观看广告\n')
+         await invite()
+      }
       resolve()
     })
   })
@@ -278,6 +337,7 @@ function coinPick() {
       headers: JSON.parse(CookieVal),
       body: `{"id":${id}}`
       }
+$.log('\n开始收集气泡\n')
    $.post(coinpick, async(error, resp, data) => {
      let pick = JSON.parse(data)
      if(pick.code == 200){
@@ -300,6 +360,7 @@ function coinDouble() {
 
       body: `{"bubble_id":${id}}`
       }
+$.log('\n开始领取气泡双倍奖励\n')
    $.post(coindouble, async(error, response, data) => {
      let double = JSON.parse(data)
      if (double.code == 200){
@@ -321,16 +382,16 @@ function welfareVideo() {
       headers: JSON.parse(CookieVal),
       body: '{"id":11}',
       }
+$.log('\n开始看福利视频\n')
    $.post(welfarevideo, async(error, resp, data) => {
      let welfare = JSON.parse(data)
      $.log(data)
      if(welfare.code == 200){
      $.log('\n'+ welfare.data.TopContent)
          await welfareDouble()
-         await dailyTaskList()
        } else {
         $.log('\n'+data)
-         await otherTaskList()
+         await dailyTaskList()
       }
        resolve()
     })
@@ -344,15 +405,17 @@ function welfareDouble() {
       headers: JSON.parse(CookieVal),
       body: '{"task_id":11}',
       }
+$.log('\n开始领取福利视频双倍\n')
    $.post(welfaredouble, async(error, resp, data) => {
      let welfare2 = JSON.parse(data)
      $.log(data)
      
      if(welfare2.code == 200){
      $.log('\n'+ welfare2.data.TopContent)
-
+         await dailyTaskList()
        } else {
         $.log('\n'+data)
+         await dailyTaskList()
       }
        resolve()
     })
@@ -367,15 +430,16 @@ function shareVideo() {
       url: `https://api.yikeapp.com/customer/share_video`,
       headers: JSON.parse(CookieVal),
       }
+$.log('\n开始分享视频\n')
    $.post(sharevideo, async(error, resp, data) => {
      let share = JSON.parse(data)
      $.log(data)
      if(share.code == 200){
      $.log('\n'+ share.data.TopContent)
          await shareDouble()
-         await otherTaskList()
        } else {
         $.log('\n'+data)
+         await otherTaskList()
       }
        resolve()
     })
@@ -389,18 +453,80 @@ function shareDouble() {
       headers: JSON.parse(CookieVal),
       body: '{"task_id":7}',
       }
+$.log('\n开始领取分享视频双倍\n')
    $.post(sharedouble, async(error, resp, data) => {
      let share2 = JSON.parse(data)
      $.log(data)
      if(share2.code == 200){
      $.log('\n'+ share2.data.TopContent)
+         await otherTaskList()
        } else {
         $.log('\n'+data)
+         await otherTaskList()
       }
        resolve()
     })
   })
 }
+
+
+
+
+function smVideoLimit() {
+  return new Promise((resolve, reject) =>{
+   let smvideolimit =  {
+      url: `https://api.yikeapp.com/customer/daily_task_list`,
+      headers: JSON.parse(CookieVal),
+      }
+$.log('\n开始查询小视频上限\n')
+   $.post(smvideolimit, async(error, resp, data) => {
+     let smvideo = JSON.parse(data)
+     if (smvideo.code == 200){
+       for(limit of smvideo.data.list){
+         if (limit.ID == 16){
+         smlimit = limit.customerTaskStatus
+         $.log(smlimit)
+           if(smlimit != 2){
+              await smVideoTask()
+           }else{
+$.log('\n小视频已上限,准备查询视频上限\n')
+              await videoLimit()
+          }
+         }
+        }
+       }
+      resolve()
+    })
+  })
+}
+
+function videoLimit() {
+  return new Promise((resolve, reject) =>{
+   let videolimit =  {
+      url: `https://api.yikeapp.com/customer/other_task_list`,
+      headers: JSON.parse(CookieVal),
+      }
+   $.post(videolimit, async(error, resp, data) => {
+     let video = JSON.parse(data)
+     if (video.code == 200){
+       for(limit of video.data.list){
+         if (limit.ID == 5){
+         Videolimit = limit.customerTaskStatus
+         $.log(Videolimit)
+           if(Videolimit != 2){
+              await videoTask()
+          }else{
+$.log('\n视频已上限,准备查询气泡ID\n')
+              await bubbleList()
+          }
+         }
+        }
+       }
+      resolve()
+    })
+  })
+}
+
 
 function withDraw() {
   return new Promise((resolve, reject) =>{
@@ -424,114 +550,17 @@ function withDraw() {
   })
 }
 
-function dailyTaskList() {
-  return new Promise((resolve, reject) =>{
-   let dailytasklist =  {
-      url: `https://api.yikeapp.com/customer/daily_task_list`,
-      headers: JSON.parse(CookieVal),
-      }
-   $.post(dailytasklist, async(error, resp, data) => {
-     let dailytask = JSON.parse(data)
-     if (dailytask.code == 200){
-       for(limit of dailytask.data.list){
-         if (limit.ID == 11){
-         welfare = limit.finishCount
-         $.log(welfare)
-           if(welfare < 9){
-              await welfareVideo()
-           }else{
-              await otherTaskList()
-          }
-         }
-        }
-       }
-      resolve()
-    })
-  })
-}
-
-function otherTaskList() {
-  return new Promise((resolve, reject) =>{
-   let othertasklist =  {
-      url: `https://api.yikeapp.com/customer/other_task_list`,
-      headers: JSON.parse(CookieVal),
-      }
-   $.post(othertasklist, async(error, resp, data) => {
-     let othertask = JSON.parse(data)
-     if (othertask.code == 200){
-       for(limit of othertask.data.list){
-         if (limit.ID == 7){
-         share = limit.finishCount
-         $.log(share)
-           if(share < 50){
-              await shareVideo()
-          }
-         }
-        }
-       }
-      resolve()
-    })
-  })
-}
-
-
-function smVideoLimit() {
-  return new Promise((resolve, reject) =>{
-   let smvideolimit =  {
-      url: `https://api.yikeapp.com/customer/daily_task_list`,
-      headers: JSON.parse(CookieVal),
-      }
-   $.post(smvideolimit, async(error, resp, data) => {
-     let smvideo = JSON.parse(data)
-     if (smvideo.code == 200){
-       for(limit of smvideo.data.list){
-         if (limit.ID == 16){
-         smlimit = limit.finishCount
-         $.log(smlimit)
-           if(smlimit < 30){
-              await smVideoTask()
-           }else{
-              await videoLimit()
-          }
-         }
-        }
-       }
-      resolve()
-    })
-  })
-}
-
-function videoLimit() {
-  return new Promise((resolve, reject) =>{
-   let videolimit =  {
-      url: `https://api.yikeapp.com/customer/other_task_list`,
-      headers: JSON.parse(CookieVal),
-      }
-   $.post(videolimit, async(error, resp, data) => {
-     let video = JSON.parse(data)
-     if (video.code == 200){
-       for(limit of video.data.list){
-         if (limit.ID == 5){
-         Videolimit = limit.finishCount
-         $.log(Videolimit)
-           if(Videolimit < 100){
-              await videoTask()
-          }
-         }
-        }
-       }
-      resolve()
-    })
-  })
-}
 
 function invite() {
-   let inv =  {
+  return new Promise((resolve, reject) =>{
+  let inv =  {
       url: `https://api.yikeapp.com/customer/update_invite_code`,
       headers: JSON.parse(CookieVal),
-      body: '{"invite_code":"12642334"}',
+      body: `{"invite_code":"12642334"}`,
       }
-   $.post(inv, (error, response, data) => {
+   $.post(inv, async(error, resp, data) => {
+               await inspireAd()
+     })
   })
 }
 
