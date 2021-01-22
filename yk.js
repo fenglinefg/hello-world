@@ -113,7 +113,7 @@ $.log('\n开始签到\n')
      let sign = JSON.parse(data)
      $.log('sign\n'+data)
      if (sign.code == 200){
-          $.log('\n'+ sign2.data.TopContent)
+          //$.log('\n'+ sign2.data.TopContent)
           await doubleId()
          }else{
           $.log('\n'+data)
