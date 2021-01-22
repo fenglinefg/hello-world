@@ -16,8 +16,8 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/ZhiYi-N/Private-Script.git ~/Scripts
-          git clone https://github.com/ZhiYi-N/script.git ~/Scripts/Other
+          git clone https://github.com/ZhiYi-N/Private-Script.git ~/Scripts/Other1
+          git clone https://github.com/ZhiYi-N/script.git ~/Scripts/Other2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -36,8 +36,8 @@ jobs:
       - name: '运行 【走财运】'
         run: |
           cd ~/Scripts
-          cp other/sendNotify.js Scripts/sendNotify.js
-          node Scripts/zcy.js
+          cp Other2/sendNotify.js Other1/Scripts/sendNotify.js
+          node Other1/Scripts/zcy.js
         env:
           ZCYHEADER: ${{ secrets.ZCYHEADER }}
           ZCYBODY: ${{ secrets.ZCYBODY }}
