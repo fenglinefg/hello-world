@@ -207,7 +207,7 @@ $.log('\n开始查询福利视频上限\n')
    $.post(dailytasklist, async(error, resp, data) => {
       $.log('dailytaskdata\n'+ data)
          try{
-            llet dailytask = JSON.parse(data)
+            let dailytask = JSON.parse(data)
      if (dailytask.code == 200){
        for(limit of dailytask.data.list){
          if (limit.ID == 11){
