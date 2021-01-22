@@ -294,6 +294,7 @@ async function modify_locate(){
 //video_rewards
 async function video_rewards(){
 let video_rewards_body = zcybody.replace(/device_step_count=\d+.*/,`locate=${locate}`)
+$.log(video_rewards_body)
  return new Promise((resolve) => {
     let video_rewards_url = {
    		url: 'https://step-money.quanxiangweilai.cn/api/gain_award_bonus',
