@@ -11,7 +11,7 @@ Github Actions使用方法见[@lxk0301](https://raw.githubusercontent.com/lxk030
 
 const $ = new Env("腾讯新闻阅读")
 
-let RdUrl = [], VdUrl = [];
+let RdArr = [], VdArr = [];
   if (process.env.TX_READ && process.env.TX_READ.indexOf('#') > -1) {
   RdUrl = process.env.TX_READ.split('#');
   console.log(`您选择的是用"#"隔开\n`)
@@ -59,25 +59,30 @@ let RdUrl = [], VdUrl = [];
       TaskUrl = RdArr[i];
       body = "event=article_read"
       $.index = i + 1;
-    console.log(`-------------------------\n\n开始腾讯新闻第${$.index}次阅读`)
+    for(p=0;p<3;p++){
+   console.log(`-------------------------\n\n开始腾讯新闻${$.index}第${p+1}次阅读`)
       await AutoRead();
-      await $.wait(10000);
-      console.log(`\n  请等待10s后继续视频${$.index}第${i+1}次任务`)
+      console.log(`请等待30s后继续阅读${$.index}第${p+2}次任务`)
+      await $.wait(30000);
+      }
     }
-   console.log(`-------------------------\n\n腾讯新闻共完成阅读任务(${$.index})次，阅读金币详情见App，任务全部结束`)
+   console.log(`-------------------------\n\n腾讯新闻共完成阅读任务(${$.index}*3)次，阅读金币详情见App，任务全部结束`)
   }
-   if(VdArr){
-    for (let j = 0; j < VdArr.length; j++) {
+   if(VdArr!==[]){
+   $.log(VdArr)
+    for (var j = 0; j < VdArr.length; j++) {
     console.log("共"+VdArr.length+"次阅读任务")
-      TaskUrl = RdArr[i];
+      TaskUrl = VdArr[j];
       body = "event=video_read"
-      $.index = j + 1;
-    console.log(`-------------------------\n\n开始腾讯新闻第${$.index}次阅读`)
+      $.vdindex = j + 1;
+    for(k=0;k<3;k++){
+    console.log(`-------------------------\n\n开始腾讯新闻${$.vdindex}第${k+1}次看视频`)
       await AutoRead();
-      await $.wait(10000);
-      console.log(`\n  请等待10s后继续视频${$.index}第${j+1}次任务`)
+      console.log(`请等待32s后继续视频${$.vdindex}第${k+2}次任务`)
+      await $.wait(32000);
+      }
     }
-   console.log(`-------------------------\n\n共完成视频任务(${$.index})次，视频金币详情见App，任务全部结束`)
+   console.log(`-------------------------\n\n共完成视频任务(${$.vdindex}*3)次，视频金币详情见App，任务全部结束`)
 }
 })()
   .catch((e) => $.logErr(e))
