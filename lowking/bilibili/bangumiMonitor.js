@@ -41,7 +41,8 @@ cron "0 0 0,1 * * *" script-path=https://raw.githubusercontent.com/lowking/Scrip
 */
 const lk = new ToolKit('哔哩哔哩番剧监控', 'BilibiliBangumiMonitor')
 const vmid = lk.getVal('lkVmidBilibiliBangumiMonitor')
-const bangumiListKey = `lkBilibiliBangumiList`
+const followStatus = !lk.getVal('lkBilibiliBangumiFollowStatus') ? 2 : lk.getVal('lkBilibiliBangumiFollowStatus')
+const bangumiListKey = `lkBilibiliBangumiList${followStatus}`
 const pageSize = !lk.getVal('lkBilibiliBangumiPageSize') ? 15 : lk.getVal('lkBilibiliBangumiPageSize')
 
 if (!lk.isExecComm) {
@@ -161,13 +162,14 @@ function findDifferentElements2(array1, array2) {
 
 function getFollowList(pn, ps, preList, type) {
     return new Promise((resolve, reject) => {
-        let listApi = `https://api.bilibili.com/x/space/bangumi/follow/list?type=#{type}&follow_status=0&pn=#{pn}&ps=#{ps}&vmid=#{vmid}&ts=#{ts}`
+        let listApi = `https://api.bilibili.com/x/space/bangumi/follow/list?type=#{type}&follow_status=#{followStatus}&pn=#{pn}&ps=#{ps}&vmid=#{vmid}&ts=#{ts}`
         let param = {
             "pn": pn,
             "ps": ps,
             "vmid": vmid,
             "type": type,
-            "ts": new Date().getTime()
+            "ts": new Date().getTime(),
+            "followStatus": followStatus
         }
         listApi = lk.customReplace(listApi, param)
         lk.log(listApi)
