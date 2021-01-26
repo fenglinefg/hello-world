@@ -15,20 +15,22 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/Sunert/Scripts.git ~/baidu
+          //git clone https://github.com/Sunert/Scripts.git ~/baidu
+          uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
       - name: npm install
         run: |
-          cd ~/baidu
+         // cd ~/baidu
           npm install
       - name: '运行 【百度极速】'
         if: env.BAIDU_COOKIE
         run: |
-          cd ~/baidu
-          node Task/baidu_speed.js
+         // cd ~/baidu
+         // node Task/baidu_speed.js
+         node baidu_speed.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BAIDU_CASH: ${{ secrets.BAIDU_CASH }}
