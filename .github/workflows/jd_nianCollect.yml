@@ -25,7 +25,7 @@ jobs:
         if: env.JD_COOKIE
         run: |
           npm install
-      - name: '运行 【京东集鞭炮赢京豆】'
+      - name: '运行 【京东炸年兽领爆竹】'
         if: env.JD_COOKIE
         run: |
           node jd_nianCollect.js
