@@ -15,7 +15,6 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          
           uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
@@ -23,12 +22,10 @@ jobs:
           node-version: 12.x
       - name: npm install
         run: |
-         
           npm install
       - name: '运行 【百度极速】'
         if: env.BAIDU_COOKIE
-        run: |
-         
+        run: |        
          node baidu_speed.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
