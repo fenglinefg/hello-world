@@ -3,7 +3,7 @@ name: 京东神仙书院测试
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: '0 8,18 * * *'
   watch:
     types: started
   repository_dispatch:
