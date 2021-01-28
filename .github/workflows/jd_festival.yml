@@ -6,7 +6,7 @@ name: 京东手机年终奖-1月26日-2月8日
 on:
   workflow_dispatch:
   schedule:
-    - cron: '30 9 * * *'
+    - cron: '30 9,21 * * *'
   watch:
     types: started
   repository_dispatch:
