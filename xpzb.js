@@ -119,7 +119,7 @@ if ($.isNode()) {
       CASH = $.getval("iboxpayCASH")|| '0';
     }
   if ("iboxpayLIVE") {
-      LIVE = $.getval("iboxpayLIVE")|| '0';
+      LIVE = 120;
     }
 	
 	
