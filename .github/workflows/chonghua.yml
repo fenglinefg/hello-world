@@ -28,6 +28,7 @@ jobs:
           node chonghua.js
         env:
           CHGETBODY_VIDEO: ${{ secrets.CHGETBODY_VIDEO }}
+          CHGETBODY_VIDEO2: ${{ secrets.CHGETBODY_VIDEO2 }}
           CHGETBODY_SHARE: ${{ secrets.CHGETBODY_SHARE }}
           CHGETBODY_TASKCENTER: ${{ secrets.CHGETBODY_TASKCENTER }}
           CHGETBODY_TIMERED: ${{ secrets.CHGETBODY_TIMERED }}
