@@ -85,6 +85,7 @@ let readscore = 0;
 let sharescore = 0;
 
 let bodys = process.env.CHGETBODY_VIDEO;
+let bodys_2 = process.env.CHGETBODY_VIDEO2;
 let bodys2 = process.env.CHGETBODY_SHARE;
 let bodys3 = process.env.CHGETBODY_TASKCENTER;
 let bodys4 = process.env.CHGETBODY_SHAREREWARD;
@@ -112,6 +113,13 @@ timeredbodyVal = bodys5.split('#');
 
 ////////////////////////////////////////////////////////////////////////
 
+Object.keys(readbodyVal).forEach((item) => {
+  if (readbodyVal[item]) {
+    readbodyArr.push(readbodyVal[item])
+  }
+})
+
+readbodyVal = bodys_2.split('#');
 Object.keys(readbodyVal).forEach((item) => {
   if (readbodyVal[item]) {
     readbodyArr.push(readbodyVal[item])
