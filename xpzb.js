@@ -77,9 +77,9 @@ const nowTimes = new Date(
 
 if ($.isNode()) {
  // 没有设置 XP_CASH 则默认为 0 不提现
- CASH = process.env.XP_CASH || 0;
+ CASH = process.env.XP_CASH || 1;
  // 没有设置 XP_live 则默认为 0 不开启
- LIVE = process.env.XP_live || 0;
+ LIVE = process.env.XP_live || 60;
 } 
 if ($.isNode() && process.env.XP_iboxpayHEADER) {
   COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
