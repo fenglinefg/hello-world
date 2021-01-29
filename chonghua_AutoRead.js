@@ -37,12 +37,20 @@ const $ = new Env("葱花视频")
 //const notify = $.isNode() ? require('./sendNotify') : '';
 let readbodyArr = [], readbodyVal = "", readscore = 0;
 let bodys = process.env.CHGETBODY_VIDEO;
+let bodys_2 = process.env.CHGETBODY_VIDEO2;
 
 if (!(bodys && bodys != '')) {
   $.msg("", "", '请先观看视频获取body\nbody获取越多，脚本可获得金币越多')
   $.done()
 }
 readbodyVal = bodys.split('#');
+
+Object.keys(readbodyVal).forEach((item) => {
+  if (readbodyVal[item]) {
+    readbodyArr.push(readbodyVal[item])
+  }
+})
+readbodyVal = bodys_2.split('#');
 
 Object.keys(readbodyVal).forEach((item) => {
   if (readbodyVal[item]) {
