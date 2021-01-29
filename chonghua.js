@@ -212,7 +212,7 @@ Object.keys(sharebodyVal).forEach((item) => {
     await $.wait(3000);
     await sharereward(task); //分享奖励
   }
-
+/*
   if (!readbodyArr[0]) {
     console.log($.name, '【提示】请把阅读视频的请求体填入Github 的 Secrets 中，请以#隔开')
     return;
@@ -228,7 +228,7 @@ Object.keys(sharebodyVal).forEach((item) => {
     }
     await AutoRead();
   }
-  $.log('', '', `🥦 本次共完成${$.index}次阅读，获得${readscore}个金币，阅读请求结束`);
+  $.log('', '', `🥦 本次共完成${$.index}次阅读，获得${readscore}个金币，阅读请求结束`);*/
   tz += `【自动阅读】：${readscore}个金币\n`;
   await showmsg();
 
