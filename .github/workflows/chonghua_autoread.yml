@@ -27,7 +27,8 @@ jobs:
         run: |
           node chonghua_AutoRead.js
         env:
-          CHGETBODY_VIDEO: ${{ secrets.CHGETBODY_VIDEO }}  
+          CHGETBODY_VIDEO: ${{ secrets.CHGETBODY_VIDEO }}
+          CHGETBODY_VIDEO2: ${{ secrets.CHGETBODY_VIDEO2 }}  
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
