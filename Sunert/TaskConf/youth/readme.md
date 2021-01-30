@@ -2,6 +2,8 @@
   >> [toc]  
  #  <center> 中青看点使用说明 </center>
 
+ [跳转至底部](#注意事项)
+
 ### IOS配置教程
  ```
 [MITM]
@@ -31,6 +33,13 @@ http-request https:\/\/ios\.baertt\.com\/v5\/\w+\/withdraw\.json script-path=htt
 ```
 **Quantumult X:**
 
+
+* [重写配置链接](https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/youth/qx_rewite.txt)
+```
+[rewrite_remote]
+https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/sina/qx_rewite.txt
+```
+* 本地重写配置
 ```
 [task_local]
 0 9 * * * youth.js
@@ -76,8 +85,6 @@ https:\/\/ios\.baertt\.com\/v5\/\w+\/withdraw\.json url script-request-body http
 
  >>> [回到上一页](..)
  
-
-
 ### 注意事项:
  > __提现金额需该请求一致，只更改提现金额无效，默认30元__
 
