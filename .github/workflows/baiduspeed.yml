@@ -25,7 +25,7 @@ jobs:
       - name: '运行 【百度极速】'
         if: env.BAIDU_COOKIE
         run: |
-          node baidu_speed.js
+          node baidu_speed_Sunert.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BAIDU_CASH: ${{ secrets.BAIDU_CASH }}
