@@ -2,7 +2,7 @@ name: 百度极速版5，30，50，100，800
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/30 * * * *'
+     - cron: '*/3 * * * *'
   watch:
     types: started
 jobs:
