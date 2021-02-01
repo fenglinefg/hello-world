@@ -139,6 +139,7 @@ function userInfo() {
       $.get(infourl, async(error, resp, data) =>{
         try {
           if (resp.statusCode == 200) {
+            $.log(data)
             username = "null";
             json = data.match(/window\.PAGE_DATA = (.+)/)[1];
             //$.log(formatJson(json.comps))
