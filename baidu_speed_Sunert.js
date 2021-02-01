@@ -142,7 +142,7 @@ function userInfo() {
             
             username = "null";
             json = data.match(/window\.PAGE_DATA = (.+)/)[1];
-            json = json.substring(0, json.Length-1)
+            json = formatJson(json);
             console.log("********************************************before********************************************************\n")
             console.log("\n")
             console.log("\n")
