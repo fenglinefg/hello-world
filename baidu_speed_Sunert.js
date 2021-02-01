@@ -142,6 +142,7 @@ function userInfo() {
             
             username = "null";
             json = data.match(/window\.PAGE_DATA = (.+)/)[1];
+            json = json.Substring(0, json.Length-1)
             console.log("********************************************before********************************************************\n")
             console.log("\n")
             console.log("\n")
@@ -151,7 +152,7 @@ function userInfo() {
             console.log("*********************************************after*******************************************************\n")
             //$.log(formatJson(json.comps);
             //json = JSON.parse(formatJson(json));
-            json = JSON.stringify(json);
+            json = JSON.parse(json);
             console.log(json+"\n")
             if (json.isLogin == true) {
               isblack = json.is_black
