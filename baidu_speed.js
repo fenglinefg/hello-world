@@ -44,7 +44,7 @@ if ($.isNode()) {
     if (CookieArr[i]) {
       cookieval = CookieArr[i];
       $.index = i + 1;
-      await userInfo();
+      //await userInfo();
       await getsign();
       await firstbox();
       await TaskCenter()
