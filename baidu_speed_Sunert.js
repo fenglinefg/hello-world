@@ -412,10 +412,11 @@ function activeBox() {
         Referer: RefererUrl
       }
     }
-    console.log(`${actboxurl}`)
+    console.log(actboxurl+"\n")
     $.get(actboxurl, async(error, resp, data)=>{
     try{
       let act_box = JSON.parse(data);
+      console.log(act_box+"\n")
        if ((tid == 587 || tid == 590) && act_box.errno == 0) {
         await get_pkg()
       } else if (act_box.errno == 1){
