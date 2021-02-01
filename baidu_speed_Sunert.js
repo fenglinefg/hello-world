@@ -141,23 +141,17 @@ function userInfo() {
           if (resp.statusCode == 200) {
             
             username = "null";
-            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@n")
             json = data.match(/window\.PAGE_DATA = (.+)/)[1];
-            console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n")
-            console.log(json+"\n")
-            console.log("\n")
-            console.log("\n")
             console.log("****************************************************************************************************\n")
             console.log("\n")
             console.log("\n")
-            console.log(formatJson(json)+"\n")
+            console.log(JSON.parse(json)+"\n")
             console.log("\n")
             console.log("\n")
-            console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n")
-            console.log("\n")
-            console.log("\n")
-            //$.log(formatJson(json.comps))
-            json = JSON.parse(formatJson(json));
+            console.log("****************************************************************************************************\n")
+            //$.log(formatJson(json.comps);
+            //json = JSON.parse(formatJson(json));
+            json = JSON.parse(json);
             console.log(json+"\n")
             if (json.isLogin == true) {
               isblack = json.is_black
