@@ -45,6 +45,8 @@ if ($.isNode()) {
       dkdurl = process.env.DKDURL;
       dkdhd = process.env.DKDHD;
       dkdbody = process.env.DKDBODY;
+      
+      console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
 }
 
 
