@@ -61,8 +61,8 @@ if ($.isNode()) {
 if ($.isNode()) {
       //console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
-  console.log(`${BDCookie}`)
-  console.log(`${CookieArr}`)
+ // console.log(`${BDCookie}`)
+ // console.log(`${CookieArr}`)
      console.log(`您共提供${CookieArr.length}个百度账号 Cookie`)
 }
 !(async() =>{
@@ -108,6 +108,7 @@ function getsign() {
             },
             body: 'productid=2&ugus=9766888061'
         }
+        console.log(`${signurl}`)
         $.post(signurl, async(error, response, data) =>{
             let get_sign = JSON.parse(data);
             if (get_sign.errno == 0) {
@@ -135,6 +136,7 @@ function userInfo() {
           'User-Agent': UA
         }
       };
+      console.log(`${infourl}`)
       $.get(infourl, async(error, resp, data) =>{
         try {
           if (resp.statusCode == 200) {
@@ -198,6 +200,7 @@ function withDraw(cash) {
                 'User-Agent': UA
             }
         }
+         console.log(`${cashurl}`)
         $.get(cashurl, (error, response, data) =>{
             let get_cash = JSON.parse(data);
             if (get_cash.errno == 0) {
@@ -221,6 +224,7 @@ function invite() {
                 Cookie: cookieval
             }
         }
+         console.log(`${inviteurl}`)
         $.get(inviteurl, (error, resp, data) =>{
             if (error) {
                 //$.log("响应错误")
@@ -239,6 +243,7 @@ function coinexChange() {
                 'User-Agent': UA
             }
         }
+        console.log(`${Changeurl}`)
         $.get(Changeurl, (error, resp, data) =>{
              let exchange = JSON.parse(data)
                //$.log(data)
@@ -260,6 +265,7 @@ function TaskCenter() {
         'User-Agent': UA
       }
     }
+    console.log(`${rewurl}`)
     $.get(rewurl, async(error, resp, data) =>{
        //console.log(formatJson(data))
       try {
@@ -380,6 +386,7 @@ function firstbox() {
       },
       body: 'task_type=-1&task_id=-1'
     }
+    console.log(`${bdurl}`)
     $.post(bdurl, (error, resp, data) =>{
       let get_first = JSON.parse(data)
       //$.log("获取首页宝箱信息:"+data +'\n')
@@ -405,6 +412,7 @@ function activeBox() {
         Referer: RefererUrl
       }
     }
+    console.log(`${actboxurl}`)
     $.get(actboxurl, async(error, resp, data)=>{
     try{
       let act_box = JSON.parse(data);
@@ -440,6 +448,7 @@ function get_pkg() {
         'Referer': RefererUrl
       }
     }
+    console.log(`${pkgurl}`)
     $.get(pkgurl, async(error, resp, data) =>{
       let get_pkg = JSON.parse(data);
       if (get_pkg.errno == 0 && get_pkg.data.isDone == 0) {
@@ -468,6 +477,7 @@ function finishTask() {
         Referer: RefererUrl
       }
     }
+     console.log(`${actboxurl}`)
     $.get(actboxurl, async(error, resp, data) =>{
       try {
         let do_task = JSON.parse(data);
@@ -501,6 +511,7 @@ function get_search(cmd) {
         'User-Agent': UA
       }
     }
+     console.log(`${geturl}`)
     $.get(geturl, async(error, resp, data) =>{
       try {
         $.log(" tid:" + tid + " 状态码:" + resp.statusCode);
@@ -559,6 +570,7 @@ function searchBox(id) {
             headers: {"Cookie":cookieval,'User-Agent': UA},
             body: `data={"origin_nid":"${id}","taskid":"${tid}"}`
         };
+      console.log(`${searchurl}`)
         $.post(searchurl, async(error, resp, data) =>{
     //$.log(error + resp.statusCode+"  "+data)
          try{
@@ -593,6 +605,7 @@ function chestTime() {
                 Referer: RefererUrl
             }
         }
+        console.log(`${timeurl}`)
         $.get(timeurl, (error, resp, data) =>{
             //$.log(data) 
           try {
@@ -624,6 +637,7 @@ function headerBox() {
                 'User-Agent': UA
             }
         }
+         console.log(`${headerboxurl}`)
         $.get(headerboxurl, async(error, response, data) =>{
             let hed_box = JSON.parse(data)
             //$.log('headerbox: ' + data)
@@ -646,6 +660,7 @@ function doubleBox() {
                 Referer: RefererUrl
             }
         }
+        console.log(`${douboxurl}`)
         $.get(douboxurl, (error, response, data) =>{
             let get_doubox = JSON.parse(data);
             if (get_doubox.errno == 0) {
