@@ -141,7 +141,9 @@ function userInfo() {
           if (resp.statusCode == 200) {
             
             username = "null";
+            console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@n")
             json = data.match(/window\.PAGE_DATA = (.+)/)[1];
+            console.log("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n")
             console.log(json+"\n")
             console.log("\n")
             console.log("\n")
