@@ -558,13 +558,13 @@ function reportAss(timeout = 0) {
         while( out < 10000 )				 	  
 	  let body = `_appid=car&taskId=qczjjsb_lb_mglh&userId=${app_userid}&userAssistanceId=${out}&_v=qauto_wxapp1.0&_timestamp=${ts}&_sign=${app_sign}`
 header = GetUserInfoheaderVal.replace(/q=1/g, `q=1","Referer":"https://servicewechat.com/wx8ebc8f3586c7321f/160/page-frame.html","Content-Type":"application/x-www-form-urlencoded;charset=utf-8","Host":"openapi.autohome.com.cn`)
-      console.log(body+"\n");
+      $.log(`${O}, --------🚩: ${body}`);
 	    let url = {
         url:`https://openapi.autohome.com.cn/autohome/uc-news-quickappservice/msapi/dealers/reportAss`,
         headers: JSON.parse(header),
 		body: body,
       }
-      console.log(url+"\n");
+      $.log(`${O}, --------🚩: ${url}`);
       $.post(url, async(err, resp, data) => {
         try {
           if (logs) $.log(`${O}, 助力任务🚩: ${data}`);
