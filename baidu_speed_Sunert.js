@@ -145,7 +145,7 @@ function userInfo() {
             console.log("********************************************before********************************************************\n")
             console.log("\n")
             console.log("\n")
-            console.log(JSON.stringify(json)+"\n")
+            console.log(json+"\n")
             console.log("\n")
             console.log("\n")
             console.log("*********************************************after*******************************************************\n")
