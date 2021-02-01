@@ -35,11 +35,12 @@ if ($.isNode()) {
  // } else {
   BDCASH = process.env.BAIDU_CASH
  // }
-  Object.keys(BDCookie).forEach((item) => {
-        if (BDCookie[item]) {
-          CookieArr.push(BDCookie[item])
-        } 
-    });
+  //Object.keys(BDCookie).forEach((item) => {
+  //      if (BDCookie[item]) {
+  //        CookieArr.push(BDCookie[item])
+ //       } 
+ //   });
+  CookieArr.push(BDCookie);
   Object.keys(BDCASH).forEach((item) => {
         if (BDCASH[item]) {
           cashArr.push(BDCASH[item])
