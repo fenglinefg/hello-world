@@ -20,7 +20,11 @@ boxjs链接  https://raw.githubusercontent.com/ziye12/QCZJSPEED/main/Task/ziye.q
 1.9 优化，可固定ck，整合通知为1个，可boxjs或者Secrets 设置提现金额
 1.12  修复判定错误
 1.13 4个任务失效，故去除,精简ck,只需要5个，无需重新获取，调整提现时间为20点到21点
-
+1.15 修复ck报错问题
+1.17 修复任务模块报错导致的 助力问题
+1.20 增加提现时间变量
+1.21 去除助力任务 名爵5
+1.25 修复任务消失后的显示错误
 
 ⚠️一共3个位置 5个ck  👉 6条 Secrets 
 多账号换行
@@ -48,7 +52,8 @@ addCoin2bodyVal      👉  QCZJ_addCoin2BODY
 设置提现变量 可设置 0.5 2  5 10 20 
 CASH  👉  QCZJ_CASH
 
-
+设置提现时间变量 可设置 0.5 2  5 10 20 
+CASHTIME  👉  QCZJ_CASHTIME
 
 ⚠️主机名以及重写👇
 
@@ -101,7 +106,7 @@ const notifyttt = 1// 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2;// 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 
 let tz,fx;
-$.message = '', COOKIES_SPLIT = '', CASH = '';
+$.message = '', COOKIES_SPLIT = '', CASHTIME = '', CASH = '';
 
 
 const GetUserInfoheaderArr = [];
@@ -130,6 +135,8 @@ const nowTimes = new Date(
 // 没有设置 QCZJ_CASH 则默认为 0 不提现
 if ($.isNode()) {
  CASH = process.env.QCZJ_CASH || 0;
+// 没有设置 QCZJ_CASHTIME 则默认为 0点后提现
+ CASHTIME = process.env.QCZJ_CASHTIME || 0;
 } 
 if ($.isNode() && process.env.QCZJ_GetUserInfoHEADER) {
   COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
@@ -224,8 +231,11 @@ if ($.isNode()) {
   addCoin2bodyArr.push($.getdata("addCoin2body"));    
   // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
   if ("qczjCASH") {
-      CASH = $.getval("qczjCASH");
+      CASH = $.getval("qczjCASH") || '0';
     }
+if ("qczjCASHTIME") {
+      CASHTIME = $.getval("qczjCASHTIME") || '10';
+    }	
   let qczjCount = ($.getval('qczjCount') || '1') - 0;
   for (let i = 2; i <= qczjCount; i++) {
     if ($.getdata(`GetUserInfoheader${i}`)) {	
@@ -296,7 +306,8 @@ console.log(
 console.log(
   `============ 共 ${Length} 个${$.name}账号=============\n`
 );
-console.log(`============ 提现标准为：${CASH} =============\n`);
+console.log(`============ 提现标准为：${CASH}元 =============\n`);
+console.log(`============ 提现时间为：${CASHTIME}点后 =============\n`);
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
   GetCookie()
@@ -339,20 +350,16 @@ if (!Length) {
   addCoin2bodyVal = addCoin2bodyArr[i];
   }
 cookie=JSON.parse(GetUserInfoheaderVal)["Cookie"];
-cookie1=cookie.substr(cookie.indexOf("app_userid"),20);
-cookie2=cookie.substr(cookie.indexOf("pcpopclub"),50);
-cookie3=cookie.substr(cookie.indexOf("app_sign"),41);
-cookie4=cookie.substr(cookie.indexOf("app_deviceid"),53);
 
-app_userid=cookie1.substring(cookie1.indexOf("app_userid")+11);
-	  console.log('app_userid' + '\n' + app_userid);
-	  app_userid=app_userid.replace(';','');
-	  console.log('app_userid' + '\n' + app_userid);
-pcpopclub=cookie2.substring(cookie2.indexOf("pcpopclub")+10);
-app_sign=cookie3.substring(cookie3.indexOf("app_sign")+9);
-app_deviceid=cookie4.substring(cookie4.indexOf("app_deviceid")+13);
-
-sessionid=cookie.substring(cookie.indexOf("sessionid")+10);
+let arr=cookie.split(';');
+  app_userid=arr.find(item => {   return item.indexOf('app_userid')>-1}).trim().split('=')[1]
+  pcpopclub=arr.find(item => {   return item.indexOf('pcpopclub')>-1}).trim().split('=')[1]
+  app_sign=arr.find(item => {   return item.indexOf('app_sign')>-1}).trim().split('=')[1]
+  app_deviceid=arr.find(item => {   return item.indexOf('app_deviceid')>-1}).trim().split('=')[1]
+  sessionid=arr.find(item => {   return item.indexOf('sessionid')>-1})
+  if(sessionid){
+    sessionid=sessionid.trim().split('=')[1]
+  }
 ts = Math.round((new Date().getTime() +
     new Date().getTimezoneOffset() * 60 * 1000 +
     8 * 60 * 60 * 1000)/1000).toString();
@@ -365,17 +372,13 @@ tts = Math.round(new Date().getTime() +
       await coin();//账户信息    
       await task();//日常任务
       await activity();//活动
-	  if ($.task.result && fx.status != 2) {
-      await reportAss();//助力任务
-      await reportAss2();//助力任务2 	  
-	  }
+      await reportAss();//助力任务	  
       await addCoin();//时段任务
       await addCoin2();//时段翻倍
-	  if (nowTimes.getHours() >= 20 && (nowTimes.getMinutes() >= 0 && nowTimes.getMinutes() <= 59)) {
-        if (CASH >= 0.5 && $.coin.result && $.coin.result.nowmoney >= CASH) {
+        if (nowTimes.getHours() >= CASHTIME && CASH >= 0.5 && $.coin.result && $.coin.result.nowmoney >= CASH) {
           await cointowallet();//提现
         }
-      }
+      
   }
 }
 //通知
@@ -459,8 +462,10 @@ function task(timeout = 0) {
           $.task = JSON.parse(data);
 	if ($.task.result){	
       fx = $.task.result.list[1].tasklist.find(item => item.title === '分享赚现金');
+		if (fx){
   $.message +=  
   '【'+fx.title+'】：奖励'+fx.tiptxt+'，进度'+fx.step+'\n'
+	}		
         }
         } catch (e) {
           $.logErr(e, resp);
@@ -551,7 +556,7 @@ function reportAss(timeout = 0) {
     setTimeout( ()=>{
 		do out = Math.floor(Math.random()*10000000);
         while( out < 10000 )				 	  
-	  let body = `_appid=car&taskId=qczjjsb_lb_mg5&userId=${app_userid}&userAssistanceId=${out}&_v=qauto_wxapp1.0&_timestamp=${ts}&_sign=${app_sign}`
+	  let body = `_appid=car&taskId=qczjjsb_lb_mglh&userId=${app_userid}&userAssistanceId=${out}&_v=qauto_wxapp1.0&_timestamp=${ts}&_sign=${app_sign}`
 header = GetUserInfoheaderVal.replace(/q=1/g, `q=1","Referer":"https://servicewechat.com/wx8ebc8f3586c7321f/160/page-frame.html","Content-Type":"application/x-www-form-urlencoded;charset=utf-8","Host":"openapi.autohome.com.cn`)
       let url = {
         url:`https://openapi.autohome.com.cn/autohome/uc-news-quickappservice/msapi/dealers/reportAss`,
@@ -573,34 +578,7 @@ if($.reportAss.data==0)
     },timeout)
   })
 }
-//助力任务2
-function reportAss2(timeout = 0) {
-  return new Promise((resolve) => {
-    setTimeout( ()=>{
-		do out = Math.floor(Math.random()*10000000);
-        while( out < 10000 )				 	  
-	  let body = `_appid=car&taskId=qczjjsb_lb_mglh&userId=${app_userid}&userAssistanceId=${out}&_v=qauto_wxapp1.0&_timestamp=${ts}&_sign=${app_sign}`
-header = GetUserInfoheaderVal.replace(/q=1/g, `q=1","Referer":"https://servicewechat.com/wx8ebc8f3586c7321f/160/page-frame.html","Content-Type":"application/x-www-form-urlencoded;charset=utf-8","Host":"openapi.autohome.com.cn`)
-      let url = {
-        url:`https://openapi.autohome.com.cn/autohome/uc-news-quickappservice/msapi/dealers/reportAss`,
-        headers: JSON.parse(header),
-		body: body,
-      }
-      $.post(url, async(err, resp, data) => {
-        try {
-          if (logs) $.log(`${O}, 助力任务2🚩: ${data}`);
-          $.reportAss2 = JSON.parse(data);
-if($.reportAss2.data==0)
-  $.message +='【助力任务2】：助力成功\n';  
-        } catch (e) {
-          $.logErr(e, resp);
-        } finally {
-          resolve()
-        }
-      })	  
-    },timeout)
-  })
-}
+
 //提现
 function cointowallet(timeout = 0) {
   return new Promise((resolve) => {
