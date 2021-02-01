@@ -143,6 +143,17 @@ function userInfo() {
             username = "null";
             json = data.match(/window\.PAGE_DATA = (.+)/)[1];
             console.log(json+"\n")
+            console.log("\n")
+            console.log("\n")
+            console.log("****************************************************************************************************\n")
+            console.log("\n")
+            console.log("\n")
+            console.log(formatJson(json)+"\n")
+            console.log("\n")
+            console.log("\n")
+            console.log("&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n")
+            console.log("\n")
+            console.log("\n")
             //$.log(formatJson(json.comps))
             json = JSON.parse(formatJson(json));
             console.log(json+"\n")
