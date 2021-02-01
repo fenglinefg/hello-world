@@ -19,22 +19,22 @@ const baiducks = $.getdata(`cookie_baidu`);
 const taskON = $.getdata(`task_baidu`)||"true"//除提现和兑换外其他任务开关;
 let isblack = "false";
 if ($.isNode()) {
-  if (process.env.BAIDU_COOKIE && process.env.BAIDU_COOKIE.indexOf('&') > -1) {
-  BDCookie = process.env.BAIDU_COOKIE.split('&');
-  }
- else if (process.env.BAIDU_COOKIE && process.env.BAIDU_COOKIE.indexOf('\n') > -1) {
-  BDCookie = process.env.BAIDU_COOKIE.split('\n');
-  } else {
-  BDCookie = process.env.BAIDU_COOKIE
-  };
-  if (process.env.BAIDU_CASH && process.env.BAIDU_CASH.indexOf('&') > -1) {
-  BDCASH = process.env.BAIDU_CASH.split('&');
-  }
- else if (process.env.BAIDU_CASH && process.env.BAIDU_CASH.indexOf('\n') > -1) {
-  BDCASH = process.env.BAIDU_CASH.split('\n');
-  } else {
+  //if (process.env.BAIDU_COOKIE && process.env.BAIDU_COOKIE.indexOf('&') > -1) {
+ // BDCookie = process.env.BAIDU_COOKIE.split('&');
+  //}
+ //else if (process.env.BAIDU_COOKIE && process.env.BAIDU_COOKIE.indexOf('\n') > -1) {
+  //BDCookie = process.env.BAIDU_COOKIE.split('\n');
+  //} else {
+  BDCookie = process.env.BAIDU_COOKIE;
+  //};
+ //if (process.env.BAIDU_CASH && process.env.BAIDU_CASH.indexOf('&') > -1) {
+ // BDCASH = process.env.BAIDU_CASH.split('&');
+ // }
+// else if (process.env.BAIDU_CASH && process.env.BAIDU_CASH.indexOf('\n') > -1) {
+ // BDCASH = process.env.BAIDU_CASH.split('\n');
+ // } else {
   BDCASH = process.env.BAIDU_CASH
-  }
+ // }
   Object.keys(BDCookie).forEach((item) => {
         if (BDCookie[item]) {
           CookieArr.push(BDCookie[item])
@@ -45,16 +45,16 @@ if ($.isNode()) {
           cashArr.push(BDCASH[item])
         } 
     })
-} else if(baiducks && baiducks.indexOf('&')>-1){
-     BDCookie = baiducks.split("&")
-     Object.keys(BDCookie).forEach((item) => {
-     if (BDCookie[item]) {
-          CookieArr.push(BDCookie[item])
-        } 
-    })
-} else {
-    CookieArr.push($.getdata(`chavy_cookie_tieba`) || $.getdata(`CookieTB`));
-    cashArr.push($.getdata("cash_baidu")||30)
+//} else if(baiducks && baiducks.indexOf('&')>-1){
+//     BDCookie = baiducks.split("&")
+//     Object.keys(BDCookie).forEach((item) => {
+//     if (BDCookie[item]) {
+//          CookieArr.push(BDCookie[item])
+//        } 
+//    })
+//} else {
+//    CookieArr.push($.getdata(`chavy_cookie_tieba`) || $.getdata(`CookieTB`));
+//    cashArr.push($.getdata("cash_baidu")||30)
 }
 
 if ($.isNode()) {
