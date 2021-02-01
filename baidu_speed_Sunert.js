@@ -409,7 +409,7 @@ function activeBox() {
         Referer: RefererUrl
       }
     }
-    console.log(actboxurl.url + "\n" + actboxurl.Referer);
+    console.log(actboxurl.url + "\n");
     $.get(actboxurl, async(error, resp, data)=>{
     try{
       let act_box = JSON.parse(data);
