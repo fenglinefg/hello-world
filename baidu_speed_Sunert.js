@@ -79,7 +79,7 @@ if ($.isNode()) {
       let username = null,
           chargemoney = 0,
           availablecoin = 0;
-      //await userInfo();
+      await userInfo();
      if (isblack == true) {
         $.msg($.name + " 账号" + username + "已黑号", "您的金币和余额已被冻结，请联系客服处理");
         continue;
