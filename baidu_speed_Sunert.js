@@ -146,7 +146,6 @@ function userInfo() {
             //$.log(formatJson(json.comps);
             //json = JSON.parse(formatJson(json));
             json = JSON.parse(json);
-            console.log(json+"\n")
             if (json.isLogin == true) {
               isblack = json.is_black
               for (users of json.comps) {
