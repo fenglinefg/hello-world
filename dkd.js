@@ -298,7 +298,7 @@ if(result.status_code == 10020){
 function dkdqd(timeout = 0) {
   return new Promise((resolve) => {
     setTimeout( ()=>{
-      if (typeof $.getdata('dkdurl') === "undefined") {
+      if (typeof dkdurl === "undefined") {
         $.msg($.name,"",'请先获取多看点Cookie!😓',)
         return
       }
