@@ -15,9 +15,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/ZhiYi-N/Private-Script.git ~/Scripts
-          git clone https://github.com/ZhiYi-N/script.git ~/Scripts/ZhiYi-Scripts
+        uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -31,13 +29,10 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
         run: |
-          cd ~/Scripts
           npm install
-      - name: '运行 【京东天天加速】'
+      - name: '运行 【抖音火山版】'
         run: |
-          cd ~/Scripts
-          cp ZhiYi-Scripts/sendNotify.js Scripts/sendNotify.js
-          node Scripts/huoshan.js
+          node huoshan.js
         env:
           HSURL: ${{ secrets.HSURL }}
           HSHEADER : ${{ secrets.HSHEADER }}
