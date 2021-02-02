@@ -37,6 +37,9 @@ jobs:
           DKDURL: ${{ secrets.DKDURL }}
           DKDHD: ${{ secrets.DKDHD }}
           DKDBODY: ${{ secrets.DKDBODY }}
+          DKDTXURL: ${{ secrets.DKDTXURL }}
+          DKDTXHD: ${{ secrets.DKDTXHD }}
+          DKDTXBODY: ${{ secrets.DKDTXBODY }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           FRUITSHARECODES: ${{ secrets.FRUITSHARECODES }}
