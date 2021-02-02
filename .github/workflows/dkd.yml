@@ -3,7 +3,7 @@ name: 多看点 0.5，1，3，5，15，50
 on:
   workflow_dispatch:
   schedule:
-    - cron: '*/1 * * * *'
+    - cron: '20 * * * *'
   watch:
     types: started
   repository_dispatch:
