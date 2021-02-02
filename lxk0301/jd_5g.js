@@ -26,8 +26,8 @@ const notify = $.isNode() ? require('./sendNotify') : '';
 //Node.js用户请在jdCookie.js处填写京东ck;
 const jdCookieNode = $.isNode() ? require('./jdCookie.js') : '';
 let jdNotify = true;//是否关闭通知，false打开通知推送，true关闭通知推送
-const randomCount = $.isNode() ? 20 : 5;
-
+//const randomCount = $.isNode() ? 20 : 5;
+let randomCount;
 //IOS等用户直接用NobyDa的jd cookie
 let cookiesArr = [], cookie = '', message;
 if ($.isNode()) {
@@ -97,7 +97,7 @@ async function jdFive() {
       await showMsg()
       return
     }
-    await getHelp()
+
     console.log(`去浏览会场`)
     await getMeetingList()
     console.log(`去浏览商品`)
@@ -446,6 +446,7 @@ function getHelp() {
         } else {
           data = JSON.parse(data);
           if (data && data['code'] === 200) {
+            randomCount = data.data.shareId;
             console.log(`您的好友助力码为：${data.data.shareId} \n注：此邀请码每天都变！`);
           } else {
             console.log(JSON.stringify(data))
@@ -558,7 +559,7 @@ function readShareCode() {
   console.log(`开始`)
   return new Promise(async resolve => {
     $.get({
-      url: `http://jd.turinglabs.net/api/v2/jd/5g/read/${randomCount}/`,
+      url: `http://jdhelper.tk/api/v2/jd/5g/read/${randomCount}/`,
       'timeout': 10000
     }, (err, resp, data) => {
       try {
@@ -594,6 +595,7 @@ function shareCodesFormat() {
       const tempIndex = $.index > inviteCodes.length ? (inviteCodes.length - 1) : ($.index - 1);
       $.newShareCodes = inviteCodes[tempIndex].split('@');
     }
+    await getHelp();
     const readShareCodeRes = await readShareCode();
     if (readShareCodeRes && readShareCodeRes.code === 200) {
       $.newShareCodes = [...new Set([...$.newShareCodes, ...(readShareCodeRes.data || [])])];
