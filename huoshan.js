@@ -206,7 +206,6 @@ if (!hsheaderArr[0] && !hsbodyArr[0] && !hsurlArr[0]) {
     .catch((e) => $.logErr(e))
     .finally(() => $.done())
     
-    
 function GetCookie() {
 if($request&&$request.url.indexOf("task_done")>=0) {
    const hsurl = $request.url.split('?')[1]
