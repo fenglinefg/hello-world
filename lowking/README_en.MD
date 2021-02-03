@@ -1,14 +1,14 @@
 # Scripts
 ![](https://img.shields.io/badge/license-GPL-blueviolet.svg)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
-[![LICENSE](https://img.shields.io/badge/感谢-Orz3的图标-red.svg)](https://github.com/Orz-3)
-[![LICENSE](https://img.shields.io/badge/感谢-58xinian的图标-red.svg)](https://github.com/58xinian)
+[![LICENSE](https://img.shields.io/badge/Thanks-Orz3's%20icons-red.svg)](https://github.com/Orz-3)
+[![LICENSE](https://img.shields.io/badge/Thanks-58xinian's%20icons-red.svg)](https://github.com/58xinian)
 [![](https://tokei.rs/b1/github/lowking/Scripts?category=code)](https://tokei.rs/b1/github/lowking/Scripts?category=code)
 
-## [English](https://github.com/lowking/Scripts/blob/master/README_en.MD)
+## [中文](https://github.com/lowking/Scripts/blob/master/README.MD)
 
 ## Maintenance List
-🟢在用&nbsp;&nbsp;🟡未在用&nbsp;&nbsp;🔴有问题
+🟢In use&nbsp;&nbsp;🟡Not in use&nbsp;&nbsp;🔴Problem
 ### Scripts(Surge, Quantumult X, Loon, nodeJs)
 &nbsp;&nbsp;<a target="_blank" href="https://github.com/lowking/Scripts/blob/master/bilibili/bangumiMonitor.js"><img src="https://raw.githubusercontent.com/Orz-3/mini/master/bilibili.png" style="border-radius: 5px;" width="5%">🟢</a>
 &nbsp;&nbsp;<a target="_blank" href="https://github.com/lowking/Scripts/blob/master/bilibili/privilegeReceive.js"><img src="https://raw.githubusercontent.com/lowking/Scripts/master/doc/icon/bilibiliBigVip.svg" style="border-radius: 5px;" width="5%">🟢</a>
@@ -23,11 +23,11 @@
 ### Scriptable
 &nbsp;&nbsp;<a target="_blank" href="https://github.com/lowking/Scripts/blob/master/Scriptable/10086.js"><img src="https://raw.githubusercontent.com/Orz-3/task/master/10086.png" style="border-radius: 5px;" width="5%">🟡</a>
 
-## 更新日志
-查看更新日志 [here](https://github.com/lowking/Scripts/blob/master/CHANGELOGS.MD).
+## ChangeLogs
+View the changelog [here](https://github.com/lowking/Scripts/blob/master/CHANGELOGS.MD).
 
-## 贡献 +/-
-对现有代码进行更正
+## Contribute +/-
+Corrections to existing codes.
 
-## 许可
+## LICENSE
 Copyright © 2020-present lowking. Licensed under [GPL](https://github.com/lowking/Scripts/blob/master/LICENSE) License.
