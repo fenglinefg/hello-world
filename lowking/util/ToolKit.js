@@ -541,7 +541,7 @@ function ToolKit(scriptName, scriptId, options) {
         }
 
         isEmpty(obj) {
-            return typeof obj == "undefined" || obj == null || obj == "" || obj == "null";
+            return typeof obj == "undefined" || obj == null || obj == "" || obj == "null" || obj == "undefined" || obj.length === 0
         }
 
         randomString(len) {
