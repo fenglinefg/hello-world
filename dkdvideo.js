@@ -74,17 +74,17 @@ Object.keys(getawardbodyVal).forEach((item) => {
 
 if ($.isNode()) {
 
-  Object.keys(dkdtokenbodyVal).forEach((item) => {
-    if (dkdtokenbodyVal[item]) {
-      dkdtokenbodyArr.push(dkdtokenbodyVal[item])
-    }
-  });
+  //Object.keys(dkdtokenbodyVal).forEach((item) => {
+   // if (dkdtokenbodyVal[item]) {
+      dkdtokenbodyArr.push(dkdtokenbodyVal)
+   // }
+  //});
 
-  Object.keys(dkdtokenkeyVal).forEach((item) => {
-    if (dkdtokenkeyVal[item]) {
-      dkdtokenkeyArr.push(dkdtokenkeyVal[item])
-    }
-  });
+ // Object.keys(dkdtokenkeyVal).forEach((item) => {
+  //  if (dkdtokenkeyVal[item]) {
+      dkdtokenkeyArr.push(dkdtokenkeyVal)
+ //   }
+ // });
 
 
 } else {
