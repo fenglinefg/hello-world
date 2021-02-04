@@ -206,7 +206,7 @@ async function redcountdown() {
   return new Promise((resolve) => {
     let url = {
       url: `http://dkd-api.dysdk.com/video/red_countdown`,
-      body: `token=eeb29a1c50311f19d26eda72d5ff7a7f`,
+      body: dkdtokenbodyVal,
       headers: JSON.parse(dkdtokenkeyVal)
     };
     $.post(url, async (err, resp, data) => {
