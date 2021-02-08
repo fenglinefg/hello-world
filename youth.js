@@ -248,7 +248,7 @@ function userInfo() {
                 detail = `【签到结果】🔁 (今天+${signinfo.data.sign_score}青豆) 已连签${signday}天\n <本次收益>：\n`
               }; 
             if(signday==7){
-              await SevCont();
+              //await SevCont();
              }
             } else {
                 subTitle = `${signinfo.msg}`;
