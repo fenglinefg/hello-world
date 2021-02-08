@@ -1,5 +1,5 @@
 /*
-更新时间: 2021-02-08 08:20
+更新时间: 2021-02-08 18:00
 赞赏:中青邀请码`46308484`,农妇山泉 -> 有点咸，万分感谢
 本脚本仅适用于中青看点极速版领取青豆
 食用说明请查看本仓库目录Taskconf/youth/readme.md
@@ -102,7 +102,6 @@ if (isGetCookie = typeof $request !== 'undefined') {
     await userInfo();
     await kdHost();
     await friendsign();
-    await comApp();
     await TaskCenter() 
     await openbox();
     await getAdVideo();
@@ -213,7 +212,7 @@ function getAction(acttype) {
 
 function getsign() {
     return new Promise((resolve, reject) =>{
-        $.post(kdHost('WebApi/NewTaskIos/sign'), (error, resp, data) =>{
+        $.post(kdHost('WebApi/NewTaskIos/sign'), async(error, resp, data) =>{
             signres = JSON.parse(data);
             //$.log(formatJson(data));
             if (signres.status == 2) {
@@ -221,7 +220,8 @@ function getsign() {
                 $.msg($.name, sub, "");
                 return;
             } else if (signres.status == 1) {
-                detail = `【签到结果】成功 🎉 青豆: +${signres.score}，明日青豆: +${signres.nextScore}\n`
+                detail = `【签到结果】成功 🎉 青豆: +${signres.score}，明日青豆: +${signres.nextScore}\n`;
+                await comApp();
             } 
             resolve()
         })
@@ -439,8 +439,9 @@ function comApp() {
 function readArticle() {
     return new Promise((resolve, reject) => {
         $.post(batHost('article/complete.json',articlebodyVal), (error, response, data) => {
+        try{
            readres = JSON.parse(data);
-     if (typeof readres.items.read_score === 'number'&&readres.items.read_score!=0)  {
+     if (data.indexOf('read_score')>-1&&readres.items.read_score!=0)  {
               detail += `【阅读奖励】+${readres.items.read_score}个青豆\n`;
              $.log(`阅读奖励 +${readres.items.read_score}个青豆\n`)
             } 
@@ -448,8 +449,12 @@ function readArticle() {
               //detail += `【阅读奖励】看太久了，换1篇试试\n`;
               //$.log(readres.items.max_notice)
            }
-            resolve()
-        })
+         } catch(e) {
+          $.logErr(e+resp);
+        } finally {
+          resolve()
+        }
+      })
     })
 }
 //惊喜红包
