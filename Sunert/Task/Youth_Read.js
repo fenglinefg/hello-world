@@ -12,6 +12,7 @@ Github Actions使用方法见[@lxk0301](https://raw.githubusercontent.com/lxk030
 const $ = new Env("中青看点")
 //const notify = $.isNode() ? require('./sendNotify') : '';
 let ReadArr = [], YouthBody = "",readscore = 0;
+var lastClick = Date.now()-60000;
   if (process.env.YOUTH_READ && process.env.YOUTH_READ.indexOf('&') > -1) {
   YouthBody = process.env.YOUTH_READ.split('&');
   console.log(`您选择的是用"&"隔开\n`)
@@ -38,12 +39,14 @@ let ReadArr = [], YouthBody = "",readscore = 0;
     if (ReadArr[i]) {
       articlebody = ReadArr[i];
       $.index = i + 1;
-      console.log(`-------------------------\n\n开始中青看点第${$.index}次阅读`)
-    }
+      console.log(`-------------------------\n\n开始中青看点第${$.index}次阅读`);
       await AutoRead();
+    };
       if (process.env.YOUTH_TIME){
         timebodyVal = process.env.YOUTH_TIME;
+      if(Date.now() - lastClick >=60000){
         await readTime()
+      }
     };
  }
    console.log(`-------------------------\n\n中青看点共完成${$.index}次阅读，共计获得${readscore}个青豆，阅读请求全部结束`)
