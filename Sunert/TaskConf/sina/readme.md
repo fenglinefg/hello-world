@@ -8,7 +8,7 @@
 ### IOS配置教程
  ```
 [MITM]
-hostname = api.weibo.cn
+hostname = api.weibo.cn, m.weibo.cn
  ```
 #### Surge:
 * [模块地址](https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/sina/surge.sgmodule)
@@ -24,6 +24,7 @@ https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/sina/surge.sgmo
 
 # 获取微博 Cookie.
 微博签到 = type=http-request,pattern=https:\/\/api\.weibo\.cn\/\d\/users\/show,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/weibo.js
+微博签到 = type=http-request,pattern=https:\/\/m\.weibo\.cn\/c\/checkin\/ug\/v2\/signin\/module\?module,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/weibo.js
 ```
 #### Shadowrocket(Cron配置): 
 
@@ -45,6 +46,7 @@ https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/sina/loon.plugi
 cron "4 0 * * *" script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/weibo.js, enabled=true, tag=新浪微博
 
 http-request https:\/\/api\.weibo\.cn\/\d\/users\/show script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/weibo.js, enabled=true, tag=新浪微博
+http-request https:\/\/m\.weibo\.cn\/c\/checkin\/ug\/v2\/signin\/module\?module script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/weibo.js, enabled=true, tag=新浪微博
 ```
 #### Quantumult X:
    * [远程重写配置](https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/txnews/qx_rewite.txt)
@@ -58,6 +60,7 @@ https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/sina/qx_rewite.
 ```
 [rewrite_local]
 https:\/\/api\.weibo\.cn\/\d\/users\/show url script-request-header https://raw.githubusercontent.com/Sunert/Scripts/master/Task/weibo.js
+https:\/\/m\.weibo\.cn\/c\/checkin\/ug\/v2\/signin\/module\?module url script-request-header https://raw.githubusercontent.com/Sunert/Scripts/master/Task/weibo.js
 ```
    * 本地任务配置
    
@@ -67,7 +70,7 @@ https:\/\/api\.weibo\.cn\/\d\/users\/show url script-request-header https://raw.
 ```
 ###  获取Cookie方法
  1. 打开微博App，获取Cookie，获取后请注释或禁用Cookie
- 2. 已取消获取获取钱包Cookie
+ 2. 进入"用户任务中心"，获取用户信息Cookie(可选，增加显示个人任务红包余额)
 
  >>> [回到顶部](#IOS配置教程)
 
