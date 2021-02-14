@@ -28,7 +28,6 @@ var lastClick = Date.now()-60000;
           ReadArr.push(YouthBody[item])
         }
     })
-      console.log(`============ 脚本执行-国际标准时间(UTC)：${new Date().toLocaleString()}  =============\n`)
       console.log(`============ 脚本执行-北京时间(UTC+8)：${new Date(new Date().getTime() + 8 * 60 * 60 * 1000).toLocaleString()}  =============\n`)
  !(async () => {
   if (!ReadArr[0]) {
@@ -38,13 +37,13 @@ var lastClick = Date.now()-60000;
   for (let i = 0; i < ReadArr.length; i++) {
     if (ReadArr[i]) {
       articlebody = ReadArr[i];
-      $.index = i + 1;
-      console.log(`-------------------------\n\n开始中青看点第${$.index}次阅读`);
+       $.index = i + 1;
+    console.log(`-------------------------\n\n开始中青看点第${$.index}次阅读`);
       await AutoRead();
     };
       if (process.env.YOUTH_TIME){
         timebodyVal = process.env.YOUTH_TIME;
-      if(Date.now() - lastClick >=60000){
+      if($.index%2==0){
         await readTime()
       }
     };
