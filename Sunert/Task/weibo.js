@@ -144,8 +144,8 @@ function getsign() {
      else if (result.status == 90005){
          wbsign = `【每日签到】‼️`+ result.msg + '\n'
        } else {
-         wbsign = `【每日签到】 ❌ 签到失败`+result.errmsg
-         $.msg($.name, wbsign, ``)
+         wbsign = `【每日签到】 ❌ 签到失败 `+result.errmsg;
+         $.msg($.name, wbsign, `请检查微博Token`)
        if ($.isNode()) {
          await notify.sendNotify($.name, wbsign)
            }
@@ -251,7 +251,7 @@ async function showmsg() {
  if (paybag) {
     $.msg($.name, nickname+(signcash?signcash:""), wbsign+paybag+docard);
   if ($.isNode()) {
-       await notify.sendNotify($.name, nickname+'\n'+ wbsign+paybag+docard)
+       await notify.sendNotify($.name, nickname+(signcash?signcash:"")+'\n'+ wbsign+paybag+docard)
      }
    }
 }
