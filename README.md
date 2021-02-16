@@ -23,6 +23,10 @@
 * [x] 游戏中心每日打卡(连续打卡，积分递增至最高7，第七天获得1G流量日包)
 * [x] 游戏中心宝箱100M任务(100M日流量+随机奖励并翻倍)
 * [x] 4G流量包看视频、下软件任务(90M+150M七日流量)
+* [x] 每日领取100定向积分 
+* [x] 积分抽奖，每天最多抽30次(中奖几率渺茫)
+* [x] 冬奥积分活动(第1和7天，可领取600定向积分，其余领取300定向积分,有效期至下月底)
+* [x] 邮件推送运行结果
 
 # Github Actions 部署方法
 
@@ -41,15 +45,18 @@
 + 苹果用户可抓取客户端登录接口获取
 > `https://m.client.10010.com/mobileService/login.htm`
  
-## 3.将获取到参数填到Secrets
+## 3.将必要参数填到Secrets
 
 在`Secrets`中的`Name`和`Value`格式如下：
 
-Name | Value
--|-
-USERNAME_COVER | 18566669999
-PASSWORD_COVER | 123456
-APPID_COVER | xxxxxxxxx
+Name | Value | 说明
+-|-|-
+USERNAME_COVER | 18566669999 | 手机号(必须)
+PASSWORD_COVER | 123456 | 服务密码(必须)
+APPID_COVER | xxxxxxxxx | appId(必须)
+EMAIL_COVER | xxxxx@qq.com | 邮箱(可选)
+LOTTERY_NUM | 填写正整数 | 抽奖次数(可选)
+
 
 ## 4.开启actions
 
@@ -68,4 +75,4 @@ APPID_COVER | xxxxxxxxx
 
 # 参考项目
 
-[mixool/HiCnUnicom](https://github.com/mixool/HiCnUnicom)，感谢本项目对于登录的思路
+[mixool/HiCnUnicom](https://github.com/mixool/HiCnUnicom)，感谢该项目对于登录部分的思路
