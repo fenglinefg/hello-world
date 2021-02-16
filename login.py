@@ -58,6 +58,7 @@ def encryption(message,key):
     return b64str
 
 #进行登录
+#手机号和密码加密代码，参考自这篇文章 http://www.bubuko.com/infodetail-2349299.html?&_=1524316738826
 def login():
     #rsa 公钥
     pubkey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDc+CZK9bBA9IU+gZUOc6FUGu7yO9WpTNB0PzmgFBh96Mg1WrovD1oqZ+eIF4LjvxKXGOdI79JRdve9NPhQo07+uqGQgE4imwNnRx7PFtCRryiIEcUoavuNtuRVoBAm6qdB0SrctgaqGfLgKvZHOnwTjyNqjBUxzMeQlEC2czEMSwIDAQAB"
@@ -88,7 +89,7 @@ def login():
         'Content-Type': 'application/x-www-form-urlencoded',
         'Connection': 'keep-alive',
         'User-Agent': 'ChinaUnicom4.x/3.0 CFNetwork/1197 Darwin/20.0.0',
-        'Accept-Language': 'UTF-8',
+        'Accept-Language': 'zh-cn',
         'Accept-Encoding': 'deflate, br',
         'Content-Length': '891',
     }
