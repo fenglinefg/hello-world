@@ -21,9 +21,6 @@ def woTree_task():
     #领取4M流量*3
     try:
         flowList = get_woTree_glowList()
-        client.post('https://m.client.10010.com/mactivity/stealingEnergy/engerSign.htm')
-        client.post('https://m.client.10010.com/mactivity/arbordayJson/index.htm')
-        client.post('https://m.client.10010.com/mactivity/arbordayJson/bord')
         num = 1
         for flow in flowList:
             takeFlow = client.get('https://m.client.10010.com/mactivity/flowData/takeFlow.htm?flowId=' + flow['id'])
@@ -36,6 +33,7 @@ def woTree_task():
             #等待1秒钟
             time.sleep(1)
             num = num + 1
+        client.post('https://m.client.10010.com/mactivity/arbordayJson/getChanceByIndex.htm?index=0')
         #浇水
         grow = client.post('https://m.client.10010.com/mactivity/arbordayJson/arbor/3/0/3/grow.htm')
         grow.encoding='utf-8'
@@ -279,15 +277,15 @@ def dongaoPoints_task():
 
 if __name__ == '__main__':
     if client != False:
-        gameCenterSign_Task()
-        day100Integral_task()
-        dongaoPoints_task()
-        pointsLottery_task()
-        daySign_task()
+        #gameCenterSign_Task()
+        #day100Integral_task()
+        #dongaoPoints_task()
+        #pointsLottery_task()
+        #daySign_task()
         woTree_task()
-        luckDraw_task()
-        openBox_task()
-        collectFlow_task()
-    if len(os.environ.get('EMAIL_COVER')) != 0:
-        notify.sendEmail()
+        #luckDraw_task()
+        #openBox_task()
+        #collectFlow_task()
+    #if len(os.environ.get('EMAIL_COVER')) != 0:
+        #notify.sendEmail()
 
