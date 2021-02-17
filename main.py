@@ -284,7 +284,6 @@ if __name__ == '__main__':
         dongaoPoints_task()
         pointsLottery_task()
         daySign_task()
-        gameCenterSign_Task()
         woTree_task()
         luckDraw_task()
         openBox_task()
