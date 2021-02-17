@@ -277,15 +277,15 @@ def dongaoPoints_task():
 
 if __name__ == '__main__':
     if client != False:
-        #gameCenterSign_Task()
-        #day100Integral_task()
-        #dongaoPoints_task()
-        #pointsLottery_task()
-        #daySign_task()
+        gameCenterSign_Task()
+        day100Integral_task()
+        dongaoPoints_task()
+        pointsLottery_task()
+        daySign_task()
         woTree_task()
-        #luckDraw_task()
-        #openBox_task()
-        #collectFlow_task()
-    #if len(os.environ.get('EMAIL_COVER')) != 0:
-        #notify.sendEmail()
+        luckDraw_task()
+        openBox_task()
+        collectFlow_task()
+    if len(os.environ.get('EMAIL_COVER')) != 0:
+        notify.sendEmail()
 
