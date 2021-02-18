@@ -107,7 +107,9 @@ def luckDraw_task():
 #位置: 首页 --> 游戏 --> 每日打卡
 def gameCenterSign_Task():
     data1 = {
-        'methodType': 'signin'
+        'methodType': 'signin',
+        'clientVersion': '8.0100',
+        'deviceType': 'Android'
     }
     data2 = {
         'methodType': 'iOSIntegralGet',
@@ -115,14 +117,6 @@ def gameCenterSign_Task():
         'deviceType': 'iOS'
     }
     try:
-        #游戏频道积分
-        gameCenter_exp = client.post('https://m.client.10010.com/producGameApp',data=data2)
-        gameCenter_exp.encoding='utf-8'
-        res1 = gameCenter_exp.json()
-        if res1['code'] == '0000':
-            logging.info('【游戏频道打卡】: 获得' + str(res1['integralNum']) + '积分')
-        else:
-            logging.info('【游戏频道打卡】: ' + res1['msg'])
         #游戏任务积分
         gameCenter = client.post('https://m.client.10010.com/producGame_signin', data=data1)
         gameCenter.encoding='utf-8'
@@ -131,6 +125,15 @@ def gameCenterSign_Task():
             logging.info('【游戏中心签到】: ' + '获得' + str(res['currentIntegral']) + '积分')
         elif res['respCode'] == '0000':
             logging.info('【游戏中心签到】: ' + res['respDesc'])
+        
+        #游戏频道积分
+        gameCenter_exp = client.post('https://m.client.10010.com/producGameApp',data=data2)
+        gameCenter_exp.encoding='utf-8'
+        res1 = gameCenter_exp.json()
+        if res1['code'] == '0000':
+            logging.info('【游戏频道打卡】: 获得' + str(res1['integralNum']) + '积分')
+        else:
+            logging.info('【游戏频道打卡】: ' + res1['msg'])
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【游戏中心签到】: 错误，原因为: ' + str(e))
