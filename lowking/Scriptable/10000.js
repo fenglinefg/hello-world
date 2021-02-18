@@ -1,66 +1,287 @@
-// Variables used by Scriptable.
-// These must be at the very top of the file. Do not edit.
-// icon-color: yellow; icon-glyph: magic;
-const $ = new ScriptableToolKit(`工具包使用示例`, `ScriptableToolKitDemo`, {lkIsSaveLogScriptableToolKitDemo: true, lkRunLimitNum10086: 300000})
+// 10000来源2YA，修改成自己喜欢的样式。https://raw.githubusercontent.com/dompling/Scriptable/master/Scripts/ChinaTelecom.js
+const $ = new ScriptableToolKit(`10000`, `10000`, {lkIsSaveLog10000: true, lkRunLimitNum10000: 300000})
+// 余额警告阈值
+const warnFee = 20
+// 流量警告阈值，只判断单位MB的，如果是kb没做处理
+const warnData = 200
+// 语音警告阈值
+const warnVoice = 20
+// 工作日和节假日标志
+const workingDaysFlag = '💡'
+const holidayFlag = '🎈'
+const fetchUri = {
+    detail: 'https://e.189.cn/store/user/package_detail.do',
+    balance: 'https://e.189.cn/store/user/balance_new.do',
+}
+const cookie = await $.getVal("cookie", "local", "")
+const title = "信不过"
 
+const now = new Date()
+const minutes = now.getMinutes()
+const hours = now.getHours()
+
+let subt, flowRes, voiceRes
 let widget = new ListWidget()
 widget.backgroundImage = $.getWidgetBg()
 
 if (config.runsInWidget) {
+    $.log('在小组件运行')
     if (await $.checkLimit()) {
         $.execFail()
         $.saveLog()
+        widget = await createWidget(widget, title, await $.getVal('subt', 'local', '-'), await $.getVal('flowRes', 'local', '-'), await $.getVal('voiceRes', 'local', '-'))
         return false;
     }
     main()
 } else {
-    const customEnter = ["操作1", "操作2"]
-    let enter = await $.widgetEnter(customEnter)
+    $.log('手动运行')
+    let enter = await $.widgetEnter(["获取cookie"])
     if (enter == -1) {
+        $.log('退出')
         return
     } else if (enter == 0) {
+        $.log('执行主方法')
         main()
     } else if (enter == 1) {
+        $.log('设置背景图')
         $.widgetCutBg()
     } else if (enter == 2) {
-        $.log("操作1")
-    } else if (enter == 3) {
-        $.log("操作2")
+        $.log('获取cookie，请用密码登录，不要短信登录')
+        await renderWebView()
     }
 }
 
 async function main() {
-    // Your code here
-    $.log('send request to baidu')
-    const url = {
-        url: 'http://www.baidu.com'
+    try {
+        // Your code here
+        if (now.getDate() == 1) {
+            // 每个月1号维护查询不到数据
+            $.log('每个月1号维护查询不到数据，直接降级处理')
+            widget = await createWidget(widget, title, '-', '-', '-')
+        } else {
+            await queryfee()
+            await querymeal()
+            // 执行失败，降级处理
+            if (!$.execStatus) {
+                $.log('整个流程有错误发生，降级处理，读取上次成功执行的数据')
+                $.log(`读取数据：${await $.getDataFile('local')}`)
+                widget = await createWidget(widget, title, await $.getVal('subt', 'local', '-'), await $.getVal('flowRes', 'local', '-'), await $.getVal('voiceRes', 'local', '-'))
+            } else {
+                $.log('整个流程执行正常')
+                widget = await showmsg(widget)
+            }
+        }
+        $.saveLog()
+        Script.setWidget(widget)
+        Script.complete()
+    } catch (e) {
+        // 为了不影响正常显示
+        $.logErr(e)
     }
-    $.post(url, (response, data) => {
-        $.log(JSON.stringify(response))
-        $.log(data)
+}
+
+function showmsg(w) {
+    return new Promise(async (resolve) => {
+        //格式化显示的信息
+        $.log('显示信息')
+
+        let widget = await createWidget(w, title, subt, flowRes, voiceRes)
+
+        $.log('显示信息end')
+        resolve(widget)
     })
+}
 
-    // persistence your data
-    // get all data content
-    $.log('get data file content')
-    $.log(await $.getDataFile())
+/**
+ * 根据数据填充widget
+ * @param w
+ * @param pretitle  大标题
+ * @param subt      [话费]1元
+ * @param flowRes   [流量]1GB
+ * @param voiceRes  [语音]1分钟
+ */
+async function createWidget(w, pretitle, subt, flowRes, voiceRes) {
+    $.log('创建widget')
 
-    // get value of key from icloud container('local' or 'icloud'). If there is no value, return 'defaultValue' you passed in
-    $.log('get value of key from icloud')
-    $.log(await $.getVal('key', 'icloud', 'defaultValue'))
+    // 保存成功执行的数据
+    if (subt != '-') {
+        $.setVal('subt', subt, 'local')
+        $.setVal('flowRes', flowRes, 'local')
+        $.setVal('voiceRes', voiceRes, 'local')
+        $.log(`写入数据：${await $.getDataFile('local')}`)
+    }
+    const bgColor = new LinearGradient()
+    bgColor.colors = [new Color("#001A27"), new Color("#00334e")]
+    bgColor.locations = [0.0, 1.0]
 
-    // set value for key to target container('local' or 'icloud')
-    $.log('set value for key')
-    $.setVal('key', 'value', 'icloud')
-    $.setVal('key1', 'value1', 'icloud')
-    $.log(await $.getVal('key', 'icloud', 'defaultValue'))
-    $.log(await $.getDataFile())
+    // 获取第二天是否工作日
+    let targetDate = new Date()
+    let isWD = await $.isWorkingDays(new Date(targetDate.setDate(now.getDate() + 1)))
+    $.log(`设置标题-${pretitle}${isWD}`)
+    let normalColor = new Color("#ccc")
+    let preTxt = w.addText(pretitle + isWD)
+    let preColor = normalColor
+    preTxt.textColor = preColor
+    preTxt.font = Font.boldSystemFont(18)
+    // preTxt.applyHeadlineTextStyling()
+    w.addSpacer(7)
+    // preTxt.applySubheadlineTextStyling()
 
-    $.log('save log')
-    $.saveLog()
-    widget.presentSmall()
-    Script.setWidget(widget)
-    Script.complete()
+
+    $.log('设置话费')
+    let titleTxt = w.addText(subt)
+    let warnColor = new Color("#82632C")
+    let normalFontSize = 14
+    const sp = 3
+    preColor = normalColor
+    if (Number(subt.replace('元', '').substring(subt.indexOf(']') + 1)) < warnFee) {
+        preColor = warnColor
+    }
+    titleTxt.textColor = preColor
+    titleTxt.font = Font.systemFont(14)
+    titleTxt.textSize = normalFontSize
+    w.addSpacer(sp)
+
+
+    $.log('设置流量')
+    let subTxt = w.addText(flowRes)
+    preColor = normalColor
+    if (flowRes.indexOf('MB') && Number(flowRes.replace('MB', '').substring(flowRes.indexOf(']') + 1)) < warnData) {
+        preColor = warnColor
+    }
+    subTxt.textColor = preColor
+    subTxt.font = Font.systemFont(14)
+    subTxt.textSize = normalFontSize
+    w.addSpacer(sp)
+
+    $.log('设置语音')
+    let otherTxt = w.addText(voiceRes)
+    preColor = normalColor
+    if (voiceRes.indexOf('分钟') && Number(voiceRes.replace('分钟', '').substring(voiceRes.indexOf(']') + 1)) < warnVoice) {
+        preColor = warnColor
+    }
+    otherTxt.textColor = preColor
+    otherTxt.font = Font.systemFont(14)
+    otherTxt.textSize = normalFontSize
+    w.addSpacer(sp)
+
+    $.log('设置更新时间')
+    let minTxt = w.addText(`${$.execStatus?'':'⚬'}更新于：${hours > 9 ? hours : "0" + hours}:${minutes > 9 ? minutes : "0" + minutes}`)
+    minTxt.textColor = new Color("#777")
+    minTxt.font = Font.systemFont(11)
+    minTxt.textSize = 11
+    w.addSpacer(sp)
+
+    w.presentSmall()
+    $.log('创建widget end')
+    return w
+}
+
+function queryfee() {
+    return new Promise((resolve) => {
+        $.log('查询余额')
+        const url = {
+            url: fetchUri.balance,
+            headers: {
+                cookie: cookie
+            }
+        }
+
+        $.post(url, (resp, data) => {
+            $.log('查询余额响应返回')
+            try {
+                data = JSON.parse(data)
+                if (data.result === 0) {
+                    subt = `[话费] ${parseFloat(parseInt(data.totalBalanceAvailable) / 100).toFixed(2)}元`
+                } else {
+                    throw new Error("查询余额失败")
+                }
+                $.log(`查询余额结束：${subt}`)
+            } catch (e) {
+                $.execFail()
+                $.log('查询余额异常')
+                $.logErr(e)
+                $.log(JSON.stringify(data))
+                $.log(`查询余额异常，请求体：${JSON.stringify(url)}`)
+            } finally {
+                resolve()
+            }
+        })
+    })
+}
+
+function querymeal() {
+    return new Promise((resolve) => {
+        $.log('查询套餐')
+        const url = {
+            url: fetchUri.detail,
+            headers: {
+                cookie: cookie
+            }
+        }
+        $.post(url, (resp, data) => {
+            $.log('查询套餐响应返回')
+            try {
+                data = JSON.parse(data)
+                if (data.result === 0) {
+                    if (data.hasOwnProperty("balance")) {
+                        flowRes = formatFlow(data.balance)
+                        flowRes = `${flowRes.count}${flowRes.unit}B`
+                    } else {
+                        flowRes = '0MB'
+                    }
+                    flowRes = '[流量] ' + flowRes
+                    voiceRes = data.hasOwnProperty("voiceBalance") ? data.voiceBalance : '[语音] 0分钟'
+                } else {
+                    throw new Error("查询套餐失败")
+                }
+                $.log(`查询套餐结束：\n${flowRes}\n${voiceRes}`)
+            } catch (e) {
+                $.execFail()
+                $.log('查询套餐异常')
+                $.logErr(e)
+                $.log(JSON.stringify(data))
+                $.log(`查询套餐异常，请求体：${JSON.stringify(url)}`)
+            } finally {
+                resolve()
+            }
+        })
+    })
+}
+
+function formatFlow(number) {
+    const n = number / 1024
+    if (n < 1024) {
+        return {count: n.toFixed(2), unit: 'M'}
+    }
+    return {count: (n / 1024).toFixed(2), unit: 'G'}
+}
+
+async function renderWebView() {
+    const webView = new WebView()
+    const url = 'https://e.189.cn/index.do'
+    await webView.loadURL(url)
+    await webView.present(false)
+
+    const request = new Request(fetchUri.detail)
+    request.method = 'POST'
+    const response = await request.loadJSON()
+    $.log(JSON.stringify(response))
+    if (response.result === -10001) {
+        const index = await this.generateAlert('未获取到用户信息', [
+            '取消',
+            '重试',
+        ])
+        if (index === 0) return
+        await renderWebView()
+    } else {
+        const cookies = request.response.cookies
+        let cookie
+        cookie = cookies.map((item) => `${item.name}=${item.value}`)
+        cookie = cookie.join('; ')
+        $.log(cookie)
+        $.setVal('cookie', cookie, 'local')
+    }
 }
 
 //ScriptableToolKit-start
