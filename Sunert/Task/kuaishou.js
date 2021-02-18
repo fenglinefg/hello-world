@@ -1,5 +1,5 @@
 /*
-更新时间: 2021-02-18 19:10
+更新时间: 2021-02-18 20:20
 
 本脚本仅适用于快手双版本签到，注意正式版Cookie签到有时效性，但Cookie仍然可用于签到极速版，即正式版会掉签；极速版Cookie只能用于极速版，支持正式版获取多Cookie
 
@@ -144,6 +144,7 @@ function formalCenter() {
                 } else if (tasks.schemeText == "去签到") {
                   $.log(taskName + tasks.schemeText + "\n");
                   await formalSign()
+                  continue
                 }
               } else if (Id == "1749" && status == 4) {
                 await openbox(tasktoken, eventId)
@@ -333,7 +334,7 @@ function GetCookie() {
      $.msg($.name, `获取极速Cookie: 成功🎉`, ``)
   } else if ($request && $request.method != `OPTIONS` && UA.indexOf("ksNebula") == -1) {
     const cookie = $request.headers['Cookie'] ;
-          cookieVal = cookie.replace(/(.+)(appver=[0-9\.]+)(.+)(; client_key=\w+)(.+)(; token=[0-9a-z-]+)(.+)(; userId=\d+)/,'$2$4$6$8');
+          cookieVal = cookie.replace(/(appver=[0-9\.]+)(.+)(; client_key=\w+)(.+)(; token=[0-9a-z-]+)(.+)(; userId=\d+)/,'$1$3$5$7');
          uid= cookieVal.match(/userId=\d+/);
     if (ks_tokens) {
       if (ks_tokens.indexOf(uid) > -1) {
