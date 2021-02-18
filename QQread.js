@@ -206,6 +206,8 @@ return new Promise((resolve, reject) => {
     headers: JSON.parse(QQreadheaderVal),  
  timeout:60000};
    $.get(toQQreadinfourl,(error, response, data) =>{
+	   console.log(data);
+	   console.log("----------------------------210-----------------------------------\n");
      if(logs) $.log(`${jsname}, 用户名: ${data}`)
      info =JSON.parse(data)
 kz+=
@@ -230,6 +232,8 @@ return new Promise((resolve, reject) => {
    headers: JSON.parse(QQreadvideoheaderVal),
  timeout:60000};
    $.get(toQQreadtaskurl,(error, response, data) =>{
+	   console.log(data);
+	   console.log("---------------------------234------------------------------------\n");
      if(logs) $.log(`${jsname}, 任务列表: ${data}`)
      task =JSON.parse(data)
 kz+=
@@ -316,7 +320,9 @@ resolve()
        const toQQreadboxinfourl ={url: 'https://eventv3.reader.qq.com/activity/pkg11955/queryOpenBoxInfo',
        headers: JSON.parse(QQreadvideoheaderVal),
        timeout:60000};
-         $.get(toQQreadboxinfourl,(error, response, data) =>{   
+         $.get(toQQreadboxinfourl,(error, response, data) =>{  
+		 console.log(data);
+	   console.log("-------------------------------322--------------------------------\n");
             if(logs) $.log(`${jsname}, 宝箱奖励详情: ${data}`)
                boxinfo =JSON.parse(data)	
       var cz=new Date().getTime()-boxinfo.data.openTime
