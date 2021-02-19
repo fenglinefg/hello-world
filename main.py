@@ -97,6 +97,8 @@ def luckDraw_task():
             luck.encoding='utf-8'
             res = luck.json()
             logging.info('【天天抽奖】: ' + res['RspMsg'] + ' x' + str(i+1))
+            #等待1秒钟
+            time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【每日签到】: 错误，原因为: ' + str(e))
@@ -123,7 +125,8 @@ def gameCenterSign_Task():
             logging.info('【游戏中心签到】: ' + '获得' + str(res['currentIntegral']) + '积分')
         elif res['respCode'] == '0000':
             logging.info('【游戏中心签到】: ' + res['respDesc'])
-        
+        #等待1秒钟
+        time.sleep(1)
         #游戏频道积分
         gameCenter_exp = client.post('https://m.client.10010.com/producGameApp',data=data2)
         gameCenter_exp.encoding='utf-8'
@@ -161,6 +164,8 @@ def openBox_task():
         #观看视频领取更多奖励
         watchAd = client.post('https://m.client.10010.com/game_box', data=data2)
         watchAd.encoding='utf-8'
+        #等待1秒钟
+        time.sleep(1)
         #完成任务领取100M流量
         drawReward = client.post('https://m.client.10010.com/producGameTaskCenter', data=data3)
         drawReward.encoding='utf-8'
@@ -193,6 +198,8 @@ def collectFlow_task():
                 logging.info('【4G流量包-看视频】: 获得' + res1['addNum'] + 'M流量 x' + str(i+1))
             elif res1['reason'] == '01':
                 logging.info('【4G流量包-看视频】: 已完成' + ' x' + str(i+1))
+            #等待1秒钟
+            time.sleep(1)
             #下软件
             downloadProg = client.post('https://act.10010.com/SigninApp/mySignin/addFlow',data2)
             downloadProg.encoding='utf-8'
@@ -201,6 +208,8 @@ def collectFlow_task():
                 logging.info('【4G流量包-下软件】: 获得' + res2['addNum'] + 'M流量 x' + str(i+1))
             elif res2['reason'] == '01':
                 logging.info('【4G流量包-下软件】: 已完成' + ' x' + str(i+1))
+            #等待1秒钟
+            time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【4G流量包】: 错误，原因为: ' + str(e))
@@ -243,6 +252,8 @@ def pointsLottery_task():
             payx.encoding = 'utf-8'
             res2 = payx.json()
             logging.info("【积分抽奖】: " + res2['RspMsg'] + ' x' + str(i+1))
+            #等待1秒钟
+            time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【积分抽奖】: 错误，原因为: ' + str(e))
