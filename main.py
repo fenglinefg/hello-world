@@ -264,7 +264,7 @@ def dongaoPoints_task():
     data = {
         'from': random.choice('123456789') + ''.join(random.choice('0123456789') for i in range(10))
     }
-    trance = [0,600,300,300,300,300,300,600]
+    trance = [600,300,300,300,300,300,300]
     try:
         #领取积分奖励
         dongaoPoint = client.post('https://m.client.10010.com/welfare-mall-front/mobile/winterTwo/getIntegral/v1', data=data)
@@ -276,7 +276,11 @@ def dongaoPoints_task():
         res2 = dongaoNum.json()
         #领取成功
         if res1['resdata']['code'] == '0000':
-            logging.info('【东奥积分活动】: ' + res1['resdata']['desc'] + '，' + str(trance[int(res2['resdata']['signDays'])]) + '积分')
+            #当前为连续签到的第几天
+            day = int(res2['resdata']['signDays'])
+            #签到得到的积分
+            point = trance[day%7] + 300 if day==1 else trance[day%7]
+            logging.info('【东奥积分活动】: ' + res1['resdata']['desc'] + '，' + str(point) + '积分')
         else:
             logging.info('【东奥积分活动】: ' + res1['resdata']['desc'] + '，' + res2['resdata']['desc'])
     except Exception as e:
