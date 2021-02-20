@@ -451,6 +451,7 @@ $.get({url:"http://jdhelper.tk/ddfactory/"+${item.assistTaskDetailVo.taskToken}+
 $.get({url:"http://jdhelper.tk/ddfactory/"+${item.assistTaskDetailVo.taskToken}+"?ti="+Date.now()},(err,resp,data)=>{});
 $.get({url:"http://jdhelper.tk/ddfactory/"+${item.assistTaskDetailVo.taskToken}+"?ti="+Date.now()},(err,resp,data)=>{});
 $.get({url:"http://jdhelper.tk/ddfactory/"+${item.assistTaskDetailVo.taskToken}+"?ti="+Date.now()},(err,resp,data)=>{});
+$.get({url:"http://jdhelper.tk/ddfactory/"+${item.assistTaskDetailVo.taskToken}+"?ti="+Date.now()},(err,resp,data)=>{});
                 }
               })
             }
