@@ -1,5 +1,5 @@
 /*
-更新时间: 2021-02-17 22:50
+更新时间: 2021-02-20 22:50
 赞赏:中青邀请码`46308484`,农妇山泉 -> 有点咸，万分感谢
 本脚本仅适用于中青看点极速版领取青豆
 食用说明请查看本仓库目录Taskconf/youth/readme.md，其中打卡挑战赛可通过Boxjs开关，报名时间为23点，早起打卡时间为早5点，报名需1000青豆押金，打卡成功可返1000+青豆，打卡失败则押金不予返还，请注意时间运行，
@@ -178,8 +178,8 @@ function TaskCenter() {
             else if (dailys.id == "7" && dailys.status == "0") {
               await readTime();
              }
-            else if (dailys.id == "4" && dailys.status == "0") {
-              await getArt();
+            else if (dailys.title == "新春额外赚" && dailys.status == "0") {
+              await Census();
              }
             else if (dailys.id == "10" && dailys.status == "0") {
               $.log(dailys.title + "未完成，去做任务");
@@ -205,7 +205,7 @@ function TaskCenter() {
 
 function getAction(acttype) {
    return new Promise((resolve, reject) =>{
-        $.get(kdHost(`WebApi/NewTaskIos/sendTwentyScore?action=${acttype}`), (error, resp, data) =>{
+        $.get(kdHost('WebApi/NewTaskIos/sendTwentyScore?action='+acttype), (error, resp, data) =>{
             let actres = JSON.parse(data);
             if (actres.status == 1) {
                 $.log("获得青豆" + actres.score)
@@ -228,7 +228,6 @@ function getsign() {
             } else if (signres.status == 1) {
                 detail = `【签到结果】成功 🎉 青豆: +${signres.score}，明日青豆: +${signres.nextScore}\n`;
                 await comApp();
-                await Census()
             } 
             resolve()
         })
@@ -427,20 +426,26 @@ function SevCont() {
 }
 function Census() {
     return new Promise((resolve, reject) =>{
-       let url= {
-         url:"https://kd.youth.cn/user/inviteCensus2?jsonpcallback=jQuery20308548318424756004_1613745418308&uid=46308484&_="+Date.now(),
-         headers:{
-           'Cookie':cookie,
-           'Referer': 'https://kandian.youth.cn/user/mmsq/ee9d523f55d7f1e985384c5c4c22228f?uid=46308484&reward_sign=5REAvA90VGotgq4exRtrCoiDgQGGv9zp&avatar=http://res.youth.cn/avatar_202004_28_28o_5ea8469f50c0746308484h.jpg&is_new=0&title_mark=1'
-         }
-       }
-        $.post(url, async(error, resp, data) =>{
-            //$.log(resp)
+    $.post(kdHost('u/wyRAM'),async(error, resp, data) =>{
+            await $.wait(500);
+            await int();
             resolve()
         })
     })
 }
 
+function int() {
+    return new Promise((resolve, reject) =>{
+     let url = {
+         url:"https://kandian.youth.cn/user/mmsq?uid=46308484",
+         headers:kdHost().headers
+     }
+        $.post(url),(error, resp, data) =>{
+            //$.log(resp)
+            resolve()
+        })
+    })
+}
 //开启时段宝箱
 function openbox() {
   return new Promise((resolve, reject) =>{
@@ -450,6 +455,7 @@ function openbox() {
         boxretime = boxres.data.time;
         detail += `【时段宝箱】 +${boxres.data.score}青豆，${boxres.data.time / 60}分钟后再次奖励\n`;
         await boxshare();
+        await getArt()
       } else {
         //detail += `【时段宝箱】${boxres.msg}\n`;
         $.log(`时段宝箱: ${boxres.msg}`)
