@@ -20,6 +20,28 @@ def sendEmail():
     res = res.json()
     print(res['msg'])
 
+#钉钉群自定义机器人推送
+def sendDing():
+    #要发送邮件内容
+    content = readFile('log.txt')
+    data = {
+        'msgtype': 'markdown',
+        'markdown': {
+            'title': 'UnicmTask每日报表',
+            'text': content
+        }
+    }
+    headers = {
+        'Content-Type': 'application/json;charset=utf-8'
+    }
+    res = requests.post(os.environ.get('DINGTALK_WEBHOOK'),headers=headers,json=data)
+    res.encoding = 'utf-8'
+    res = res.json()
+    if res['errcode'] == '0':
+        print('dinngTalk push success')
+    else:
+        print('dinngTalk push error : ' + res['errmsg'])
+
 
 '''
 #参考自文章 https://zhuanlan.zhihu.com/p/24180606 用python发送邮件
