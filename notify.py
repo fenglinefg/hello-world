@@ -1,4 +1,4 @@
-import smtplib,traceback,os
+import smtplib,traceback,os,requests
 from email.mime.text import MIMEText
 
 def readFile(filepath):
@@ -6,6 +6,22 @@ def readFile(filepath):
         content=fp.read()
     return content
 
+#邮件推送api来自流星云
+def sendEmail():
+    #要发送邮件内容
+    content = readFile('log.txt')
+    #接收方邮箱
+    receivers = os.environ.get('EMAIL_COVER')
+    #邮件主题
+    subject = 'UnicomTask每日报表'
+    param = '?address=' + receivers + '&name=' + subject + '&certno=' + content
+    res = requests.get('http://liuxingw.com/api/mail/api.php' + param)
+    res.encoding = 'utf-8'
+    res = res.json()
+    print(res['msg'])
+
+
+'''
 #参考自文章 https://zhuanlan.zhihu.com/p/24180606 用python发送邮件
 def sendEmail():
     #设置服务器所需信息
@@ -49,3 +65,4 @@ def sendEmail():
     except smtplib.SMTPException as e:
         print('email push error')
         print(traceback.format_exc())
+'''
