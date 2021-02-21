@@ -306,3 +306,5 @@ if __name__ == '__main__':
         collectFlow_task()
     if len(os.environ.get('EMAIL_COVER')) != 0:
         notify.sendEmail()
+    if len(os.environ.get('DINGTALK_WEBHOOK')) !=0:
+        notify.sendDing()
