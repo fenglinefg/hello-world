@@ -27,7 +27,7 @@ def sendDing():
     data = {
         'msgtype': 'markdown',
         'markdown': {
-            'title': 'UnicmTask每日报表',
+            'title': 'UnicomTask每日报表',
             'text': content
         }
     }
