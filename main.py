@@ -302,10 +302,10 @@ if __name__ == '__main__':
         daySign_task()
         luckDraw_task()
         pointsLottery_task()
-        gameCenterSign_Task()
         day100Integral_task()
         dongaoPoints_task()
         woTree_task()
+        gameCenterSign_Task()
         openBox_task()
         collectFlow_task()
     if len(os.environ.get('EMAIL_COVER')) != 0:
