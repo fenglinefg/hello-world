@@ -80,9 +80,9 @@ DINGTALK_WEBHOOK | https://oapi.dingtalk.com/robot/send?access_token=xxxx | 钉�
 
 # 同步上游代码
 
-在最新的代码中，已经加上自动同步上游代码的action，将会定时在每周五16点执行，文件地址在`.github/workflows/auto_merge.yml`。
+在最新的代码中，已经加上自动同步上游代码的action，将会定时在每周五16点执行，文件地址在`.github/workflows/auto_merge.yml`。（当上游或者本地`UnicomTask.yml`配置文件发生变动时，会导致拉取更新失败）
 
-同时您也可以安装[pull](https://github.com/apps/pull)应用，也可实现自动同步上游代码。
+同时您也可以安装[pull](https://github.com/apps/pull)应用，也可实现自动同步上游代码。（修改了`UnicomTask.yml`同样会导致拉取更新失败，需要手动解决冲突，例如多账号）
 
 # 申明
 
