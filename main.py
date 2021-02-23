@@ -251,8 +251,9 @@ def pointsLottery_task():
         logging.info("【积分抽奖】: " + res1['RspMsg'] + ' x免费')
         num = 0
         #如果用户未设置此值，将不会自动抽奖
+        #预防用户输入30以上，造成不必要的抽奖操作
         if len(os.environ.get('LOTTERY_NUM')) != 0:
-            num = int(os.environ.get('LOTTERY_NUM'))
+            num = min(30,int(os.environ.get('LOTTERY_NUM')))
         for i in range(num):
             #用积分兑换抽奖机会
             client.get('https://m.client.10010.com/dailylottery/static/integral/duihuan?goldnumber=10&banrate=30&usernumberofjsp=' + numjsp)
