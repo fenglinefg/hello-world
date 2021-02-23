@@ -39,7 +39,7 @@ def woTree_task():
         grow.encoding='utf-8'
         res2 = grow.json()
         logging.info('【沃之树-浇水】: 获得' + str(res2['data']['addedValue']) + '培养值')
-        time.sleep(random.randint(10,20))
+        time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【沃之树】: 错误，原因为: ' + str(e))
@@ -154,12 +154,7 @@ def openBox_task():
         'clientVersion': '8.0100',
         'isVideo': 'N'
     }
-    data3 = {
-        'methodType': 'taskGetReward',
-        'taskCenterId': '187',
-        'clientVersion': '8.0100',
-        'deviceType': 'Android'
-    }
+    param = '?methodType=taskGetReward&taskCenterId=187&clientVersion=8.0100&deviceType=Android'
     data4 = {
         'methodType': 'reward',
         'deviceType': 'Android',
@@ -170,13 +165,15 @@ def openBox_task():
         #在分类中找到宝箱并开启
         box = client.post('https://m.client.10010.com/mobileService/customer/getShareRedisInfo.htm', data=data1)
         box.encoding='utf-8'
+        time.sleep(1)
         #观看视频领取更多奖励
         watchAd = client.post('https://m.client.10010.com/game_box', data=data2)
         watchAd.encoding='utf-8'
         #等待随机秒钟
         time.sleep(1)
         #完成任务领取100M流量
-        drawReward = client.get('https://m.client.10010.com/producGameTaskCenter', data=data3)
+        drawReward = client.get('https://m.client.10010.com/producGameTaskCenter' + param)
+        time.sleep(1)
         watchAd = client.post('https://m.client.10010.com/game_box', data=data4)
         drawReward.encoding='utf-8'
         res = drawReward.json()
@@ -209,8 +206,8 @@ def collectFlow_task():
                 logging.info('【4G流量包-看视频】: 获得' + res1['addNum'] + 'M流量 x' + str(i+1))
             elif res1['reason'] == '01':
                 logging.info('【4G流量包-看视频】: 已完成' + ' x' + str(i+1))
-            #等待随机秒钟
-            time.sleep(random.randint(10,20))
+            #等待1秒钟
+            time.sleep(1)
             #下软件
             downloadProg = client.post('https://act.10010.com/SigninApp/mySignin/addFlow',data2)
             downloadProg.encoding='utf-8'
@@ -219,8 +216,8 @@ def collectFlow_task():
                 logging.info('【4G流量包-下软件】: 获得' + res2['addNum'] + 'M流量 x' + str(i+1))
             elif res2['reason'] == '01':
                 logging.info('【4G流量包-下软件】: 已完成' + ' x' + str(i+1))
-            #等待随机秒钟
-            time.sleep(random.randint(10,20))
+            #等待1秒钟
+            time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【4G流量包】: 错误，原因为: ' + str(e))
@@ -236,7 +233,7 @@ def day100Integral_task():
         integral.encoding = 'utf-8'
         res = integral.json()
         logging.info("【100定向积分】: " + res['msg'])
-        time.sleep(random.randint(10,20))
+        time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【100定向积分】: 错误，原因为: ' + str(e))
@@ -265,7 +262,7 @@ def pointsLottery_task():
             res2 = payx.json()
             logging.info("【积分抽奖】: " + res2['RspMsg'] + ' x' + str(i+1))
             #等待随机秒钟
-            time.sleep(random.randint(10,20))
+            time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【积分抽奖】: 错误，原因为: ' + str(e))
@@ -295,7 +292,7 @@ def dongaoPoints_task():
             logging.info('【东奥积分活动】: ' + res1['resdata']['desc'] + '，' + str(point) + '积分')
         else:
             logging.info('【东奥积分活动】: ' + res1['resdata']['desc'] + '，' + res2['resdata']['desc'])
-        time.sleep(random.randint(10,20))
+        time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【东奥积分活动】: 错误，原因为: ' + str(e))
