@@ -30,8 +30,8 @@ def woTree_task():
                 logging.info('【沃之树-领流量】: 4M流量 x' + str(num))
             else:
                 logging.info('【沃之树-领流量】: 已领取过 x' + str(num))
-            #等待随机秒钟
-            time.sleep(random.randint(10,20))
+            #等待1秒钟
+            time.sleep(1)
             num = num + 1
         client.post('https://m.client.10010.com/mactivity/arbordayJson/getChanceByIndex.htm?index=0')
         #浇水
@@ -71,7 +71,7 @@ def daySign_task():
             logging.info('【每日签到】: ' + '打卡成功,' + res2['data']['statusDesc'])
         elif res1['status'] == '0002':
             logging.info('【每日签到】: ' + res1['msg'])
-        time.sleep(random.randint(10,20))
+        time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【每日签到】: 错误，原因为: ' + str(e))
@@ -100,7 +100,7 @@ def luckDraw_task():
             res = luck.json()
             logging.info('【天天抽奖】: ' + res['RspMsg'] + ' x' + str(i+1))
             #等待1秒钟
-            time.sleep(random.randint(10,20))
+            time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【每日签到】: 错误，原因为: ' + str(e))
@@ -128,7 +128,7 @@ def gameCenterSign_Task():
         elif res['respCode'] == '0000':
             logging.info('【游戏中心签到】: ' + res['respDesc'])
         #等待1秒钟
-        time.sleep(random.randint(10,20))
+        time.sleep(1)
         #游戏频道积分
         gameCenter_exp = client.post('https://m.client.10010.com/producGameApp',data=data2)
         gameCenter_exp.encoding='utf-8'
@@ -137,7 +137,7 @@ def gameCenterSign_Task():
             logging.info('【游戏频道打卡】: 获得' + str(res1['integralNum']) + '积分')
         else:
             logging.info('【游戏频道打卡】: ' + res1['msg'])
-        time.sleep(random.randint(10,20))
+        time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【游戏中心签到】: 错误，原因为: ' + str(e))
@@ -152,13 +152,19 @@ def openBox_task():
         'methodType': 'reward',
         'deviceType': 'Android',
         'clientVersion': '8.0100',
-        'isVideo': 'Y'
+        'isVideo': 'N'
     }
     data3 = {
         'methodType': 'taskGetReward',
         'taskCenterId': '187',
         'clientVersion': '8.0100',
         'deviceType': 'Android'
+    }
+    data4 = {
+        'methodType': 'reward',
+        'deviceType': 'Android',
+        'clientVersion': '8.0100',
+        'isVideo': 'Y'
     }
     try:
         #在分类中找到宝箱并开启
@@ -168,16 +174,17 @@ def openBox_task():
         watchAd = client.post('https://m.client.10010.com/game_box', data=data2)
         watchAd.encoding='utf-8'
         #等待随机秒钟
-        time.sleep(random.randint(10,20))
+        time.sleep(1)
         #完成任务领取100M流量
-        drawReward = client.post('https://m.client.10010.com/producGameTaskCenter', data=data3)
+        drawReward = client.get('https://m.client.10010.com/producGameTaskCenter', data=data3)
+        watchAd = client.post('https://m.client.10010.com/game_box', data=data4)
         drawReward.encoding='utf-8'
         res = drawReward.json()
         if res['code'] == '0000':
             logging.info('【100M寻宝箱】: ' + '获得100M流量')
         else:
             logging.info('【100M寻宝箱】: ' + '任务失败')
-        time.sleep(random.randint(10,20))
+        time.sleep(1)
     except Exception as e:
         print(traceback.format_exc())
         logging.error('【100M寻宝箱】: 错误，原因为: ' + str(e))
