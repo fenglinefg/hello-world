@@ -334,7 +334,7 @@ function CardStatus() {
       if (punchcard.code == 1) {
         if (punchcard.data.user.status == 0 && $.time("HH") > "22") {
           await punchCard()
-        } else if (punchcard.data.user.status == 1) {
+        } else if (punchcard.data.user.status == 2) {
            $.log("每日打卡已报名，请每天早晨"+cardTime+"点运行打卡");
           detail += `【打卡报名】🔔 待明早${cardTime}点打卡\n`
         } else if (punchcard.data.user.status == 3&&$.time("HH")==cardTime) {
@@ -427,7 +427,7 @@ function SevCont() {
 }
 function Census() {
     return new Promise((resolve, reject) =>{
-    $.post(kdHost('u/w4aFB'),async(error, resp, data) =>{
+    $.post(kdHost('u/w6j7s'),async(error, resp, data) =>{
             await $.wait(500);
             await int();
             resolve()
