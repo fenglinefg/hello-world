@@ -15,20 +15,22 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        run: |
+          git clone https://github.com/ziye66666/JavaScript.git  ~/Scripts
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
       - name: npm install
         run: |
+          cd ~/Scripts
           npm install
       - name: '运行 【QQ阅读wechat】'
         run: |
-          node QQread.js
+          cd ~/Scripts
+          node Task/QQread.js
         env:
-          QQREADAPP_HEADER: ${{ secrets.QQREADAPP_HEADER2 }}
-          QQREADAPP_VIDEOHD: ${{ secrets.QQREADAPP_VIDEOHD2 }}
+          QQ_QQreadURL: ${{ secrets.QQ_QQreadURL }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
           FRUITSHARECODES: ${{ secrets.FRUITSHARECODES }}
