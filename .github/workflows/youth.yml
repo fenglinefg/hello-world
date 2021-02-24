@@ -3,7 +3,7 @@ name: 中青看点10，30，100，200
 on:
   workflow_dispatch:
   schedule:
-     - cron: '*/15 * * * *'
+     - cron: '*/30 * * * *'
   watch:
     types: started
 
