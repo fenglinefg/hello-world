@@ -1,5 +1,5 @@
 /*
-更新时间: 2021-02-24 23:00
+更新时间: 2021-02-25 00:30
 Github Actions使用方法见[@lxk0301](https://raw.githubusercontent.com/lxk0301/scripts/master/githubAction.md) 使用方法大同小异
 
 中青看点浏览赚任务，手动完成任务，获取请求体，支持boxjs及Github Actions，多请求用"&"分开，点击任务，支持自动获取请求
@@ -116,7 +116,6 @@ function GainStart() {
         await GainEnd()
       } else if (comstate == 1) {
         $.log("任务:" + startres.items.banner_id + "已完成，本次跳过");
-        await $.wait(2000);
        }
       }
       resolve()
@@ -172,8 +171,7 @@ function lookstatus() {
     $.post(gainHost('Nameless/bannerstatus.json',lookbody), (error, resp, data) =>{
       let endres = JSON.parse(data);
       if (endres.success == true) {
-        $.log("任务" + endres.items.banner_id +endres.message+ "，恭喜获得" + endres.items.score + "个青豆");
-        lookscore += parseInt(endres.items.score)
+        $.log("任务" + endres.items.banner_id +endres.message);
       } else {
         $.log(endres.message)
       }
@@ -186,7 +184,8 @@ function lookEnd() {
     $.post(gainHost('Nameless/adlickend.json',lookbody), (error, resp, data) =>{
       let endres = JSON.parse(data);
       if (endres.success == true) {
-        $.log("任务" + endres.items.banner_id +endres.message)
+        $.log("任务" + endres.items.banner_id +endres.message+ "，" +endres.items.desc)
+        lookscore += parseInt(endres.items.score)
       } else {
         $.log(endres.message)
       }
