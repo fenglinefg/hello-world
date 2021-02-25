@@ -68,6 +68,7 @@ $.time = year + month + day + hour + minus + second;
 $.body = $.read("evil_klcwappBody");
 $.nowbody = JSON.stringify($.body)
   .replace(/&timestamp=\d+/, `&timestamp=${$.time}`)
+  .replace(/&method\=.*?\&/, `&method=com.xdl.cn.appservice.AppTaskService.signIn&`)
   .slice(1, -1);
 $.log($.nowbody);
 
@@ -158,7 +159,8 @@ function getCookie() {
   if (
     $request &&
     $request.method != "OPTIONS" &&
-    $request.url.match(/mallgateway/)
+    $request.url.match(/mallgateway/) &&
+    $request.body.match(/signIn/)
   ) {
     const body = $request.body;
     $.log(body);
