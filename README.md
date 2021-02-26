@@ -125,8 +125,6 @@ USERS_COVER | config.json中内容
 
 项目地址：[srcrs/UnicomTask](https://github.com/srcrs/UnicomTask)
 
-![](https://draw-static.vercel.app/UnicomTask/fork本项目.gif)
-
 ### 2.准备需要的参数
 
 * 开通云函数 `SCF` 的腾讯云账号，在[访问秘钥页面](https://console.cloud.tencent.com/cam/capi)获取账号的 `TENCENT_SECRET_ID`，`TENCENT_SECRET_KEY`
