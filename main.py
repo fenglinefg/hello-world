@@ -318,18 +318,21 @@ def main(event, context):
         if client != False:
             daySign_task(user['username'])
             luckDraw_task()
-            pointsLottery_task(user['lotteryNum'])
+            if ('lotteryNum' in user):
+                pointsLottery_task(user['lotteryNum'])
+            else:
+                pointsLottery_task(0)
             day100Integral_task()
             dongaoPoints_task()
             woTree_task()
             gameCenterSign_Task()
             openBox_task()
             collectFlow_task()
-        if len(user['email']) != 0:
+        if ('email' in user) :
             notify.sendEmail(user['email'])
-        if len(user['dingtalkWebhook']) !=0:
+        if ('dingtalkWebhook' in user) :
             notify.sendDing(user['dingtalkWebhook'])
-        if len(user['tgToken']) !=0:
+        if ('tgToken' in user) :
             notify.sendTg(user['tgToken'],user['tgUserId'])
         #清空上一个用户的日志记录
         f = open('./log.txt','w')
