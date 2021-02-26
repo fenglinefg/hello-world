@@ -160,7 +160,6 @@ if ($.isRequest) {
 				$.checkinParams = "&city_id=" + $.city;
 				if ($.source_id) {
 					let s_i = await Choose($.source_id);
-					$.info("Thanks try to aff to : \n" + s_i);
 					$.checkinParams += "&share_source_id=" + s_i + "&share_date=" + today;
 				}
 				await checkin();
@@ -746,7 +745,6 @@ function joinInstance() {
 			let obj = JSON.parse(resp.body);
 			if (obj.errno == 0) {
 				$.joinInstanceFlag = true;
-				$.info("Thanks aff to: " + $.instancechoose);
 			}
 		})
 		.catch((err) => {
@@ -866,8 +864,9 @@ function stepInfo() {
 			$.log("stepInfo: " + JSON.stringify(resp.body));
 			let obj = JSON.parse(resp.body);
 			if (obj.errno == 0) {
-				$.log("DiDi step share_source_id: " + obj.data.share.share_source_id);
+				$.info("DiDi step share_source_id: " + obj.data.share.share_source_id);
 				$.todayStep = obj.data.greeting.today_step;
+				$.stepShareActivityId = obj.data.task.activity_id;
 			} else {
 				$.stepFlag = false;
 				$.info(
