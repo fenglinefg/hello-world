@@ -1,5 +1,5 @@
 /*
-更新时间: 2021-02-26 10:50 取消打卡挑战，ck时效短，可弃坑
+更新时间: 2021-02-26 14:30 取消打卡挑战，ck时效短，可弃坑
 
 本脚本仅适用于京东来客有礼每日获取京豆
 获取Cookie方法:
@@ -43,6 +43,7 @@ const jdbean = "500" //兑换京豆数
 const $ = new Env('来客有礼小程序')
 let opa = $.getdata('token_lkyl')
 let signVal = $.getdata('signature_lkyl')
+let cookieval = $.getdata('cookie_lkyl')
 
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
@@ -71,8 +72,10 @@ if ($request && $request.method != 'OPTIONS') {
   const opa = $request.headers['openId']+"&"+$request.headers['App-Id']
   const signtoken = $request.headers['Lottery-Access-Signature']+'&'
 +$request.headers['LKYLToken']
+  const cookieVal = $request.headers['Cookie'];
   if (opa) $.setdata(opa, 'token_lkyl');
   if (signtoken) $.setdata(signtoken, 'signature_lkyl');
+  if (cookieVal) $.setdata(cookieVal, 'cookie_lkyl');
     $.log(`opa:${opa}`),
     $.log(`signtoken:${signtoken}`)
     $.msg($.name, `获取Cookie: 成功🎉`, ``)
@@ -89,20 +92,23 @@ function Host(api,body) {
        'Host': 'draw.jdfcloud.com',
        'Lottery-Access-Signature': Sign,
        'openId': openid,
-       'LKYLToken': token
+       'LKYLToken': token,
+       'Cookie': cookieval
      },
      body: body
    }
 }  
 function getsign() {
   return new Promise((resolve, reject) =>{
-    $.get(Host('turncard/card?&petSign=true&turnTableId=131&index=1&'), async(error, response, data) =>{
+    $.post(Host('turncard/sign?petSign=true&turnTableId=131&source=HOME&','{"fp":"","eid":"86CFE351F55E0808B83745BEFC3FF26F5FF95FE8"}'), async(error, response, data) =>{
       let result = JSON.parse(data);
-      //$.log(JSON.stringify(result,null,2))
-      if (result.success == true) {
+      $.log(JSON.stringify(result,null,2))
+      if (result.errorCode===null) {
         signres = ' 签到成功🎉'
         $.desc = "签到收益:"+ result.data.rewardName + ' 获得' + result.data.jdBeanQuantity + '个京豆\n'
-      } else {
+      } else if (!result.errorCode) {
+        $.desc = "签到结果:"+ result.errorMessage+"\n"
+      }else {
         $.sub = `签到失败，Cookie 失效❌`
         $.desc = `说明: ${result.errorMessage}`
         $.msg($.name, $.sub, $.desc); return
