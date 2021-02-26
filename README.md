@@ -89,15 +89,12 @@ USERS_COVER | config.json中内容
     {
         "username": "18566669999",
         "password": "123456",
-        "appId": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
-        "email": "",
-        "lotteryNum": "",
-        "dingtalkWebhook": "",
-        "tgToken": "",
-        "tgUserId": ""
+        "appId": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
     }
 ]
 ```
+
+注意`json`格式，最后一个要删掉逗号。
 
 注意：不要将个人信息填写到仓库`config.json`文件中（不要动这个文件就没事），以免泄露。
 
