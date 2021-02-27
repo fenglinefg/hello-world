@@ -95,6 +95,7 @@ function bodyInfo() {
     return new Promise((resolve, reject) => {
         $.get(batHost('article/info/get.json?' + articlebody), async(error, resp, data) => {
             let bodyobj = JSON.parse(data);
+            $.log(JSON.stringify(bodyobj,null,2))
             try {
                 if (bodyobj.error_code == 0) {
                     acticid = bodyobj.url.match(/\d+/)[0];
@@ -128,7 +129,7 @@ function AutoRead() {
     return new Promise((resolve, reject) => {
         $.post(batHost('article/complete.json', articlebody), async(error, response, data) => {
             let readres = JSON.parse(data);
-            //$.log(JSON.stringify(readres,null,2))
+            $.log(JSON.stringify(readres,null,2))
             if (readres.items.complete == 1) {
                 $.log(readres.items.max_notice)
             } else {
