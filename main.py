@@ -249,11 +249,9 @@ def pointsLottery_task(n):
         oneFree.encoding = 'utf-8'
         res1 = oneFree.json()
         logging.info("【积分抽奖】: " + res1['RspMsg'] + ' x免费')
-        num = 0
         #如果用户未设置此值，将不会自动抽奖
         #预防用户输入30以上，造成不必要的抽奖操作
-        if len(n) != 0:
-            num = min(30,int(n))
+        num = min(30,int(n))
         for i in range(num):
             #用积分兑换抽奖机会
             client.get('https://m.client.10010.com/dailylottery/static/integral/duihuan?goldnumber=10&banrate=30&usernumberofjsp=' + numjsp)
