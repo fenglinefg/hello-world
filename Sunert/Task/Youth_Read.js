@@ -1,5 +1,5 @@
 /*
-更新时间: 2021-02-27 21:00
+更新时间: 2021-02-27 21:30
 Github Actions使用方法见[@lxk0301](https://raw.githubusercontent.com/lxk0301/scripts/master/githubAction.md) 使用方法大同小异
 
 点击几篇文章和视频，自动获取阅读请求，在Github Actions中的Secrets新建name为'YOUTH_READ'的一个值，拷贝抓包的请求体到下面Value的文本框中，添加的请求体越多，获得青豆次数越多，本脚本不包含任何推送通知
@@ -191,9 +191,9 @@ function AutoRead() {
 
 function removebody() {
   if (articlebody !== ReadArr[0]) {
-      smallbody = YouthBody.replace("&" + articlebody, "");
+      smallbody = $.getdata('youth_autoread').replace("&" + articlebody, "");
   } else {
-      smallbody = YouthBody.replace(articlebody + "&", "")
+      smallbody = $.getdata('youth_autoread').replace(articlebody + "&", "")
   }
   $.setdata(smallbody, 'youth_autoread')
 }
@@ -202,7 +202,7 @@ function batHost(api, body) {
     return {
         url: 'https://ios.baertt.com/v5/' + api,
         headers: {
-            'User-Agent': 'KDApp/2.0.0 (iPhone; iOS 14.5; Scale/3.00)',
+            'User-Agent': 'KDApp/2.0.2 (iPhone; iOS 14.5; Scale/3.00)',
             'Host': 'ios.baertt.com',
             'Content-Type': 'application/x-www-form-urlencoded'
         },
