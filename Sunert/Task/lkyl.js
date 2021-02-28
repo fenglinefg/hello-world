@@ -105,7 +105,8 @@ function getsign() {
             let result = JSON.parse(data);
             $.log(JSON.stringify(result, null, 2))
             if (result.errorCode === null) {
-                $.desc = "签到收益:" + result.data.rewardName + ' 获得' + result.data.jdBeanQuantity + '个京豆\n'
+                $.desc = "签到收益:" + result.data.rewardName + ' 获得' + result.data.jdBeanQuantity + '个京豆\n';
+                $.log($.desc)
             } else if (!result.errorCode) {
                 $.desc = "签到结果:" + result.errorMessage + "\n"
             } else {
@@ -259,7 +260,6 @@ function status() {
 
 function video() {
     return new Promise(async(resolve, reject) => {
-        if (taskstatus.data.dailyTasks[1].status != 'received') {
             bodyVal = '{"openId": ' + '"' + openid + '","taskCode": "watch_video"}'
             for (j = 0; j < 4; j++) {
                 $.post(Host('bean/square/silverBean/task/join?', bodyVal), function(error, resp, data) {
@@ -270,10 +270,6 @@ function video() {
                     $.log(`视频银豆: ${data}`)
                 })
             }
-        }
-        if (taskstatus.data.dailyTasks[1].status == 'received') {
-            $.desc += `【视频任务】: ✅ + ${taskstatus.data.dailyTasks[1].taskReward}银豆\n`
-        }
         resolve()
     })
 }
@@ -287,10 +283,10 @@ function lottery() {
                 totalSteps = lotteryres.data.totalSteps,
                 uncomplete = totalSteps - doneSteps,
                 rewardAmount = lotteryres.data.rewardAmount;
-            if (uncomplete > 0 && lotterystimes < uncomplete) {
+            if (uncomplete > 0 && lotterystimes < totalSteps) {
                 for (tasks of task.data.homeActivities) {
                     if (tasks.participated == false) {
-                        for (j = 0; j < uncomplete - lotterystimes; j++) {
+                        for (j = 0; j < uncomplete; j++) {
                             lotteryId = tasks.activityId;
                             await cycleLucky()
                         }
@@ -324,7 +320,7 @@ function challenge() {
 
 function cycleLucky() {
     return new Promise((resolve, reject) => {
-        $.post(Host('lottery/participate?lotteryId=' + lotteryId + '&formId=123&source=HOME&'), (error, resp, data) => {
+        $.post(Host('lottery/participate?lotteryId=' + lotteryId + '&formId=123&source=HOME&','{"fp":"","eid":"86CFE351F55E0808B83745BEFC3FF26F5FF95FE8"}'), (error, resp, data) => {
             $.log(`抽奖任务: ${data}`)
         })
         resolve()
