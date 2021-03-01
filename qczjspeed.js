@@ -1,9 +1,9 @@
 /* ziye 
 
-github地址 https://github.com/ziye12/QCZJSPEED
+github地址 https://github.com/ziye66666/QCZJSPEED
 TG频道地址  https://t.me/ziyescript
 TG交流群   https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
-boxjs链接  https://raw.githubusercontent.com/ziye12/QCZJSPEED/main/Task/ziye.qczjboxjs.json
+boxjs链接  https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/ziye.boxjs.json
 
 转载请备注个名字，谢谢
 ⚠️汽车之家极速版
@@ -60,37 +60,37 @@ CASHTIME  👉  QCZJ_CASHTIME
 hostname=mobile.app.autohome.com.cn,
 ############## 圈x
 #汽车之家极速版获取header
-https:\/\/(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) url script-request-header https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js
+https:\/\/(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) url script-request-header https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js
 
 #汽车之家极速版获取body
-https:\/\/(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) url script-request-body https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js
+https:\/\/(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) url script-request-body https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js
 
 #汽车之家极速版获取时段body
-http:\/\/mobile\.app\.autohome\.com\.cn\/* url script-request-body https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js
+http:\/\/mobile\.app\.autohome\.com\.cn\/* url script-request-body https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js
 
 
 
 ############## loon
 
 #汽车之家极速版获取header
-http-request (mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js, requires-header=true, tag=汽车之家极速版获取header
+http-request (mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js, requires-header=true, tag=汽车之家极速版获取header
 
 #汽车之家极速版获取body
-http-request (mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js,requires-body=true, tag=汽车之家极速版获取body
+http-request (mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*) script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js,requires-body=true, tag=汽车之家极速版获取body
 
 #汽车之家极速版获取时段body
-http-request http:\/\/mobile\.app\.autohome\.com\.cn\/* script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js, requires-body=true, tag=汽车之家极速版获取时段body
+http-request http:\/\/mobile\.app\.autohome\.com\.cn\/* script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js, requires-body=true, tag=汽车之家极速版获取时段body
 
 ############## surge
 
 #汽车之家极速版获取body
-汽车之家极速版获取body = type=http-request,pattern=(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js, script-update-interval=0
+汽车之家极速版获取body = type=http-request,pattern=(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js, script-update-interval=0
 
 #汽车之家极速版获取header
-汽车之家极速版获取header = type=http-request,pattern=(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*),script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js, 
+汽车之家极速版获取header = type=http-request,pattern=(mobile\.app\.autohome\.com\.cn\/*||openapi\.autohome\.com\.cn\/*),script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js, 
 
 #汽车之家极速版获取时段body
-汽车之家极速版获取时段body = type=http-request,pattern=http:\/\/mobile\.app\.autohome\.com\.cn\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye12/QCZJSPEED/master/Task/qczjspeed.js, script-update-interval=0
+汽车之家极速版获取时段body = type=http-request,pattern=http:\/\/mobile\.app\.autohome\.com\.cn\/*,requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/ziye66666/JavaScript/main/Task/qczjspeed.js, script-update-interval=0
 
 
 
@@ -372,7 +372,7 @@ tts = Math.round(new Date().getTime() +
       await coin();//账户信息    
       await task();//日常任务
       await activity();//活动
-      //await reportAss();//助力任务	  
+      await reportAss();//助力任务	  
       await addCoin();//时段任务
       await addCoin2();//时段翻倍
         if (nowTimes.getHours() >= CASHTIME && CASH >= 0.5 && $.coin.result && $.coin.result.nowmoney >= CASH) {
@@ -558,13 +558,11 @@ function reportAss(timeout = 0) {
         while( out < 10000 )				 	  
 	  let body = `_appid=car&taskId=qczjjsb_lb_mglh&userId=${app_userid}&userAssistanceId=${out}&_v=qauto_wxapp1.0&_timestamp=${ts}&_sign=${app_sign}`
 header = GetUserInfoheaderVal.replace(/q=1/g, `q=1","Referer":"https://servicewechat.com/wx8ebc8f3586c7321f/160/page-frame.html","Content-Type":"application/x-www-form-urlencoded;charset=utf-8","Host":"openapi.autohome.com.cn`)
-      $.log(`${O}, --------🚩: ${body}`);
-	    let url = {
+      let url = {
         url:`https://openapi.autohome.com.cn/autohome/uc-news-quickappservice/msapi/dealers/reportAss`,
         headers: JSON.parse(header),
 		body: body,
       }
-      $.log(`${O}, --------🚩: ${url}`);
       $.post(url, async(err, resp, data) => {
         try {
           if (logs) $.log(`${O}, 助力任务🚩: ${data}`);
