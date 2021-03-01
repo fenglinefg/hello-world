@@ -25,7 +25,7 @@ jobs:
           npm install
       - name: '运行 【QQ阅读wechat】'
         run: |
-          node Task/QQread.js
+          node QQread.js
         env:
           QQ_QQreadURL: ${{ secrets.QQ_QQreadURL }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
