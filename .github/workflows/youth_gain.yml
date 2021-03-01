@@ -16,8 +16,7 @@ jobs:
         YOUTH_END: ${{ secrets.YOUTH_END }}
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/Sunert/Scripts.git ~/Scripts
+        uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -25,13 +24,11 @@ jobs:
       - name: npm install
         if: env.YOUTH_START
         run: |
-          cd ~/Scripts
           npm install
       - name: '运行 【中青看点浏览赚任务】'
         if: env.YOUTH_START
         run: |
-          cd ~/Scripts
-          node Task/youth_gain.js
+          node youth_gain.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH }}
