@@ -20,13 +20,10 @@ jobs:
         QCZJ_activityBODY: ${{ secrets.QCZJ_ACTIVITYBODY }}	
         QCZJ_addCoinBODY: ${{ secrets.QCZJ_ADDCOINBODY }}
         QCZJ_addCoin2BODY: ${{ secrets.QCZJ_ADDCOIN2BODY }}
-        QCZJ_CASH: ${{ secrets.QCZJ_CASH }}
-        
-         
+        QCZJ_CASH: ${{ secrets.QCZJ_CASH }}       
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/ziye66666/JavaScript.git ~/QCZJSPEED
+        uses: actions/checkout@v2
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -34,13 +31,11 @@ jobs:
       - name: npm install
         if: env.QCZJ_GetUserInfoHEADER
         run: |
-          cd ~/QCZJSPEED
           npm install
       - name: '运行 【汽车之家极速版】'
         if: env.QCZJ_GetUserInfoHEADER
         run: |
-          cd ~/QCZJSPEED
-          node Task/qczjspeed.js
+          node qczjspeed.js
         env:
           
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
