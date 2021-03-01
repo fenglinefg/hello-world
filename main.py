@@ -311,6 +311,8 @@ def readJson():
 def main(event, context):
     users = readJson()
     for user in users:
+        #清空上一个用户的日志记录
+        open('./log.txt',mode='w',encoding='utf-8')
         global client
         client = login.login(user['username'],user['password'],user['appId'])
         if client != False:
@@ -332,9 +334,6 @@ def main(event, context):
             notify.sendDing(user['dingtalkWebhook'])
         if ('tgToken' in user) :
             notify.sendTg(user['tgToken'],user['tgUserId'])
-        #清空上一个用户的日志记录
-        f = open('./log.txt','w')
-        f.truncate()
 
 #主函数入口
 if __name__ == '__main__':
