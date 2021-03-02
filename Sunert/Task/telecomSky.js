@@ -35,8 +35,7 @@ const requests = {
         url: "https://e.189.cn/store/user/getExtInfo.do",
         headers: {
             "authToken": AUTHTOKEN,
-            "type": "alipayMiniApp",
-           // "Cookie": COOKIE
+            "type": "alipayMiniApp"
         },
         method: "GET"
     },
@@ -50,7 +49,8 @@ const requests = {
 }
 
 if (isGetCookie = typeof $request !== 'undefined') {
-    GetCookie()
+    GetCookie();
+    $.done()
 } else {
  !(async() => {
    await userinfo();
@@ -193,19 +193,22 @@ function mktSign() {
         headers: {
           Host: 'mkt.21cn.com',
           token: token
-      }
+      }, 
+       body: 'activityId='+x+'&uxChannel="10012"'
     }
     $.post(url, (err, resp, data) => {
       try{ 
         let obj = JSON.parse(data);
         if(obj.resCode=="00000"){
         signres = (obj.data.status==1)?"签到成功，已签到"+obj.data.signNum+"天":"今日已签到，总计签到"+obj.data.signNum+"天";
-        $.log("\n签到兑豪礼: "+signres)
+         $.log("\n签到兑豪礼: "+signres)
         } else if(obj.resCode=="51301"){
-        $.log("登陆已失效"+obj.resDesc)
-        }
+         $.log("登陆已失效"+obj.resDesc)
+        } else {
+         $.log("积分兑好礼"+obj.resDesc)
+       }
       } catch(e){
-        $.logErr("获取活动失败"+e)
+        $.logErr("获取积分兑好礼活动失败"+e)
       } finally {
        resolve()
       }
@@ -227,12 +230,15 @@ function mktDraw() {
         let obj = JSON.parse(data);
         if(obj.resCode=="00000"){
          rewards = obj.data.awardName;
-         $.log("恭喜您获得"+rewards+"，话费红包有效期为7天")
+         $.log("恭喜您获得"+rewards+"，话费红包有效期为7天");
+         $.desc += "【每日转盘】获得"+rewards
         } else if(obj.resCode=="51301"){
         $.log("登陆已失效"+obj.resDesc)
+        } else {
+         $.log("每日转盘"+obj.resDesc)
         }
       } catch(e){
-        $.logErr("获取活动失败"+e)
+         $.logErr("获取活动失败"+e)
       } finally {
        resolve()
       }
