@@ -20,24 +20,27 @@
 
 
 【使用说明】
-微信小程序-酷乐潮玩+-我的-每日签到，手动签到获取Cookie即可使用。
+微信小程序-酷乐潮玩+-我的-每日签到，获取优惠券Cookie，手动签到获取Cookie即可使用。
 
 【Surge】
 -----------------
 [Script]
-酷乐潮玩小程序获取Cookie = http-request https:\/\/wxavip\-tp\.ezrpro\.cn\/Vip\/SignIn\/SignIn script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js, requires-body=true
+酷乐潮玩小程序获取签到Cookie = http-request https:\/\/wxavip\-tp\.ezrpro\.cn\/Vip\/SignIn\/SignIn script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js, requires-body=true
+酷乐潮玩小程序获取优惠券Cookie = http-request https:\/\/wxavip\-tp\.ezrpro\.cn\/Vip\/SignIn\/GetSignInDtlInfo script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js, requires-body=false
 酷乐潮玩小程序 = type=cron,cronexp=5 0 * * *,script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js
 
 【Loon】
 -----------------
 [Script]
-http-request https:\/\/wxavip\-tp\.ezrpro\.cn\/Vip\/SignIn\/SignIn tag=酷乐潮玩小程序获取Cookie, script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js, requires-body=true
+http-request https:\/\/wxavip\-tp\.ezrpro\.cn\/Vip\/SignIn\/SignIn tag=酷乐潮玩小程序获取签到Cookie, script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js, requires-body=true
+http-request https:\/\/wxavip\-tp\.ezrpro\.cn\/Vip\/SignIn\/GetSignInDtlInfo tag=酷乐潮玩小程序获取优惠券Cookie, script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js, requires-body=false
 cron "5 0 * * *" script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js, tag=酷乐潮玩小程序
 
 【Quantumult X】
 -----------------
 [rewrite_local]
 https:\/\/wxavip\-tp\.ezrpro\.cn\/Vip\/SignIn\/SignIn url script-request-body https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js
+https:\/\/wxavip\-tp\.ezrpro\.cn\/Vip\/SignIn\/GetSignInDtlInfo url script-request-header https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js
 
 [task_local]
 5 0 * * * https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/klcw/klcw.js, tag=酷乐潮玩小程序
@@ -59,6 +62,9 @@ $.Referer = $.read("evil_klcwReferer");
 $.vip = $.read("evil_klcwVip");
 $.encrypt = $.read("evil_klcwEncrypt");
 $.body = $.read("evil_klcwBody");
+$.id2 = $.read("evil_klcwid2");
+$.SignStr2 = $.read("evil_klcwSignStr2");
+$.encrypt2 = $.read("evil_klcwEncrypt2");
 
 !(async () => {
   if (typeof $request != "undefined") {
@@ -67,13 +73,17 @@ $.body = $.read("evil_klcwBody");
   }
   if (
     $.id != undefined &&
+    $.id2 != undefined &&
     $.SignStr != undefined &&
+    $.SignStr2 != undefined &&
     $.Referer != undefined &&
     $.vip != undefined &&
     $.encrypt != undefined &&
+    $.encrypt2 != undefined &&
     $.body != undefined
   ) {
     await checkin();
+    await checkcoupon();
     showmsg();
   } else {
     $.notify("酷乐潮玩小程序", "", "❌ 请先获取Cookie");
@@ -82,6 +92,8 @@ $.body = $.read("evil_klcwBody");
   .catch((err) => {
     if (err instanceof ERR.ParseError) {
       $.notify("酷乐潮玩小程序", "❌ 解析数据出现错误", err.message);
+    } else if (err instanceof ERR.EventError) {
+      $.notify("酷乐潮玩小程序", "❌ 请尝试重新获取Cookie", err.message);
     } else {
       $.notify(
         "酷乐潮玩小程序",
@@ -118,25 +130,64 @@ function checkin() {
   return $.http.post(myRequest).then((response) => {
     if (response.statusCode == 200) {
       $.data = JSON.parse(response.body);
-      console.log(JSON.stringify($.data));
+      $.log(JSON.stringify($.data));
     } else {
       $.error(JSON.stringify(response));
-      $.notify("酷乐潮玩小程序", "", "❌ 未知错误，请查看日志");
+      throw new ERR.ParseError("签到数据解析错误，请检查日志");
+    }
+  });
+}
+
+function checkcoupon() {
+  const url = `https://wxavip-tp.ezrpro.cn/Vip/SignIn/GetSignInDtlInfo`;
+  const headers = {
+    Connection: `keep-alive`,
+    "Accept-Encoding": `gzip, deflate, br`,
+    timestamp: $.time,
+    "uber-trace-id": $.id2,
+    "Content-Type": `application/json`,
+    "ezr-v-ip": $.vip,
+    SignStr: $.SignStr2,
+    "ezr-encrypt": $.encrypt2,
+    "User-Agent": `Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.2(0x18000226) NetType/WIFI Language/zh_CN`,
+    Host: `wxavip-tp.ezrpro.cn`,
+    Referer: $.Referer,
+    "Accept-Language": `zh-cn`,
+    Accept: `*/*`,
+  };
+  const myRequest = {
+    url: url,
+    headers: headers,
+    body: $.body,
+  };
+
+  return $.http.post(myRequest).then((response) => {
+    if (response.statusCode == 200) {
+      $.datacoupon = JSON.parse(response.body);
+      $.log(JSON.stringify($.data));
+    } else {
+      $.error(JSON.stringify(response));
+      throw new ERR.ParseError("查询优惠券数据解析错误，请检查日志");
     }
   });
 }
 
 function showmsg() {
-  if ($.data.Result.ErrMsg != null) {
-    $.notify("酷乐潮玩小程序", "", $.data.Result.ErrMsg);
+  if ($.data.Result.ErrMsg == "今日已签到") {
+    $.notify("酷乐潮玩小程序", "", "今日已签到");
+  } else if ($.data.Result.ErrMsg != null) {
+    throw new ERR.EventError(
+      `签到错误，请检查日志，原因：${$.data.Result.ErrMsg}`
+    );
   } else {
     var msg = $.data.Msg;
-    var bonus = $.data.Result.CouponName;
-    if (bonus != null) {
-      $.notify("酷乐潮玩小程序", msg, `本次签到获得${bonus}🎉`);
-    } else {
-      $.notify("酷乐潮玩小程序", msg, `本次签到暂未获得奖励`);
+    var coupon = $.datacoupon.Result.StepGiveInfo;
+    for (var i = 0; i < coupon.length; i++) {
+      if (coupon[i].IsFinished == true && coupon[i].IsGive == false) {
+        var bonus = bonus.join(coupon[i].StepName + " ");
+      }
     }
+    $.notify("酷乐潮玩小程序", msg, `已获得 ${bonus}🎉\n请尽快领取～`);
   }
 }
 
@@ -147,8 +198,15 @@ function MYERR() {
       this.name = "ParseError";
     }
   }
+  class EventError extends Error {
+    constructor(message) {
+      super(message);
+      this.name = "EventError";
+    }
+  }
   return {
     ParseError,
+    EventError,
   };
 }
 
@@ -156,7 +214,7 @@ function getCookie() {
   if (
     $request &&
     $request.method != "OPTIONS" &&
-    $request.url.match(/SignIn/)
+    $request.url.match(/SignIn\/SignIn/)
   ) {
     const str = $request.headers["SignStr"];
     $.log(str);
@@ -177,6 +235,21 @@ function getCookie() {
     $.log(body);
     $.write(body, "evil_klcwBody");
     $.notify("酷乐潮玩小程序", "", "获取签到Cookie成功🎉");
+  } else if (
+    $request &&
+    $request.method != "OPTIONS" &&
+    $request.url.match(/GetSignInDtlInfo/)
+  ) {
+    const str = $request.headers["SignStr"];
+    $.log(str);
+    $.write(str, "evil_klcwSignStr2");
+    const id = $request.headers["uber-trace-id"];
+    $.log(id);
+    $.write(id, "evil_klcwid2");
+    const e_ncrypt = $request.headers["ezr-encrypt"];
+    $.log(e_ncrypt);
+    $.write(e_ncrypt, "evil_klcwEncrypt2");
+    $.notify("酷乐潮玩小程序", "", "获取优惠券Cookie成功🎉");
   }
 }
 
