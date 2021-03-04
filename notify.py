@@ -10,8 +10,16 @@ from email.mime.text import MIMEText
 #对markdown的适配要更好
 def readFile(filepath):
     content = ''
-    for line in open(filepath):
+    for line in open(filepath,encoding='utf-8'):
         content += line + '\n\n'
+    return content
+
+#返回要推送的通知内容
+#对text的适配要更好
+def readFile_text(filepath):
+    content = ''
+    for line in open(filepath,encoding='utf-8'):
+        content += line
     return content
 
 #邮件推送api来自流星云
@@ -68,7 +76,7 @@ def sendDing(webhook):
 def sendTg(token,chat_id):
     try:
         #发送内容
-        content = readFile('./log.txt')
+        content = readFile_text('./log.txt')
         data = {
             'UnicomTask每日报表':content
         }
@@ -102,3 +110,27 @@ def sendPushplus(token):
     except Exception as e:
         print('push+通知推送异常，原因为: ' + str(e))
         print(traceback.format_exc())
+
+#企业微信通知，普通微信可接收
+def sendWechat(wex):
+    #获得access_token
+    url = 'https://qyapi.weixin.qq.com/cgi-bin/gettoken'
+    token_param = '?corpid=' + wex['id'] + '&corpsecret=' + wex['secret']
+    token_data = requests.get(url + token_param)
+    token_data.encoding = 'utf-8'
+    token_data = token_data.json()
+    access_token = token_data['access_token']
+    #发送内容
+    content = readFile_text('./log.txt')
+    #创建要发送的消息
+    data = {
+        "touser": "@all",
+        "msgtype": "text",
+        "agentid": wex['agentld'],
+        "text": {"content": content}
+    }
+    send_url = 'https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=' + access_token
+    message = requests.post(send_url,json=data)
+    message.encoding = 'utf-8'
+    res = message.json()
+    print('Wechat send : ' + res['errmsg'])
