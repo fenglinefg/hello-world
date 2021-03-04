@@ -358,7 +358,7 @@ def main(event, context):
             day100Integral_task()
             dongaoPoints_task()
             woTree_task()
-            gameCenterSign_Task()
+            gameCenterSign_Task(user['username'])
             openBox_task()
             collectFlow_task()
         if ('email' in user) :
