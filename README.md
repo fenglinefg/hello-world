@@ -72,7 +72,16 @@
 + 安卓用户可在文件管理 --> `Unicom/appid` 文件中获取。
 
 + 苹果用户可抓取客户端登录接口获取。
-> `https://m.client.10010.com/mobileService/login.htm`
+
+> `https://m.client.10010.com/mobileService/login.htm`（解绑重新登录，在响应体中）
+
+> `https://m.client.10010.com/mobileService/onLine.htm`（退出客户端重新进入，在请求体中）
+
+> `http://m.client.10010.com/mobileService/customer/getclientconfig.htm?appId=xxx&mobile=yyy`（退出客户端重新进入，xxx就是）
+
+> `https://m.client.10010.com/mobileService/customer/accountListData.htm`（退出客户端重新进入，在请求体中）
+
+其中，后三个链接在安卓也是适用的。
  
 ### 3.将参数填到Secrets
 
