@@ -372,7 +372,7 @@ tts = Math.round(new Date().getTime() +
       await coin();//账户信息    
       await task();//日常任务
       await activity();//活动
-      await reportAss();//助力任务	  
+     // await reportAss();//助力任务	  
       await addCoin();//时段任务
       await addCoin2();//时段翻倍
         if (nowTimes.getHours() >= CASHTIME && CASH >= 0.5 && $.coin.result && $.coin.result.nowmoney >= CASH) {
@@ -513,6 +513,8 @@ function addCoin(timeout = 0) {
       }
       $.post(url, async(err, resp, data) => {
         try {
+		console.log(data);
+		console.log("\n");
           if (logs) $.log(`${O}, 时段任务🚩: ${data}`);
           $.addCoin = JSON.parse(data);
 if($.addCoin.returncode==0)
