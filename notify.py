@@ -73,8 +73,10 @@ def sendDing(webhook):
         print(traceback.format_exc())
 
 #发送Tg通知
-def sendTg(token,chat_id):
+def sendTg(taBot):
     try:
+        token = tgBot['tgToken']
+        chat_id = tgBot['tgUserId']
         #发送内容
         content = readFile_text('./log.txt')
         data = {
