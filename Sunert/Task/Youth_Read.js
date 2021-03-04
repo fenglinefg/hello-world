@@ -19,7 +19,7 @@ let videoscore = 0,readscore = 0;
 let artArr = [], delbody = 0;
 if (isGetbody = typeof $request !==`undefined`) {
    Getbody();
-   $done()
+   $.done()
 } 
 let lastIndex = $.getdata('zqbody_index')
 if (!$.isNode() && !YouthBody == true) {
@@ -27,7 +27,7 @@ if (!$.isNode() && !YouthBody == true) {
     $.msg($.name, "您未获取阅读请求，请求阅读后获取", "", {
         'open-url': "https://kandian.youth.cn/u/UnEWm"
     })
-    return
+    $.done()
 } else if (!$.isNode() && YouthBody.indexOf("&") == -1) {
     ReadArr.push(YouthBody)
 } else {
