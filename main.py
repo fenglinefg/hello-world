@@ -357,10 +357,12 @@ def main(event, context):
             notify.sendEmail(user['email'])
         if ('dingtalkWebhook' in user) :
             notify.sendDing(user['dingtalkWebhook'])
-        if ('tgToken' in user) :
+        if ('telegramBot' in user) :
             notify.sendTg(user['tgToken'],user['tgUserId'])
         if ('pushplusToken' in user):
             notify.sendPushplus(user['pushplusToken'])
+        if('enterpriseWechat' in user):
+            notify.sendWechat(user['enterpriseWechat'])
 
 #主函数入口
 if __name__ == '__main__':
