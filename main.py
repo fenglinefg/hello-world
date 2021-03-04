@@ -366,7 +366,7 @@ def main(event, context):
         if ('dingtalkWebhook' in user) :
             notify.sendDing(user['dingtalkWebhook'])
         if ('telegramBot' in user) :
-            notify.sendTg(user['tgToken'],user['tgUserId'])
+            notify.sendTg(user['telegramBot'])
         if ('pushplusToken' in user):
             notify.sendPushplus(user['pushplusToken'])
         if('enterpriseWechat' in user):
