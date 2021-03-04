@@ -168,7 +168,7 @@ def openBox_task():
     }
     try:
         client.get('https://img.client.10010.com/shouyeyouxi/index.html')
-        client.headers.update({'referer': 'https://img.client.10010.com/shouyeyouxi/index.html')
+        client.headers.update({'referer': 'https://img.client.10010.com/shouyeyouxi/index.html'})
         #在分类中找到宝箱并开启
         box = client.post('https://m.client.10010.com/mobileService/customer/getShareRedisInfo.htm', data=data1)
         box.encoding='utf-8'
