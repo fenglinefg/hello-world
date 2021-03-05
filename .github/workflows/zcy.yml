@@ -1,4 +1,4 @@
-name: 走财运 5，10，20
+name: 走财运 0.1，1，10
 
 on:
   workflow_dispatch:
