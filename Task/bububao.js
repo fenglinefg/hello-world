@@ -1717,6 +1717,8 @@ function tixian_html(timeout = 0) {
                                     CASH = 100
                                 } else if ($.user.money >= 50 && fenshu5 > 0) {
                                     CASH = 50
+                                }else if ($.user.money >= 0.3 && $.user.day_jinbi >= 5000) {
+                                    CASH = 0.3
                                 }
                                 if (CASH != 888) {
                                     await tixian() //提现
