@@ -133,8 +133,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('yuedongzutoken' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(yuedongzutokenVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] yuedongzutokenVal已存在✅: yuedongzutokenVal: ${yuedongzutokenVal}`
+                        );
+                        $.msg($.name + $.idx, `yuedongzutokenVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
