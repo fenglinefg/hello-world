@@ -109,8 +109,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('QQreadurl' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(QQreadurlVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] QQreadurlVal已存在✅: QQreadurlVal: ${QQreadurlVal}`
+                        );
+                        $.msg($.name + $.idx, `QQreadurlVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
