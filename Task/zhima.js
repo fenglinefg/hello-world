@@ -166,8 +166,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('zhimabody' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(zhimabodyVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] zhimabodyVal已存在✅: zhimabodyVal: ${zhimabodyVal}`
+                        );
+                        $.msg($.name + $.idx, `zhimabodyVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
@@ -199,8 +205,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('zhimatxbody' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(zhimatxbodyVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] zhimatxbodyVal已存在✅: zhimatxbodyVal: ${zhimatxbodyVal}`
+                        );
+                        $.msg($.name + $.idx, `zhimatxbodyVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
