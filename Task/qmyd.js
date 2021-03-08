@@ -12,6 +12,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.3 制作
 3.4 优化提现，优化刮刮卡，优化抽手机
 3.5 增加了点延迟，优化提现
+3.8 替换为循环获取ck
 
 ⚠️ 时间设置    0,30 0-23 * * *    每天 25次以上就行 
 
@@ -120,12 +121,34 @@ function GetCookie() {
         });
     }
     if ($request && $request.url.indexOf("profile") >= 0) {
+
         const qmydtokenVal = $request.headers.Authorization;
-        if (qmydtokenVal) $.setdata(qmydtokenVal, "qmydtoken" + $.idx);
-        $.log(
-            `[${$.name + $.idx}] 获取qmydtokenVal✅: 成功,qmydtokenVal: ${qmydtokenVal}`
-        );
-        $.msg($.name + $.idx, `获取qmydtokenVal: 成功🎉`, ``);
+        if (qmydtokenVal) {
+            cookie()
+
+            function cookie() {
+                bodys = $.getdata('qmydtoken' + $.idx);
+                if (bodys) {
+                    if ($.idx == '') {
+                        $.idx = 2
+                        cookie()
+                    } else {
+                        $.idx = $.idx + 1
+                        cookie()
+                    }
+                } else {
+                    {
+                        $.setdata(qmydtokenVal, "qmydtoken" + $.idx);
+                        $.log(
+                            `[${$.name + $.idx}] 获取qmydtokenVal✅: 成功,qmydtokenVal: ${qmydtokenVal}`
+                        );
+                        $.msg($.name + $.idx, `获取qmydtokenVal: 成功🎉`, ``);
+
+                        $.done();
+                    }
+                };
+            }
+        }
     }
 }
 console.log(
@@ -286,7 +309,7 @@ async function all() {
         if (!cookie_is_live) {
             continue;
         }
-            await $.wait(1000)
+        await $.wait(1000)
         //await jinbi_record() //收益记录
         if (CZ >= 10) {
             await help_index() //助力活动
@@ -1398,7 +1421,7 @@ function lotteryadd(timeout = 0) {
                             await index()
                         }
 
-                              await part()
+                        await part()
 
 
                     }
@@ -1805,7 +1828,7 @@ function tixian_html(timeout = 0) {
                     if (logs) $.log(`${O}, 提现页🚩: ${data}`);
                     $.tixian_html = JSON.parse(data);
                     if ($.tixian_html.tixian_html) {
-                        
+
                         jine5 = $.tixian_html.tixian_html.find(item => item.jine === '30');
                         jine6 = $.tixian_html.tixian_html.find(item => item.jine === '100');
                         jine7 = $.tixian_html.tixian_html.find(item => item.jine === '200');
@@ -1818,9 +1841,9 @@ function tixian_html(timeout = 0) {
                             $.message += `【提现查询】：今日已提现\n`;
                         }
                         if (jine5) {
-                        console.log(`提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine5.jine}元：需要${jine5.cond}张券\n`);
-                        $.message += `【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine5.jine}元】：需要${jine5.cond}张券\n`;
-                           }
+                            console.log(`提现券：剩余${$.tixian_html.tixian_coupon}张券\n${jine5.jine}元：需要${jine5.cond}张券\n`);
+                            $.message += `【提现券】：剩余${$.tixian_html.tixian_coupon}张券\n【${jine5.jine}元】：需要${jine5.cond}张券\n`;
+                        }
                         if (jine6.fenshu_tixian_tip) {
 
                             fenshu6 = jine6.fenshu_tixian_tip.split('今日剩余')[1].split('份')[0]
@@ -1836,20 +1859,20 @@ function tixian_html(timeout = 0) {
 
                         if (!day_tixian_tip && ($.user.wx_username != "" || $.user.is_weixin == 1)) {
 
-                            
+
                             if (CASH == 30 && $.tixian_html.tixian_coupon >= 25 && $.user.money >= CASH) {
                                 await tixian() //提现
                             }
                             if (CASH == 888) {
-                                 if ($.user.money >= 300&&fenshu8>=1) {
+                                if ($.user.money >= 300 && fenshu8 >= 1) {
                                     CASH = 300
-                                } else if ($.user.money >= 200&&fenshu7>=1) {
+                                } else if ($.user.money >= 200 && fenshu7 >= 1) {
                                     CASH = 200
-                                } else if ($.user.money >= 100&&fenshu6>=1) {
+                                } else if ($.user.money >= 100 && fenshu6 >= 1) {
                                     CASH = 100
-                                } else if ($.user.money > 30  && jine5&& $.tixian_html.tixian_coupon >= 25) {
+                                } else if ($.user.money > 30 && jine5 && $.tixian_html.tixian_coupon >= 25) {
                                     CASH = 30
-                                } 
+                                }
                                 if (CASH != 888) {
                                     await tixian() //提现
                                 }
