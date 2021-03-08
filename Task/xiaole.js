@@ -160,7 +160,7 @@ function GetCookie() {
                         cookie()
                     }
                 } else {
-                    {
+                    
                         $.setdata(xiaoleurlVal, "xiaoleurl" + $.idx);
                         $.setdata(xiaoleheaderVal, "xiaolehd" + $.idx);
                         $.log(
@@ -172,7 +172,6 @@ function GetCookie() {
                         );
                         $.msg($.name + $.idx, `获取header: 成功🎉`, ``);
                         $.done();
-                    }
                 };
 
             }
