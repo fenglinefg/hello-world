@@ -155,8 +155,7 @@ function GetCookie() {
                         $.idx = $.idx + 1
                         cookie()
                     }
-                } else {
-                    {
+                } else { 
                         $.setdata(bububaotokenVal, "bububaotoken" + $.idx);
                         $.log(
                             `[${$.name + $.idx}] 获取bububaotokenVal✅: 成功,bububaotokenVal: ${bububaotokenVal}`
@@ -164,7 +163,6 @@ function GetCookie() {
                         $.msg($.name + $.idx, `获取bububaotokenVal: 成功🎉`, ``);
 
                         $.done();
-                    }
                 };
 
             }
