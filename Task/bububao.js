@@ -141,8 +141,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('bububaotoken' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(bububaotokenVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] bububaotokenVal已存在✅: bububaotokenVal: ${bububaotokenVal}`
+                        );
+                        $.msg($.name + $.idx, `bububaotokenVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
