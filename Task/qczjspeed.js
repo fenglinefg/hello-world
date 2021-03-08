@@ -261,8 +261,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('GetUserInfoheader' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(GetUserInfoheaderVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] GetUserInfoheaderVal已存在✅: GetUserInfoheaderVal: ${GetUserInfoheaderVal}`
+                        );
+                        $.msg($.name + $.idx, `GetUserInfoheaderVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
@@ -293,8 +299,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('taskbody' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(taskbodyVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] taskbodyVal已存在✅: taskbodyVal: ${taskbodyVal}`
+                        );
+                        $.msg($.name + $.idx, `taskbodyVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
@@ -327,8 +339,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('activitybody' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(activitybodyVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] activitybodyVal已存在✅: activitybodyVal: ${activitybodyVal}`
+                        );
+                        $.msg($.name + $.idx, `activitybodyVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
@@ -358,8 +376,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('addCoinbody' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(addCoinbodyVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] addCoinbodyVal已存在✅: addCoinbodyVal: ${addCoinbodyVal}`
+                        );
+                        $.msg($.name + $.idx, `addCoinbodyVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
@@ -389,8 +413,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('addCoin2body' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(addCoin2bodyVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] addCoin2bodyVal已存在✅: addCoin2bodyVal: ${addCoin2bodyVal}`
+                        );
+                        $.msg($.name + $.idx, `addCoin2bodyVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
