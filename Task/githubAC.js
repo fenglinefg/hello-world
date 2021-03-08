@@ -13,6 +13,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 2.7-2 修正判定
 2.7-3 时间精确到5分
 1.12 修复
+3.8 替换为循环获取ck
 
 ⚠️一共1个位置 3个ck  👉 18条 Secrets(14个时间变量) 
 多账号换行
@@ -779,45 +780,55 @@ if (!COOKIE.githubACheaderVal) {
 function GetCookie() {
     if ($request && $request.url.indexOf("actions") >= 0 && $request.url.indexOf("manual") >= 0) {
 
-
-
-
         const githubACurlVal = $request.url
-        $.setdata(githubACurlVal, "githubACurl" + $.idx);
-        $.log(
-            `[${$.name + $.idx}] 获取githubACurl✅: 成功,githubACurlVal: ${githubACurlVal}`
-        );
-        $.msg($.name + $.idx, `获取githubACurl: 成功🎉`, ``);
-
-
-
         const githubACheaderVal = JSON.stringify($request.headers);
-        if (githubACheaderVal) {
-            $.setdata(githubACheaderVal, "githubACheader" + $.idx);
-            $.log(
-                `[${$.name + $.idx}] 获取githubACheaderVal✅: 成功,githubACheaderVal: ${githubACheaderVal}`
-            );
-            $.msg($.name + $.idx, `获取githubACheaderVal: 成功🎉`, ``);
+        const githubACnameVal = decodeURIComponent($request.headers.Referer).split('workflow:')[1];
+        const githubACbodyVal = $request.body;
 
+        if (githubACurlVal) {
+            cookie()
 
-            const githubACnameVal = decodeURIComponent($request.headers.Referer).split('workflow:')[1];
+            function cookie() {
+                bodys = $.getdata('githubACurl' + $.idx);
+                if (bodys) {
+                    if ($.idx == '') {
+                        $.idx = 2
+                        cookie()
+                    } else {
+                        $.idx = $.idx + 1
+                        cookie()
+                    }
+                } else {
+                    {
+                        $.setdata(githubACurlVal, "githubACurl" + $.idx);
+                        $.setdata(githubACheaderVal, "githubACheader" + $.idx);
+                        $.setdata(githubACnameVal, "githubACname" + $.idx);
+                        $.setdata(githubACbodyVal, "githubACbody" + $.idx);
+                        $.log(
+                            `[${$.name + $.idx}] 获取githubACurlVal✅: 成功,githubACurlVal: ${githubACurlVal}`
+                        );
+                        $.msg($.name + $.idx, `获取githubACurlVal: 成功🎉`, ``);
+                        $.log(
+                            `[${$.name + $.idx}] 获取githubACheaderVal✅: 成功,githubACheaderVal: ${githubACheaderVal}`
+                        );
+                        $.msg($.name + $.idx, `获取githubACheaderVal: 成功🎉`, ``);
 
-            $.setdata(githubACnameVal, "githubACname" + $.idx);
-            $.log(
-                `[${$.name + $.idx}] 获取githubACname✅: 成功,githubACnameVal: ${githubACnameVal}`
-            );
-            $.msg($.name + $.idx, `获取githubACname: 成功🎉`, ``);
+                        $.log(
+                            `[${$.name + $.idx}] 获取githubACnameVal✅: 成功,githubACnameVal: ${githubACnameVal}`
+                        );
+                        $.msg($.name + $.idx, `获取githubACnameVal: 成功🎉`, ``);
+                        $.log(
+                            `[${$.name + $.idx}] 获取githubACbodyVal✅: 成功,githubACbodyVal: ${githubACbodyVal}`
+                        );
+                        $.msg($.name + $.idx, `获取githubACbodyVal: 成功🎉`, ``);
+
+                        $.done();
+                    }
+                };
+
+            }
 
         }
-        const githubACbodyVal = $request.body;
-        if (githubACbodyVal) $.setdata(githubACbodyVal, "githubACbody" + $.idx);
-        $.log(
-            `[${$.name + $.idx}] 获取githubACbodyVal✅: 成功,githubACbodyVal: ${githubACbodyVal}`
-        );
-        $.msg($.name + $.idx, `获取githubACbodyVal: 成功🎉`, ``);
-
-
-
 
     }
 
@@ -964,7 +975,7 @@ async function all() {
             githubACurlVal = githubACurlArr[i];
             githubACheaderVal = githubACheaderArr[i];
             githubACbodyVal = githubACbodyArr[i];
-			
+
             HHAVal = HHAArr[i];
             HHBVal = HHBArr[i];
             HHCVal = HHCArr[i];
@@ -1000,7 +1011,7 @@ async function all() {
         await console.log(`-------------------------\n\n🔔开始运行${$.name+(i+1)}【${githubACnameVal}】`)
 
         $.message += `【${githubACnameVal}】${HHAVal}-${HHBVal} ${HHCVal}-${HHDVal} ${HHEVal}-${HHFVal} ${HHGVal}-${HHHVal} ${HHIVal}-${HHJVal} ${HHKVal}-${HHLVal} 的 ${MMAVal} ${MMBVal} ${MMCVal} ${MMDVal} ${MMEVal} ${MMFVal} ${MMGVal} ${MMHVal} ${MMIVal} ${MMJVal} ${MMKVal} ${MMLVal} 分运行\n`
-        
+
         if (((nowTimes.getHours() >= HHAVal && nowTimes.getHours() <= HHBVal) || (nowTimes.getHours() >= HHCVal && nowTimes.getHours() <= HHDVal) || (nowTimes.getHours() >= HHEVal && nowTimes.getHours() <= HHFVal) || (nowTimes.getHours() >= HHGVal && nowTimes.getHours() <= HHHVal) || (nowTimes.getHours() >= HHIVal && nowTimes.getHours() <= HHJVal) || (nowTimes.getHours() >= HHKVal && nowTimes.getHours() <= HHLVal)) && (nowTimes.getMinutes() == MMAVal || nowTimes.getMinutes() == MMBVal || nowTimes.getMinutes() == MMCVal || nowTimes.getMinutes() == MMDVal || nowTimes.getMinutes() == MMEVal || nowTimes.getMinutes() == MMFVal || nowTimes.getMinutes() == MMGVal || nowTimes.getMinutes() == MMHVal || nowTimes.getMinutes() == MMIVal || nowTimes.getMinutes() == MMJVal || nowTimes.getMinutes() == MMKVal || nowTimes.getMinutes() == MMLVal)) {
 
             await githubAC(); //运行
