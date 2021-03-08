@@ -42,6 +42,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 2.11 移除视频时间限制，LIVE设置666做新人180秒任务
 2.26 适配直播上限20次
 3.5 设置888由上至下循环提现
+3.8 替换为循环获取ck
 
 ⚠️一共1个位置 1个ck  👉 5条 Secrets 
 多账号换行
@@ -193,11 +194,33 @@ if (!COOKIE.refreshtokenVal) {
 function GetCookie() {
     if ($request && $request.url.indexOf("nf-user-auth-web") >= 0) {
         const refreshtokenVal = JSON.parse($response.body).data.refreshToken
-        $.setdata(refreshtokenVal, "refreshtoken" + $.idx);
-        $.log(
-            `[${$.name + $.idx}] 获取refreshtoken✅: 成功,refreshtokenVal: ${refreshtokenVal}`
-        );
-        $.msg($.name + $.idx, `获取refreshtoken: 成功🎉`, ``);
+
+        if (refreshtokenVal) {
+            cookie()
+
+            function cookie() {
+                bodys = $.getdata('refreshtoken' + $.idx);
+                if (bodys) {
+                    if ($.idx == '') {
+                        $.idx = 2
+                        cookie()
+                    } else {
+                        $.idx = $.idx + 1
+                        cookie()
+                    }
+                } else {
+                    {
+                        $.setdata(refreshtokenVal, "refreshtoken" + $.idx);
+                        $.log(
+                            `[${$.name + $.idx}] 获取refreshtokenVal✅: 成功,refreshtokenVal: ${refreshtokenVal}`
+                        );
+                        $.msg($.name + $.idx, `获取refreshtokenVal: 成功🎉`, ``);
+
+                        $.done();
+                    }
+                };
+            }
+        }
     }
 
 }
