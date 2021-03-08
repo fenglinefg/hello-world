@@ -240,8 +240,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('flwurl' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(flwurlVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] flwurlVal已存在✅: flwurlVal: ${flwurlVal}`
+                        );
+                        $.msg($.name + $.idx, `flwurlVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
@@ -271,8 +277,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('flwheader' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(flwheaderVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] flwheaderVal已存在✅: flwheaderVal: ${flwheaderVal}`
+                        );
+                        $.msg($.name + $.idx, `flwheaderVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
@@ -303,8 +315,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('flwspbody' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(flwspbodyVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] flwspbodyVal已存在✅: flwspbodyVal: ${flwspbodyVal}`
+                        );
+                        $.msg($.name + $.idx, `flwspbodyVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
@@ -337,8 +355,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('flwqwbody' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(flwqwbodyVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] flwqwbodyVal已存在✅: flwqwbodyVal: ${flwqwbodyVal}`
+                        );
+                        $.msg($.name + $.idx, `flwqwbodyVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
