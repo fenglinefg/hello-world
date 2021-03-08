@@ -145,8 +145,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('xiaoleurl' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(xiaoleurlVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] xiaoleurlVal已存在✅: xiaoleurlVal: ${xiaoleurlVal}`
+                        );
+                        $.msg($.name + $.idx, `xiaoleurlVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
