@@ -200,8 +200,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('refreshtoken' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(refreshtokenVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] refreshtokenVal已存在✅: refreshtokenVal: ${refreshtokenVal}`
+                        );
+                        $.msg($.name + $.idx, `refreshtokenVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
