@@ -128,8 +128,14 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('qmydtoken' + $.idx);
-                if (bodys) {
-                    if ($.idx == '') {
+                 if (bodys) {
+                    if (bodys.indexOf(qmydtokenVal) >= 0) {
+                        $.log(
+                            `[${$.name + $.idx}] qmydtokenVal已存在✅: qmydtokenVal: ${qmydtokenVal}`
+                        );
+                        $.msg($.name + $.idx, `qmydtokenVal已存在: 🎉`, ``);
+                        $.done();
+                    } else if ($.idx == '') {
                         $.idx = 2
                         cookie()
                     } else {
