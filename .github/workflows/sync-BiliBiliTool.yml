@@ -1,0 +1,28 @@
+name: sync-BiliBiliTool
+on:
+  schedule:
+    - cron: '0 */8 * * *'
+  workflow_dispatch:
+  watch:
+    types: started
+  repository_dispatch:
+    types: sync-BiliBiliTool
+jobs:
+  repo-sync:
+    env:
+      PAT: ${{ secrets.SECRET_HJ }} #此处PAT需要申请，教程详见：https://www.jianshu.com/p/bb82b3ad1d11
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: sync-BiliBiliTool
+        uses: repo-sync/github-sync@v2
+        if: env.PAT
+        with:
+          source_repo: "https://github.com/RayWangQvQ/BiliBiliTool.git"
+          source_branch: "main"
+          destination_branch: "BiliBiliTool"
+          github_token: ${{ secrets.SECRET_HJ }}
