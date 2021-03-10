@@ -38,6 +38,7 @@ jobs:
         run: |
           node jx_nc.js
         env:
+          JXNCTOKENS: ${{ secrets.JXNCTOKENS }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
           PUSH_KEY: ${{ secrets.PUSH_KEY }}
