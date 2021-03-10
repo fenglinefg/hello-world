@@ -1,4 +1,4 @@
-name: QQ阅读wechat
+name: QQ阅读wechat 15,30,60,100
 
 on:
   workflow_dispatch:
