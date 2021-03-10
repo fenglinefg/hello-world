@@ -406,16 +406,21 @@ def getflowEndTime(username):
     endTime = html.xpath('/html/body/div[1]/div[7]/ul/li[*]/div[2]/p[3]')
     for end in endTime:
         #寻找起止时间间隔位置
+        #end为空，可能无到期时间和开始时间
         end = end.text
-        index = end.find('-')+1
-        #切割得到流量包失效时间
-        end = end[index:index+10] + ' 23:59:59'
-        end = end.replace('.','-')
-        #将时间转换为时间数组
-        timeArray = time.strptime(end, "%Y-%m-%d %H:%M:%S")
-        #得到时间戳
-        timeStamp = int(time.mktime(timeArray))
-        endStamp.append(timeStamp-int(time.time()))
+        if end != None:
+            index = end.find('-')+1
+            #切割得到流量包失效时间
+            end = end[index:index+10] + ' 23:59:59'
+            end = end.replace('.','-')
+            #将时间转换为时间数组
+            timeArray = time.strptime(end, "%Y-%m-%d %H:%M:%S")
+            #得到时间戳
+            timeStamp = int(time.mktime(timeArray))
+            endStamp.append(timeStamp-int(time.time()))
+        else:
+            #将找不到结束时间的流量包设置为不激活
+            endStamp.append(86401)
     return endStamp
 
 #激活即将过期的流量包
