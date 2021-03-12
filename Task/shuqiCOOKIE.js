@@ -36,15 +36,12 @@ let cookie1 = {}
     let shuqispbodyVal =``
     let shuqiscbodyVal =``
     let shuqiydbodyVal =``
-    let shuqiqdbodyVal =``
-    let shuqibqqdyurlVal =``
-    let shuqibqqdbodyVal =``
+    let shuqiqdbodyVal =`` 
     let shuqirwbodyVal =``
     let shuqifxbodyVal =``
     let shuqisprwurlVal =``
     let shuqijlbodyVal =``
     let shuqisqjlbodyVal =``
-    let shuqimrydbodyVal =``
     let shuqicjyurlVal =``
     let shuqicjcsbodyVal =``
     let shuqicjbodyVal =``
@@ -55,8 +52,6 @@ let cookie1 = {}
     let shuqijsqdbodyVal =``
     let shuqijsqdspyurlVal =``
     let shuqijsqdspbodyVal =``
-    let shuqijsbqqdyurlVal =``
-    let shuqijsbqqdbodyVal =``
     let shuqijsrwbodyVal =``
     let shuqijsfxbodyVal =``
     let shuqijsbookurlVal =``
@@ -76,14 +71,11 @@ let cookie2 = {
     shuqiscbodyVal: shuqiscbodyVal,
     shuqiydbodyVal: shuqiydbodyVal,
     shuqiqdbodyVal: shuqiqdbodyVal,
-    shuqibqqdyurlVal: shuqibqqdyurlVal,
-    shuqibqqdbodyVal: shuqibqqdbodyVal,
     shuqirwbodyVal: shuqirwbodyVal,
     shuqifxbodyVal: shuqifxbodyVal,
     shuqisprwurlVal: shuqisprwurlVal,
     shuqijlbodyVal: shuqijlbodyVal,
     shuqisqjlbodyVal: shuqisqjlbodyVal,
-    shuqimrydbodyVal: shuqimrydbodyVal,
     shuqicjyurlVal: shuqicjyurlVal,
     shuqicjcsbodyVal: shuqicjcsbodyVal,
     shuqicjbodyVal: shuqicjbodyVal,
@@ -94,8 +86,6 @@ let cookie2 = {
     shuqijsqdbodyVal: shuqijsqdbodyVal,
     shuqijsqdspyurlVal: shuqijsqdspyurlVal,
     shuqijsqdspbodyVal: shuqijsqdspbodyVal,
-    shuqijsbqqdyurlVal: shuqijsbqqdyurlVal,
-    shuqijsbqqdbodyVal: shuqijsbqqdbodyVal,
     shuqijsrwbodyVal: shuqijsrwbodyVal,
     shuqijsfxbodyVal: shuqijsfxbodyVal,
     shuqijsbookurlVal: shuqijsbookurlVal,
