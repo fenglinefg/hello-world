@@ -43,6 +43,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
     shuqicjyurlVal👉  获取抽奖页url  点击福利转转转
     shuqicjcsbodyVal👉抽奖次数body   点击福利转转转 点击看视频抽奖
     shuqicjbodyVal👉  获取抽奖body   点击福利转转转 点击看视频抽奖
+    
     shuqijsspbodyVal👉 极速版视频body   极速版点击福利 赚金币 看视频
     shuqijsydurlVal👉  极速版阅读url    极速版点进一本书 右上角转一圈，如没有圈圈，建议放弃，
     shuqijsydbodyVal👉 极速版阅读body   极速版点进一本书 右上角转一圈，如没有圈圈，建议放弃，
