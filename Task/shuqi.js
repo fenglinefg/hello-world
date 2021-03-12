@@ -7,7 +7,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 转载请备注个名字，谢谢
 
 ⚠️
-书旗小说     手机号账号数据共通， 部分任务可叠加，此脚本包含2个app的所有任务（无阅读挑战赛）
+书旗小说     手机号账号数据共通， 部分任务可叠加，此脚本包含2个app的所有任务（无阅读挑战赛）共0.8-1元
  
 书旗普通版 支持多平台账号以及手机号登录     
 点击  https://apps.apple.com/cn/app/id733689509 下载APP 或者Appstore 搜索书旗小说 
@@ -22,6 +22,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.12 完成
 3.12-2 增加循环获取ck开关，默认关闭，调整阅读次数为20次
 3.12-3 修复ck获取问题，修复ck方式一，可boxjs复制数据黏贴
+3.12-4 修复ck获取问题
 
 ⚠️ 时间设置    7 0-23 * * *    每小时 1次就行 
 
@@ -34,38 +35,38 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 
 第二步 ⚠️添加header重写 获取header  再注释header重写   添加body重写  获取body
 
-    shuqiuserurlVal 👉 SQ_shuqiuserURL
-    shuqisyurlVal 👉 SQ_shuqisyURL
-    shuqisybodyVal 👉 SQ_shuqisyBODY
-    shuqispbodyVal 👉 SQ_shuqispBODY
-    shuqiscbodyVal 👉 SQ_shuqiscBODY
-    shuqiydbodyVal 👉 SQ_shuqiydBODY
-    shuqiqdbodyVal 👉 SQ_shuqiqdBODY
-    shuqibqqdyurlVal 👉 SQ_shuqibqqdyURL
-    shuqibqqdbodyVal 👉 SQ_shuqibqqdBODY
-    shuqirwbodyVal 👉 SQ_shuqirwBODY
-    shuqifxbodyVal 👉 SQ_shuqifxBODY
-    shuqisprwurlVal 👉 SQ_shuqisprwURL
-    shuqijlbodyVal 👉 SQ_shuqijlBODY
-    shuqisqjlbodyVal 👉 SQ_shuqisqjlBODY
-    shuqimrydbodyVal 👉 SQ_shuqimrydBODY
-    shuqicjyurlVal 👉 SQ_shuqicjyURL
-    shuqicjcsbodyVal 👉 SQ_shuqicjcsBODY
-    shuqicjbodyVal 👉 SQ_shuqicjBODY
+    shuqiuserurlVal👉 用户名url    点击福利
+    shuqisyurlVal👉  收益url       点击我的
+    shuqisybodyVal👉 收益body      点击我的
+    shuqispbodyVal👉 视频body      点击福利 看视频
+    shuqiscbodyVal👉 时长body      点进一本书， 看个30秒，时长有效期一天，提现再获取
+    shuqiydbodyVal👉 阅读body      点进一本书，右上角转一圈，如没有圈圈，建议放弃，或者用4.32版本
+    shuqiqdbodyVal👉 签到body      点击福利 每日签到并成功签到
+    shuqibqqdyurlVal👉 补签页url     点击福利 每日签到
+    shuqibqqdbodyVal👉 补签body    点击福利 每日签到并成功补签
+    shuqirwbodyVal👉 任务body      点击福利 
+    shuqifxbodyVal👉  分享body     点击福利 邀请书友，分享或者假分享
+    shuqisprwurlVal👉  视频任务url  点击福利
+    shuqijlbodyVal👉  获取奖励body   点击福利
+    shuqisqjlbodyVal👉 收取奖励body  点击福利 收取奖励
+    shuqimrydbodyVal👉 每日阅读body  点击福利 成功领取10分钟奖励 时长会掉，此ck不要也罢
+    shuqicjyurlVal👉  获取抽奖页url  点击福利转转转
+    shuqicjcsbodyVal👉抽奖次数body   点击福利转转转 点击看视频抽奖
+    shuqicjbodyVal👉  获取抽奖body   点击福利转转转 点击看视频抽奖
 
-    shuqijsspbodyVal 👉 SQ_shuqijsspBODY
-    shuqijsydurlVal 👉 SQ_shuqijsydURL
-    shuqijsydbodyVal 👉 SQ_shuqijsydBODY
-    shuqijsqdbodyVal 👉 SQ_shuqijsqdBODY
-    shuqijsqdspyurlVal 👉 SQ_shuqijsqdspyURL
-    shuqijsqdspbodyVal 👉 SQ_shuqijsqdspBODY
-    shuqijsbqqdyurlVal 👉 SQ_shuqijsbqqdyURL
-    shuqijsbqqdbodyVal 👉 SQ_shuqijsbqqdBODY
-    shuqijsrwbodyVal 👉 SQ_shuqijsrwBODY
-    shuqijsfxbodyVal 👉 SQ_shuqijsfxBODY
-    shuqijsbookurlVal 👉 SQ_shuqijsbookURL
-    shuqijsbookbodyVal 👉 SQ_shuqijsbookBODY
-    shuqijssprwurlVal 👉 SQ_shuqijssprwURL
+    shuqijsspbodyVal👉 极速版视频body   极速版点击福利 赚金币 看视频
+    shuqijsydurlVal👉  极速版阅读url    极速版点进一本书 右上角转一圈，如没有圈圈，建议放弃，
+    shuqijsydbodyVal👉 极速版阅读body   极速版点进一本书 右上角转一圈，如没有圈圈，建议放弃，
+    shuqijsqdbodyVal👉 极速版签到body    极速版点击福利 赚金币 每日签到  成功签到
+    shuqijsqdspyurlVal👉极速版签到视频页url  极速版点击福利 赚金币 每日签到  
+    shuqijsqdspbodyVal👉极速版签到视频url    极速版点击福利 赚金币 每日签到 成功第二次签到
+    shuqijsbqqdyurlVal👉 极速版补签页url     极速版点击福利 赚金币 每日签到  
+    shuqijsbqqdbodyVal👉  极速版补签body     极速版点击福利 赚金币 每日签到并成功补签
+    shuqijsrwbodyVal👉 极速版任务body        极速版点击福利 赚金币
+    shuqijsfxbodyVal👉  极速版分享body       极速版点击福利 赚金币 邀请书友，分享或者假分享
+    shuqijsbookurlVal👉 极速版书城url        极速版点击福利 赚金币 浏览书城
+    shuqijsbookbodyVal👉 极速版书城body     极速版点击福利 赚金币 浏览书城
+    shuqijssprwurlVal👉  极速版视频任务url   极速版点击福利 赚金币
 
 
 ⚠️主机名以及header重写👇     header重写 和 body重写不可同时启用
@@ -152,7 +153,7 @@ http-request https:\/\/jcollection\.shuqireader\.com\/* url script-request-body 
 
 
 */
-GXRZ = '3.12-3 修复ck获取问题，修复ck方式一，可boxjs复制数据黏贴'
+GXRZ = '3.12-4 修复ck获取问题'
 const $ = Env("书旗小说");
 $.idx = ($.idx = ($.getval('shuqiSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -1243,7 +1244,7 @@ function GetCookie() {
         }
     }
     //获取收益
-    if ($request && $request.url.indexOf("load") >= 0 && $request.url.indexOf("resource") >= 0 && $request.url.indexOf("skinColor=") >= 0 && $request.url.indexOf("appVer=4") >= 0 && $request.body.indexOf("isNewUser") >= 0) {
+    if ($request && $request.url.indexOf("load") >= 0 && $request.url.indexOf("resource") >= 0 && $request.url.indexOf("skinColor=") >= 0 && $request.url.indexOf("appVer=4") >= 0 && $request.body.indexOf("isNewUser") >= 0 && $request.body.indexOf("ShuqiVipEntry") >= 0 && $request.body.indexOf("ShuqiTab") < 0 && $request.body.indexOf("caid=") < 0 && $request.body.indexOf("ShuqiShelfCard") < 0 && $request.body.indexOf("ShuqiIOSUpdateInfo") < 0) {
 
         const shuqisyurlVal = $request.url
         const shuqisybodyVal = $request.body
@@ -1513,7 +1514,7 @@ function GetCookie() {
         }
     }
     //获取任务
-    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("params=") >= 0 && $request.body.indexOf("appVer=4") >= 0) {
+    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("params=") >= 0 && $request.body.indexOf("appVer=4") >= 0 && $request.body.indexOf("skinVersionPrefix=") >= 0 && $request.body.indexOf("isNewUser=") < 0 && $request.body.indexOf("reqEncryptType=") < 0) {
 
 
         const shuqirwbodyVal = $request.body;
@@ -2044,7 +2045,7 @@ function GetCookie() {
         }
     }
     //获取极速版任务
-    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("params=") >= 0 && $request.body.indexOf("appVer=1") >= 0) {
+    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("params=") >= 0 && $request.body.indexOf("appVer=1") >= 0 && $request.body.indexOf("skinVersionPrefix=") < 0 && $request.body.indexOf("isNewUser=") < 0 && $request.body.indexOf("reqEncryptType=") < 0) {
 
         const shuqijsrwbodyVal = $request.body;
         if (shuqijsrwbodyVal) {
