@@ -21,7 +21,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.8  制作
 3.12 完成
 3.12-2 增加循环获取ck开关，默认关闭，调整阅读次数为20次
-3.12-3 修复ck获取问题
+3.12-3 修复ck获取问题，修复ck方式二，可boxjs复制数据黏贴
 
 ⚠️ 时间设置    7 0-23 * * *    每小时 1次就行 
 
@@ -152,7 +152,7 @@ http-request https:\/\/jcollection\.shuqireader\.com\/* url script-request-body 
 
 
 */
-GXRZ = '3.12-3 修复ck获取问题'
+GXRZ = '3.12-3 修复ck获取问题，修复ck方式二，可boxjs复制数据黏贴'
 const $ = Env("书旗小说");
 $.idx = ($.idx = ($.getval('shuqiSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -603,6 +603,8 @@ if (COOKIE && COOKIE.shuqiuserurlVal) {
 }
 
 if (COOKIE.shuqiuserurl) {
+    cks = 31 //ck数量
+    COOKIEstringify = JSON.stringify(COOKIE);
     Length = COOKIEstringify.match(/getBindinfo/g).length
 }
 
