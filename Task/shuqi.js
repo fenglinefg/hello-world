@@ -20,7 +20,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 
 3.8  制作
 3.12 完成
-3.12-2 增加循环获取ck开关 默认关闭
+3.12-2 增加循环获取ck开关，默认关闭，调整阅读次数为20次
 
 ⚠️ 时间设置    7 0-23 * * *    每小时 1次就行 
 
@@ -151,7 +151,7 @@ http-request https:\/\/jcollection\.shuqireader\.com\/* url script-request-body 
 
 
 */
-GXRZ = '3.12-2 增加循环获取ck开关，默认关闭'
+GXRZ = '3.12-2 增加循环获取ck开关，默认关闭，调整阅读次数为20次'
 const $ = Env("书旗小说");
 $.idx = ($.idx = ($.getval('shuqiSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -2636,7 +2636,7 @@ function upload(timeout = 0) {
 function reads(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     let url = {
                         url: `https://ocean.shuqireader.com/api/ad/v1/api/prize/readpage/pendant/lottery`,
@@ -2665,10 +2665,10 @@ function reads(timeout = 0) {
             setTimeout(() => {
                 if ($.reads.status == 200) {
 
-                    console.log(`阅读奖励：获得10次奖励,今日已得${$.reads.data.todayBizCoinAmount}金币\n`);
-                    $.message += `【阅读奖励】：获得10次奖励,今日已得${$.reads.data.todayBizCoinAmount}金币\n`;
+                    console.log(`阅读奖励：获得20次奖励,今日已得${$.reads.data.todayBizCoinAmount}金币\n`);
+                    $.message += `【阅读奖励】：获得20次奖励,今日已得${$.reads.data.todayBizCoinAmount}金币\n`;
                 }
-            }, 46000)
+            }, 96000)
         }, timeout)
     })
 }
@@ -2802,7 +2802,7 @@ function resource(timeout = 0) {
 
                         if (readss.status == 0) {
                             await reads(); //阅读奖励
-                            await $.wait(46000)
+                            await $.wait(96000)
 
                         } else {
                             console.log(`${readss.taskTitle}：${readss.rewards[0].desc},已完成\n`);
@@ -3197,7 +3197,7 @@ function jsreads(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
 
-            for (let i = 0; i < 10; i++) {
+            for (let i = 0; i < 20; i++) {
                 setTimeout(() => {
                     let url = {
                         url: shuqijsydurlVal,
@@ -3226,10 +3226,10 @@ function jsreads(timeout = 0) {
             setTimeout(() => {
                 if ($.jsreads.status == 200) {
 
-                    console.log(`极速版阅读奖励：获得10次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}金币\n`);
-                    $.message += `【极速版阅读奖励】：获得10次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}金币\n`;
+                    console.log(`极速版阅读奖励：获得20次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}金币\n`);
+                    $.message += `【极速版阅读奖励】：获得20次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}金币\n`;
                 }
-            }, 46000)
+            }, 96000)
         }, timeout)
     })
 }
@@ -3434,7 +3434,7 @@ function jsresource(timeout = 0) {
 
                         if (jsreadss.status == 0) {
                             await jsreads(); //阅读奖励
-                            await $.wait(46000)
+                            await $.wait(96000)
 
                         } else {
                             console.log(`${jsreadss.taskTitle}：${jsreadss.rewards[0].desc},已完成\n`);
