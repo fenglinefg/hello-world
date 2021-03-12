@@ -104,6 +104,8 @@ USERS_COVER | config.json中内容
 ]
 ```
 
+填写之前完后，建议本地保存一份，方便下次填写。
+
 注意`json`格式，最后一个要删掉逗号。建议在填写之前，使用[json校验工具](https://www.bejson.com/)进行校验。
 
 注意：不要将个人信息填写到仓库`config.json`文件中（不要动这个文件就没事），以免泄露。
@@ -197,6 +199,11 @@ USERS_COVER | config.json中内容
 ## 将参数填到Secrets
 
 > 注意！为了确保 Push 权限足够，需要 Github Personal access tokens
+
+`token`获取方式如下：
+
+1. [生成新的token](https://github.com/settings/tokens/new)，点击这个链接。
+2. 为`token`设置名字，然后把`workflow`勾选上，点击最下方`Generate token`即可生成`token`。
 
 在`Secrets`中的`Name`和`Value`格式如下：
 
