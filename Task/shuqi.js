@@ -261,16 +261,17 @@ const middleshuqijsbookURL = [];
 const middleshuqijsbookBODY = [];
 const middleshuqijssprwURL = [];
 
-if ($.isNode() && COOKIE.shuqiuserurlVal && COOKIE.shuqiuserurlVal != '') {
 
-    console.log(
-        `============ cookie方式为：方式一 直接填写 =============\n`
-    );
-}
 if ($.isNode() && COOKIE.shuqiuserurl && COOKIE.shuqiuserurl != '') {
 
     console.log(
-        `============ cookie方式为：方式二 boxjs复制数据 =============\n`
+        `============ cookie方式为：方式一 boxjs复制数据 =============\n`
+    );
+}
+if ($.isNode() && COOKIE.shuqiuserurlVal && COOKIE.shuqiuserurlVal != '') {
+
+    console.log(
+        `============ cookie方式为：方式二 直接填写 =============\n`
     );
 }
 if ($.isNode() && process.env.SQ_shuqiuserURL) {
