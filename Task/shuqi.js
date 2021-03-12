@@ -481,7 +481,7 @@ if (COOKIE && COOKIE.shuqiuserurlVal) {
     Length = SQ_COOKIES.shuqiuserurlVal.length;
 }
 if (COOKIE.shuqiuserurl) {
-    cks = 31 //ck数量
+    cks = 26 //ck数量
     COOKIEstringify = JSON.stringify(COOKIE);
     Length = COOKIEstringify.match(/getBindinfo/g).length
 }
