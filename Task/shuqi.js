@@ -21,7 +21,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 
 ⚠️ 时间设置    7 0-23 * * *    每小时 1次就行 
 ⚠️一共2个软件  普通版15条 极速版11条  共      26个ck  👉 26条 Secrets 
-有啥多少ck就运行多少任务   shuqiuserurlVal   这个ck必须获取
+有多少ck就运行多少任务   shuqiuserurlVal 用户名url 👉 这个ck必须获取
 多账号换行
 
 第一步 添加 hostname =render.shuqireader.com,ocean.shuqireader.com,jcollection.shuqireader.com,activity-center-web.shuqireader.com,
