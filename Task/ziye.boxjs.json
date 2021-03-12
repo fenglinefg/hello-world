@@ -376,6 +376,13 @@
                     "val": "1",
                     "type": "number",
                     "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
+                },
+                {
+                    "id": "shuqiXH",
+                    "name": "循环获取CK",
+                    "val": "0",
+                    "type": "number",
+                    "desc": "0关闭 1开启,默认关闭"
                 }
             ],
             "repo": "https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/main/Task/shuqi.js",
