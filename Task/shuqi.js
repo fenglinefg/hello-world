@@ -21,6 +21,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.8  制作
 3.12 完成
 3.12-2 增加循环获取ck开关，默认关闭，调整阅读次数为20次
+3.12-3 修复ck获取问题
 
 ⚠️ 时间设置    7 0-23 * * *    每小时 1次就行 
 
@@ -151,7 +152,7 @@ http-request https:\/\/jcollection\.shuqireader\.com\/* url script-request-body 
 
 
 */
-GXRZ = '3.12-2 增加循环获取ck开关，默认关闭，调整阅读次数为20次'
+GXRZ = '3.12-3 修复ck获取问题'
 const $ = Env("书旗小说");
 $.idx = ($.idx = ($.getval('shuqiSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -1239,7 +1240,7 @@ function GetCookie() {
         }
     }
     //获取收益
-    if ($request && $request.url.indexOf("load") >= 0 && $request.url.indexOf("resource") >= 0 && $request.url.indexOf("appVer=4") >= 0) {
+    if ($request && $request.url.indexOf("load") >= 0 && $request.url.indexOf("resource") >= 0 && $request.url.indexOf("skinColor=") >= 0 && $request.url.indexOf("appVer=4") >= 0 && $request.body.indexOf("isNewUser") >= 0) {
 
         const shuqisyurlVal = $request.url
         const shuqisybodyVal = $request.body
@@ -1509,7 +1510,7 @@ function GetCookie() {
         }
     }
     //获取任务
-    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("appVer=4") >= 0) {
+    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("params=") >= 0 && $request.body.indexOf("appVer=4") >= 0) {
 
 
         const shuqirwbodyVal = $request.body;
@@ -2040,7 +2041,7 @@ function GetCookie() {
         }
     }
     //获取极速版任务
-    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("appVer=1") >= 0) {
+    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("params=") >= 0 && $request.body.indexOf("appVer=1") >= 0) {
 
         const shuqijsrwbodyVal = $request.body;
         if (shuqijsrwbodyVal) {
@@ -2451,7 +2452,6 @@ async function all() {
             await lotteryinfo(); //抽奖页面
         }
 
-
         if (shuqijsrwbodyVal && shuqijsrwbodyVal != '') {
             await jsresource() //极速版任务列表
         }
@@ -2464,8 +2464,6 @@ async function all() {
         if (shuqijsqdspyurlVal && shuqijsqdspyurlVal != '') {
             await jsqdvideolist(); //极速版签到视频任务
         }
-
-
 
         if (shuqijlbodyVal && shuqijlbodyVal != '') {
             await bubble(); //奖励页面
@@ -2604,7 +2602,8 @@ function coin(timeout = 0) {
 function upload(timeout = 0) {
     return new Promise((resolve) => {
         setTimeout(() => {
-            sqsc = shuqiscbodyVal.split('readingLen%22%3A')[1].split('%7D')[0]
+
+
             let url = {
                 url: `https://jcollection.shuqireader.com/collection/iosapi/reading/upload`,
                 headers: {
@@ -3005,8 +3004,21 @@ function readlist(timeout = 0) {
                             await readjl(); //每日阅读奖励
                         }
 
-                        if (shuqiscbodyVal && shuqiscbodyVal != '' && $.readlist.data.readTime < 180) {
-                            await upload(); //阅读时长
+                        if (shuqiscbodyVal && shuqiscbodyVal != '') {
+
+                            timestamp = shuqiscbodyVal.split('timestamp=')[1].split('&user_id')[0] * 1000
+                            sqsc = shuqiscbodyVal.split('readingLen%22%3A')[1].split('%7D')[0]
+                            if (timestamp >= daytime() && $.readlist.data.readTime < 180) {
+                                await upload() //上传时长
+                                await $.wait(10000)
+                                await upload() //上传时长
+                                await $.wait(10000)
+                                await upload() //上传时长
+                            } else {
+                                console.log(`上传时长：请获取今日时长CK\n`);
+                                $.message += `【上传时长】：请获取今日时长CK\n`;
+                            }
+
                         }
 
                     }
