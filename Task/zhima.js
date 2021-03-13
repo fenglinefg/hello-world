@@ -33,6 +33,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 
 
 zhimabodyVal 👉ZM_zhimabody
+zhimatxbodyVal 👉ZM_zhimatxbody
 
 CASH 👉ZM_CASH   可设置0.3 0.5 1 5 10 30 50 100 等等，设置完后自行获取对应body
 
