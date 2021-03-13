@@ -18,6 +18,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.12-3 修复ck获取问题，修复ck方式一，可boxjs复制数据黏贴
 3.12 - 4 修复ck获取问题
 3.12-5 去除无用任务，精简ck至26条
+3.14 修复极速版书城报错
 
 ⚠️ 时间设置    7 0-23 * * *    每小时 1次就行 
 ⚠️一共2个软件  普通版15条 极速版11条  共      26个ck  👉 26条 Secrets 
@@ -114,7 +115,7 @@ http-request https:\/\/jcollection\.shuqireader\.com\/* url script-request-body 
 
 
 */
-GXRZ = '3.12-5 去除无用任务，精简ck至26条'
+GXRZ = '3.14 修复极速版书城报错'
 const $ = Env("书旗小说");
 $.idx = ($.idx = ($.getval('shuqiSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -2584,13 +2585,13 @@ function jsresource(timeout = 0) {
                     if (shuqijsbookurlVal && shuqijsbookurlVal != '') {
                         if (jsbookss.status == 0) {
                             taskbook = `reward`
-                            await jsbook(); //每日书城
+                            await jsbooklist(); //每日书城
                         }
                     }
                     if (shuqijsbookbodyVal && shuqijsbookbodyVal != '') {
                         if (jsbookss.status == 2 && jsbookss.prizeStatus == 4) {
                             taskbook = `convert`
-                            await jsbook(); //书城领奖
+                            await jsbooklj; //书城领奖
                         } else if (jsbookss.status == 2 && jsbookss.prizeStatus == 2) {
                             console.log(`${jsbookss.taskTitle}：${jsbookss.rewards[0].desc},已完成\n`);
                             $.message += `【${jsbookss.taskTitle}】：${jsbookss.rewards[0].desc},已完成\n`;
