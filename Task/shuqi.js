@@ -949,6 +949,43 @@ function GetCookie() {
             };
         }
     }
+	
+	    //获取极速版书城
+    if ($request && $request.url.indexOf("convert") >= 0 && $request.body.indexOf("actTaskId=344") >= 0 && $request.body.indexOf("appVer=1") >= 0) {
+        const shuqijsbookbodyVal = $request.body;
+        if (shuqijsbookbodyVal) {
+            if (XH == 1) {
+                cookie()
+
+                function cookie() {
+                    bodys = $.getdata('shuqijsbookbody' + $.idx);
+                    if (bodys) {
+                        if ($.idx == '') {
+                            $.idx = 2
+                            cookie()
+                        } else {
+                            $.idx = $.idx + 1
+                            cookie()
+                        }
+                    } else {
+                        $.setdata(shuqijsbookbodyVal, "shuqijsbookbody" + $.idx);
+                        $.log(
+                            `[${$.name + $.idx}] 获取极速版书城shuqijsbookbodyVal✅: 成功,shuqijsbookbodyVal: ${shuqijsbookbodyVal}`
+                        );
+                        $.msg($.name + $.idx, `获取极速版书城shuqijsbookbodyVal: 成功🎉`, ``);
+                        $.done();
+                    };
+                }
+            } else {
+                $.setdata(shuqijsbookbodyVal, "shuqijsbookbody" + $.idx);
+                $.log(
+                    `[${$.name + $.idx}] 获取极速版书城shuqijsbookbodyVal✅: 成功,shuqijsbookbodyVal: ${shuqijsbookbodyVal}`
+                );
+                $.msg($.name + $.idx, `获取极速版书城shuqijsbookbodyVal: 成功🎉`, ``);
+                $.done();
+            };
+        }
+    }
     //获取视频
     if ($request && $request.url.indexOf("prize") >= 0 && $request.url.indexOf("lottery") >= 0 && $request.body.indexOf("deliveryId=525") >= 0) {
         const shuqispbodyVal = $request.body;
@@ -1536,42 +1573,7 @@ function GetCookie() {
             };
         }
     }
-    //获取极速版书城
-    if ($request && $request.url.indexOf("convert") >= 0 && $request.body.indexOf("actTaskId=344") >= 0 && $request.body.indexOf("appVer=1") >= 0) {
-        const shuqijsbookbodyVal = $request.body;
-        if (shuqijsbookbodyVal) {
-            if (XH == 1) {
-                cookie()
 
-                function cookie() {
-                    bodys = $.getdata('shuqijsbookbody' + $.idx);
-                    if (bodys) {
-                        if ($.idx == '') {
-                            $.idx = 2
-                            cookie()
-                        } else {
-                            $.idx = $.idx + 1
-                            cookie()
-                        }
-                    } else {
-                        $.setdata(shuqijsbookbodyVal, "shuqijsbookbody" + $.idx);
-                        $.log(
-                            `[${$.name + $.idx}] 获取极速版书城shuqijsbookbodyVal✅: 成功,shuqijsbookbodyVal: ${shuqijsbookbodyVal}`
-                        );
-                        $.msg($.name + $.idx, `获取极速版书城shuqijsbookbodyVal: 成功🎉`, ``);
-                        $.done();
-                    };
-                }
-            } else {
-                $.setdata(shuqijsbookbodyVal, "shuqijsbookbody" + $.idx);
-                $.log(
-                    `[${$.name + $.idx}] 获取极速版书城shuqijsbookbodyVal✅: 成功,shuqijsbookbodyVal: ${shuqijsbookbodyVal}`
-                );
-                $.msg($.name + $.idx, `获取极速版书城shuqijsbookbodyVal: 成功🎉`, ``);
-                $.done();
-            };
-        }
-    }
 }
 console.log(
     `================== 脚本执行 - 北京时间(UTC+8)：${new Date(
