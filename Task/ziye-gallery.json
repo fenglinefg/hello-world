@@ -4,9 +4,9 @@
     "description": "TG频道地址:https://t.me/ziyescript",
     "task": [
         {
-            "config": "1 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/qczjspeed.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qczjspeed.png, tag=汽车之家极速版, enabled=false",
+            "config": "1 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/qczjspeed.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole1.png, tag=汽车之家极速版, enabled=false",
         }, {
-            "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite1.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole.png, tag=汽车之家极速版获取header, enabled=false",
+            "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite1.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole1.png, tag=汽车之家极速版获取header, enabled=false",
             "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite1.txt, tag=汽车之家极速版获取header, update-interval=86400, opt-parser=false, enabled=false",
         }, {
             "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite2.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qczjspeed.png, tag=汽车之家极速版获取body, enabled=false",
