@@ -1,9 +1,10 @@
 
+
 {
-    "name": "ZIYE-task订阅",
-    "description": "Github地址",
+    "name": "Sample",
     "task": [{
-        "config": "1 30/* * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/qczjspeed.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qczjspeed.png, tag=汽车之家极速版获取header, enabled=true",
-        "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite1.txt, tag=汽车之家极速版获取header, update-interval=86400, opt-parser=true, enabled=true",
+        "config": "0 0 * * * https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/sample-task.js, img-url=https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/quantumult-x.png, tag=Sample, enabled=true",
+        "addons": "https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/sample-import-rewrite.txt"
     }],
+    "description": "This is a sample."
 }
