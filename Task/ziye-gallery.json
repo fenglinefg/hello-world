@@ -1,5 +1,4 @@
 
-
 {
     "name": "ZIYE-task订阅",
     "description": "Github地址:https://github.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/tree/main",
@@ -8,6 +7,5 @@
         "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite1.txt, tag=汽车之家极速版获取header, update-interval=86400, opt-parser=false, enabled=false",
     },{
         "config": "1 30/* * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/xiaole.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole.png, tag=汽车之家极速版获取body, enabled=false",
-        "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite2.txt, tag=汽车之家极速版获取body, update-interval=86400, opt-parser=false, enabled=false",
     }],
 }
