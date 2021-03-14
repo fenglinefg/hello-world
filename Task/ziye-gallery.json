@@ -2,7 +2,7 @@
 
 {
     "name": "Sample1",
-    "description": "github地址:https://github.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/tree/main"
+    "description": "github地址:https://github.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/tree/main",
     "task": [{
             "config": "0 0 * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/qczjspeed.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qczjspeed.png, tag=汽车之家极速版, enabled=false",
             "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite1.txt, tag=汽车之家极速版获取header, update-interval=86400, opt-parser=false, enabled=false",
