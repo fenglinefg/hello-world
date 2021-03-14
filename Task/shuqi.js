@@ -1132,7 +1132,7 @@ function GetCookie() {
         }
     }
     //获取任务
-    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("skinId=") >= 0&& $request.body.indexOf("params=") >= 0 && $request.body.indexOf("first_placeid=") >= 0&& $request.body.indexOf("appVer=4") >= 0 && $request.body.indexOf("skinVersionPrefix=") >= 0 && $request.body.indexOf("isNewUser=") < 0 && $request.body.indexOf("reqEncryptType=") < 0) {
+    if ($request && $request.url.indexOf("resource") >= 0 && $request.body.indexOf("resources") >= 0 && $request.body.indexOf("params=") >= 0 && $request.body.indexOf("appVer=4") >= 0 && $request.body.indexOf("skinVersionPrefix=") >= 0 && $request.body.indexOf("isNewUser=") < 0 && $request.body.indexOf("reqEncryptType=") < 0) {
         const shuqirwbodyVal = $request.body;
         if (shuqirwbodyVal) {
             if (XH == 1) {
