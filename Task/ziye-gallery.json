@@ -1,4 +1,11 @@
 
+/* ziye 
+github地址 https://github.com/6Svip120apk69
+TG频道地址  https://t.me/ziyescript
+TG交流群   https://t.me/joinchat/AAAAAE7XHm-q1-7Np-tF3g
+boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/main/Task/ziye.boxjs.json
+转载请备注个名字，谢谢
+*/
 
 {
     "name": "ZIYE-task订阅",
@@ -17,6 +24,8 @@
         },
 
 
+
+
         {
             "config": "50 7 8-23 * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/xiaole.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole.png, tag=小乐, enabled=false",
         }, {
@@ -28,6 +37,8 @@
         },
 
         
+
+
         {
             "config": "19 */30 8-23 * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/iboxpay.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/iboxpay.png, tag=笑谱, enabled=false",
         }, {
@@ -36,6 +47,8 @@
         },
         
         
+
+
         {
             "config": "16 0 7,10,23 * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/flw.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/flw.png, tag=返利网, enabled=false",
         }, {
@@ -47,6 +60,8 @@
         },
         
         
+
+
         {
             "config": "1 */5 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/githubAC.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/githubAC.png, tag=githubAC, enabled=false",
         }, {
@@ -55,6 +70,8 @@
         },
         
         
+
+
         {
             "config": "1 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/zhima.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/zhima.png, tag=芝嫲, enabled=false",
         }, {
@@ -63,6 +80,8 @@
         },
         
         
+
+
         {
             "config": "2 5 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/QQread.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/QQread.png, tag=QQ阅读, enabled=false",
         }, {
@@ -71,6 +90,8 @@
         },
         
         
+
+
         {
             "config": "7 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/bububao.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/bububao.png, tag=步步宝, enabled=false",
         }, {
@@ -79,6 +100,8 @@
         },
         
         
+
+
         {
             "config": "9 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/yuedongzu.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/yuedongzu.png, tag=悦动族, enabled=false",
         }, {
@@ -87,6 +110,8 @@
         },
         
         
+
+
         {
             "config": "11 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/qmyd.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qmyd.png, tag=全民悦动, enabled=false",
         }, {
@@ -95,6 +120,8 @@
         },
         
         
+
+
         {
             "config": "6 6 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/shuqi.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/shuqi.png, tag=书旗小说, enabled=false",
         }, {
@@ -115,5 +142,6 @@
         }
     ],
 }
+
 
 
