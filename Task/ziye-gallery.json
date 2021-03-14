@@ -1,11 +1,11 @@
 
 {
-    "name": "Sample",
+    "name": "Sample1",
     "task": [{
         "config": "0 0 * * * https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/sample-task.js, img-url=https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/quantumult-x.png, tag=Sample, enabled=true",
-        "config": "0 0 * * * https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/sample-task.js, img-url=https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/quantumult-x.png, tag=Sample, enabled=true",
+        
         "addons": "https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/sample-import-rewrite.txt"
-        "addons": "https:\/\/raw.githubusercontent.com\/crossutility\/Quantumult-X\/master\/sample-import-rewrite.txt"
+        
     }],
     "description": "This is a sample."
 }
