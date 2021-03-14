@@ -778,7 +778,7 @@ if (!COOKIE.githubACheaderVal) {
 
 
 function GetCookie() {
-    if ($request && $request.url.indexOf("actions") >= 0 && $request.url.indexOf("manual") >= 0) {
+    if ($request && $request.url.indexOf("actions") >= 0 && $request.url.indexOf("manual") >= 0&& $request.body.indexOf("authenticity_token=") >= 0&& $request.body.indexOf("workflow=") >= 0&& $request.body.indexOf("branch=") >= 0) {
 
         const githubACurlVal = $request.url
         const githubACheaderVal = JSON.stringify($request.headers);
