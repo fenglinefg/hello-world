@@ -1,0 +1,5 @@
+hostname=minapp.xqrobot.net,
+
+############## 圈x
+#小乐获取ck
+https:\/\/minapp\.xqrobot\.net\/* url script-request-header https://raw.githubusercontent.com/ziye11/JavaScript/main/Task/xiaole.js
