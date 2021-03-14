@@ -181,37 +181,6 @@
             "script": "https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/main/Task/githubAC.js"
         },
         {
-            "id": "duokandian",
-            "name": "多看点APP",
-            "keys": ["duokandianbody", "duokandianvideobody", "duokandianbody2", "duokandianvideobody2", "duokandianbody3", "duokandianvideobody3", "duokandianbody4", "duokandianvideobody4", "duokandianbody5", "duokandianvideobody5", "duokandianbody6", "duokandianvideobody6", "duokandianbody7", "duokandianvideobody7", "duokandianbody8", "duokandianvideobody8", "duokandianbody9", "duokandianvideobody9", "duokandianbody10", "duokandianvideobody10", "duokandianbody11", "duokandianvideobody11", "duokandianbody12", "duokandianvideobody12", "duokandianbody13", "duokandianvideobody13", "duokandianbody14", "duokandianvideobody14", "duokandianbody15", "duokandianvideobody15", "duokandianbody16", "duokandianvideobody16", "duokandianbody17", "duokandianvideobody17", "duokandianbody18", "duokandianvideobody18", "duokandianbody19", "duokandianvideobody19", "duokandianbody20", "duokandianvideobody20"],
-            "author": "@ziye",
-            "settings": [{
-                    "id": "duokandianSuffix",
-                    "name": "当前账号",
-                    "val": "1",
-                    "type": "number",
-                    "desc": "当前抓取ck记录的账号序号，如：1、2、3、"
-                },
-                {
-                    "id": "duokandianCount",
-                    "name": "账号个数",
-                    "val": "1",
-                    "type": "number",
-                    "desc": "指定任务最多跑几个账号，根据抓取的账号数据个数来设值"
-                },
-                {
-                    "id": "duokandianCASH",
-                    "name": "提现标准",
-                    "val": "0",
-                    "type": "number",
-                    "desc": "0不提现，可设置 0 1 3 5 15 "
-                }
-            ],
-            "repo": "https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/main/Task/duokandian.js",
-            "icons": ["https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/main/Task/duokandian.png", "https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/main/Task/duokandian.png"],
-            "script": "https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThxc1RBVUE/main/Task/duokandian.js"
-        },
-        {
             "id": "zhima",
             "name": "芝嫲视频",
             "keys": ["zhimabody", "zhimatxbody", "zhimabody2", "zhimatxbody2", "zhimabody3", "zhimatxbody3", "zhimabody4", "zhimatxbody4", "zhimabody5", "zhimatxbody5", "zhimabody6", "zhimatxbody6", "zhimabody7", "zhimatxbody7", "zhimabody8", "zhimatxbody8", "zhimabody9", "zhimatxbody9", "zhimabody10", "zhimatxbod10y", "zhimabody11", "zhimatxbody11", "zhimabody12", "zhimatxbody12", "zhimabody13", "zhimatxbody13", "zhimabody14", "zhimatxbody14", "zhimabody15", "zhimatxbody15", "zhimabody16", "zhimatxbody16", "zhimabody17", "zhimatxbody17", "zhimabody18", "zhimatxbody18", "zhimabody19", "zhimatxbody19", "zhimabody20", "zhimatxbody20"],
