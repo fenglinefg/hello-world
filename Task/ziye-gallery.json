@@ -5,7 +5,7 @@
     "task": [{
             "config": "2 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/qczjspeed.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qczjspeed.png, tag=汽车之家极速版, enabled=false",
         }, {
-            "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-header.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qczjspeed.png, tag=汽车之家极速版获取header, enabled=false",
+            "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-header..txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qczjspeed.png, tag=汽车之家极速版获取header, enabled=false",
             "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-header.txt, tag=汽车之家极速版获取header, update-interval=86400, opt-parser=false, enabled=false",
         }, {
             "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-body1.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/qczjspeed.png, tag=汽车之家极速版获取body, enabled=false",
@@ -20,10 +20,7 @@
 
         {
             "config": "50 7 8-23 * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/xiaole.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole.png, tag=小乐, enabled=false",
-        }, {
-            "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-xiaole-url.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole.png, tag=小乐获取url, enabled=false",
-            "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-xiaole-url.txt, tag=小乐获取url, update-interval=86400, opt-parser=false, enabled=false",
-        }, {
+        },{
             "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-xiaole-header.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole.png, tag=小乐获取header, enabled=false",
             "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-xiaole-header.txt, tag=小乐获取header, update-interval=86400, opt-parser=false, enabled=false",
         },
@@ -118,7 +115,7 @@
             "config": "6 6 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/shuqi.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/shuqi.png, tag=书旗小说, enabled=false",
         }, {
             "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-shuqi-header1.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/shuqi.png, tag=书旗小说获取header, enabled=false",
-            "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-shuqi-header.txt, tag=书旗小说获取header, update-interval=86400, opt-parser=false, enabled=false",
+            "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-shuqi-header1.txt, tag=书旗小说获取header, update-interval=86400, opt-parser=false, enabled=false",
         }, {
             "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-shuqi-header2.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/shuqi.png, tag=书旗小说获取极速版书城header, enabled=false",
             "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-shuqi-header2.txt, tag=书旗小说获取极速版书城header, update-interval=86400, opt-parser=false, enabled=false",
@@ -134,6 +131,3 @@
         }
     ],
 }
-
-
-
