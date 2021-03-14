@@ -16,7 +16,7 @@
             "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-qczjspeed-rewrite3.txt, tag=汽车之家极速版获取时段body, update-interval=86400, opt-parser=false, enabled=false",
         },
         {
-            "config": "19 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/xiaole.js, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole.png, tag=小乐, enabled=false",
+            "config": "19 */30 * * * * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/xiaole.js, img-url=http:\/\/mmbiz.qpic.cn/mmbiz_png\/GVzxE4zPy6nvZIibU85sKdoT1OjjD7sWuos8yCARymzSCgMFYzUCCWPLxQhqZQ8tVZkwaWEAJiaceosmyqr6Rmmg\/640?wx_fmt=png, tag=小乐, enabled=false",
         }, {
             "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-xiaole-rewrite1.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/xiaole.png, tag=小乐获取url, enabled=false",
             "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-xiaole-rewrite1.txt, tag=小乐获取url, update-interval=86400, opt-parser=false, enabled=false",
