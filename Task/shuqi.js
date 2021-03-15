@@ -2429,8 +2429,11 @@ function jsreads(timeout = 0) {
             }
             setTimeout(() => {
                 if ($.jsreads.status == 200) {
-                    console.log(`极速版阅读奖励：获得20次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}金币\n`);
+                    console.log(`极速版阅读奖励：获得20次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}\n`);
                     $.message += `【极速版阅读奖励】：获得20次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}金币\n`;
+                }else{
+                    console.log(`极速版阅读奖励：${$.jsreads.message}\n`);
+                    $.message += `【极速版阅读奖励】：${$.jsreads.message}\n`;
                 }
             }, 96000)
         }, timeout)
