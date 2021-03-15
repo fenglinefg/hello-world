@@ -19,8 +19,7 @@ jobs:
     if: github.event.repository.owner.id == github.event.sender.id
     steps:
       - name: Checkout
-        run: |
-          git clone https://github.com/demo2099/jd_jscripts.git ~/Scripts
+        uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
@@ -34,12 +33,10 @@ jobs:
           key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('package-lock.json') }} # 使用 package-lock.json 的 Hash 作为缓存的 key。也可以使用 package.json 代替
       - name: npm install
         run: |
-          cd ~/Scripts
           npm install
       - name: '运行 【京喜农场】'
         run: |
-          cd ~/Scripts
-          node jd_jxnc.js
+          node jx_nc.js
         env:
           JXNCTOKENS: ${{ secrets.JXNCTOKENS }}
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
