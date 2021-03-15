@@ -14,6 +14,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 2.7-3 时间精确到5分
 1.12 修复
 3.8 替换为循环获取ck
+3.15 增加即时触发功能，可让js随githubAC运行而即时启动
 
 ⚠️一共1个位置 3个ck  👉 18条 Secrets(14个时间变量) 
 多账号换行
