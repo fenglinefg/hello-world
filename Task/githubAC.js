@@ -1124,7 +1124,7 @@ function githubAC(timeout = 0) {
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 运行🚩: ${data}`);
-                    if (data.match(/github.com/g) && data.match(/GitHub/g)) {
+                    if (data.match(/github.com/g)) {
 
                         console.log(githubACnameVal + `${time(Number(tts()))}运行成功\n\n`)
                         $.message += githubACnameVal + `${time(Number(tts()))}运行成功\n\n`
