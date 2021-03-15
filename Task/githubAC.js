@@ -50,6 +50,8 @@ MMM 👉GIT_MMM
 MMN 👉GIT_MMN
 
 
+XXX👉 GIT_githubACXXX  //可设置0 不启动、js序号数 指定哪个js任务随githubAC运行而启动、 888 全部js启动
+
 ⚠️主机名以及重写👇
 
 
@@ -86,6 +88,9 @@ const logs = 0; // 0为关闭日志，1为开启
 const notifyttt = 1 // 0为关闭外部推送，1为12 23 点外部推送
 const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点通知  ， 3为 6 12 18 23 点通知 
 $.message = '', COOKIES_SPLIT = '', ddtime = '';
+
+
+
 const githubACnameArr = [];
 let githubACnameVal = ``;
 let middlegithubACNAME = [];
@@ -188,7 +193,10 @@ let middleMML = [];
 
 
 
-
+if ($.isNode()) {
+    // 没有设置 GIT_XXX 则默认为 0 不即时触发
+    XXX = process.env.GIT_XXX || 1;
+}
 
 
 
@@ -733,6 +741,9 @@ if (!COOKIE.githubACheaderVal) {
         MMKArr.push($.getdata("MMK"));
         MMLArr.push($.getdata("MML"));
         // 根据boxjs中设置的额外账号数，添加存在的账号数据进行任务处理
+        if ("githubACXXX") {
+            XXX = $.getval("githubACXXX") || '0';
+        }
 
         let githubACCount = ($.getval('githubACCount') || '1') - 0;
         for (let i = 2; i <= githubACCount; i++) {
@@ -778,7 +789,7 @@ if (!COOKIE.githubACheaderVal) {
 
 
 function GetCookie() {
-    if ($request && $request.url.indexOf("actions") >= 0 && $request.url.indexOf("manual") >= 0&& $request.body.indexOf("authenticity_token=") >= 0&& $request.body.indexOf("workflow=") >= 0&& $request.body.indexOf("branch=") >= 0) {
+    if ($request && $request.url.indexOf("actions") >= 0 && $request.url.indexOf("manual") >= 0 && $request.body.indexOf("authenticity_token=") >= 0 && $request.body.indexOf("workflow=") >= 0 && $request.body.indexOf("branch=") >= 0) {
 
         const githubACurlVal = $request.url
         const githubACheaderVal = JSON.stringify($request.headers);
@@ -790,7 +801,7 @@ function GetCookie() {
 
             function cookie() {
                 bodys = $.getdata('githubACurl' + $.idx);
-                 if (bodys) {
+                if (bodys) {
                     if (bodys.indexOf(githubACurlVal) >= 0) {
                         $.log(
                             `[${$.name + $.idx}] githubACurlVal已存在✅: githubACurlVal: ${githubACurlVal}`
@@ -850,7 +861,6 @@ console.log(
     `============ 共 ${Length} 个${$.name}账号=============\n`
 );
 
-
 //时间
 nowTimes = new Date(
     new Date().getTime() +
@@ -860,10 +870,10 @@ nowTimes = new Date(
 //今天
 Y = nowTimes.getFullYear() + '-';
 M = (nowTimes.getMonth() + 1 < 10 ? '0' + (nowTimes.getMonth() + 1) : nowTimes.getMonth() + 1) + '-';
-D = (nowTimes.getDate() + 1 < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getMonth());
+D = (nowTimes.getDate() < 10 ? '0' + (nowTimes.getDate()) : nowTimes.getDate());
 ddtime = Y + M + D;
 console.log(ddtime)
-
+//当前时间戳
 function tts(inputTime) {
     if ($.isNode()) {
         TTS = Math.round(new Date().getTime() +
@@ -872,9 +882,6 @@ function tts(inputTime) {
         new Date().getTimezoneOffset() * 60 * 1000 + 8 * 60 * 60 * 1000).toString();
     return TTS;
 };
-
-
-
 //当前10位时间戳
 function ts(inputTime) {
     if ($.isNode()) {
@@ -895,12 +902,9 @@ function daytime(inputTime) {
 };
 //时间戳格式化日期
 function time(inputTime) {
-
     if ($.isNode()) {
         var date = new Date(inputTime + 8 * 60 * 60 * 1000);
     } else var date = new Date(inputTime);
-
-
     Y = date.getFullYear() + '-';
     M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
     D = date.getDate() + ' ';
@@ -909,6 +913,46 @@ function time(inputTime) {
     s = date.getSeconds();
     return Y + M + D + h + m + s;
 };
+//日期格式化时间戳
+function timecs() {
+    if ($.isNode()) {
+        var date = new Date(newtime).getTime() - 8 * 60 * 60 * 1000
+    } else var date = new Date(newtime).getTime()
+    return date;
+};
+//随机udid 大写
+function udid() {
+    var s = [];
+    var hexDigits = "0123456789ABCDEF";
+    for (var i = 0; i < 36; i++) {
+        s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1);
+    }
+    s[14] = "4"; // bits 12-15 of the time_hi_and_version field to 0010
+    s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1); // bits 6-7 of the clock_seq_hi_and_reserved to 01
+    s[8] = s[13] = s[18] = s[23] = "-";
+    var uuid = s.join("");
+    return uuid;
+}
+//随机udid 小写
+function udid2() {
+    function S4() {
+        return (((1 + Math.random()) * 0x10000) | 0).toString(16).substring(1);
+    }
+    return (S4() + S4() + "-" + S4() + "-" + S4() + "-" + S4() + "-" + S4() + S4() + S4());
+}
+//编码
+function encodeUnicode(str) {
+    var res = [];
+    for (var i = 0; i < str.length; i++) {
+        res[i] = ("00" + str.charCodeAt(i).toString(16)).slice(-4);
+    }
+    return "\\u" + res.join("\\u");
+}
+//解码
+function decodeUnicode(str) {
+    str = str.replace(/\\/g, "%");
+    return unescape(str);
+}
 let isGetCookie = typeof $request !== 'undefined'
 if (isGetCookie) {
     GetCookie()
@@ -1022,6 +1066,18 @@ async function all() {
 
             await githubAC(); //运行
 
+        } else if (i + 1 == XXX || XXX == 888) {
+            if (XXX == 888) {
+                console.log(`即时触发已开启，您选择的是【全部启动】\n`)
+                $.message += `即时触发已开启，您选择的是【全部启动】\n`
+
+            } else {
+                console.log(`即时触发已开启，您选择的是【${XXX}号JS启动】\n`)
+                $.message += `即时触发已开启，您选择的是【${XXX}号JS启动】\n`
+
+            }
+            await githubAC(); //运行
+
         } else {
             console.log(`${githubACnameVal}:时间未到\n\n`)
             $.message += `${githubACnameVal}:时间未到\n\n`
@@ -1067,7 +1123,8 @@ function githubAC(timeout = 0) {
             $.post(url, async (err, resp, data) => {
                 try {
                     if (logs) $.log(`${O}, 运行🚩: ${data}`);
-                    if (data.match(/github.com/g)) {
+                    if (data.match(/github.com/g) && data.match(/GitHub/g)) {
+
                         console.log(githubACnameVal + `${time(Number(tts()))}运行成功\n\n`)
                         $.message += githubACnameVal + `${time(Number(tts()))}运行成功\n\n`
                     } else {
