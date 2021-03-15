@@ -228,6 +228,7 @@ function TotalBean() {
                     console.log(`${JSON.stringify(err)}`)
                     console.log(`${$.name} API请求失败，请检查网路重试`)
                 } else {
+                    console.log(data+"\n")
                     if (data) {
                         data = JSON.parse(data);
                         if (data['retcode'] === 13) {
