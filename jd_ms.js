@@ -289,6 +289,7 @@ function TotalBean() {
         } else {
           if (data) {
             data = JSON.parse(data);
+            console.log(data+"\n")
             if (data['retcode'] === 13) {
               $.isLogin = false; //cookie过期
               return
