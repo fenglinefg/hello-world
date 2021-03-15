@@ -938,7 +938,7 @@ function GetCookie() {
             } else {
                 $.setdata(shuqisyurlVal, "shuqisyurl" + $.idx);
                 $.log(
-                    `[${$.name + $.idx}] 获取收益shuqisyurlVal✅: 成功,shuqisyurlVal: $shuqisyurlVal}`
+                    `[${$.name + $.idx}] 获取收益shuqisyurlVal✅: 成功,shuqisyurlVal: ${shuqisyurlVal}`
                 );
                 $.msg($.name + $.idx, `获取收益shuqisyurlVal: 成功🎉`, ``);
                 $.setdata(shuqisybodyVal, "shuqisybody" + $.idx);
