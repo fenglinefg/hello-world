@@ -6,7 +6,7 @@ name: 京东手机尚学季脚本得京豆 03.15-03.19
 on:
     workflow_dispatch:
     schedule:
-        - cron: "0 16,20 * * *"
+        - cron: "0 16,20 15-19 03 *"
     watch:
         types: [started]
     repository_dispatch:
