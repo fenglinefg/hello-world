@@ -195,7 +195,7 @@ let middleMML = [];
 
 if ($.isNode()) {
     // 没有设置 GIT_XXX 则默认为 0 不即时触发
-    XXX = process.env.GIT_XXX || 1;
+    XXX = process.env.GIT_XXX || 0;
 }
 
 
