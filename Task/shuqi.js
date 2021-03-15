@@ -19,6 +19,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.12 - 4 修复ck获取问题
 3.12-5 去除无用任务，精简ck至26条
 3.14 修复极速版书城报错
+3.15 修复收益获取ck显示
 
 ⚠️ 时间设置    7 0-23 * * *    每小时 1次就行 
 ⚠️一共2个软件  普通版15条 极速版11条  共      26个ck  👉 26条 Secrets 
@@ -115,7 +116,7 @@ http-request https:\/\/jcollection\.shuqireader\.com\/* url script-request-body 
 
 
 */
-GXRZ = '3.14 修复极速版书城报错'
+GXRZ = '3.15 修复收益获取ck显示'
 const $ = Env("书旗小说");
 $.idx = ($.idx = ($.getval('shuqiSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
