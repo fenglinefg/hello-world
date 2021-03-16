@@ -1169,7 +1169,7 @@ function GetCookie() {
         }
     }
     //获取分享
-    if ($request && $request.url.indexOf("activity") >= 0 && $request.url.indexOf("reward") >= 0 && $request.body.indexOf("actTaskId=304") >= 0) {
+    if ($request && $request.url.indexOf("activity") >= 0&& $request.body.indexOf("appVer=4") >= 0&& $request.body.indexOf("actTaskId=357") >= 0) {
         const shuqifxbodyVal = $request.body;
         if (shuqifxbodyVal) {
             if (XH == 1) {
