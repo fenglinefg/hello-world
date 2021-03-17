@@ -340,6 +340,7 @@ function getTaskList() {
     return new Promise(async resolve => {
         $.get(taskUrl('query', `type=1`), async (err, resp, data) => {
             try {
+             console.log(data+"\n")
                 const res = data.match(/try\{whyour\(([\s\S]*)\)\;\}catch\(e\)\{\}/)[1];
                 const {detail, msg, task = [], retmsg, ...other} = JSON.parse(res);
                 $.detail = detail;
