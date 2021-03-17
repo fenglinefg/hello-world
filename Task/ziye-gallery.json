@@ -33,7 +33,10 @@
         }, {
             "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-iboxpay-body.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/iboxpay.png, tag=笑谱获取token, enabled=false",
             "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-iboxpay-body.txt, tag=笑谱获取token, update-interval=86400, opt-parser=false, enabled=false",
-        },
+        }, {
+            "config": "0 0 0 1 1 * https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-iboxpay-body2.txt, img-url=https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/master\/Task\/iboxpay.png, tag=笑谱获取视频ck, enabled=false",
+            "addons": "https:\/\/raw.githubusercontent.com\/6Svip120apk69\/gitee_q8qsTAUA_cThxc1RBVUE\/main\/Task\/ziye-iboxpay-body2.txt, tag=笑谱获取视频ck, update-interval=86400, opt-parser=false, enabled=false",
+        }
         
         
 
