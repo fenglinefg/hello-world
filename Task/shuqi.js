@@ -499,7 +499,7 @@ if (COOKIE.shuqiuserurl) {
     COOKIEstringify = JSON.stringify(COOKIE);
     Length = COOKIEstringify.match(/getBindinfo/g).length
 }
-if (!COOKIE) {
+if (!COOKIE || process.env.SQ_shuqiuserURL) {
     if ($.isNode()) {
         Object.keys(middleshuqiuserURL).forEach((item) => {
             if (middleshuqiuserURL[item]) {
