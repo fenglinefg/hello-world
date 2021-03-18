@@ -230,7 +230,7 @@ if (COOKIE.datas && COOKIE.datas[0].val != '') {
 
 }
 
-if (!COOKIE||process.env.XP_refreshTOKEN) {
+if (!COOKIE.datas) {
     if ($.isNode()) {
         Object.keys(middlerefreshTOKEN).forEach((item) => {
             if (middlerefreshTOKEN[item]) {
