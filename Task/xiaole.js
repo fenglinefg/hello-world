@@ -140,13 +140,13 @@ function GetCookie() {
     if ($request && $request.url.indexOf("/user.php?mod=index&") >= 0) {
         const xiaoleurlVal = $request.url;
         const xiaoleheaderVal = JSON.stringify($request.headers);
-        if (xiaoleurlVal) {
+        if (xiaoleheaderVal) {
             cookie()
 
             function cookie() {
                 bodys = $.getdata('xiaoleurl' + $.idx);
                  if (bodys) {
-                    if (bodys.indexOf(xiaoleurlVal) >= 0) {
+                    if (bodys.indexOf(xiaoleheaderVal) >= 0) {
                         $.log(
                             `[${$.name + $.idx}] xiaoleurlVal已存在✅: xiaoleurlVal: ${xiaoleurlVal}`
                         );
