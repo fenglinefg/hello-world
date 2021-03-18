@@ -20,6 +20,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.12-5 去除无用任务，精简ck至26条
 3.14 修复极速版书城报错
 3.15 修复收益获取ck显示
+3.18 独立COOKIE增加boxjs复制会话模式
 
 ⚠️ 时间设置    7 0-23 * * *    每小时 1次就行 
 ⚠️一共2个软件  普通版15条 极速版11条  共      26个ck  👉 26条 Secrets 
@@ -116,7 +117,7 @@ http-request https:\/\/jcollection\.shuqireader\.com\/* url script-request-body 
 
 
 */
-GXRZ = '3.15 修复收益获取ck显示'
+GXRZ = '3.18 独立COOKIE增加boxjs复制会话模式'
 const $ = Env("书旗小说");
 $.idx = ($.idx = ($.getval('shuqiSuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -205,16 +206,22 @@ const middleshuqijsfxBODY = [];
 const middleshuqijsbookURL = [];
 const middleshuqijsbookBODY = [];
 const middleshuqijssprwURL = [];
+if ($.isNode() && COOKIE.datas && COOKIE.datas[0].val != '') {
+    console.log(
+        `============ cookie方式为：方式一 boxjs复制会话 =============\n`
+    );
+}
 if ($.isNode() && COOKIE.shuqiuserurl && COOKIE.shuqiuserurl != '') {
     console.log(
-        `============ cookie方式为：方式一 boxjs复制数据 =============\n`
+        `============ cookie方式为：方式二 boxjs复制数据 =============\n`
     );
 }
 if ($.isNode() && COOKIE.shuqiuserurlVal && COOKIE.shuqiuserurlVal != '') {
     console.log(
-        `============ cookie方式为：方式二 直接填写 =============\n`
+        `============ cookie方式为：方式三 直接填写 =============\n`
     );
 }
+
 if ($.isNode() && process.env.SQ_shuqiuserURL) {
     COOKIES_SPLIT = process.env.COOKIES_SPLIT || "\n";
     console.log(
@@ -481,6 +488,11 @@ if (COOKIE && COOKIE.shuqiuserurlVal) {
         }
     }
     Length = SQ_COOKIES.shuqiuserurlVal.length;
+}
+if (COOKIE.datas && COOKIE.datas[0].val != '') {
+
+    shuqiCount = COOKIE.settings.find(item => item.id === `shuqiCount`);
+    Length = shuqiCount.val
 }
 if (COOKIE.shuqiuserurl) {
     cks = 26 //ck数量
@@ -1707,6 +1719,72 @@ async function all() {
         return;
     }
     for (let i = 0; i < Length; i++) {
+
+if (COOKIE.datas && COOKIE.datas[0].val != '') {
+
+
+if (i == 0) {
+    op = ``
+} else {
+    op = i + 1
+    }
+
+            shuqiuserurl = COOKIE.datas.find(item => item.key === `shuqiuserurl${op}`);
+            shuqisyurl = COOKIE.datas.find(item => item.key === `shuqisyurl${op}`);
+            shuqisybody = COOKIE.datas.find(item => item.key === `shuqisybody${op}`);
+            shuqispbody = COOKIE.datas.find(item => item.key === `shuqispbody${op}`);
+            shuqiscbody = COOKIE.datas.find(item => item.key === `shuqiscbody${op}`);
+            shuqiydbody = COOKIE.datas.find(item => item.key === `shuqiydbody${op}`);
+            shuqiqdbody = COOKIE.datas.find(item => item.key === `shuqiqdbody${op}`);
+            shuqirwbody = COOKIE.datas.find(item => item.key === `shuqirwbody${op}`);
+            shuqifxbody = COOKIE.datas.find(item => item.key === `shuqifxbody${op}`);
+            shuqisprwurl = COOKIE.datas.find(item => item.key === `shuqisprwurl${op}`);
+            shuqijlbody = COOKIE.datas.find(item => item.key === `shuqijlbody${op}`);
+            shuqisqjlbody = COOKIE.datas.find(item => item.key === `shuqisqjlbody${op}`);
+            shuqicjyurl = COOKIE.datas.find(item => item.key === `shuqicjyurl${op}`);
+            shuqicjcsbody = COOKIE.datas.find(item => item.key === `shuqicjcsbody${op}`);
+            shuqicjbody = COOKIE.datas.find(item => item.key === `shuqicjbody${op}`);
+            shuqijsspbody = COOKIE.datas.find(item => item.key === `shuqijsspbody${op}`);
+            shuqijsydurl = COOKIE.datas.find(item => item.key === `shuqijsydurl${op}`);
+            shuqijsydbody = COOKIE.datas.find(item => item.key === `shuqijsydbody${op}`);
+            shuqijsqdbody = COOKIE.datas.find(item => item.key === `shuqijsqdbody${op}`);
+            shuqijsqdspyurl = COOKIE.datas.find(item => item.key === `shuqijsqdspyurl${op}`);
+            shuqijsqdspbody = COOKIE.datas.find(item => item.key === `shuqijsqdspbody${op}`);
+            shuqijsrwbody = COOKIE.datas.find(item => item.key === `shuqijsrwbody${op}`);
+            shuqijsfxbody = COOKIE.datas.find(item => item.key === `shuqijsfxbody${op}`);
+            shuqijsbookurl = COOKIE.datas.find(item => item.key === `shuqijsbookurl${op}`);
+            shuqijsbookbody = COOKIE.datas.find(item => item.key === `shuqijsbookbody${op}`);
+            shuqijssprwurl = COOKIE.datas.find(item => item.key === `shuqijssprwurl${op}`);
+
+
+            shuqiuserurlVal = shuqiuserurl.val;
+            shuqisyurlVal = shuqisyurl.val;
+            shuqisybodyVal = shuqisybody.val;
+            shuqispbodyVal = shuqispbody.val;
+            shuqiscbodyVal = shuqiscbody.val;
+            shuqiydbodyVal = shuqiydbody.val;
+            shuqiqdbodyVal = shuqiqdbody.val;
+            shuqirwbodyVal = shuqirwbody.val;
+            shuqifxbodyVal = shuqifxbody.val;
+            shuqisprwurlVal = shuqisprwurl.val;
+            shuqijlbodyVal = shuqijlbody.val;
+            shuqisqjlbodyVal = shuqisqjlbody.val;
+            shuqicjyurlVal = shuqicjyurl.val;
+            shuqicjcsbodyVal = shuqicjcsbody.val;
+            shuqicjbodyVal = shuqicjbody.val;
+            shuqijsspbodyVal = shuqijsspbody.val;
+            shuqijsydurlVal = shuqijsydurl.val;
+            shuqijsydbodyVal = shuqijsydbody.val;
+            shuqijsqdbodyVal = shuqijsqdbody.val;
+            shuqijsqdspyurlVal = shuqijsqdspyurl.val;
+            shuqijsqdspbodyVal = shuqijsqdspbody.val;
+            shuqijsrwbodyVal = shuqijsrwbody.val;
+            shuqijsfxbodyVal = shuqijsfxbody.val;
+            shuqijsbookurlVal = shuqijsbookurl.val;
+            shuqijsbookbodyVal = shuqijsbookbody.val;
+            shuqijssprwurlVal = shuqijssprwurl.val;
+
+        }
         if (COOKIE && COOKIE.shuqiuserurlVal) {
             shuqiuserurlVal = SQ_COOKIES.shuqiuserurlVal[i];
             shuqisyurlVal = SQ_COOKIES.shuqisyurlVal[i];
