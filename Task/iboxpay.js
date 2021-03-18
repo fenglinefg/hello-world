@@ -956,10 +956,10 @@ function video(timeout = 0) {
             for (let i = 0; i < videoBODY.length; i++) {
                 setTimeout(() => {
 
-                    token = videoHEADER[0].split(`"token":"`)[1].split(`",`)[0]
-                    videoHEADER2 = videoHEADER[0].replace(`${token}`, `${TOKEN}`)
-                    SPID = videoBODY[0].split(`"actId":"`)[1].split(`"}`)[0]
-                    videoBODY2 = videoBODY[0].replace(`${SPID}`, `${spid.actId}`)
+                    token = videoHEADER[i+1].split(`"token":"`)[1].split(`",`)[0]
+                    videoHEADER2 = videoHEADER[i+1].replace(`${token}`, `${TOKEN}`)
+                    SPID = videoBODY[i+1].split(`"actId":"`)[1].split(`"}`)[0]
+                    videoBODY2 = videoBODY[i+1].replace(`${SPID}`, `${spid.actId}`)
 
                     let url = {
                         url: `https://veishop.iboxpay.com/nf_gateway/nf_customer_activity/day_cash/v1/give_gold_coin_by_video.json`,
