@@ -573,7 +573,7 @@ async function all() {
             }
         }
 
-        if (iboxpayvideoheaderVal && iboxpayvideobodyVal && iboxpayvideoheaderVal != '' && iboxpayvideobodyVal != '' && LIVE != 2 && $.splimit.data.isUperLimit == false || LIVE == 888) {
+        if (iboxpayvideoheaderVal && iboxpayvideobodyVal && iboxpayvideoheaderVal != '' && iboxpayvideobodyVal != '' && LIVE != 2 && ($.splimit.data.isUperLimit == false || LIVE == 888)) {
 
             videoHEADER = iboxpayvideoheaderVal.split('&');
             videoBODY = iboxpayvideobodyVal.split('&');
