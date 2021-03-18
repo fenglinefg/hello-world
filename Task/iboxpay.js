@@ -45,7 +45,10 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.8 替换为循环获取ck
 3.9 因视频功能无效，故取消视频，默认开启直播
 3.17 修复视频功能， 暂时设置ck上限为10
-3.18 修复视频错误，修复小错误
+3.18 修复视频错误，修复小错误，新增COOKIE方式一 boxjs复制会话
+
+
+
 ⚠️一共1个位置 3个ck  👉 7条 Secrets 
 多账号换行
 
@@ -123,7 +126,7 @@ http-requires https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf_customer_activity\
 
 
 */
-GXRZ = '3.18 修复视频错误，修复小错误'
+GXRZ = '3.18 修复视频错误，修复小错误，新增COOKIE方式一 boxjs复制会话'
 const $ = Env("笑谱");
 $.idx = ($.idx = ($.getval('iboxpaySuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -141,18 +144,29 @@ let livecs = 0,
 RT = 30000;
 const refreshtokenArr = [];
 let refreshtokenVal = ``;
-let middlerefreshTOKEN = [];
+const middlerefreshTOKEN = [];
 const iboxpayvideoheaderArr = [];
 let iboxpayvideoheaderVal = ``;
-let middleiboxpayvideoHEADER = [];
+const middleiboxpayvideoHEADER = [];
 const iboxpayvideobodyArr = [];
 let iboxpayvideobodyVal = ``;
-let middleiboxpayvideoBODY = [];
+const middleiboxpayvideoBODY = [];
+if ($.isNode() && COOKIE.datas && COOKIE.datas[0].val != '') {
+    console.log(
+        `============ cookie方式为：方式一 boxjs复制会话 =============\n`
+    );
+}
+if ($.isNode() && COOKIE.refreshtokenVal && COOKIE.refreshtokenVal != '') {
+    console.log(
+        `============ cookie方式为：方式三 直接填写 =============\n`
+    );
+}
+
 if ($.isNode()) {
     // 没有设置 XP_CASH 则默认为 0 不提现
     CASH = process.env.XP_CASH || 0;
     // 没有设置 XP_live 则默认0
-    LIVE = process.env.XP_live || 0;
+    LIVE = process.env.XP_live || 1;
     // 没有设置 XP_phone 则默认为 0 
     phone = process.env.XP_phone || 0;
     // 没有设置 XP_sms 则默认0  不获取TOKEN
@@ -200,7 +214,23 @@ if (COOKIE.refreshtokenVal) {
     }
     Length = XP_COOKIES.refreshtokenVal.length;
 }
-if (!COOKIE.refreshtokenVal) {
+if (COOKIE.datas && COOKIE.datas[0].val != '') {
+
+iboxpayCount = COOKIE.settings.find(item => item.id === `iboxpayCount`);
+iboxpayLIVE = COOKIE.settings.find(item => item.id === `iboxpayLIVE`);
+iboxpayCASH = COOKIE.settings.find(item => item.id === `iboxpayCASH`);
+iboxpayphone = COOKIE.settings.find(item => item.id === `iboxpayphone`);
+iboxpaysms = COOKIE.settings.find(item => item.id === `iboxpaysms`);
+
+    Length = iboxpayCount.val
+    LIVE = iboxpayLIVE.val
+    CASH = iboxpayCASH.val
+    phone = iboxpayphone.val
+    sms = iboxpaysms.val
+
+}
+
+if (!COOKIE) {
     if ($.isNode()) {
         Object.keys(middlerefreshTOKEN).forEach((item) => {
             if (middlerefreshTOKEN[item]) {
@@ -503,6 +533,24 @@ async function all() {
         return;
     }
     for (let i = 0; i < Length; i++) {
+        if (COOKIE.datas && COOKIE.datas[0].val != '') {
+
+
+            if (i == 0) {
+                op = ``
+            } else {
+                op = i + 1
+            }
+
+            refreshtokens = COOKIE.datas.find(item => item.key === `refreshtoken${op}`);
+            iboxpayvideoheader = COOKIE.datas.find(item => item.key === `iboxpayvideoheader${op}`);
+            iboxpayvideobody = COOKIE.datas.find(item => item.key === `iboxpayvideobody${op}`);
+            
+            refreshtokenVal = refreshtokens.val;
+            iboxpayvideoheaderVal = iboxpayvideoheader.val;
+            iboxpayvideobodyVal = iboxpayvideobody.val;
+            
+        }
 
         if (COOKIE.refreshtokenVal) {
 
@@ -510,7 +558,7 @@ async function all() {
             iboxpayvideoheaderVal = XP_COOKIES.iboxpayvideoheaderVal[i];
             iboxpayvideobodyVal = XP_COOKIES.iboxpayvideobodyVal[i];
         }
-        if (!COOKIE.refreshtokenVal) {
+        if (!COOKIE) {
 
             refreshtokenVal = refreshtokenArr[i];
             iboxpayvideoheaderVal = iboxpayvideoheaderArr[i];
