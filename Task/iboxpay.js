@@ -591,7 +591,7 @@ async function all() {
 
             }
 
-        } else if (!iboxpayvideoheaderVal && !iboxpayvideobodyVal && iboxpayvideoheaderVal == '' && iboxpayvideobodyVal == '') {
+        } else if (!iboxpayvideoheaderVal || !iboxpayvideobodyVal || iboxpayvideoheaderVal == '' || iboxpayvideobodyVal == '') {
             console.log('视频奖励：未获取视频ck\n');
             $.message += '【视频奖励】：未获取视频ck\n'
         } else if (LIVE == 2) {
