@@ -128,32 +128,32 @@ const notifyInterval = 2; // 0为关闭通知，1为所有通知，2为12 23 点
 $.message = '', COOKIES_SPLIT = '', CASH = '', XH = 0, ddtime = '';
 CZ = 10
 Length = 0
-const shuqiuserurlArr = [];
-const shuqisyurlArr = [];
-const shuqisybodyArr = [];
-const shuqispbodyArr = [];
-const shuqiscbodyArr = [];
-const shuqiydbodyArr = [];
-const shuqiqdbodyArr = [];
-const shuqirwbodyArr = [];
-const shuqifxbodyArr = [];
-const shuqisprwurlArr = [];
-const shuqijlbodyArr = [];
-const shuqisqjlbodyArr = [];
-const shuqicjyurlArr = [];
-const shuqicjcsbodyArr = [];
-const shuqicjbodyArr = [];
-const shuqijsspbodyArr = [];
-const shuqijsydurlArr = [];
-const shuqijsydbodyArr = [];
-const shuqijsqdbodyArr = [];
-const shuqijsqdspyurlArr = [];
-const shuqijsqdspbodyArr = [];
-const shuqijsrwbodyArr = [];
-const shuqijsfxbodyArr = [];
-const shuqijsbookurlArr = [];
-const shuqijsbookbodyArr = [];
-const shuqijssprwurlArr = [];
+let shuqiuserurlArr = [];
+let shuqisyurlArr = [];
+let shuqisybodyArr = [];
+let shuqispbodyArr = [];
+let shuqiscbodyArr = [];
+let shuqiydbodyArr = [];
+let shuqiqdbodyArr = [];
+let shuqirwbodyArr = [];
+let shuqifxbodyArr = [];
+let shuqisprwurlArr = [];
+let shuqijlbodyArr = [];
+let shuqisqjlbodyArr = [];
+let shuqicjyurlArr = [];
+let shuqicjcsbodyArr = [];
+let shuqicjbodyArr = [];
+let shuqijsspbodyArr = [];
+let shuqijsydurlArr = [];
+let shuqijsydbodyArr = [];
+let shuqijsqdbodyArr = [];
+let shuqijsqdspyurlArr = [];
+let shuqijsqdspbodyArr = [];
+let shuqijsrwbodyArr = [];
+let shuqijsfxbodyArr = [];
+let shuqijsbookurlArr = [];
+let shuqijsbookbodyArr = [];
+let shuqijssprwurlArr = [];
 let shuqiuserurlVal = ``;
 let shuqisyurlVal = ``;
 let shuqisybodyVal = ``;
@@ -180,32 +180,32 @@ let shuqijsfxbodyVal = ``;
 let shuqijsbookurlVal = ``;
 let shuqijsbookbodyVal = ``;
 let shuqijssprwurlVal = ``;
-const middleshuqiuserURL = [];
-const middleshuqisyURL = [];
-const middleshuqisyBODY = [];
-const middleshuqispBODY = [];
-const middleshuqiscBODY = [];
-const middleshuqiydBODY = [];
-const middleshuqiqdBODY = [];
-const middleshuqirwBODY = [];
-const middleshuqifxBODY = [];
-const middleshuqisprwURL = [];
-const middleshuqijlBODY = [];
-const middleshuqisqjlBODY = [];
-const middleshuqicjyURL = [];
-const middleshuqicjcsBODY = [];
-const middleshuqicjBODY = [];
-const middleshuqijsspBODY = [];
-const middleshuqijsydURL = [];
-const middleshuqijsydBODY = [];
-const middleshuqijsqdBODY = [];
-const middleshuqijsqdspyURL = [];
-const middleshuqijsqdspBODY = [];
-const middleshuqijsrwBODY = [];
-const middleshuqijsfxBODY = [];
-const middleshuqijsbookURL = [];
-const middleshuqijsbookBODY = [];
-const middleshuqijssprwURL = [];
+let middleshuqiuserURL = [];
+let middleshuqisyURL = [];
+let middleshuqisyBODY = [];
+let middleshuqispBODY = [];
+let middleshuqiscBODY = [];
+let middleshuqiydBODY = [];
+let middleshuqiqdBODY = [];
+let middleshuqirwBODY = [];
+let middleshuqifxBODY = [];
+let middleshuqisprwURL = [];
+let middleshuqijlBODY = [];
+let middleshuqisqjlBODY = [];
+let middleshuqicjyURL = [];
+let middleshuqicjcsBODY = [];
+let middleshuqicjBODY = [];
+let middleshuqijsspBODY = [];
+let middleshuqijsydURL = [];
+let middleshuqijsydBODY = [];
+let middleshuqijsqdBODY = [];
+let middleshuqijsqdspyURL = [];
+let middleshuqijsqdspBODY = [];
+let middleshuqijsrwBODY = [];
+let middleshuqijsfxBODY = [];
+let middleshuqijsbookURL = [];
+let middleshuqijsbookBODY = [];
+let middleshuqijssprwURL = [];
 if ($.isNode() && COOKIE.datas && COOKIE.datas[0].val != '') {
     console.log(
         `============ cookie方式为：方式一 boxjs复制会话 =============\n`
@@ -963,8 +963,8 @@ function GetCookie() {
             };
         }
     }
-	
-	    //获取极速版书城
+
+    //获取极速版书城
     if ($request && $request.url.indexOf("convert") >= 0 && $request.body.indexOf("actTaskId=344") >= 0 && $request.body.indexOf("appVer=1") >= 0) {
         const shuqijsbookbodyVal = $request.body;
         if (shuqijsbookbodyVal) {
@@ -1181,7 +1181,7 @@ function GetCookie() {
         }
     }
     //获取分享
-    if ($request && $request.url.indexOf("activity") >= 0&& $request.body.indexOf("appVer=4") >= 0&& $request.body.indexOf("actTaskId=357") >= 0) {
+    if ($request && $request.url.indexOf("activity") >= 0 && $request.body.indexOf("appVer=4") >= 0 && $request.body.indexOf("actTaskId=357") >= 0) {
         const shuqifxbodyVal = $request.body;
         if (shuqifxbodyVal) {
             if (XH == 1) {
@@ -1720,14 +1720,14 @@ async function all() {
     }
     for (let i = 0; i < Length; i++) {
 
-if (COOKIE.datas && COOKIE.datas[0].val != '') {
+        if (COOKIE.datas && COOKIE.datas[0].val != '') {
 
 
-if (i == 0) {
-    op = ``
-} else {
-    op = i + 1
-    }
+            if (i == 0) {
+                op = ``
+            } else {
+                op = i + 1
+            }
 
             shuqiuserurl = COOKIE.datas.find(item => item.key === `shuqiuserurl${op}`);
             shuqisyurl = COOKIE.datas.find(item => item.key === `shuqisyurl${op}`);
@@ -2510,7 +2510,7 @@ function jsreads(timeout = 0) {
                 if ($.jsreads.status == 200) {
                     console.log(`极速版阅读奖励：获得20次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}\n`);
                     $.message += `【极速版阅读奖励】：获得20次奖励,今日已得${$.jsreads.data.todayBizCoinAmount}金币\n`;
-                }else{
+                } else {
                     console.log(`极速版阅读奖励：${$.jsreads.message}\n`);
                     $.message += `【极速版阅读奖励】：${$.jsreads.message}\n`;
                 }
