@@ -51,7 +51,7 @@ MMM 👉GIT_MMM
 MMN 👉GIT_MMN
 
 
-XXX👉 GIT_githubACXXX  //可设置0 不启动、js序号数 指定哪个js任务随githubAC运行而启动、 888 全部js启动
+XXX👉 GIT_XXX  //可设置0 不启动、js序号数 指定哪个js任务随githubAC运行而启动、 888 全部js启动
 
 ⚠️主机名以及重写👇
 
