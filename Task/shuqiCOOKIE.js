@@ -8,62 +8,72 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 转载请备注个名字，谢谢
 
 方式一
-在boxjs里选择复制数据 粘贴至cookie1处
-
+在boxjs里选择复制会话 粘贴至cookie1处
 
 
 方式二
+在boxjs里选择复制数据 粘贴至cookie2处
+
+
+
+方式三
 把每一个ck在分别``里面填写，多账号换行 
 
 */
 
+modulees = 1 //1 选择方式一 2 选择方式二 3 选择方式三
 
-modulees = 2 //1 选择方式一 2 选择方式二
+
+
+
 
 //方式一
 let cookie1 = {}
 
 
 
-
-
-
-
 //方式二
-    let shuqiuserurlVal =``
-    let shuqisyurlVal =``
-    let shuqisybodyVal =``
-    let shuqispbodyVal =``
-    let shuqiscbodyVal =``
-    let shuqiydbodyVal =``
-    let shuqiqdbodyVal =`` 
-    let shuqirwbodyVal =``
-    let shuqifxbodyVal =``
-    let shuqisprwurlVal =``
-    let shuqijlbodyVal =``
-    let shuqisqjlbodyVal =``
-    let shuqicjyurlVal =``
-    let shuqicjcsbodyVal =``
-    let shuqicjbodyVal =``
-
-    let shuqijsspbodyVal =``
-    let shuqijsydurlVal =``
-    let shuqijsydbodyVal =``
-    let shuqijsqdbodyVal =``
-    let shuqijsqdspyurlVal =``
-    let shuqijsqdspbodyVal =``
-    let shuqijsrwbodyVal =``
-    let shuqijsfxbodyVal =``
-    let shuqijsbookurlVal =``
-    let shuqijsbookbodyVal =``
-    let shuqijssprwurlVal =``
+let cookie2 = {}
 
 
 
 
 
+//方式三
+let shuqiuserurlVal = ``
+let shuqisyurlVal = ``
+let shuqisybodyVal = ``
+let shuqispbodyVal = ``
+let shuqiscbodyVal = ``
+let shuqiydbodyVal = ``
+let shuqiqdbodyVal = ``
+let shuqirwbodyVal = ``
+let shuqifxbodyVal = ``
+let shuqisprwurlVal = ``
+let shuqijlbodyVal = ``
+let shuqisqjlbodyVal = ``
+let shuqicjyurlVal = ``
+let shuqicjcsbodyVal = ``
+let shuqicjbodyVal = ``
 
-let cookie2 = {
+let shuqijsspbodyVal = ``
+let shuqijsydurlVal = ``
+let shuqijsydbodyVal = ``
+let shuqijsqdbodyVal = ``
+let shuqijsqdspyurlVal = ``
+let shuqijsqdspbodyVal = ``
+let shuqijsrwbodyVal = ``
+let shuqijsfxbodyVal = ``
+let shuqijsbookurlVal = ``
+let shuqijsbookbodyVal = ``
+let shuqijssprwurlVal = ``
+
+
+
+
+
+
+let cookie3 = {
     shuqiuserurlVal: shuqiuserurlVal,
     shuqisyurlVal: shuqisyurlVal,
     shuqisybodyVal: shuqisybodyVal,
@@ -105,4 +115,9 @@ if (modulees == 1) {
 
 if (modulees == 2) {
     module.exports = cookie2
+}
+
+
+if (modulees == 3) {
+    module.exports = cookie3
 }
