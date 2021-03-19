@@ -190,23 +190,23 @@ if ($.isNode() && process.env.XP_refreshTOKEN) {
         middlerefreshTOKEN = process.env.XP_refreshTOKEN.split();
     }
     if (process.env.XP_iboxpayvideoHEADER) {
-    if (
-        process.env.XP_iboxpayvideoHEADER &&
-        process.env.XP_iboxpayvideoHEADER.indexOf(COOKIES_SPLIT) > -1
-    ) {
-        middleiboxpayvideoHEADER = process.env.XP_iboxpayvideoHEADER.split(COOKIES_SPLIT);
-    } else {
-        middleiboxpayvideoHEADER = process.env.XP_iboxpayvideoHEADER.split();
+        if (
+            process.env.XP_iboxpayvideoHEADER &&
+            process.env.XP_iboxpayvideoHEADER.indexOf(COOKIES_SPLIT) > -1
+        ) {
+            middleiboxpayvideoHEADER = process.env.XP_iboxpayvideoHEADER.split(COOKIES_SPLIT);
+        } else {
+            middleiboxpayvideoHEADER = process.env.XP_iboxpayvideoHEADER.split();
+        }
+        if (
+            process.env.XP_iboxpayvideoBODY &&
+            process.env.XP_iboxpayvideoBODY.indexOf(COOKIES_SPLIT) > -1
+        ) {
+            middleiboxpayvideoBODY = process.env.XP_iboxpayvideoBODY.split(COOKIES_SPLIT);
+        } else {
+            middleiboxpayvideoBODY = process.env.XP_iboxpayvideoBODY.split();
+        }
     }
-    if (
-        process.env.XP_iboxpayvideoBODY &&
-        process.env.XP_iboxpayvideoBODY.indexOf(COOKIES_SPLIT) > -1
-    ) {
-        middleiboxpayvideoBODY = process.env.XP_iboxpayvideoBODY.split(COOKIES_SPLIT);
-    } else {
-        middleiboxpayvideoBODY = process.env.XP_iboxpayvideoBODY.split();
-    }
- }
 }
 if (COOKIE.refreshtokenVal) {
     XP_COOKIES = {
@@ -233,7 +233,7 @@ if (COOKIE.datas && COOKIE.datas[0].val != '') {
 
 }
 
-if (!COOKIE.datas&&!COOKIE.refreshtokenVal) {
+if (!COOKIE.datas && !COOKIE.refreshtokenVal) {
     if ($.isNode()) {
         Object.keys(middlerefreshTOKEN).forEach((item) => {
             if (middlerefreshTOKEN[item]) {
@@ -561,7 +561,7 @@ async function all() {
             iboxpayvideoheaderVal = XP_COOKIES.iboxpayvideoheaderVal[i];
             iboxpayvideobodyVal = XP_COOKIES.iboxpayvideobodyVal[i];
         }
-        if (!COOKIE.datas&&!COOKIE.refreshtokenVal) {
+        if (!COOKIE.datas && !COOKIE.refreshtokenVal) {
 
             refreshtokenVal = refreshtokenArr[i];
             iboxpayvideoheaderVal = iboxpayvideoheaderArr[i];
@@ -969,11 +969,12 @@ function videoo(timeout = 0) {
                         if ($.videoo.errorCode == "GATEWAY-ERROR-002") {
                             console.log('视频奖励：⚠️进入冷却中......\n');
                             $.message += '【视频奖励】：⚠️进入冷却中......\n'
-                        }
-
-                        if ($.videoo.errorCode == "GATEWAY-ERROR-003") {
+                        }else if ($.videoo.errorCode == "GATEWAY-ERROR-003") {
                             console.log('视频奖励：⚠️TOKEN失效\n');
                             $.message += '【视频奖励】：⚠️TOKEN失效\n'
+                        } else{
+                            console.log(`视频奖励：⚠️${$.videoo.errorCode}\n`);
+                            $.message += `【视频奖励】：⚠️${$.videoo.errorCode}\n`
                         }
 
                     }
