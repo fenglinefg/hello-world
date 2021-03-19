@@ -46,6 +46,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.9 因视频功能无效，故取消视频，默认开启直播
 3.17 修复视频功能， 暂时设置ck上限为10
 3.18 修复视频错误，修复小错误，新增COOKIE方式一 boxjs复制会话
+3.19 修复ac运行报错
 
 
 
@@ -126,7 +127,7 @@ http-requires https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf_customer_activity\
 
 
 */
-GXRZ = '3.18 修复视频错误，修复小错误，新增COOKIE方式一 boxjs复制会话'
+GXRZ = '3.19 修复ac运行报错'
 const $ = Env("笑谱");
 $.idx = ($.idx = ($.getval('iboxpaySuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -188,6 +189,7 @@ if ($.isNode() && process.env.XP_refreshTOKEN) {
     } else {
         middlerefreshTOKEN = process.env.XP_refreshTOKEN.split();
     }
+    if (process.env.XP_iboxpayvideoHEADER) {
     if (
         process.env.XP_iboxpayvideoHEADER &&
         process.env.XP_iboxpayvideoHEADER.indexOf(COOKIES_SPLIT) > -1
@@ -204,6 +206,7 @@ if ($.isNode() && process.env.XP_refreshTOKEN) {
     } else {
         middleiboxpayvideoBODY = process.env.XP_iboxpayvideoBODY.split();
     }
+ }
 }
 if (COOKIE.refreshtokenVal) {
     XP_COOKIES = {
@@ -558,7 +561,7 @@ async function all() {
             iboxpayvideoheaderVal = XP_COOKIES.iboxpayvideoheaderVal[i];
             iboxpayvideobodyVal = XP_COOKIES.iboxpayvideobodyVal[i];
         }
-        if (!COOKIE) {
+        if (!COOKIE.datas&&!COOKIE.refreshtokenVal) {
 
             refreshtokenVal = refreshtokenArr[i];
             iboxpayvideoheaderVal = iboxpayvideoheaderArr[i];
