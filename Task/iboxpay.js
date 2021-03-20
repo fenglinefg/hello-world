@@ -47,7 +47,7 @@ boxjs链接  https://raw.githubusercontent.com/6Svip120apk69/gitee_q8qsTAUA_cThx
 3.17 修复视频功能， 暂时设置ck上限为10
 3.18 修复视频错误，修复小错误，新增COOKIE方式一 boxjs复制会话
 3.19 修复ac运行报错
-3.20 视频ck有效期目前未知，增加失效判定
+3.20 视频ck有效期目前未知，增加失效判定，直播上限为5000，已适配
 
 
 
@@ -128,7 +128,7 @@ http-requires https:\/\/veishop\.iboxpay\.com\/nf_gateway\/nf_customer_activity\
 
 
 */
-GXRZ = '3.20 视频ck有效期目前未知，增加失效判定'
+GXRZ = '3.20 视频ck有效期目前未知，增加失效判定，直播上限为5000，已适配'
 const $ = Env("笑谱");
 $.idx = ($.idx = ($.getval('iboxpaySuffix') || '1') - 1) > 0 ? ($.idx + 1 + '') : ''; // 账号扩展字符
 const notify = $.isNode() ? require("./sendNotify") : ``;
@@ -614,7 +614,7 @@ async function all() {
             }
         }
 
-        if (LIVE >= 1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23 && $.sylist.resultCode && livecs < 20) {
+        if (LIVE >= 1 && nowTimes.getHours() >= 8 && nowTimes.getHours() <= 23 && $.sylist.resultCode && livecs < 10) {
             await liveslist(); //直播节目表
             if (liveIdcd >= 1) {
                 dd = liveIdcd * 35 - 34
