@@ -207,9 +207,6 @@ def collectFlow_task():
         'stepflag': '22'
     }
     
-    data2 = {
-        'stepflag': '23'
-    }
     try:
         for i in range(3):
             #看视频
@@ -441,7 +438,6 @@ def actionFlow(username):
         #程序早上7：30运行，正好当天可使用
         if end < 86400:
             flag = False
-            param = 'activeCode='+datas[i]['activeCode']+'&prizeRecordID='+datas[i]['prizeRecordID']+'&activeName='+'做任务领奖品'
             activeData = {
                 'activeCode': datas[i]['activeCode'],
                 'prizeRecordID': datas[i]['prizeRecordID'],
