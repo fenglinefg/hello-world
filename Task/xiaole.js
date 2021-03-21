@@ -384,7 +384,7 @@ function coin(timeout = 0) {
                 try {
                     if (logs) $.log(`${O}, 账户信息🚩: ${data}`);
                     $.coin = JSON.parse(data);
-                    if ($.coin && $.coin.info && $.coin.info.user_name) {
+                    if ($.coin && $.coin.info && $.coin.info.user_money) {
                         $.message += `\n${O}`;
                         $.message += `\n========== 【${$.coin.info.user_name}】 ==========\n` +
                             '【现金余额】：' + $.coin.info.user_money + '元' + '\n' +
