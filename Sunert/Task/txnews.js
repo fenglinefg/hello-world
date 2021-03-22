@@ -1,6 +1,6 @@
 
 /*
-更新时间: 2021-03-21 10:40
+更新时间: 2021-03-22 21:30
 
 腾讯新闻签到修改版，可以自动阅读文章获取红包，该活动为瓜分百万现金挑战赛，针对幸运用户参与，本脚本已不能自动打开红包，需每天要打开腾讯新闻app一次，请须知
 
@@ -180,13 +180,14 @@ function open() {
  };
      url.headers['Referer'] = 'http://inews.qq.com/inews/iphone/';
      url.headers['Host'] = 'api.prize.qq.com';
- $.post(url, (error, resp, data) => {
+ $.post(url, async(error, resp, data) => {
      if(resp.statusCode ==200){
        obj = JSON.parse(data);
        if(obj.code==0){
          amount = obj.data.type=="rp" ? "天天领红包获得"+obj.data.amount/100+"元": "天天领红包获得"+obj.data.amount+"个金币"
-         $.log(amount)
-         $.msg($.name, amount,"")
+         $.log(amount);
+         $.msg($.name, amount,"");
+         await zhuli()
        }
      } else if(resp.statusCode !== 403){
        $.log(JSON.stringify(resp,null,2))
@@ -196,6 +197,27 @@ function open() {
   })
 }
 
+function zhuli() {
+ return new Promise((resolve, reject) => {
+    treetoken = prizeVal.split("?")[1]
+ let url = {
+     url: 'https://api.prize.qq.com/v1/newsapp/rpinvite/zhuli?actname=hongbaozhongxinyaoqing&activefrom=invitetask&'+treetoken,
+     headers: Host().headers,
+     body: "inviter_openid=17A2385EE6D27888DB9F9D6B0BE90EEA&source=main"
+ };
+     url.headers['Referer'] = 'http://inews.qq.com/inews/iphone/';
+     url.headers['Host'] = 'api.prize.qq.com';
+ $.post(url, (error, resp, data) => {
+     if(resp.statusCode ==200){
+       obj=JSON.parse(data);
+       if(obj.code==0){
+         //$.log(obj.message)
+       }
+      }
+      resolve()
+     })
+   })
+}
 function treesign() {
  return new Promise((resolve, reject) => {
   treetoken = prizeVal.split("?")[1]
