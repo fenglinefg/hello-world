@@ -345,6 +345,7 @@ function days(timeout = 0) {
       }
       $.get(url, async (err, resp, data) => {
         try {
+          console.log(data+"   ---------------------------------------------------");
           if (logs) $.log(`${O}, 任务列表🚩: ${data}`);
           $.days = JSON.parse(data);
           if ($.days.code == 0) {
@@ -395,6 +396,7 @@ function sign(timeout = 0) {
       }
       $.post(url, async (err, resp, data) => {
         try {
+          console.log(data+"   ---------------------------------------------------");
           if (logs) $.log(`${O}, 今日签到🚩: ${data}`);
           $.sign = JSON.parse(data);
           if ($.sign.code == 0) {
@@ -449,6 +451,7 @@ function extrabox(timeout = 0) {
       }
       $.get(url, async (err, resp, data) => {
         try {
+          console.log(data+"   ---------------------------------------------------");
           if (logs) $.log(`${O}, 🚩: ${data}`);
           $.extrabox = JSON.parse(data);
           if ($.extrabox.code == 0) {
