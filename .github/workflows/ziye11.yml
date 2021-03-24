@@ -22,7 +22,7 @@ jobs:
         uses: repo-sync/github-sync@v2
         if: env.PAT
         with:
-          source_repo: "https://github.com/ziye11/JavaScript.git"
-          source_branch: "main"
+          source_repo: "https://github.com/sngxpro/actionjd.git"
+          source_branch: "ZIYE"
           destination_branch: "ziye11"
           github_token: ${{ secrets.SECRET_HJ }}
