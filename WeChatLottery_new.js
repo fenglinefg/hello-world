@@ -128,7 +128,7 @@ async function Sign() {
        // await Share()
         await GetData()
         if (exchangeMoney) {
-            //await Exchange()
+            await Exchange()
         }
         await notify()
     } else {
