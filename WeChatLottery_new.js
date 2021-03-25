@@ -121,14 +121,14 @@ async function Sign() {
     await Valid()
     if (ValidToken) {
         await Checkin()
-        await Join()
-        await Exchangerandom()
+        //await Join()
+        //await Exchangerandom()
         await Task()
         await Win()
-        await Share()
+       // await Share()
         await GetData()
         if (exchangeMoney) {
-            await Exchange()
+            //await Exchange()
         }
         await notify()
     } else {
@@ -184,7 +184,7 @@ function Valid() {
         }
         $cmp.get(LotteryData, function (error, response, data) {
             try {
-              console.log(data + "-------------187 动抽奖有效期 \n")
+   
                 if (response.status == 200) {
                     const obj = JSON.parse(data)
                     datainfo.exchangeId = 52
@@ -219,7 +219,7 @@ function Checkin() {
         }
         $cmp.get(LotteryCheckin, function(error, response, data) {
             try{
-              console.log(data + "-------------222 活动抽奖签到 \n")
+           
                 if (error) {
                     datainfo.error = 1
                     datainfo.errormessage = error
@@ -234,10 +234,10 @@ function Checkin() {
                     }
                     $cmp.get(LotteryCheckindata, function(error, response, data) {
                         try{
-                          console.log(data + "-------------237 活动抽奖签到结果 \n")
+                          
                             const checkindata = JSON.parse(data)
-                            let day = checkindata.data.cycle
-                            datainfo.luckcoin = checkindata.data.sign_lucky[day - 1]
+                            let day = checkindata.data.sign_info.cycle
+                            datainfo.luckcoin = checkindata.data.sign_info.sign_lucky[day - 1]
                             resolve('done')
                         } catch (e) {
                             $cmp.notify("活动抽奖签到结果" + e.name + "‼️", JSON.stringify(e), e.message)
@@ -426,7 +426,7 @@ function Task() {
         }
         $cmp.get(LotteryGetTask, function(error, response, data) {
             try{
-              console.log(data + "-------------429 活动列表Task() \n")
+              //console.log(data + "-------------429 活动列表Task() \n")
                 const gettask = JSON.parse(data)
                 datainfo.taskcoin = 0
                 datainfo.taskCnt = 0
@@ -441,7 +441,7 @@ function Task() {
                     let ename = welfarel.name
                     $cmp.post(LotteryTask, function (error, response, data) {
                         try{
-                          console.log(data + "-------------444 活动抽奖LotteryTask \n")
+                         // console.log(data + "-------------444 活动抽奖LotteryTask \n")
                             const task = JSON.parse(data)
                             if (task.success == true && task.data) {
                                 datainfo.taskCnt += 1
@@ -465,7 +465,7 @@ function Task() {
                     let ename = dayl.name
                     $cmp.post(LotteryTask, function (error, response, data) {
                         try{
-                          console.log(data + "-------------468 活动抽奖LotteryTask \n")
+                          //console.log(data + "-------------468 活动抽奖LotteryTask \n")
                             const task = JSON.parse(data)
                             if (task.success == true && task.data) {
                                 datainfo.taskCnt += 1
@@ -506,7 +506,7 @@ function Win() {
         datainfo.couponCnt = 0
         $cmp.get(LotteryWin, function(error, response, data) {
             try{
-              console.log(data + "-------------509 活动抽奖福利君LotteryWin \n")
+             // console.log(data + "-------------509 活动抽奖福利君LotteryWin \n")
                 const win = JSON.parse(data)
                 let winlist = win.data.data
                 for (var winl of winlist) {
@@ -517,7 +517,7 @@ function Win() {
                         }
                         $cmp.post(LotteryWin, function (error, response, data) {
                             try{
-                              console.log(data + "-------------520 活动抽奖LotteryWin \n")
+                              //console.log(data + "-------------520 活动抽奖LotteryWin \n")
                                 const winmoney = JSON.parse(data)
                                 if (winmoney.success == true) {
                                     datainfo.winCnt += 1
@@ -537,7 +537,7 @@ function Win() {
                             headers: commonheaders
                         }
                         $cmp.get(LotteryInfo, function (error, response, data) {
-                          console.log(data + "-------------540 活动抽奖LotteryInfo \n")
+                          //console.log(data + "-------------540 活动抽奖LotteryInfo \n")
                             const linfo = JSON.parse(data)
                             if (linfo.data.bags_info.id) {
                                 const LotteryWin = {
@@ -546,7 +546,7 @@ function Win() {
                                 }
                                 $cmp.post(LotteryWin, function (error, response, data) {
                                     try{
-                                      console.log(data + "-------------549 活动抽奖LotteryWin \n")
+                                     // console.log(data + "-------------549 活动抽奖LotteryWin \n")
                                         const wincoupon = JSON.parse(data)
                                         if (wincoupon.success == true && wincoupon.data.data.mark == true) {
                                             datainfo.winCnt += 1
@@ -573,7 +573,7 @@ function Win() {
             headers: commonheaders
         }
         $cmp.get(Luckgift, function (error, response, data) {
-          console.log(data + "-------------576 活动抽奖幸运大礼开奖 \n")
+          //console.log(data + "-------------576 活动抽奖幸运大礼开奖 \n")
             const lg = JSON.parse(data)
             if (lg.data.situation == '已开奖，用户已参与已中奖') {
                 const LotteryWinLuck = {
@@ -582,7 +582,7 @@ function Win() {
                 }
                 $cmp.post(LotteryWinLuck, function (error, response, data) {
                     try{
-                      console.log(data + "-------------585 活动抽奖幸运大礼开奖LotteryWinLuck \n")
+                      //console.log(data + "-------------585 活动抽奖幸运大礼开奖LotteryWinLuck \n")
                         const wincoin = JSON.parse(data)
                         if (wincoin.success == true) {
                             datainfo.winCnt += 1
