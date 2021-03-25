@@ -636,7 +636,7 @@ function GetData() {
         }
         $cmp.get(LotteryData, function (error, response, data) {
             try {
-              console.log(data + "-------------639 活活动抽奖结果 \n")
+             // console.log(data + "-------------639 活活动抽奖结果 \n")
                 const obj = JSON.parse(data)
                 datainfo.allluckcoin = obj.data.user_info.lucky_count;
                 datainfo.luckmoney = obj.data.user_info.money;
