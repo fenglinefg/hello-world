@@ -832,7 +832,8 @@
         "@sydwzp.sydwarea",
         "@sydwzp.sydwsavedtime",
         "@sydwzp.sydwrefreshtime",
-        "@sydwzp.sydwsaveditem"
+        "@sydwzp.sydwsaveditem",
+        "@sydwzp.sydwdetailsetting"
       ],
       "settings": [
         {
@@ -844,6 +845,13 @@
           "autoGrow": true,
           "rows": 2,
           "desc": "请填入要监控的地区。"
+        },
+        {
+          "id": "@sydwzp.sydwdetailsetting",
+          "name": "获取附件链接",
+          "val": true,
+          "type": "boolean",
+          "desc": "是否获取附件链接"
         },
         {
           "id": "@sydwzp.sydwrefreshtime",
@@ -868,14 +876,13 @@
         "点此直达【<a href=\"https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/wechatsubs/gxrcw.js\">脚本地址</a>】"
       ],
       "keys": [
-        "@gxrcw.sydwarea",
-        "@gxrcw.sydwsavedtime",
-        "@gxrcw.sydwrefreshtime",
-        "@gxrcw.sydwsaveditem"
+        "@gxrcw.gxrcwsavedtime",
+        "@gxrcw.gxrcwrefreshtime",
+        "@gxrcw.gxrcwsaveditem"
       ],
       "settings": [
         {
-          "id": "@gxrcw.sydwrefreshtime",
+          "id": "@gxrcw.gxrcwrefreshtime",
           "name": "刷新时间（时）",
           "val": 6,
           "type": "number",
