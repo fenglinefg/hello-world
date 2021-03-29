@@ -11,35 +11,21 @@ const $ = new Env('中国移动')
 $.KEY_autologin = 'chavy_autologin_cmcc'
 $.KEY_getfee = 'chavy_getfee_cmcc'
 
-$.encryptKey = 'foorettD7vcBawt3'
-$.decryptKey = 'UVic06tpXgMNiApm'
-$.iv = '9791027341711819'
-
 !(async () => {
   $.CryptoJS = $.isNode() ? require('crypto-js') : CryptoJS
   await loginapp()
-  // await queryfee()
-  // await querymeal()
-  // await showmsg()
+  await queryfee()
+  await querymeal()
+  await showmsg()
 })()
   .catch((e) => $.logErr(e))
   .finally(() => $.done())
 
 function loginapp() {
   return new Promise((resolve) => {
-    // const url = JSON.parse($.getdata($.KEY_autologin))
-    const url = {
-      url: `https://clientaccess.10086.cn/biz-orange/LN/uamrandcodelogin/autoLogin`,
-      body: ``,
-      headers: {
-        'Accept': `application/json, text/javascript, */*; q=0.01`,
-        'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148/wkwebview leadeon/6.7.0`,
-        'x-qen': `1`
-      }
-    }
+    const url = JSON.parse($.getdata($.KEY_autologin))
     $.post(url, (err, resp, data) => {
       try {
-        console.log(JSON.stringify(resp))
         $.setck = $.isNode() ? resp.headers['set-cookie'] : resp.headers['Set-Cookie']
       } catch (e) {
         $.logErr(e, resp)
@@ -52,22 +38,16 @@ function loginapp() {
 
 function queryfee() {
   return new Promise((resolve) => {
-    $.setck = `JSESSIONID=380264a1-ad05-46db-b401-b524327f9059; UID=bb42456c8b964f518faea0baa4836307; Comment=SessionServer-unity; Path=/`
-    const cellNum = `15014534247`
-    const url = {
-      url: `https://app.10086.cn/biz-orange/BN/realFeeQuery/getRealFee?${encodeURIComponent($.setck)}`,
-      body: encrypt(`{"t":"${$.setck}","cv":"6.7.0","reqBody":{"cellNum":"${cellNum}","tag":"1"}}`, $.encryptKey),
-      headers: {
-        'Accept': `application/json, text/javascript, */*; q=0.01`,
-        'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148/wkwebview leadeon/6.7.0`,
-        'x-qen': `1`
-      }
-    }
+    const url = JSON.parse($.getdata($.KEY_getfee))
+    const body = JSON.parse(decrypt(url.body, 'bAIgvwAuA4tbDr9d'))
+    const cellNum = body.reqBody.cellNum
+    const bodystr = `{"t":"${$.CryptoJS.MD5($.setck).toString()}","cv":"9.9.9","reqBody":{"cellNum":"${cellNum}"}}`
+    url.body = encrypt(bodystr, 'bAIgvwAuA4tbDr9d')
+    url.headers['Cookie'] = $.setck
+    url.headers['xs'] = $.CryptoJS.MD5(url.url + '_' + bodystr + '_Leadeon/SecurityOrganization').toString()
     $.post(url, (err, resp, data) => {
       try {
-        const feeData = JSON.parse(data).body
-        console.log(decrypt(feeData, $.decryptKey))
-        // $.fee = JSON.parse(decrypt(data.body, $.decryptKey))
+        $.fee = JSON.parse(decrypt(data, 'GS7VelkJl5IT1uwQ'))
       } catch (e) {
         $.logErr(e, resp)
       } finally {
@@ -76,24 +56,19 @@ function queryfee() {
     })
   })
 }
-
 function querymeal() {
   return new Promise((resolve) => {
-    $.setck = `JSESSIONID=380264a1-ad05-46db-b401-b524327f9059; UID=bb42456c8b964f518faea0baa4836307; Comment=SessionServer-unity; Path=/`
-    const cellNum = `15014534247`
-    const url = {
-      url: `https://app.10086.cn/biz-orange/BN/newComboMealResouceUnite/getNewComboMealResource?${encodeURIComponent($.setck)}`,
-      body: encrypt(`{"t":"${$.setck}","cv":"6.7.0","reqBody":{"cellNum":"${cellNum}","tag":"1"}}`, $.encryptKey),
-      headers: {
-        'Accept': `application/json, text/javascript, */*; q=0.01`,
-        'User-Agent': `Mozilla/5.0 (iPhone; CPU iPhone OS 14_4 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148/wkwebview leadeon/6.7.0`,
-        'x-qen': `1`
-      }
-    }
+    const url = JSON.parse($.getdata($.KEY_getfee))
+    url.url = 'https://clientaccess.10086.cn/biz-orange/BN/newComboMealResouceUnite/getNewComboMealResource'
+    const body = JSON.parse(decrypt(url.body, 'bAIgvwAuA4tbDr9d'))
+    const cellNum = body.reqBody.cellNum
+    const bodystr = `{"t":"${$.CryptoJS.MD5($.setck).toString()}","cv":"9.9.9","reqBody":{"cellNum":"${cellNum}","tag":"3"}}`
+    url.body = encrypt(bodystr, 'bAIgvwAuA4tbDr9d')
+    url.headers['Cookie'] = $.setck
+    url.headers['xs'] = $.CryptoJS.MD5(url.url + '_' + bodystr + '_Leadeon/SecurityOrganization').toString()
     $.post(url, (err, resp, data) => {
       try {
-        const feeData = JSON.parse(data).body
-        console.log(decrypt(feeData, $.decryptKey))
+        $.meal = JSON.parse(decrypt(data, 'GS7VelkJl5IT1uwQ'))
       } catch (e) {
         $.logErr(e, resp)
       } finally {
@@ -105,7 +80,7 @@ function querymeal() {
 
 function encrypt(str, key) {
   return $.CryptoJS.AES.encrypt($.CryptoJS.enc.Utf8.parse(str), $.CryptoJS.enc.Utf8.parse(key), {
-    iv: $.CryptoJS.enc.Utf8.parse($.iv),
+    iv: $.CryptoJS.enc.Utf8.parse('9791027341711819'),
     mode: $.CryptoJS.mode.CBC,
     padding: $.CryptoJS.pad.Pkcs7
   }).toString()
@@ -113,7 +88,7 @@ function encrypt(str, key) {
 
 function decrypt(str, key) {
   return $.CryptoJS.AES.decrypt(str, $.CryptoJS.enc.Utf8.parse(key), {
-    iv: $.CryptoJS.enc.Utf8.parse($.iv),
+    iv: $.CryptoJS.enc.Utf8.parse('9791027341711819'),
     mode: $.CryptoJS.mode.CBC,
     padding: $.CryptoJS.pad.Pkcs7
   }).toString($.CryptoJS.enc.Utf8)

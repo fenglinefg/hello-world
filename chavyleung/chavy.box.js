@@ -297,7 +297,7 @@ function getSystemApps() {
   const sysapps = [
     {
       id: 'BoxSetting',
-      name: 'sysapps.prefs.title',
+      name: '偏好设置',
       descs: ['可手动执行一些抹掉数据的脚本', '可设置明暗两种主题下的主色调', '可设置壁纸清单'],
       keys: [
         '@chavy_boxjs_userCfgs.httpapi',
