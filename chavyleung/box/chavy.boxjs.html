@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
   <head>
     <title>BoxJs</title>
     <meta charset="utf-8" />
@@ -226,11 +226,11 @@
                   v-else
                   label="HTTP-API (Surge)"
                   v-model="box.usercfgs.httpapi"
-                  hint="Surge http-api 地址."
+                  hint="Surge HTTP-API"
                   placeholder="examplekey@127.0.0.1:6166"
                   persistent-hint
                   @change="saveUserCfgs"
-                  :rules="[(val)=> /.*?@.*?:[0-9]+/.test(val) || '格式错误: examplekey@127.0.0.1:6166']"
+                  :rules="[(val)=> /.*?@.*?:[0-9]+/.test(val) || 'examplekey@127.0.0.1:6166']"
                 >
                 </v-text-field>
               </v-list-item-content>
@@ -238,11 +238,11 @@
             <v-list-item>
               <v-list-item-content>
                 <v-select
+                  :items="[{text: $t('appearances.auto'), value: 'auto'}, {text: $t('appearances.dark'), value: 'dark'}, {text: $t('appearances.light'), value: 'light'}]"
+                  :label="$t('settings.appearance')"
                   autofocus
                   hide-details
                   v-model="box.usercfgs.theme"
-                  :items="[{text: '跟随系统', value: 'auto'}, {text: '暗黑', value: 'dark'}, {text: '明亮', value: 'light'}]"
-                  label="颜色主题"
                 >
                 </v-select>
               </v-list-item-content>
@@ -250,27 +250,27 @@
             <v-list-item class="mt-4" v-show="box.usercfgs.bgimgs">
               <v-list-item-content>
                 <v-select
-                  hide-details
-                  v-model="box.usercfgs.bgimg"
                   :items="bgimgs"
+                  :label="$t('settings.background')"
+                  @change="saveUserCfgs"
+                  hide-details
                   item-text="name"
                   item-value="url"
-                  @change="saveUserCfgs"
-                  label="背景图片"
+                  v-model="box.usercfgs.bgimg"
                 >
                 </v-select>
               </v-list-item-content>
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
-                class="mt-0"
-                label="透明图标"
-                v-model="box.usercfgs.isTransparentIcons"
-                @change="saveUserCfgs"
                 :hide-details="isDarkMode"
+                :hint="$t('settings.iconDesc')"
+                :label="$t('settings.icon')"
                 :persistent-hint="true"
-                hint="明亮主题下强制使用彩色图标"
+                @change="saveUserCfgs"
+                class="mt-0"
+                dense
+                v-model="box.usercfgs.isTransparentIcons"
               >
               </v-switch>
               <v-spacer></v-spacer>
@@ -280,13 +280,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
-                class="mt-0"
-                label="壁纸模式"
-                v-model="isWallpaperMode"
-                @change="saveUserCfgs"
+                :hint="$t('settings.bgModeDesc')"
+                :label="$t('settings.bgMode')"
                 :persistent-hint="true"
-                hint="同时隐藏顶栏、底栏、图标"
+                @change="saveUserCfgs"
+                class="mt-0"
+                dense
+                v-model="isWallpaperMode"
               >
               </v-switch>
               <v-spacer></v-spacer>
@@ -296,13 +296,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
-                class="mt-0"
-                label="隐藏顶栏"
-                v-model="box.usercfgs.isHidedSearchBar"
-                @change="saveUserCfgs"
+                :hint="$t('settings.hideTopBarDesc')"
+                :label="$t('settings.hideTopBar')"
                 :persistent-hint="true"
-                hint="主屏幕下滑可恢复显示"
+                @change="saveUserCfgs"
+                class="mt-0"
+                dense
+                v-model="box.usercfgs.isHidedSearchBar"
               >
               </v-switch>
               <v-spacer></v-spacer>
@@ -312,13 +312,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
-                class="mt-0"
-                label="自动顶栏"
-                v-model="isAutoSearchBar"
-                @change="saveUserCfgs"
+                :hint="$t('settings.autoTopBarDesc')"
+                :label="$t('settings.autoTopBar')"
                 :persistent-hint="true"
-                hint="顶栏跟随主屏滚动"
+                @change="saveUserCfgs"
+                class="mt-0"
+                dense
+                v-model="isAutoSearchBar"
               >
               </v-switch>
               <v-spacer></v-spacer>
@@ -328,13 +328,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
-                class="mt-0"
-                label="隐藏底栏"
-                v-model="box.usercfgs.isHidedNaviBottom"
-                @change="saveUserCfgs"
+                :hint="$t('settings.hideBottomBarDesc')"
+                :label="$t('settings.hideBottomBar')"
                 :persistent-hint="true"
-                hint="隐藏后只能在侧栏恢复"
+                @change="saveUserCfgs"
+                class="mt-0"
+                dense
+                v-model="box.usercfgs.isHidedNaviBottom"
               >
               </v-switch>
               <v-spacer></v-spacer>
@@ -344,13 +344,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
-                class="mt-0"
-                label="自动底栏"
-                v-model="isAutoNaviBottom"
-                @change="saveUserCfgs"
+                :hint="$t('settings.autoBottomBarDesc')"
+                :label="$t('settings.autoBottomBar')"
                 :persistent-hint="true"
-                hint="底栏跟随主屏滚动"
+                @change="saveUserCfgs"
+                class="mt-0"
+                dense
+                v-model="isAutoNaviBottom"
               >
               </v-switch>
               <v-spacer></v-spacer>
@@ -376,13 +376,13 @@
             </v-list-item> -->
             <v-list-item class="mt-4">
               <v-switch
-                dense
+                :hint="$t('settings.muteModeDesc')"
+                :label="$t('settings.muteMode')"
+                @change="saveUserCfgs"
                 class="mt-0"
-                label="勿扰模式"
-                hint="不再发出系统通知 (仍记日志)"
+                dense
                 persistent-hint
                 v-model="box.usercfgs.isMute"
-                @change="saveUserCfgs"
               ></v-switch>
               <v-spacer></v-spacer>
               <v-btn fab small text>
@@ -391,10 +391,10 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
+                :hint="$t('settings.hideHelpDesc')"
+                :label="$t('settings.hideHelp')"
                 dense
                 class="mt-0"
-                label="隐藏帮助按钮"
-                hint="隐藏悬浮按钮中的帮忙"
                 persistent-hint
                 v-model="box.usercfgs.isHideHelp"
                 @change="saveUserCfgs"
@@ -406,13 +406,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
+                :hint="$t('settings.hideBoxJsButtomDesc')"
+                :label="$t('settings.hideBoxJsButtom')"
+                @change="saveUserCfgs"
                 class="mt-0"
-                label="隐藏悬浮按钮"
-                hint="右下角悬浮按钮"
+                dense
                 persistent-hint
                 v-model="box.usercfgs.isHideBoxIcon"
-                @change="saveUserCfgs"
               ></v-switch>
               <v-spacer></v-spacer>
               <v-btn fab small text @click="open(box.syscfgs.boxjs.repo)">
@@ -423,10 +423,10 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
+                :hint="$t('settings.hideProfileTextDesc')"
+                :label="$t('settings.hideProfileText')"
                 dense
                 class="mt-0"
-                label="隐藏我的标题"
-                hint="底栏`我的`二字 (只显示图标)"
                 persistent-hint
                 v-model="box.usercfgs.isHideMyTitle"
                 @change="saveUserCfgs"
@@ -441,13 +441,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
+                :hint="$t('settings.hideCodingButtomDesc')"
+                :label="$t('settings.hideCodingButtom')"
+                @change="saveUserCfgs"
                 class="mt-0"
-                label="隐藏编码按钮"
-                hint="脚本编辑器的入口"
+                dense
                 persistent-hint
                 v-model="box.usercfgs.isHideCoding"
-                @change="saveUserCfgs"
               ></v-switch>
               <v-spacer></v-spacer>
               <v-btn fab small text>
@@ -456,13 +456,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
+                :hint="$t('settings.hideReloadButtomDesc')"
+                :label="$t('settings.hideReloadButtom')"
+                @change="saveUserCfgs"
                 class="mt-0"
-                label="隐藏刷新按钮"
-                hint="双击悬浮按钮也可刷新页面"
+                dense
                 persistent-hint
                 v-model="box.usercfgs.isHideRefresh"
-                @change="saveUserCfgs"
               ></v-switch>
               <v-spacer></v-spacer>
               <v-btn fab small text>
@@ -471,13 +471,13 @@
             </v-list-item>
             <v-list-item class="mt-4">
               <v-switch
-                dense
+                :hint="$t('settings.debugModeDesc')"
+                :label="$t('settings.debugMode')"
+                @change="saveUserCfgs"
                 class="mt-0"
-                label="调试模式 (页面)"
-                hint="每次访问都获取最新的页面"
+                dense
                 persistent-hint
                 v-model="box.usercfgs.isDebugWeb"
-                @change="saveUserCfgs"
               ></v-switch>
               <v-spacer></v-spacer>
               <v-btn fab small text>
@@ -487,13 +487,13 @@
             <v-list-item v-if="box.usercfgs.isDebugWeb">
               <v-list-item-content>
                 <v-text-field
-                  clearable
-                  label="调试页面地址"
-                  v-model="box.usercfgs.debugger_web"
-                  hint="设置页面源码的获取地址"
-                  placeholder="http://ip:port/boxjs.html"
-                  persistent-hint
+                  :hint="$t('settings.debugPageDesc')"
+                  :label="$t('settings.debugPage')"
                   @change="saveUserCfgs"
+                  clearable
+                  persistent-hint
+                  placeholder="http://ip:port/boxjs.html"
+                  v-model="box.usercfgs.debugger_web"
                 >
                 </v-text-field>
               </v-list-item-content>
@@ -618,7 +618,7 @@
             <!-- 内置应用 -->
             <v-expansion-panels multiplev-if="sysApps.length > 0" v-model="box.usercfgs.sysapppanel">
               <v-expansion-panel>
-                <v-expansion-panel-header> 内置应用 ({{sysApps.length}}) </v-expansion-panel-header>
+                <v-expansion-panel-header> {{$t('sysapps.title')}} ({{sysApps.length}}) </v-expansion-panel-header>
                 <v-expansion-panel-content>
                   <v-list dense nav class="ma-n4">
                     <template v-for="(app, appIdx) in sysApps">
@@ -1130,16 +1130,16 @@
         <!-- 底部 -->
         <v-bottom-navigation ref="naviBar" v-bind="naviBarBind" v-touch="{ down: () => isHidedNaviBottom = true }">
           <v-progress-linear :active="isLoading" height="2" absolute top indeterminate></v-progress-linear>
-          <v-btn @click="switchView('')" value="">首页<v-icon>mdi-home</v-icon></v-btn>
-          <v-btn @click="switchView('app')" value="app">应用<v-icon>mdi-application</v-icon></v-btn>
-          <v-btn @click="switchView('sub')" value="sub">订阅<v-icon>mdi-database</v-icon></v-btn>
+          <v-btn @click="switchView('')" value="">{{ $t('menus.home') }}<v-icon>mdi-home</v-icon></v-btn>
+          <v-btn @click="switchView('app')" value="app">{{ $t('menus.apps') }}<v-icon>mdi-application</v-icon></v-btn>
+          <v-btn @click="switchView('sub')" value="sub">{{ $t('menus.subs') }}<v-icon>mdi-database</v-icon></v-btn>
           <v-btn @click="switchView('my')" value="my">
             <template v-if="myIcon">
-              <span v-if="!isHideMyTitle">我的</span>
+              <span v-if="!isHideMyTitle">{{ $t('menus.my') }}</span>
               <v-avatar :size="isHideMyTitle ? 36 : 24"><v-img :src="myIcon" /></v-avatar>
             </template>
             <template v-else>
-              <span v-if="!isHideMyTitle">我的</span>
+              <span v-if="!isHideMyTitle">{{ $t('menus.my') }}</span>
               <v-icon :size="isHideMyTitle ? 36 : 24">mdi-face-profile</v-icon>
             </template>
           </v-btn>
@@ -1244,6 +1244,7 @@
       </v-app>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue-i18n@8.x/dist/vue-i18n.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.4.x/dist/vuetify.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lodash@4.x/lodash.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@0.x/dist/axios.min.js"></script>
@@ -1258,6 +1259,112 @@
       new Vue({
         el: '#app',
         vuetify: new Vuetify(),
+        i18n: new VueI18n({
+          locale: 'en-US',
+          messages: {
+            'zh-Hans': {
+              menus: {
+                appearances: {
+                  auto: '自动',
+                  dark: '暗黑',
+                  light: '明亮'
+                },
+                home: '首页',
+                apps: '应用',
+                subs: '订阅',
+                my: '我的'
+              },
+              settings: {
+                appearance: '主题外观',
+                background: '背景壁纸',
+                icon: '透明图标',
+                iconDesc: '透明图标',
+                bgMode: '壁纸模式',
+                bgModeDesc: '同时隐藏顶栏、底栏、图标',
+                hideTopBar: '隐藏顶栏',
+                hideTopBarDesc: '隐藏后可呼出侧栏恢复',
+                autoTopBar: '自动顶栏',
+                autoTopBarDesc: '顶栏跟随主屏滚动',
+                hideBottomBar: '隐藏底栏',
+                hideBottomBarDesc: '隐藏后可呼出侧栏恢复',
+                autoBottomBar: '自动底栏',
+                autoBottomBarDesc: '底栏跟随主屏滚动',
+                muteMode: '勿扰模式',
+                muteModeDesc: '不再发出系统通知 (仍记日志)',
+                hideHelp: '隐藏帮助按钮',
+                hideHelpDesc: '隐藏悬浮按钮中的帮助按钮',
+                hideBoxJsButtom: '隐藏悬浮按钮',
+                hideBoxJsButtomDesc: '隐藏右下角悬浮按钮',
+                hideProfileText: '隐藏我的标题',
+                hideProfileTestDesc: '底栏`我的`二字 (只显示图标)',
+                hideCodingButtom: '隐藏编码按钮',
+                hideCodingButtomDesc: '隐藏悬浮按钮中的编码按钮',
+                hideReloadButtom: '隐藏刷新按钮',
+                hideReloadButtomDesc: '可能双击悬浮按钮来刷新页面',
+                debugMode: '调试模式',
+                debugModeDesc: '每次访问都获取最新的页面',
+                debugPage: '调试页面地址',
+                debugPageDesc: '设置页面源码的获取地址'
+              },
+              sysapps: {
+                title: '内置应用',
+                prefs: {
+                  title: '偏好设置',
+                  desc1: '可手动执行一些抹掉数据的脚本',
+                  desc2: '可设置明暗两种主题下的主色调',
+                  desc3: '可设置明暗两种主题下的主色调',
+                  bgList: '背景壁纸清单',
+                  backgroud: '背景壁纸'
+                }
+              }
+            },
+            'en-US': {
+              appearances: {
+                auto: 'Auto',
+                dark: 'Dark',
+                light: 'Light'
+              },
+              menus: {
+                home: 'Home',
+                apps: 'Applications',
+                subs: 'Subscribes',
+                my: 'Profile'
+              },
+              settings: {
+                appearance: 'Appearance',
+                background: 'Backgroud',
+                icon: 'Transparent icon',
+                iconDesc: '',
+                bgMode: 'Backgroud Mode',
+                bgModeDesc: 'Hides bars & icons',
+                hideTopBar: 'Hides Top Bar',
+                hideTopBarDesc: 'Restore via side drawer',
+                autoTopBar: 'Auto Top Bar',
+                autoTopBarDesc: 'Hides topbar when scrolling',
+                hideBottomBar: 'Hide Bottom Bar',
+                hideBottomBarDesc: 'Restore via side drawer',
+                autoBottomBar: 'Auto Bottom Bar',
+                autoBottomBarDesc: 'Hides bottom bar when scrolling',
+                muteMode: 'Do Not Disturb',
+                muteModeDesc: 'Disable notifications',
+                hideHelp: 'Hide Help',
+                hideHelpDesc: 'Hides help buttom',
+                hideBoxJsButtom: 'Hide BoxJs',
+                hideBoxJsButtomDesc: 'Hides the BoxJs buttom',
+                hideProfileText: 'Hide Profile name',
+                hideProfileTextDesc: 'Hides `Profile` name',
+                hideCodingButtom: 'Hide Coding',
+                hideCodingButtomDesc: 'Hides Coding buttom',
+                hideReloadButtom: 'Hide Reload',
+                hideReloadButtomDesc: 'Reload by Double click BoxJs buttom',
+                debugMode: 'Debug Mode',
+                debugModeDesc: 'Disable page caches',
+                debugPage: 'Debug Page address',
+                debugPageDesc: 'Load page source from...'
+              }
+            }
+          }
+        }),
         data() {
           return {
             ui: {
