@@ -389,8 +389,8 @@ def autoKingCardWelfare(upgradeType):
         1 : "100分钟通话",
         2 : "1G流量月包"
     }
-    #每月3号领取
-    if day!=3:
+    #每月4号领取
+    if day==3:
         stat = client.post(url,data=data)
         stat.encoding = 'utf-8'
         stat = stat.json()
