@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/fenglinefg/hello-world.git -b sync-ZhiYi-N-jd_scripts ~/Scripts
+          git clone https://github.com/fenglinefg/hello-world.git -b sync-demo2099-jd_jscripts ~/Scripts
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
