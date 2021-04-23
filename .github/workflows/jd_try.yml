@@ -38,7 +38,7 @@ jobs:
       - name: '运行 【京东试用】'
         run: |
           cd ~/Scripts
-          node jd_try.js
+          node jd/jd_try.js
         env:
           JD_COOKIE: ${{ secrets.JD_COOKIE }}
           JD_DEBUG: ${{ secrets.JD_DEBUG }}
