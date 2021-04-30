@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: Checkout
         run: |
-          git clone https://github.com/Sunert/Scripts.git ~/Scripts
+          git clone https://github.com/demo2099/jscool.git ~/Scripts
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
@@ -28,7 +28,7 @@ jobs:
         if: env.KS_TOKEN
         run: |
           cd ~/Scripts
-          node Task/kuaishou.js
+          node Sunert/Task/kuaishou.js
         env:
           PUSH_KEY: ${{ secrets.PUSH_KEY || github.event.client_payload.PUSH_KEY }}
           BARK_PUSH: ${{ secrets.BARK_PUSH || github.event.client_payload.BARK_PUSH }}
