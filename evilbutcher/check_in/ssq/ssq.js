@@ -1,8 +1,7 @@
 /*
 【彩票查询】@evilbutcher, @Phantom
 
-【仓库地址】https://github.com/evilbutcher/Quantumult_X/tree/master（欢迎star🌟）
-           https://github.com/sjzcook/phantom（欢迎star🌟）
+【仓库地址】https://github.com/evilbutcher/Quantumult_X/tree/master（欢迎star🌟）；https://github.com/sjzcook/phantom（欢迎star🌟）
 
 【BoxJs】https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/evilbutcher.boxjs.json
 
@@ -26,20 +25,17 @@
 【Surge】
 -----------------
 [Script]
-彩票查询 = type=cron,cronexp=0 30 21 * * 2,4,7 ,script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/ssq/ssq.js
-or 0 30 21 * * 1,3,6
+彩票查询 = type=cron,cronexp=0 30 21 * * * ,script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/ssq/ssq.js
 
 【Loon】
 -----------------
 [Script]
-cron "0 30 21 * * 2,4,7" script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/ssq/ssq.js, tag=彩票查询
-or 0 30 21 * * 1,3,6
+cron "0 30 21 * * *" script-path=https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/ssq/ssq.js, tag=彩票查询
 
 【Quantumult X】
 -----------------
 [task_local]
-0 30 21 * * 2,4,7  https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/ssq/ssq.js, tag=彩票查询
-or 0 30 21 * * 1,3,6
+0 30 21 * * *  https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/check_in/ssq/ssq.js, tag=彩票查询
 
 【Icon】
 透明：https://raw.githubusercontent.com/evilbutcher/Quantumult_X/master/picture/ssq_tran.png
@@ -50,19 +46,50 @@ const ERR = MYERR();
 const ssq = $.read("ssq") || true; //默认查询
 const dlt = $.read("dlt") || true; //默认查询
 const fc3d = $.read("3d") || true; //默认查询
+const qlc = $.read("qlc") || true; //默认查询
+const findlatest = $.read("new") || true; //默认仅查询当日开奖的彩票
 
 !(async () => {
+  var week = new Date().getDay();
   if (ssq == true || ssq == "true") {
-    $.log("查询双色球");
-    await checkssq();
+    if (findlatest == true || findlatest == "true") {
+      if (week == 2 || week == 4 || week == 0) {
+        $.log("查询双色球");
+        await checkssq();
+      } else {
+        $.log("双色球今日未开奖");
+      }
+    } else {
+      await checkssq();
+    }
   }
   if (dlt == true || dlt == "true") {
-    $.log("查询大乐透");
-    await checkdlt();
+    if (findlatest == true || findlatest == "true") {
+      if (week == 1 || week == 3 || week == 6) {
+        $.log("查询大乐透");
+        await checkdlt();
+      } else {
+        $.log("大乐透今日未开奖");
+      }
+    } else {
+      await checkdlt();
+    }
   }
   if (fc3d == true || fc3d == "true") {
     $.log("查询福彩3D");
     await check3d();
+  }
+  if (qlc == true || qlc == "true") {
+    if (findlatest == true || findlatest == "true") {
+      if (week == 1 || week == 3 || week == 5) {
+        $.log("查询七乐彩");
+        await checkqlc();
+      } else {
+        $.log("七乐彩今日未开奖");
+      }
+    } else {
+      await checkqlc();
+    }
   }
 })()
   .catch((err) => {
@@ -104,6 +131,7 @@ function checkssq() {
       ).slice(1, -1);
       var content = $.data.content;
       var date = $.data.date;
+      var name = $.data.name;
       var red = $.data.red;
       var blue = $.data.blue;
       if (poolmoney == "NaN") {
@@ -120,7 +148,7 @@ function checkssq() {
           "万元\n一等奖 " +
           content;
       }
-      $.notify("彩票查询", "双色球", detail);
+      $.notify("彩票查询", name, detail);
       $.log(detail);
     }
   });
@@ -189,6 +217,7 @@ function check3d() {
         ($.data.poolmoney / 10000).toFixed(2)
       ).slice(1, -1);
       var date = $.data.date;
+      var name = $.data.name;
       var red = $.data.red;
       var num = red.split(",");
       var all = 0;
@@ -208,7 +237,45 @@ function check3d() {
           poolmoney +
           "万元";
       }
-      $.notify("彩票查询", "福彩3D", detail);
+      $.notify("彩票查询", name, detail);
+      $.log(detail);
+    }
+  });
+}
+
+function checkqlc() {
+  const url = `http://www.cwl.gov.cn/cwl_admin/kjxx/findDrawNotice?name=qlc&issueCount=5`;
+  headers = {
+    "Accept-Encoding": `gzip, deflate`,
+    Connection: `keep-alive`,
+    Referer: `http://www.cwl.gov.cn/kjxx/qlc/`,
+    Accept: `application/json, text/javascript, */*; q=0.01`,
+    Host: `www.cwl.gov.cn`,
+    "User-Agent": `Mozilla/5.0 (iPhone; CPU iPhone OS 14_5_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/14.1 Mobile/15E148 Safari/604.1`,
+    "Accept-Language": `zh-cn`,
+    "X-Requested-With": `XMLHttpRequest`,
+  };
+
+  const myRequest = {
+    url: url,
+    headers: headers,
+  };
+
+  return $.http.get(myRequest).then((response) => {
+    if (response.statusCode == 200) {
+      $.data = JSON.parse(response.body).result[0];
+      var content = $.data.content;
+      var name = $.data.name;
+      var date = $.data.date;
+      var red = $.data.red;
+      var blue = $.data.blue;
+      if (content == undefined) {
+        var detail = "红球：" + red + "\n蓝球：" + blue + "\n信息暂未更新";
+      } else {
+        var detail =
+          date + "\n红球：" + red + "\n蓝球：" + blue + "\n一等奖 " + content;
+      }
+      $.notify("彩票查询", name, detail);
       $.log(detail);
     }
   });
