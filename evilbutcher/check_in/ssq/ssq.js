@@ -47,16 +47,20 @@ or 0 30 21 * * 1,3,6
 */
 const $ = new API("ssq", true);
 const ERR = MYERR();
-const type = $.read("ssq") || 1; //默认查询双色球
+const ssq = $.read("ssq") || true; //默认查询
+const dlt = $.read("dlt") || true; //默认查询
+const fc3d = $.read("3d") || true; //默认查询
 
 !(async () => {
-  if (type == "1") {
+  if (ssq == true || ssq == "true") {
     $.log("查询双色球");
     await checkssq();
-  } else if (type == "2") {
+  }
+  if (dlt == true || dlt == "true") {
     $.log("查询大乐透");
     await checkdlt();
-  } else if (type == "3") {
+  }
+  if (fc3d == true || fc3d == "true") {
     $.log("查询福彩3D");
     await check3d();
   }
