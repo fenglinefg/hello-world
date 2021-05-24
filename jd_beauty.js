@@ -323,13 +323,13 @@ async function mr() {
           if (vo.data && vo.data.material_name !== '') {
             console.log(`【${vo.data.position}】上正在生产【${vo.data.material_name}】，可收取 ${vo.data.produce_num} 份`)
             if (new Date().getTime() > vo.data.procedure.end_at) {
-              console.log(`去收取${vo?.data?.material_name}`)
+              console.log(`去收取${vo.data.material_name}`)
               client.send(`{"msg":{"type":"action","args":{"position":"${vo.data.position}","replace_material":false},"action":"material_fetch_v2"}}`)
               client.send(`{"msg":{"type":"action","args":{},"action":"to_employee"}}`)
-              $.pos.push(vo?.data?.position)
+              $.pos.push(vo.data.position)
             }
           } else {
-            if (vo?.data && vo.data.valid_electric > 0) {
+            if (vo.data && vo.data.valid_electric > 0) {
               console.log(`【${vo.data.position}】上尚未开始生产`)
               let ma
               console.log(`$.needs:${JSON.stringify($.needs)}`);
