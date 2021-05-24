@@ -30,7 +30,7 @@ jobs:
       - name: npm install
         run: |
           npm install
-      - name: '运行 【领京豆额外奖励&抢京豆】'
+      - name: '运行 【京东美丽研究院】'
         run: |
           node jd_beauty.js
         env:
