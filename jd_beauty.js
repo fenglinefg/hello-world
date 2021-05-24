@@ -321,10 +321,10 @@ async function mr() {
         case "produce_position_info_v2":
           // console.log(`${Boolean(vo?.data)};${vo?.data?.material_name !== ''}`);
           if (vo.data && vo.data.material_name !== '') {
-            console.log(`【${vo?.data?.position}】上正在生产【${vo?.data?.material_name}】，可收取 ${vo.data.produce_num} 份`)
+            console.log(`【${vo.data.position}】上正在生产【${vo.data.material_name}】，可收取 ${vo.data.produce_num} 份`)
             if (new Date().getTime() > vo.data.procedure.end_at) {
               console.log(`去收取${vo?.data?.material_name}`)
-              client.send(`{"msg":{"type":"action","args":{"position":"${vo?.data?.position}","replace_material":false},"action":"material_fetch_v2"}}`)
+              client.send(`{"msg":{"type":"action","args":{"position":"${vo.data.position}","replace_material":false},"action":"material_fetch_v2"}}`)
               client.send(`{"msg":{"type":"action","args":{},"action":"to_employee"}}`)
               $.pos.push(vo?.data?.position)
             }
@@ -358,7 +358,7 @@ async function mr() {
           }
           break
         case "material_produce_v2":
-          console.log(`【${vo.data.position}】上开始生产${vo?.data?.material_name}`)
+          console.log(`【${vo.data.position}】上开始生产${vo.data.material_name}`)
           client.send(`{"msg":{"type":"action","args":{},"action":"to_employee"}}`)
           $.pos.push(vo.data.position)
           break
