@@ -20,7 +20,7 @@ let cashout = $.getdata('jukan_out')|| false
 let UA = 'JuKanDian/5.6.5 (iPhone; iOS 14.2; Scale/3.00)'
 let taskresult = "",sumnotify ="";
 let calendarpic = 0
-
+let nowH = (new Date).getHours()
 
 if ($.isNode()) {
   if (process.env.JUKAN_BODY && process.env.JUKAN_BODY.indexOf('&') > -1) {
@@ -102,7 +102,7 @@ if (typeof $request !== 'undefined') {
 }  
    if ((150-artcount) == 0&&(50-videocount) ==0){
      //let timeNow = new Date().getHours()
-     if((new Date).getHours() == '22'）{
+     if(nowH==22）{
         $.msg($.name+" 昵称:"+userName, $.sub, $.desc+"<今日阅读任务已完成>",{'media-url': calendarpic })
 
      }
