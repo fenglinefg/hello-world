@@ -102,10 +102,10 @@ if (typeof $request !== 'undefined') {
 }  
    if ((150-artcount) == 0&&(50-videocount) ==0){
      //let timeNow = new Date().getHours()
-     //if(timeNow >= 22 && timeNow < 23）{
+     if((new Date).getHours() == '22'）{
         $.msg($.name+" 昵称:"+userName, $.sub, $.desc+"<今日阅读任务已完成>",{'media-url': calendarpic })
 
-     //}
+     }
      
      }
      $.log("\n"+ $.name+"账号"+$.index+" : "+userName+ "  本次运行任务已结束\n~~~~~~~~~~~~~~~~~~\n")
