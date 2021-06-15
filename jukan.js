@@ -102,7 +102,7 @@ if (typeof $request !== 'undefined') {
 }  
    if ((150-artcount) == 0&&(50-videocount) ==0){
      //let timeNow = new Date().getHours()
-     if(nowH==22）{
+     if((22-nowH) == 0）{
         $.msg($.name+" 昵称:"+userName, $.sub, $.desc+"<今日阅读任务已完成>",{'media-url': calendarpic })
 
      }
