@@ -118,7 +118,7 @@ function sign() {
    $.post(profiturl, async(error, resp, data) => {
      //$.log(data+"\n")
    try{
-     $.log(JSON.parse(data))
+     //$.log(JSON.parse(data))
      let sign_res = JSON.parse(data)
      if (sign_res.ret == "ok"){
        calendarpic = sign_res.calendar_pic
