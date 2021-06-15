@@ -20,6 +20,7 @@ let cashout = $.getdata('jukan_out')|| false
 let UA = 'JuKanDian/5.6.5 (iPhone; iOS 14.2; Scale/3.00)'
 let taskresult = "",sumnotify ="";
 let calendarpic = 0
+let isDone = false
 
 if ($.isNode()) {
   if (process.env.JUKAN_BODY && process.env.JUKAN_BODY.indexOf('&') > -1) {
@@ -62,6 +63,10 @@ if (typeof $request !== 'undefined') {
     console.log($.name, '【提示】请把聚看点Cookie填入Github 的 Secrets 中，请以&或者换行隔开')
     return;
   }
+  if(isDone){
+    console.log("今日阅读任务已完成，跳过执行")
+    return;
+  }
   console.log(`您共提供${BodyArr.length}个聚看点账号Cookie\n————————————————————————————————————\n`)
   for (let i = 0; i < BodyArr.length; i++) {
     if (BodyArr[i]) {
@@ -99,10 +104,11 @@ if (typeof $request !== 'undefined') {
      await artTotal() 
 }  
    if ((150-artcount) == 0&&(50-videocount) ==0){
-     let timeNow = new Date().getHours()
-     if(timeNow >= 22 && timeNow < 23）{
+     //let timeNow = new Date().getHours()
+     //if(timeNow >= 22 && timeNow < 23）{
         $.msg($.name+" 昵称:"+userName, $.sub, $.desc+"<今日阅读任务已完成>",{'media-url': calendarpic })
-     }
+     isDone = true
+     //}
      
      }
      $.log("\n"+ $.name+"账号"+$.index+" : "+userName+ "  本次运行任务已结束\n~~~~~~~~~~~~~~~~~~\n")
