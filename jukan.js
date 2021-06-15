@@ -119,6 +119,7 @@ function sign() {
    try{
      let sign_res = JSON.parse(data)
      if (sign_res.ret == "ok"){
+       $.log(`sign_res`)
        calendarpic = sign_res.calendar_pic
        //$.log("签到收益: +"+`calendar_pic`)
          }  else {
