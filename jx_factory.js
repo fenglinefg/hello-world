@@ -691,7 +691,7 @@ function showMsg() {
     if (!$.info || !$.info.commodityInfo || !$.info.commodityInfo.name) {
       $.result.push('未选择商品，任务已执行完成，请及时选择商品');
     }
-    //if ($.notifyTime) {
+    if ($.notifyTime) {
       const notifyTimes = $.notifyTime.split(',').map(x => x.split(':'));
       const now = $.time('HH:mm').split(':');
       $.log(`\n${JSON.stringify(notifyTimes)}`);
@@ -700,16 +700,20 @@ function showMsg() {
      //   if ($.isNode() && (process.env.JX_FACTORY_PUSHONLYDONE ? process.env.JX_FACTORY_PUSHONLYDONE === 'false' : !!0)) {
      //     notify.sendNotify($.name, `\n${$.result.join('\n')}`, {}, '\n\n本脚本免费使用 By：https://github.com/whyour/qinglong')
      //   }
-    if ((12-nowH) == 0 || (22-nowH) == 0){
-        $.msg($.name, '', `\n${$.result.join('\n')}`);
-     // }
-    }
-    //} else {
+      if ((12-nowH) == 0 || (22-nowH) == 0){
+          $.msg($.name, '', `\n${$.result.join('\n')}`);
+        }
+      //}
+    } else {
     //  if ($.isNode() && (process.env.JX_FACTORY_PUSHONLYDONE ? process.env.JX_FACTORY_PUSHONLYDONE === 'false' : !!0)) {
     //    notify.sendNotify($.name, `\n${$.result.join('\n')}`, {}, '\n\n本脚本免费使用 By：https://github.com/whyour/qinglong')
     //  }
     //  $.msg($.name, '', `\n${$.result.join('\n')}`);
-   // }
+         if ((12-nowH) == 0 || (22-nowH) == 0){
+          $.msg($.name, '', `\n${$.result.join('\n')}`);
+        }
+      //}
+    }
     resolve();
   });
 }
