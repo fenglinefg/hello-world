@@ -181,16 +181,16 @@ async function pasture() {
           $.pause = false;
           console.log(`开始第${k + 1}次喂白菜`);
           await takeGetRequest('feed');
-          await $.wait(2000);
+          await $.wait(5000);
           if ($.pause) {
             await takeGetRequest('GetHomePageInfo');
-            await $.wait(1000);
+            await $.wait(5000);
             for (let n = 0; n < $.homeInfo.petinfo.length; n++) {
               $.onepetInfo = $.homeInfo.petinfo[n];
               if ($.onepetInfo.cangetborn === 1) {
                 console.log(`开始收鸡蛋`);
                 await takeGetRequest('GetEgg');
-                await $.wait(1000);
+                await $.wait(3000);
               }
             }
           }
