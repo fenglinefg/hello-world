@@ -36,7 +36,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
 
 if(!$.isNode()&&baiducks && baiducks.indexOf('&')==-1){
   CookieArr.push(baiducks);
-    cashArr.push($.getdata("cash_baidu")||30)
+    cashArr.push($.getdata("cash_baidu")||5)
 } else {
 if ($.isNode()) {
   if (process.env.BAIDU_COOKIE && process.env.BAIDU_COOKIE.indexOf('&') > -1) {
