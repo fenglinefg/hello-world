@@ -1164,8 +1164,8 @@ function getToken() {
 	if (appreg.exec($request.url)) {
 		let CityValue = appreg.exec($request.url)[1];
 		let TokenValue = decodeURIComponent(appreg.exec($request.url)[2]);
-		console.log(CityValue)
-		console.log(TokenValue)
+		console.log(CityValue);
+		console.log(TokenValue);
 		if ($.read("#DiDi") != (undefined || null)) {
 			if ($.read("#DiDi") != TokenValue || $.read("#DiDi_city") != CityValue) {
 				$.write(TokenValue, "#DiDi");
@@ -1180,8 +1180,8 @@ function getToken() {
 	} else if (minireg.exec($request.url)) {
 		let CityValue = minireg.exec($request.url)[2];
 		let TokenValue = decodeURIComponent(minireg.exec($request.url)[1]);
-		console.log(CityValue)
-		console.log(TokenValue)
+		console.log(CityValue);
+		console.log(TokenValue);
 		if ($.read("#DiDi") != (undefined || null)) {
 			if ($.read("#DiDi") != TokenValue || $.read("#DiDi_city") != CityValue) {
 				$.write(TokenValue, "#DiDi");
