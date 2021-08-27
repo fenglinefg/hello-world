@@ -36,6 +36,8 @@ const cookiesKey = "cookies";
 const bodyKey = "bodys";
 const cookies = JSON.parse($.read(cookiesKey) || "[]");
 const bodys = JSON.parse($.read(bodyKey) || "{}");
+$.log(cookies);
+$.log(bodys);
 async function getCookies() {
   if ($request.headers && $request.url.indexOf("m/userstat") > -1) {
     const currentCk = $request.headers["Cookie"] || $request.headers["cookie"];
@@ -45,7 +47,8 @@ async function getCookies() {
       const cookieValue =
         currentCk.match(/pt_key=.+?;/) + currentCk.match(/pt_pin=.+?;/);
       const userName = cookieValue.match(/pt_pin=(.+?);/)[1];
-      bodys[userName] = currentBody;
+      
+      [userName] = currentBody;
       saveCookie.username = userName;
       if (cookies.find((item) => item.username === userName)) return;
       const pRes = await getPhoneNumber(cookieValue);
@@ -55,11 +58,9 @@ async function getCookies() {
       cookies.push(saveCookie);
       $.log(cookies);
       const cacheValue = JSON.stringify(cookies, null, "\t");
-      $.log(cacheValue);
-      $.log(JSON.stringify(bodys));
       $.write(cacheValue, cookiesKey);
       $.write(JSON.stringify(bodys), bodyKey);
-      $.notify(title, "", `${userName}：获取Cookie成功 🎉`);
+      $.notify(title, "", `${cacheValue}：获取Cookie成功 🎉`);
     }
   }
 }
