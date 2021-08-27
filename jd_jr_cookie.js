@@ -306,15 +306,19 @@ function API(name = "untitled", debug = false) {
       if (key.indexOf("#") !== -1) {
         key = key.substr(1);
         if (isSurge || isLoon) {
+          this.log(`READ ${$persistentStore.read(key)}`);
           return $persistentStore.read(key);
         }
         if (isQX) {
+          this.log(`READ ${$prefs.valueForKey(key)}`);
           return $prefs.valueForKey(key);
         }
         if (isNode) {
+          this.log(`READ ${this.root[key]}`);
           return this.root[key];
         }
       } else {
+        this.log(`READ ${this.cache[key]}`);
         return this.cache[key];
       }
     }
