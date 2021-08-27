@@ -55,8 +55,8 @@ async function getCookies() {
       cookies.push(saveCookie);
       $.log(cookies);
       const cacheValue = JSON.stringify(cookies, null, "\t");
-      console.log(cacheValue);
-      console.log(JSON.stringify(bodys));
+      $.log(cacheValue);
+      $.log(JSON.stringify(bodys));
       $.write(cacheValue, cookiesKey);
       $.write(JSON.stringify(bodys), bodyKey);
       $.notify(title, "", `${userName}：获取Cookie成功 🎉`);
