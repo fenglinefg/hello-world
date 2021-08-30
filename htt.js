@@ -47,21 +47,23 @@ const huitoutiao="惠头条";
 
 const htt_videoname="htt_videoname"+httid;
 const htt_video=$iosrule.read(htt_videoname);
+console.log(htt_video);
 
 const htt_dongfangname="htt_dongfangname"+httid;
 const htt_dongfang=$iosrule.read(htt_dongfangname);
+console.log(htt_dongfang);
+
 const htt_smvideoname="htt_smvideoname"+httid;
 const htt_smvideo=$iosrule.read(htt_smvideoname);
-
+console.log(htt_smvideo);
 
 const htt_signurlckname="htt_signurlckname"+httid;
 const htt_signurlck=$iosrule.read(htt_signurlckname);
-
+console.log(htt_signurlck);
 
 const htt_signbdname="htt_signbdname"+httid;
-const htt_signbd=$iosrule.read(htt_signbdname)
-;
-
+const htt_signbd=$iosrule.read(htt_signbdname);
+console.log(htt_signbd);
 
 
 var htt_num=0;var htt_result="";
@@ -322,6 +324,7 @@ function htt_msg(r)
   if(log==1)console.log(htt_num)
  if(htt_num==7)
   {var loon= $iosrule.read("iosrule");
+   console.log(loon);
  if (typeof(loon) !="undefined")
     {loon=loon.substring(7,loon.length);
  loon++;
