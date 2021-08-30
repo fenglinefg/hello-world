@@ -34,6 +34,12 @@ function sign() {
   const signurlVal = hdl.getdata(signurlKey)
   const signheaderVal = hdl.getdata(signheaderKey)
   const signbodyVal = hdl.getdata(signbodyKey)
+  console.log(signurlVal)
+    console.log("    ")
+    console.log(signheaderVal)
+    console.log("    ")
+    console.log(signbodyVal)
+    console.log("    ")
   const url = { url: signurlVal, headers: JSON.parse(signheaderVal), body: signbodyVal }
   hdl.post(url, (error, response, data) => {
     hdl.log(`${cookieName}, data: ${data}`)
