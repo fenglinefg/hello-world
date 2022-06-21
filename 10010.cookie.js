@@ -12,6 +12,7 @@ const chavy = init()
 if ($request && $request.method != 'OPTIONS' && $request.url.indexOf('querySigninActivity.htm') >= 0) {
   const tokenurlVal = $request.url
   const tokenheaderVal = JSON.stringify($request.headers)
+  console.log(tokenheaderVal);
   if (tokenurlVal) chavy.setdata(tokenurlVal, tokenurlKey)
   if (tokenheaderVal) chavy.setdata(tokenheaderVal, tokenheaderKey)
   chavy.msg(cookieName, `获取刷新链接: 成功`, ``)
