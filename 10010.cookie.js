@@ -1,37 +1,3 @@
-Skip to content
-Product 
-Team
-Enterprise
-Explore 
-Marketplace
-Pricing 
-Search
-Sign in
-Sign up
-chavyleung
-/
-scripts
-Public
-Code
-Issues
-66
-Pull requests
-4
-Discussions
-Actions
-Projects
-Wiki
-Security
-Insights
-scripts/10010/10010.cookie.js /
-@KaytZ
-KaytZ Update 10010.cookie.js
-…
-Latest commit 3f9160d on 13 May 2020
- History
- 2 contributors
-81 lines (79 sloc)  3.22 KB
-
 const cookieName = '中国联通'
 const tokenurlKey = 'chavy_tokenurl_10010'
 const tokenheaderKey = 'chavy_tokenheader_10010'
@@ -113,16 +79,3 @@ function init() {
   return { isSurge, isQuanX, msg, log, getdata, setdata, get, post, done }
 }
 chavy.done()
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
